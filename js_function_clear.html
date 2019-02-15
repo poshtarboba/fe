@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Чисті та брудні функції</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Чисті та брудні функції</h1>
+			<p><strong>Чиста функція</strong> працює тільки з тими даними, які отримала у якості аргументів, не звертається до змінних, об'єктів поза межами свого визначення, не змінює зовнішні об'єкти.</p>
+			<p><strong>Брудна функція</strong> використовує зовнішні змінні, змнює об'єкти.</p>
+			<p>Функціональне програмування передбачає використання лише чистих функцій.</p>
+			<p>Чисті функції значно простіше відлагоджувати, тестувати, їх можна швидко прогнати по юніт-тестам.</p>
+			<p>Брудні функції - джерело помилок, які важко відловити, відтворити.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання.</h2>
+			<ol>
+				<li>Створіть функцію, що приймає в себе строку виду "42 см" і повертає перетворене значення в метри: "0.42 м".</li>
+				<li>
+					Дано: 2 або 3 строкові змінні з номером дня, місяця та року: d = 04, m = 07, y = 1996.<br>
+					Створіть функцію, яка приймає 2 обов'язкових параметра d та m і необов'язковий y.<br>
+					Функція повинна повернути строку з датою в одному з двох форматів:
+					<code>
+						"04.07"<br>
+						"04.07.1996"
+					</code>
+				</li>
+				<li>
+					Дано кубічне рівняння (квадратичний тричлен ax<sup>2</sup> + bx + c = 0).<br>
+					Для знаходження коренів рівняння потрібно спочатку знайти дискримінант цього рівняння.<br>
+					Створіть функцію розрахунку дискримінанта (формула D = b<sup>2</sup> - 4ac).
+					<code>
+						function diskr(){ ... }<br>
+						var a = 5, b = 4, c = 7;<br>
+						console.log(diskr(a, b, c));<br>
+					</code>
+				</li>
+				<li>
+					Створіть функцію, що повертає тип даних змінної Ї українською мовою.
+					<code>
+						function типДаних(){ ... }<br><br>
+						var Ї;<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "значення не задано"<br>
+						Ї = 'Привіт!';<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "строка"<br>
+						Ї = 42;<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "число"<br>
+						Ї = 1 / 0;<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "безкінечність"<br>
+						Ї = null;<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "порожнеча"<br>
+						Ї = {};<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "об'єкт"<br>
+						Ї = типДаних;<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "функція"<br>
+						// і завдання з зірочкою:<br>
+						Ї = 1 / 'Ї';<br>
+						console.log(типДаних()); &nbsp;&nbsp; // "не число!"
+					</code>
+				</li>
+				<li>
+					Скрипт отримує "з сервера" габарити коробки та вираховує об'єм.<br>
+					Виправте помилки та недоліки скрипта (функцію getFromServer не чіпайте).<br>
+					Переробіть функцію calcBox, щоб вона стала чистою.
+					<code>
+						&lt;p&gt;Результат вивести сюди&lt;/p&gt;<br><br>
+						function getFromServer(v){<br>
+						&nbsp;&nbsp;var res = Math.ceil(Math.random()*100) + ' см';<br>
+						&nbsp;&nbsp;console.info('Користувач запросив ' + v + ' розмір коробки: ' + res + '.');<br>
+						&nbsp;&nbsp;return res;<br>
+						}<br><br>
+						var x = getFromServer('x');<br>
+						var y = getFromServer('y');<br>
+						var z = getFromServer('z');<br>
+						function calcBox(){<br>
+						&nbsp;&nbsp;var res = 'Габарити коробки: ' + x + ' * ' + y + ' * ' + z + '.&lt;br&gt;';<br>
+						&nbsp;&nbsp;res += "Об'єм коробки: " + x * y * z + ' кубічних дециметрів.';<br>
+						&nbsp;&nbsp;document.getElementsByTagName('p')[0].innerHTML = res;<br>
+						}<br>
+						calcBox();<br>
+						console.info('Скрипт виконано.');
+					</code>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

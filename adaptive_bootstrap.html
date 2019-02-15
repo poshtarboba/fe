@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Фреймворк Бутстрап</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Фреймворк Бутстрап</h1>
+
+		<section>
+			<h2>Загальні відомості</h2>
+			<p>Фреймворків на основі сіток є багато: Foundation, Skeleton та інші. Перегляньте <a href="http://usablica.github.io/front-end-frameworks/compare.html" target="_blank">таблицю</a>, в якій зібрано популярні фреймворки.</p>
+			<!-- TODO: написати свою таблицю -->
+			<p><strong>Twitter Bootstrap</strong> - фреймворк (заготовка, напівфабрикат, набір шаблонів) для швидкого створення веб-сайтів.</p>
+			<p>Він складається зі зручної CSS-сітки, набору візуальних компонентів та скриптів.</p>
+			<p><a href="https://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap 3</a> <small>(<a href="http://twbs.docs.org.ua/" target="_blank">документація українською мовою</a>)</small>.</p>
+			<p><a href="https://getbootstrap.com/docs/4.0/" target="_blank">Bootstrap 4</a> <small>(реліз відбувся в жовтні 2017 року, до цього четверта версія була в розробці близько трьох років)</small>.</p>
+		</section>
+
+		<section>
+			<h2>Сітка Бутстрапа</h2>
+			<p>В Бутстрапі прийнято метод "від меншого екрану до більшого", всі стилі заточені під мобільні пристрої з невеликими екранами та розширяються для великих екранів.</p>
+			<p>По замовчуванню в сітці прописані <a href="http://getbootstrap.com/css/#grid" target="_blank">три стоп-точки</a>: <strong>768px</strong>, <strong>992px</strong> та <strong>1200px</strong>, що дає 4 типо-розміри екранів:<br>
+				<strong>col-xs-*</strong>;<br>
+				<strong>col-sm-*</strong>;<br>
+				<strong>col-md-*</strong>;<br>
+				<strong>col-lg-*</strong>.</p>
+			<code>
+				.col-* { float: left; width: 100%; }<br>
+				.col-xs-1 { width: 8,33333333%; }<br>
+				.col-xs-2 { width: 16,66666666%; }<br>
+				.col-xs-3 { width: 25%; }<br>
+				...<br>
+				.col-xs-10 { width: 83,33333333%; }<br>
+				.col-xs-11 { width: 91,66666666%; }<br><br>
+				@media (min-width: 768px) {<br>
+				&nbsp;&nbsp;col-sm-* { width: ...; }<br>
+				}<br><br>
+				@media (min-width: 992px) {<br>
+				&nbsp;&nbsp;col-md-* { width: ...; }<br>
+				}<br><br>
+				@media (min-width: 1200px) {<br>
+				&nbsp;&nbsp;col-lg-* { width: ...; }<br>
+				}
+			</code>
+			<p>В разі потреби Бутстрап можна <a href="http://getbootstrap.com/customize/" target="_blank">переналаштувати</a>, задавши свої три стоп-точки, свої відступи і т.п.</p>
+		</section>
+
+		<section>
+			<h2>Компоненти Бутстрапа</h2>
+			<p>В Бутстрапі є <a href="http://getbootstrap.com/components/" target="_blank">багато заготовок</a> для різноманітних <a href="http://getbootstrap.com/css/" target="_blank">стандартних елементів</a> веб-сторінок:<br>
+				- іконки;<br>
+				- випадаючі списки;<br>
+				- групи елементів;<br>
+				- кнопки;<br>
+				- форми, поля вводу;<br>
+				- таби;<br>
+				- панель навігації і тому подібне.
+			</p>
+			<p>Якщо вам потрібні тільки ці компоненти - цілком достатньо підключити в проект тільки файл стилів <strong>bootstrap.min.css</strong></p>
+			<p>Але в Бутстрапі є ще <a href="http://getbootstrap.com/javascript/" target="_blank"></a>багато компонентів, що використовують javascript. Їх ми розглянемо детальніше після вивчення JS та бібліотеки jQuery.</p>
+			<p>Для використання цих компонентів потрібно підключити бібліотеку <strong>jquery.min.js</strong> та бібліотеку <strong>bootstrap.min.js</strong>.</p>
+		</section>
+
+		<section>
+			<h2>Використання Бутстрапа</h2>
+			<p>Якщо вам потрібна тільки сітка - ви можете піделючити тільки файл стилів. Або ж створити свою сітку на основі бутстрапівської, де не буде зайвих класів.</p>
+			<p>Та у великих проектах як правило знадобляться різноманітні компоненти з фреймворка.</p>
+			<p>Є <a href="https://almsaeedstudio.com/" target="_blank">готові шаблони</a> (платні та безкоштовні), з яких сайт збирається як конструктор.<br>
+				Гугл: <strong>free bootstrap template</strong>, <strong>free bootstrap admin template</strong>.</p>
+			<p><strong class="danger">Чого не варто робити:</strong></p>
+			<p>- редагувати файл <strong>bootstrap.css</strong> чи <strong>bootstrap.min.css</strong>;</p>
+			<p>- глобально перевизначати класи:</p>
+			<code>
+				.col-lg-6 { float: none; }<br>
+				.col-sm-2 { width: 25%; }<br>
+				.col-md-4 { padding: 6px 40px; }<br>
+				.col-xs-7 { position: absolute; }
+			</code>
+			<p>- не дотримуватися почерговості .row та .col-*:</p>
+			<code>
+				&lt;div class="container-fluid"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="container"&gt;...&lt;/div&gt;<br>
+				&lt;/div&gt;<br><br>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="row"&gt;...&lt;/div&gt;<br>
+				&lt;/div&gt;<br><br>
+				&lt;div class="col-*"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-*"&gt;...&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>- дублювати класи:</p>
+			<code>
+				&lt;div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"&gt;...&lt;/div&gt;
+			</code>
+			<p>- підключати Бутстрап заради невеличкого блоку, кольорових кнопок чи ще якихось дрібниць і не використовувати його потужності.</p>
+			<p>Часто в верстці під Бутстрап зустрічаю кнопки всередині посилань. Так робити не треба: посилання - це активний елемент, і кнопка - активний елемент.</p>
+			<p>Цим грішать навіть великі компанії: google, yandex, amazon, microsoft (недосвідчені розробники і ліниві тім-ліди є і в таких компаніях).</p>
+			<code>
+				&lt;!-- не вірно: --&gt;<br>
+				&lt;a href="#"&gt;<br>
+				&nbsp;&nbsp;&lt;button class="btn btn-lg btb-info"&gt;Кнопка&lt;/button&gt;<br>
+				&lt;/a&gt;<br>
+				&lt;button class="btn btn-lg btb-info"&gt;<br>
+				&nbsp;&nbsp;&lt;a href="#"&gt;Кнопка&lt;/a&gt;<br>
+				&lt;/button&gt;<br><br>
+				&lt;!-- вірно: --&gt;<br>
+				&lt;a href="#" class="btn btn-lg btb-info"&gt;Кнопка&lt;/a&gt;<br>
+				&lt;button class="btn btn-lg btb-info"&gt;Кнопка&lt;/button&gt;<br>
+				&lt;span class="btn btn-lg btb-info"&gt;Кнопка&lt;/span&gt;
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Підключіть в проект Minecraft файл стилів Бутстрап та використайте його сітку та деякі компоненти. Почистіть свій файл стилів від зайвих класів.</li>
+				<li>
+					<a href="https://drive.google.com/open?id=1F9sZiGjFQveuaJSFrakCcupuAZpWy41x" target="_blank">Типовий макет</a> під Bootstrap
+					<small>(<a href="https://drive.google.com/open?id=13tiChmFxI4_wTJDDDMQy6HMhJHNaFv0E" target="_blank">jpg</a>)</small>
+				</li>
+				<li>
+					Безкоштовні макети під Bootstrap для заповнення портфоліо:<br>
+					- <a href="https://designsmaz.com/free-landing-page-psd-templates/" target="_blank">designsmaz.com</a><br>
+					- <a href="https://cssauthor.com/landing-page-templates-psd/" target="_blank">cssauthor.com</a><br>
+					- <a href="https://freebiesbug.com/psd-freebies/free-psd-landing-page/" target="_blank">freebiesbug.com</a><br>
+					- <a href="https://startbootstrap.com/template-categories/landing-pages/" target="_blank">startbootstrap.com</a><br>
+					- <a href="https://djavaui.com/2016/06/50-best-free-landing-page-psd-templates/">djavaui.com</a>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

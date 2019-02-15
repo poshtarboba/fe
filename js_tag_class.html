@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Робота з класами</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Робота з класами</h1>
+			<p>Список класів зберігається у строковій властивості <strong>className</strong>, вони записані через пробіл.</p>
+			<p>Якщо у елемента може бути один клас, то з цією властивістю ще можна працювати: задати клас, зчитати клас, видалити клас.</p>
+			<p>Якщо ж класів може бути більше - строкова властивість вже не зручна, хотілося б мати щось типу масива.</p>
+			<p>Список класів міститься у властивості <strong>classList</strong> (DOMTokenList) що має наступні зручні методи:</p>
+			<code>
+				p.classList.contains('active');<br>
+				p.classList.add('big');<br>
+				p.classList.remove('hey');<br>
+				p.classList.toggle('show');<br>
+				p.classList.forEach(fun);
+			</code>
+			<h3>Завдання</h3>
+			<p>Виконуйте у jsFiddle, CodePen.</p>
+			<ol>
+				<li>Створіть кнопку, параграф і список з 5 елементів. Задайте довільний текст елементам, одному елементу списка задайте клас active.</li>
+				<li>
+					Створіть стилі:
+					<code>
+						.hide { display: none; }<br>
+						.big { font-size: 24px; line-height: 1.3em; }<br>
+						.active { color: red; }
+					</code>
+				</li>
+				<li>Переберіть всі елементи списка і виведіть в повідомлення текст елемента, в якого є клас active. Видаліть цей клас.</li>
+				<li>Добавте клас big для параграфа.</li>
+				<li>При кліку на кнопку добавляйте чи видаляйте клас hide для параграфа, щоб він з'являвся та зникав.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

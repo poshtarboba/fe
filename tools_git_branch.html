@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Гілки Git</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Гілки Git</h1>
+			<p>Створити нову гілку і перейти в неї:</p>
+			<code>
+				git checkout -b назва_гілки
+			</code>
+			<p>Перейти в існуючу гілку:</p>
+			<code>
+				git checkout назва_гілки
+			</code>
+			<p>Вивести список гілок:</p>
+			<code>
+				git branch
+			</code>
+			<p>Заляти гілку на сервер:</p>
+			<code>
+				git push origin назва_гілки
+			</code>
+			<p>Об'єднання гілок:</p>
+			<code>
+				git merge назва_гілки
+			</code>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Створіть гілку test1, в html-файл пропишіть текст "test 1".</li>
+				<li>Перейдіть в головну гілку, створіть гілку test2, зробіть текст жовтого кольору.</li>
+				<li>Створіть нову гілку test3 від гілки test2, поміняйте розмір шрифта на 24px.</li>
+				<li>Перейдіть в гілку test2, об'єднайте її з гілкою test1 та результат заляйте на git.</li>
+			</ol>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Виконайте колективні завдання <a href="https://drive.google.com/open?id=0By5OeYSvSbNLV3ZVYk5xb3QxbDg" target="_blank">Меблі</a> (<a href="thumb/mebel.jpg" target="_blank">jpg</a>) та <a href="https://drive.google.com/open?id=0By5OeYSvSbNLY01BM0d6bF9DOEU" target="_blank">Assos</a> (<a href="thumb/assos.jpg" target="_blank">jpg</a>). Репозиторії шукайте на <a href="https://github.com/poshtarboba?tab=repositories" target="_blank">github.com/poshtarboba</a>.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

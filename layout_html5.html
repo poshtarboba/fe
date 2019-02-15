@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Семантика HTML5</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Семантика HTML5</h1>
+			<p><strong>Семантична роль блока</strong> - те, що означає блок, яку роль виконує у верстці, які типи даних містить.</p>
+			<p>Дано 5 ємностей: контейнер, ящик, скриня, коробка, шкатулка. Аналог всім цим ємностям в HTML - блок &lt;div&gt;.</p>
+			<p>
+				Семантична роль цих ємностей:<br>
+				- контейнер - для зберігання та перевезення крупногабаритних вантажів;<br>
+				- ящик - для зберігання яблук та картоплі;<br>
+				- скриня - для зберігання рідковживаного чи старого одягу;<br>
+				- коробка - для зберігання різноманітних дрібних речей;<br>
+				- шкатулка - для зберігання біжутерії, ґудзиків і т.п.
+			</p>
+			<p>В HTML четвертої редакції, всі блоки визначалися тегом &lt;div&gt;, всі списки, навігаційні меню, переліки - тегами &lt;ul&gt;, &lt;li&gt;. Пошуковим системам було важко розібратися де яка інформація, що до чого відноситься.</p>
+			<p>В HTML5 було внесено деякі зміни, більшість часто використовуваних блоків отримали свої аліаси (alias, псевдонім).</p>
+			<p>Для оформлення хедера введено тег &lt;header&gt;, для футера - &lt;footer&gt;, для бокової панельки - &lt;aside&gt;, і так далі.</p>
+			<code>
+				&lt;div class="header"&gt; &nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;header&gt;<br>
+				&lt;div class="footer"&gt; &nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;footer&gt;<br>
+				&lt;div class="content"&gt; &nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;main&gt;<br>
+				&lt;div class="sidebar"&gt; &nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;aside&gt;<br>
+				&lt;div class="section"&gt; &nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;section&gt;<br>
+				&lt;div class="article"&gt; &nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;article&gt;<br>
+				&lt;div class="nav-bar"&gt; &nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;nav&gt;<br>
+				&lt;ul class="menu"&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;menu&gt;<br>
+				&lt;div class="image"&gt; &nbsp;&nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp; &lt;figure&gt;<br>
+				&lt;div class="image"&gt;&lt;p&gt; &nbsp; ==> &nbsp;&nbsp; &lt;figure&gt;&lt;figcaption&gt;
+			</code>
+			<figure>
+				<img src="img/layout_html5_01.jpg" alt="HTML5 boxes">
+				<figcaption>Блоки HTML5</figcaption>
+			</figure>
+			<p><span class="danger">Увага!</span> Списки, що не відносяться до навігаційних меню, списки соцмереж і тому подібне - так і залишаються тегами ul, ol. Також нікуди не ділися div та інші теги, їх застосовуйте як і раніше.</p>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=NRkr7be8sw8" target="_blank">HTML Шорти - Секції в футері</a> (3:05).</p>
+			<p>Стандарт HTML5 дозволяє не закривати деякі блоки, такі як &lt;/html&gt;, &lt;/body&gt;, &lt;/p&gt;, &lt;/li&gt;, &lt;/tr&gt;, &lt;/td&gt; і т.ін.; а теги &lt;html&gt;, &lt;head&gt;, &lt;body&gt; можна і не відкривати.</p>
+			<p>Валідний HTML5-код може виглядати ось так:</p>
+			<code>
+				&lt;!DOCTYPE html&gt;<br>
+				&lt;meta charset="utf-8"&gt;<br>
+				&lt;title&gt;Frontend. Заняття 6.&lt;/title&gt;<br>
+				&lt;meta name="format-detection" content="telephone=no"&gt;<br>
+				&lt;link type="text/css" rel="stylesheet" href="css/styles.css"&gt;<br>
+				&lt;div id="mainwrapper"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="resize"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Заняття 6.&lt;/h1&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;В HTML4 всі блоки визначалися тегом &amp;lt;<span class="black">div</span>&amp;gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;В HTML5 було внесено деякі зміни, більшість часто використовуваних блоків отримали свої аліаси (alias, псевдонім).<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="image"&gt;&lt;img src="cat.jpg" alt="cat"&gt;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Цей текст буде "висячим", не матиме батьківського тега  &amp;lt;<span class="black">p</span>&amp;gt;, залишати в коді "висячий" текст - поганий стиль верстки.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Далі наведено приклад списку:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Елемент списку.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Ще один елемент списку.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;Посилання у списку&lt;/a&gt;.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;div&gt;Блок &amp;lt;<span class="black">div</span>&amp;gt; у списку.&lt;/div&gt;&lt;div&gt;Навіть два.&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Список другого рівня:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Елемент списку другого рівня.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Ще один.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Останній параграф і закриваючі блоки &amp;lt;<span class="black">div</span>&amp;gt;.<br>
+				&nbsp;&nbsp;&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Але я дуже раджу всі теги писати і закривати їх, на те є декілька причин: дисциплінює верстальника, попереджає неочевидні помилки, при модифікації сторінки однозначно і повністю описує тег та інші.</p>
+			<p><a href="http://www.olunka.ru/18-tegov-ne-trebuyushhix-obyazatelnogo-zakrytiya/">Невелика статейка з топа видачі гугла по запиту на цю тему</a>.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Застосуйте теги HTML5 у проектах Майнкрафт, Бізнес-експерт, Іскандер</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

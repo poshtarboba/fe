@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Навігація по DOM</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Навігація по DOM</h1>
+			<p><strong>$('ul li').length;</strong> - кількість знайдених елементів.</p>
+			
+			<h2>Батьківські та дочірні елементи</h2>
+			<p><strong>$('p').parent();</strong> - знаходить безпосередніх батьків елементів.</p>
+			<p><strong>$('p').parents();</strong> - знаходить всіх батьків елементів.</p>
+			<p><strong>$('p').children();</strong> - знаходить безпосередні дочірні елементи.</p>
+			<p><strong>$('ul').find(selector);</strong> - знаходить всі дочірні елементи.</p>
+			<p>Можна задати селектор щоб знайти тільки потрібні елементи серед всіх:</p>
+			<code>
+				$('p').parent('article');<br>
+				$('p').parents('.wrapper');<br>
+				$('ul').children('.active');
+			</code>
+			
+			<h2>Сусідні елементи</h2>
+			<p><strong>$('ul li.active').prev();</strong> - вибирає попереднього сусіда.</p>
+			<p><strong>$('ul li.active').next();</strong> - вибирає наступного сусіда.</p>
+			<p><strong>$('ul li.active').prevAll();</strong> - вибирає всіх попередніх сусідів.</p>
+			<p><strong>$('ul li.active').nextAll();</strong> - вибирає всіх наступних сусідів.</p>
+			<p>Знову ж таки, вищезазначені методи можуть приймати в себе аргумент - селектор, що відфільтрує зайві елементи:</p>
+			<code>
+				$('p').prev('img');<br>
+				$('section').next('section'); &nbsp;&nbsp; // wtf?<br>
+				$('ul li.active').prevAll('.contacts');<br>
+				$('ul li.active').nextAll('.contacts');
+			</code>
+			
+			<h3>Робота з набором</h3>
+			<p><strong>$('ul li').first();</strong> - повертає перший елемент з набору.</p>
+			<p><strong>$('ul li').last();</strong> - повертає останній елемент з набору.</p>
+			<code>
+				$('ul li').first('.active');<br>
+				$('ul li').last('.active');
+			</code>
+			<p>У jQuery є декілька <a href="http://api.jquery.com/category/selectors/jquery-selector-extensions/" target="_blank">спеціальних селекторів</a>, що покращують читабельність коду та спрощують його:</p>
+			<code>
+				$('ul li:first');<br>
+				$('ul li:last');<br>
+				$('ul li:even');<br>
+				$('ul li:odd');<br><br>
+				// ну і не забувайте про CSS-псевдокласи:<br>
+				$('button:disabled');<br>
+				$('input[type="checkbox"]:checked');<br>
+			</code>
+			<p><strong class="danger">Увага:</strong> jQuery, як і JS, не бачать і не розуміють CSS-псевдоелементи :before, :after. Наступний код не буде працювати:</p>
+			<code>
+				$('span:before').css('color', 'red');<br><br>
+				// вирішити це можна приблизно таким костилем:<br>
+				$('head').append('&lt;style&gt;.jq-red:before{color:red;}&lt;/style&gt;');<br>
+				$('span').addClass('jq-red');
+			</code>
+			<p><strong>$('ul li').get(4);</strong> - повертає 5-й <span class="danger">JS-елемент</span> зі знайдених (починаючи з 0).</p>
+			<p><strong>$('ul li')[4];</strong> - аналогічно.</p>
+			<p><strong>$('ul li').eq(4);</strong> - повертає 5-й <strong class="danger">jQuery-елемент</strong> зі знайдених (починаючи з 0). По суті - повертається jQuery-масив-обгортка довжиною 1 елемент.</p>
+			<p><strong>$('ul li').each(fun);</strong> - виконує дію з кожним знайденим елементом.</p>
+			<code>
+				$('p').each(function(){<br>
+				&nbsp;&nbsp;console.log($(this).text());<br>
+				});<br><br>
+				$('p').each(function(i, e){<br>
+				&nbsp;&nbsp;console.log(i, $(e).text());<br>
+				});
+			</code>
+			<p>Зверніть увагу: в функцію передаються чисті JS-елементи, а не jQuery-обгортки.</p>
+			
+			<h2>Фільтрація елементів</h2>
+			<p><strong>$('ul li').filter(':even').css('color', 'red');</strong> - відфільтровує елементи, в даному випадку залишає парні.</p>
+			<p><strong>$('ul li').not('.active');</strong> - видаляє зі знайденого набору елементів ті елементи, що відповідають селектору.</p>
+			<p><strong>$('p').add(...);</strong> - добавляє елементи до набора (аргумент - елементи або селектор).</p>
+			<code>
+				let $li = $('li');<br>
+				$('p').add($li).add('img.gallery').addClass('js-elem');
+			</code>
+			
+			<h2>Перевірки</h2>
+			<p><strong>$('li').index('.active');</strong> - повертає номер елемента в наборі, (індекс елемента LI.active серед всіх LI).</p>
+			<p><strong>$('li').has('ul');</strong> - вибирає тільки ті елементи, які містять в собі елементи, що підходять під селектор в аргументі метода (вибрати всі LI в яких всередині є UL).</p>
+			<p><strong>$('p').is(selector);</strong> - перевірка чи елемент підходить до селектора:</p>
+			<code>
+				$('li').each(function(){<br>
+				&nbsp;&nbsp;if ($(this).is('.active')) { ... }<br>
+				});
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

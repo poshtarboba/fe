@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Область видимості змінних</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Область видимості змінних</h1>
+			<p>Змінні, що створені в основному потоці, є глобальними, доступними по всьому скрипту (скриптам) нижче по коду.</p>
+			<p>Змінні, що створені всередині функції, видимі лише всередині функції.</p>
+			<p>Запустіть та проаналізуйте наступний код:</p>
+			<code>
+				var a = 5;<br>
+				function fun(){<br>
+				&nbsp;&nbsp;a = 14;<br>
+				&nbsp;&nbsp;var b = 8;<br>
+				&nbsp;&nbsp;console.log('In function:', a, b);<br>
+				}<br>
+				fun();<br>
+				console.log('In main stream:', a, b);
+			</code>
+			<p>Функції та змінні можуть знаходитися в різних файлах. Створіть новий проект з трьома js-файлами.</p>
+			<p>Підключіть скрипти в порядку зростання індекса, запустіть сторінку в браузері і перевірте консоль.</p>
+			<code>
+				// script1.js<br>
+				var aaa = 5;<br>
+				var fun3 = function(a, b){ return a + b; }<br><br>
+				// script2.js<br>
+				aaa = aaa - 1;<br>
+				function fun2(){ console.log(aaa); }<br>
+				var bbb = 7;<br><br>
+				// script3.js<br>
+				fun2();<br>
+				console.log(fun3(aaa, bbb));
+			</code>
+			<p>Якщо є і локальні і глобальні змінні з однаковим іменем - вони не перезаписуються та не конфліктують між собою:</p>
+			<code>
+				var a = 5;<br>
+				function fun(){<br>
+				&nbsp;&nbsp;var a = 8;<br>
+				&nbsp;&nbsp;console.log('In function:', a);<br>
+				}<br>
+				fun();<br>
+				console.log('In main stream:', a);
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

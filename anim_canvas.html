@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Canvas</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Робота з Canvas</h1>
+
+		<!--
+			canvas image transparent - не работает
+			canvas data transparent - не работает
+			canvas data transform (translate, rotate, scale) - не работает
+		-->
+
+		<p>Canvas - контейнер для програмної реалізації графіки на веб-сторінці.</p>
+
+		<p>На відміну від формату SVG графіка на canvas виконується лише програмно, за допомогою JS.</p>
+		<p>На canvas можна реалізувати як 2D, так і 3D-графіку, можна включити підтримку OpenGL (WebGL) і навіть створювати ігри.</p>
+
+		<section>
+			<h2>Основні примітиви</h2>
+			<p>Вставте на веб-сторінку тег &lt;canvas&gt;:</p>
+			<code>
+				&lt;canvas&gt;&lt;/canvas&gt;
+			</code>
+			<p>Всередину можна вставити контент для старих браузерів (хоча наразі це навряд чи актуально):</p>
+			<code>
+				canvas { width: 400px; height: 300px; border: 1px solid #aaa;}<br><br>
+				&lt;canvas id="img1"&gt;<br>
+				&nbsp;&nbsp;&lt;img src="canvas_error.png" alt="Canvas error"&gt;<br>
+				&nbsp;&nbsp;Ваш браузер не підтримує роботу з динамічною графікою.<br>
+				&lt;/canvas&gt;<br><br>
+				&lt;canvas id="img2"&gt;<br>
+				&nbsp;&nbsp;&lt;!-- Статична картинка, графік, гіфка, відео, SVG ... --&gt;<br>
+				&lt;/canvas&gt;
+			</code>
+			<p>Для початку малювання потрібно <strong>взяти контекст полотна</strong>, тобто, вказати - по чому ми малюємо. Полотно - контейнер для малювання всередині тега canvas.</p>
+			<p>Цим способом довільне малювання по віконному додатку відбувається у більшості мов програмування: C++, Java, Delphi і т.п. (використовується API операційної системи).</p>
+			<code>
+				let canvas = document.querySelector('canvas');<br>
+				let ctx = canvas.getContext('2d');<br><br>
+				// або напряму:<br>
+				let ctx = document.querySelector('canvas').getContext('2d');
+			</code>
+			<p>Раджу використовувати загальноприйняту назву змінної <strong>ctx</strong> (скорочення від context).</p>
+			<p>Якщо потрібна підтримка старих браузерів - можна виконати перевірку:</p>
+			<code>
+				let ctx = null;<br>
+				if (canvas.getContext){<br>
+				&nbsp;&nbsp;ctx = canvas.getContext('2d');<br>
+				} else {<br>
+				&nbsp;&nbsp;// браузер не підтримує canvas<br>
+				}
+			</code>
+			<p>Далі - алгоритм малювання примітивів.</p>
+			<p>Уявіть себе художником. Алгоритм дій:<br>
+				1. берете в руку червоний олівець;<br>
+				2. зафарбовуєте фон;<br>
+				3. берете в руку синій олівець;<br>
+				4. ставите його в точку [3см, 5см];<br>
+				5. малюєте лінію до точки [8см, 7см];<br>
+				6. ...</p>
+			<p>Подібним чином працює і алгоритм малювання по canvas:</p>
+			<code>
+				ctx.fillStyle = "red"; // color<br>
+				ctx.fillRect(10, 10, 200, 150);  // x, y, width, height<br>
+				ctx.fillStyle = "rgba(0,200,0,0.5)";<br>
+				ctx.ellipse(140, 100, 50, 80);<br>
+				ctx.fill();<br>
+				ctx.strokeRect(50, 50, 200, 150); // x, y, width, height<br>
+				ctx.clearRect(80, 80, 30, 20); // x, y, width, height<br>
+				ctx.fillStyle = "rgb(128,128,256)";<br>
+				ctx.beginPath();<br>
+				ctx.moveTo(140, 120);<br>
+				ctx.lineTo(260, 160);<br>
+				ctx.lineTo(160, 200);<br>
+				ctx.closePath();<br>
+				ctx.fill();<br>
+				ctx.arc(50, 50, 40, 0, Math.PI * 2); // cx, cy, r, aStart, aFinish<br>
+				ctx.arc(50, 50, 40, 0, (Math.PI / 180) * 45, true);<br>// cx, cy, r, aStart, aFinish, anticlockwise<br>
+				// ctx.rect(x, y, width, height);<br>
+				// ctx.quadraticCurveTo(x1, y1, x, y);<br>
+				// ctx.bezierCurveTo(x1, y1, x2, y2, x, y);<br>
+				// ctx.arcTo()
+			</code>
+			
+			<h3>Пікселі і проценти</h3>
+			<p>В багатьох випадках зручніше використовувати не пікселі, а проценти: потрібно для адаптивності, маштабування і т.п.</p>
+			<p>Як правило, за 100% беруть більший розмір блока, екрана.</p>
+			<!-- TODO: перехід від піксельної сітки до процентної -->
+			
+			<h3>Примітиви</h3>
+			
+			<p>Задаємо колір лінії та колір зафарбовування:</p>
+			<code>
+				ctx.strokeStyle = "green";<br>
+				ctx.fillStyle = "red";<br><br>
+				// інші формати кольору:<br>
+				ctx.fillStyle = "#f00";<br>
+				ctx.fillStyle = "rgb(255,0,0)";<br>
+				ctx.fillStyle = "rgba(255,0,0,1)";
+			</code>
+			
+			<p>Задаємо тип ліній:</p>
+			<code>
+				ctx.lineWidth = 10;<br>
+				ctx.lineCap = 'round';<br>
+				ctx.lineJoin = 'miter';<br>
+				ctx.setLineDash([5, 15, 3, 10]);
+			</code>
+			
+			<p>Прямокутники (рамка, зафарбований, очистка області):</p>
+			<code>
+				ctx.strokeRect(50,50,50,50);<br>
+				ctx.fillRect(25,25,100,100);<br>
+				ctx.clearRect(45,45,60,60);
+			</code>
+			
+			<p>Текст:</p>
+			<code>
+				ctx.font = "italic 30px Arial";<br>
+				ctx.fillStyle = "red";<br>
+				ctx.fillText("Звичайний текст", 20, 50);<br>
+				ctx.strokeStyle = "green";<br>
+				ctx.strokeText("Текст у вигляді обводки", 20, 100);
+			</code>
+			
+			<p>Вставимо растрове зображення:</p>
+			<code>
+				var cat = new Image();<br>
+				cat.addEventListener("load", function(){<br>
+				&nbsp;&nbsp;ctx.drawImage(cat, 50, 50); // image, x, y<br>
+				&nbsp;&nbsp;ctx.drawImage(cat, 150, 150, 200, 120); // image, x, y, scaleX, scaleY<br>
+				}, false);<br>
+				cat.src = 'images/cat.jpg';
+			</code>
+			
+			<p>Path.</p>
+			<code>
+				ctx.beginPath();<br>
+				ctx.moveTo(30, 20);<br>
+				ctx.lineTo(100, 80);<br>
+				ctx.lineTo(150, 30);<br>
+				ctx.closePath();<br>
+				ctx.strokeStyle = "red";<br>
+        ctx.stroke();
+			</code>
+			
+			<p>Path як об'єкт.</p>
+			<code>
+				var p = new Path2D("M 15 30 h 50 v 80 h -20 z");<br>
+				var r = Path2D(p); // copy from previous object p<br>
+				var rec = new Path2D();<br>
+				rec.rect(10, 10, 50, 50);<br>
+				var crc = new Path2D();<br>
+				// arc(x, y, radius, startAngle, endAngle, anticlockwise)<br>
+				crc.arc(100, 35, 25, 0, Math.PI * 2);<br>
+				ctx.stroke(rec);<br>
+				ctx.strokeStyle = "rgb(100,200,255)";<br>
+				ctx.stroke(p);<br>
+				// ctx.arcTo(x1, y1, x2, y2, radius)<br>
+				// ctx.quadraticCurveTo(x1, y1, x2, y2)<br>
+				// ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3)
+			</code>
+		</section>
+
+		<section>
+			<h2>Стек станів, збереження та відновлення станів.</h2>
+			<p>Під час малювання можна використовувати стек станів - зберігати та відновлювати стани (кольори, прозорість, тип ліній і т.п.).</p>
+			<p>Кожне збереження записує стан у стек, кожне відновлення стану зчитує стан з кінця стеку (останній запис).</p>
+			<code>
+				function sets(fill, stroke, width, alpha){<br>
+				&nbsp;&nbsp;ctx.fillStyle = fill;<br>
+				&nbsp;&nbsp;ctx.strokeStyle = stroke;<br>
+				&nbsp;&nbsp;ctx.lineWidth = width;<br>
+				&nbsp;&nbsp;ctx.globalAlpha = alpha;<br>
+				}<br>
+				function drawRect(x){<br>
+				&nbsp;&nbsp;ctx.beginPath();<br>
+				&nbsp;&nbsp;ctx.rect(x, x / 2, 100, 100);<br>
+				&nbsp;&nbsp;ctx.closePath();<br>
+				&nbsp;&nbsp;ctx.fill();<br>
+				&nbsp;&nbsp;ctx.stroke();<br>
+				}<br>
+				ctx.fillStyle = "red";<br>
+				ctx.save();<br>
+				drawRect(10);<br>
+				sets('green', 'navy', 3, 0.3);<br>
+				ctx.save();<br>
+				drawRect(60);<br>
+				sets('blue', 'orange', 10, 0.8);<br>
+				drawRect(110);<br>
+				ctx.restore();<br>
+				drawRect(160);<br>
+				ctx.restore();<br>
+				drawRect(210);
+			</code>
+		</section>
+
+		<section>
+			<h2>Трансформації</h2>
+			<p>Функція <strong>translate</strong> умовно зсуває координати полотна на задані значення.</p>
+			<p>Прямокутник буде намальовано не в нульових координатах, а в [100, 100]:</p>
+			<code>
+				ctx.translate(100, 100);  // x, y<br>
+				ctx.fillRect(0, 0, 50, 50);
+			</code>
+			<p>Обертання відбувається відносно нульової точки координат, обертається також все полотно:</p>
+			<code>
+				ctx.fillStyle = "blue";<br>
+				ctx.fillRect(30, 20, 80, 50);<br>
+				ctx.rotate((Math.PI/180)*30);<br>
+				ctx.fillStyle = "red";<br>
+				ctx.fillRect(30, 20, 80, 50);
+			</code>
+			<p>Щоб фігура прокрутилася довкола свого центру - зсунемо канву на початок координат прямокутника і ще на половину його розмірів:</p>
+			<code>
+				ctx.fillStyle = "blue";<br>
+				ctx.fillRect(30, 20, 80, 50);<br>
+				ctx.translate(70, 45); // 30 + 80/2, 20 + 50/2<br>
+				ctx.rotate((Math.PI/180)*30);<br>
+				ctx.fillStyle = "red";<br>
+				ctx.fillRect(30, 20, 80, 50);<br>
+				ctx.translate(-70, -45);
+			</code>
+			<p>В кінці оберту не забудьте повернути канву на початкове місце.</p>
+			<p>Приклад маштабування. Маштабуванням можна віддзеркалювати об'єкти по горизонталі, вертикалі чи одночасно по обом вісям, задаючи від'ємні значення.</p>
+			<code>
+				ctx.fillStyle = "blue";<br>
+				ctx.fillRect(10, 10, 50, 50);<br>
+				ctx.fillStyle = "red";<br>
+				ctx.globalAlpha = 0.5;<br>
+				ctx.scale(2, 3);<br>
+				ctx.fillRect(10, 10, 50, 50);<br>
+				ctx.scale(-1, -1);<br>
+				ctx.fillText("Hello", -100, -100);
+			</code>
+		</section>
+
+		<section>
+			<h2>Градієнтна заливка</h2>
+			<p>Градієнт створюється у вигляді окремого об'єкта. До створеного об'єкта додаються стоп-точки.</p>
+			<p>На відміну від SVG-формату, canvas-градієнт створюється на саме полотно, а не на фігури:</p>
+			<code>
+				var grad = ctx.createLinearGradient(20, 20, 150, 100);<br>
+				grad.addColorStop(0, 'red');<br>
+				grad.addColorStop(0.5, 'green');<br>
+				grad.addColorStop(1, '#00f');<br>
+				ctx.fillStyle = grad;<br>
+				ctx.fillRect(40, 40, 100, 100);
+			</code>
+			<p>Зручно буде створити функцію для створення градієнтів:</p>
+			<code>
+				ctx.linearGrad = function(x1, y1, x2, y2, stops){<br>
+				&nbsp;&nbsp;var grad = this.createLinearGradient(x1, y1, x2, y2);<br>
+				&nbsp;&nbsp;for (var i = 0; i < stops.length; i++){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;grad.addColorStop(stops[i][0], stops[i],[1]);<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;this.fillStyle = grad;<br>
+				}<br>
+				ctx.linearGrad(20, 20, 150, 100, [<br>
+				&nbsp;&nbsp;[0, 'red'],<br>
+				&nbsp;&nbsp;[0.5, 'green'],<br>
+				&nbsp;&nbsp;[1, '#00f']<br>
+				]);<br>
+				ctx.fillRect(40, 40, 100, 100);
+			</code>
+			<p>Радіальний градієнт задається дещо складніше:</p>
+			<code>
+				// context.createRadialGradient(x0, y0, r0, x1, y1, r1);<br>
+				var rgrad = ctx.createRadialGradient(20, 20, 10, 20, 20, 100);<br>
+				rgrad.addColorStop(0, 'yellow');<br>
+				rgrad.addColorStop(1, 'blue');<br>
+				ctx.fillStyle = rgrad;<br>
+				ctx.fillRect(0, 0, 300, 200);
+			</code>
+		</section>
+
+		<section>
+			<h2>Анімація</h2>
+			<p>На відміну від CSS- та SVG-анімації, анімація canvas відбувається покадрово.</p>
+			<p>Створюється кадр анімації, відображається на екрані певний час, затирається і малюється наступний кадр.</p>
+			<p>Проміжок часу між кадрами можна задати вручну за допомогою таймінгових функцій, або задати автоматичне перемальовування за допомогою функції <strong>window.requestAnimationFrame(callback)</strong>.</p>
+			<p>В останньому випадку розрахунки координат елементів зазвичай розраховують в залежності від поточного часу.</p>
+			<p>Анімація реалізується досить складними алгоритмами, приклад алгоритмів можна дослідити на сторінці <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations" target="_blank">https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations</a>.</p>
+		</section>
+
+		<section>
+			<h2>Практика</h2>
+			<h3><strong>Бізнес-графіка:</strong></h3>
+			<ol>
+				<li>
+					Згенеруйте 7 випадкових чисел в межах [5..100].<br>
+					Напишіть юніт-тест, щоб визначити, чи не генеруються числа менше 5 чи більше 100.<br>
+					За даними точками побудуйте графік на canvas.<br>
+					Графік повинен бути респонсивним.
+				</li>
+				<li>Додайте hover-ефект: при наведенні на точку графіка відобразіть над нею числове значення.</li>
+				<!-- д/з: hover-ефект має спрацьовувати не на квадраті, а на колі; зробити, щоб цифри добре читалися у V-подібних ділянках графіку -->
+				<li>Зробіть анімацію: при завантаженні сторінки лінія графіка на 0, за 1 секунду точки підіймаються вгору на свої місця.</li>
+				<li>Анімація повинна спрацьовувати при завантаженні сторінки, але якщо графік не повністю видно на екрані - то при проскролі до нього.</li>
+				<li>Дано 5 значень: [8, 14, 17, 22, 31]. Побудуйте кругову діаграму.</li>
+				<li>Побудуйте кільцеву діаграму використовуючи дані з попереднього завдання.</li>
+			</ol>
+			<h3><strong>Ефекти, розваги:</strong></h3>
+			<ol>
+				<li>Використайте невелике зображення котика.</li>
+				<li>При наведенні на нього мишки застосуйте до нього "<a href="img/fallout_filter.png" target="_blank">фільтр портретів Fallout</a>".</li>
+				<li>При кліку на кнопку завантажте ще одне зображення такого ж розміру і об'єднайте два зображення.</li>
+				<li>Зробіть, щоб перехід від одного зображення до другого був плавний, зліва направо.</li>
+				<li>При кліку на котика зробіть анімацію вибуха за допомогою спрайта.</li>
+				<li>Намалюйте декілька примітивів довільної форми. При наведенні на примітив у нього повинен з'являтися контур, а курсор повинен приймати вигляд "pointer".</li>
+				<li>Намалюйте "дорогу" - декілька послідовних ліній безьє. Намалюйте машинку примітивами і зробіть, щоб вона їхала по дорозі (колеса мають торкатися дороги). Опціонально: на спусках машинка має пришвидшуватися, на підйомах - сповільнюаватися.</li>
+				<li>Зробіть щоб довкола мишки весь час кружляв рій точок з ефектом інерції.</li>
+			</ol>
+		</section>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Frontend. Знайомство з HTML</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.this-example1 { margin: 10px 0 20px; padding: 16px 20px; font-size: 140%; background: #ffe; border: 2px dashed #eeb;}
+		.this-example1 strong { color: inherit;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Знайомство з HTML</h1>
+			<p>На минулому занятті ми познайомилися з декількома ключовими елементами веб-сторінок:<br>
+				- заголовки;<br>
+				- важливий текст;<br>
+				- списки (несортовані та нумеровані);<br>
+				- зображення;<br>
+				- посилання і т.п.</p>
+			<h2>Тег</h2>
+			<p><strong>Тег</strong> - це спеціальна мітка в SGML-подібних мовах розмітки, призначена для виділення частини інформації (контенту), щоб задати стиль оформлення, зробити логічний поділ інформації.</p>
+			<p>В HTML є деякий набір зарезервованих слів для тегів. Вигадувати свої власні назви тегів крайнє не рекомендую. З кожною новою редакцією HTML добавляються нові теги, деякі старі можуть вилучатися.</p>
+			<p>Найчастіше щоб виділити інформацію - потрібно позначити початок виділення і кінець виділення. Для цього служать відкриваючий і закриваючий тег, пишуться вони однаково, але у закриваючого тега перед словом є слеш.</p>
+			<p>Теги можуть вкладатися один в один як коробки чи матрьошки.</p>
+			<code>
+				<strong>&lt;тег&gt; Інформація &lt;/тег&gt;</strong><br><br>
+				&lt;div&gt; <span class="comment">Блок інформації</span> &lt;/div&gt;<br>
+				&lt;body&gt; <span class="comment">А це - головний тег всієї видимої інформації веб-сторінки</span> &lt;/body&gt;<br>
+				&lt;p&gt; <span class="comment">Абзац тексту, в якому частину тексту</span> &lt;b&gt; <span class="comment">виділено жирним</span> &lt;/b&gt; <span class="comment">шрифтом</span> &lt;/p&gt;<br>
+				&lt;blockquote&gt; <span class="comment">Уява важливіша за знання.</span> &lt;/blockquote&gt; &lt;em&gt; <span class="comment">А. Енштейн</span> &lt;/em&gt;
+			</code>
+			<p>Результат двох останніх строк:</p>
+			<code>
+				Абзац тексту, в якому частину тексту <b>виділено жирним</b> шрифтом
+				<blockquote>Уява важливіша за знання.</blockquote> <em>А. Енштейн</em>
+			</code>
+			<p>В HTML деякі теги не потребують закриваючого тега. Такі теги не можуть містити в собі іншу інформацію:</p>
+			<code>
+				&lt;img src="cat.jpg"&gt; <span class="comment-js">зображення</span><br>
+				&lt;br&gt; <span class="comment-js">перенос строки</span><br>
+				&lt;hr&gt; <span class="comment-js">горизонтальна розділяюча лінія</span><br>
+				&lt;input&gt;  <span class="comment-js">поле вводу</span>
+			</code>
+			<p>Існує строгий стандарт оформлення розмітки - XHTML (наразі він застосовується в React та деяких інших js-фреймворках). В цьому стандарті абсолютно всі теги повинні закриватися. Є повний та скорочений синтаксис:</p>
+			<code>
+				&lt;img&gt;&lt;/img&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;img/&gt;<br>
+				&lt;br&gt;&lt;/br&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;br/&gt;<br>
+				&lt;hr&gt;&lt;/hr&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;hr/&gt;<br>
+				&lt;input&gt;&lt;/input&gt; &nbsp;&nbsp; &lt;input/&gt;<br>
+			</code>
+			<h2>Атрибути та властивості тега</h2>
+			<p>Тег може мати <strong>атрибути</strong> і <strong>властивості</strong>.</p>
+			<p>Атрибути мають назву (ключ) і значення, пишуться через символ "дорівнює". Значення атрибута бажано брати в лапки (особливо якщо є пробіли, кириличні символи):</p>
+			<code>
+				&lt;img <strong>src="cat.jpg" alt="Мій кіт" width="300"</strong>&gt;<br>
+				&lt;a <strong>href="http://google.com"</strong>&gt;Посилання на гугл&lt;/a&gt;<br>
+				&lt;p <strong>class="msg" data-count="5"</strong>&gt;У вас є непрочитані повідомлення &lt;i&gt;5&lt;/i&gt;&lt;/p&gt;
+			</code>
+			<p>З властивостями ми познайомимося пізніше, вони записуються просто словом, властивість може бути у тега, а може не бути, третього не дано:</p>
+			<code>
+				&lt;div <strong>contenteditable</strong>&gt;<br>
+				&lt;input type="checkbox" <strong>checked disabled readonly</strong>&gt;<br>
+				&lt;video src="vid.mp4" <strong>controls autoplay</strong>&gt;
+			</code>
+			<p>Настав час модель даних перетворити на теги мови HTML.</p>
+			<h2>Завдання</h2>
+			<ol>
+				<li>
+					Для виділення тексту жирним існує тег &lt;b&gt;, для виділення тексту наклонним шрифтом існує тег &lt;і&gt;.<br>
+					Напишіть код для оформлення наступної строки:
+					<p class="this-example1">У верстці <strong>головне - <em>правильно</em></strong> <em>використовувати</em> теги.</p>
+				</li>
+				<li>Створіть нову папку проекту <strong>html_start</strong>, в ній - папку <strong>html</strong>.</li>
+				<li>В тій папці створіть папку index.html (можна використовувати Notepad++). Перевірте, чи файл має кодування UTF-8.</li>
+				<li>Спробуйте використати всі нижчевказані теги. Якщо ви використовуєте заготовку сторінки - код прописуйте між тегами &lt;body&gt; і &lt;/body&gt;.</li>
+				<li>Відкрийте сторінку у браузері та перевірте результат.</li>
+			</ol>
+			<p>Заголовки обрамляються тегами <strong>&lt;h1&gt;</strong>, <strong>&lt;h2&gt;</strong>, <strong>&lt;h3&gt;</strong>, <strong>&lt;h4&gt;</strong>, <strong>&lt;h5&gt;</strong>, <strong>&lt;h6&gt;</strong>.</p>
+			<p>Речення, абзаци, текст огортаються тегом <strong>&lt;p&gt;</strong> (кожне речення або кожен абзац в окремому тезі).</p>
+			<p>Якщо в реченні потрібно зробити перенесення строки на новий рядок - використайте тег <strong>&lt;br&gt;</strong>, та у більшості випадків текст переноситься автоматично.</p>
+			<p>Важливий текст огортається тегами <strong>&lt;strong&gt;</strong> або <strong>&lt;b&gt;</strong> (за замовчуванням в браузері виділяється жирним шрифтом).</p>
+			<p>Поняття, визначення, термін огортаються тегами <strong>&lt;em&gt;</strong> або <strong>&lt;i&gt;</strong> (за замовчуванням в браузері виділяється наклонним шрифтом).</p>
+			<p>Списки огортаються тегами <strong>&lt;ul&gt;</strong> (несортований) або <strong>&lt;ol&gt;</strong> (нумерований).</p>
+			<p>Кожен елемент списку - <strong>&lt;li&gt;</strong> (list item).</p>
+			<p>Зображення вставляються на веб-сторінку тегом <strong>&lt;img&gt;</strong>, у якого повинні бути атрибути <strong>src</strong> та <strong>alt</strong>, що вказують на URI зображення та описують зображення.</p>
+			<p>Посилання вставляються на веб-сторінку тегом <strong>&lt;a&gt;</strong>, у якого повинен бути атрибут <strong>href</strong> - адреса, по якій буде здійснено перехід при кліку на посилання.</p>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=atXxkKjPbN8" target="_black">HTML Шорти - Навіщо потрібні заголовки</a> (5:15).</p>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=JEItJ4nyl68" target="_black">HTML Шорти - Посилання довкола блоків</a> (2:27).</p>
+		</section>
+
+		<section>
+			<h2>Перетворення моделі даних на веб-сторінку</h2>
+			<p>Окрім вищезазначених тегів кожна веб-сторінка повинна мати декілька обов'язкових тегів, що описують заголовок файлу та його кінець.</p>
+			<p>Скопіюйте ваш файл index.txt у файл index.html, відкрийте його у IDE і починайте добавляти теги, видаляючи форматування моделі даних:</p>
+			<code>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;<br>
+				&lt;/head&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;h1&gt;Бобир Олександр Анатолійович&lt;/h1&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;i&gt;Дата народження:&lt;/i&gt; 5.10.1982&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;i&gt;Захоплення:&lt;/i&gt; коти, &lt;b&gt;програмування&lt;/b&gt;, мандри&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;h2&gt;Улюблені ігри:&lt;/h2&gt;<br>
+				&nbsp;&nbsp;&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Fallout;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Minecraft;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Might &amp;amp; Magic.&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;/ul&gt;<br>
+				&nbsp;&nbsp;&lt;h3&gt;Мої друзі:&lt;/h3&gt;<br>
+				&nbsp;&nbsp;&lt;ol&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Іванов;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Петров;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Сидоров.&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;/ol&gt;<br>
+				&nbsp;&nbsp;&lt;img src="cat.jpg" alt="Кіт"&gt;&lt;br&gt;<br>
+				&nbsp;&nbsp;&lt;a href="https://www.facebook.com/poshtar.boba"&gt;Мій профіль у facebook&lt;/a&gt;<br>
+				&lt;/body&gt;<br>
+				&lt;/html&gt;
+			</code>
+			<p>Відкрийте створений файл у браузері, отримаєте приблизно ось таку веб-сторінку:</p>
+			<!-- TODO: переробити згідно з домашками на попередніх заняттях -->
+			<iframe src="layout_html_start_iframe.html"></iframe>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Закінчіть робити сторінку-резюме, заляйте її на <strong>ваш_логін.github.io</strong>.</li>
+				<li>У робочій папці створіть папку <strong>first_pages</strong>, всередині неї - дві підпапки: <strong>my_business</strong> і <strong>pet_network</strong>.</li>
+				<li data-rate="1">У папці first-pages створіть сторінку-візитівку вашого домашнього улюбленця, кумира, вигаданого персонажа чи будь-яку іншу (index.html).</li>
+				<li data-rate="2">У папку my_business закиньте модель даних сайту вашого бізнесу, перетворіть модель даних на веб-сторінки.</li>
+				<li data-rate="2">Те саме зробіть і з соцмережею для домашніх тварин.</li>
+				<li data-rate="1">Заляйте папку first_pages на github у вигляді окремого проекту і через групу у Viber чи Telegram передайте викладачу посилання на репозиторій.</li>
+			</ol>
+			<h3>Додаткове завдання</h3>
+			<p>Дослідіть код сторінок цієї лекції, сайтів Wikipedia, соцмереж. Знайдіть елементи, які ми сьогодні вивчили.</p>
+			<p>Код сторінки можна побачити клацнувши правою кнопкою миші на сторінці і вибравши пункт меню "Переглянути джерело сторінки", "Show source".</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

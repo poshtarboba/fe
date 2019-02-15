@@ -1,0 +1,113 @@
+<html>
+<head>
+	<title>Frontend. Об'єкти window та document</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Об'єкти window та document</h1>
+
+		<!--
+		TODO: перенести кудись на початок JS після let, як додаткову інфу
+		<section>
+			<h2>0. Строгий режим.</h2>
+			<p><a href="https://learn.javascript.ru/strict-mode" target="_blank">https://learn.javascript.ru/strict-mode</a>.</p>
+			<p>Мова JavaScript постійно змінюється, доповнюється оновлюється згідно потреб, тенденцій, побажаннь розробників.</p>
+			<p>Довгий час підтримувалась сумісність зі всіми старими версіями для того, щоб не поламався старий код.</p>
+			<p>У редакції ECMAScript 5 (ES5) з'явилася спеціальна директива, що вказує браузеру: "виконуй скрипт по новому стандарту".</p>
+			<p>Наприклад, раніше можна було створювати змінні без використання ключового слова var. За новим стандартом це заборонено.</p>
+			<p>По замовчуванню у браузерах працює класична версія JS:</p>
+			<code>
+				x = 42;<br>
+				alert(x);
+			</code>
+			<p>Даний код спрацює без помилок. А наступний - викличе помилку, тому що потрібно застосувати var:</p>
+			<code>
+				'use strict';<br>
+				x = 42;<br>
+				alert(x);
+			</code>
+			<p>Тестувати потрібно в пісочниці чи у своєму проекті, в консолі ця директива спрацює тільки всередині функцій.</p>
+			<p>Директиву "use strict"; потрібно писати обов'язково на початку коду, як у прикладі вище, чи на початку функції: у вигляді строки, взятій в кавички, після чого ставиться крапка з комою.</p>
+			<code>
+				// код цієї функції буде використовувати нову реалізацію JS<br>
+				function fun(){<br>
+				&nbsp;&nbsp;'use strict';<br>
+				&nbsp;&nbsp;...<br>
+				}<br><br>
+				// в даному випадку директива не спрацює:<br>
+				var x = 5;<br>
+				'use strict';<br>
+				y = 10;<br>
+				alert(x + y);
+			</code>
+		</section>
+		-->
+
+		<section>
+			<h2>Об'єкт window</h2>
+			<p><strong>window</strong> - глобальний об'єкт JS, що містить в собі всю поточну веб-сторінку.</p>
+			<p>Виведіть в консоль та перегляньте властивості, методи цього об'єкта.</p>
+			<p>Якщо ви створюєте змінну в основному потоці - вона створюється як властивість об'єкта window. Проведіть експеремент:</p>
+			<code>
+				function fun(){ alert(777); }<br>
+				var kkk = 42;<br>
+				window.nnn = 'hello';<br>
+				console.log(window.kkk);<br>
+				console.log(nnn);<br>
+				window.fun();
+			</code>
+			<p>Є деякі змінні, які об'єкт window тримає для себе. Однією з таких змінних є name. Ця змінна завжди строкова, змінити її тип даних неможна:</p>
+			<code>
+				var name = 5,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;phone = 10;<br>
+				console.log(name + 2);<br>
+				console.log(phone + 2);
+			</code>
+			<p>Але змінну з такою назвою можна сміливо використовувати у своїх функціях та як властивостях об'єктів:</p>
+			<code>
+				function fun(){<br>
+				&nbsp;&nbsp;var name = 5;<br>
+				&nbsp;&nbsp;...<br>
+				}<br><br>
+				(function(){<br>
+				&nbsp;&nbsp;var name = 5;<br>
+				&nbsp;&nbsp;...<br>
+				})();<br><br>
+				var masha = {<br>
+				&nbsp;&nbsp;name: 'Маша',<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+		</section>
+
+		<section>
+			<h2>Об'єкт document</h2>
+			<p>Одним з найважливіших об'єктів, що міститься в об'єкті window, є document. В цьому об'єкті міститься вся наша веб-сторінка.</p>
+			<p>Ознайомтесь з цим об'єктом в консолі. Зверніть увагу на наступні властивості:</p>
+			<code>
+				document.body;<br>
+				document.head;<br>
+				document.links;<br>
+				document.anchors;<br>
+				document.images;<br>
+				document.forms;<br>
+				document.title;
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

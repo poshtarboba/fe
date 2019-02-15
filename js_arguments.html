@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Масив arguments</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Масив arguments</h1>
+			<p>В кожній функції (і методі) є спеціальне ключове слово arguments, це псевдо-масив зі всіх аргументів функції. Виконайте наступний код.</p>
+			<code>
+				function test1(a, b, c) { console.dir(arguments); }<br>
+				function test2() { console.dir(arguments); }<br>
+				test1(1, 2, 3);<br>
+				test2('hello', 5, 12, 42, 777);
+			</code>
+			<p>Дослідіть прототип виданих в консоль даних.</p>
+			<p>Таким чином можна створювати функції з динамічною кількістю аргументів.</p>
+			<h3>Завдання.</h3>
+			<p>Створіть функцію calc, що повертає суму усіх заданих їй аргументів.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

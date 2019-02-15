@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Події</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		#MouseMove { padding: 10px 20px; }
+		#MouseMove span { padding: 0 8px; background: rgba(0,0,0,0.2); color: #333; white-space: nowrap;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Події</h1>
+
+		<section>
+			<p><a href="https://learn.javascript.ru/introduction-browser-events" target="_blank">Введение в браузерные события</a>.</p>
+			<p>В js є підтримка більше сотні подій.</p>
+			<p><strong>Подія</strong> - реакція браузера на зовнішні зміни: рух мишкою, клік, скролл, кінець завантаження сторінки, ресурса, об’єкта, натискання кнопок клавіатури і т.п.</p>
+			<p>Події в JS починаються з літер on..., після яких йде назва події.</p>
+			<p>Кожна подія - це метод елемента, який бере участь у цій події.</p>
+			<p>Події частіше всього наслідуються батьківськими елементами. Так, клік по кнопці викличе також подію кліка по всім батьківським елементам кнопки, по body.</p>
+			<p>Подія реалізується функцією: що потрібно зробити коли відбулась дана подія. Функція може приймати єдиний аргумент (як приавило йому дають ім'я e, event), це об'єкт, в який буде збережено всю інформацію про подію.</p>
+			<h3>Клік</h3>
+			<p>Подія кліка використовується найчастіше.</p>
+			<p>Давайте дослідимо об'єкт event, що передається всередину функції:</p>
+			<code>
+				button.onclick = function(e){<br>
+				&nbsp;&nbsp;console.dir(e);<br>
+				};
+			</code>
+			<p>
+				<span class="js-click">span</span>
+				<strong class="js-click">strong</strong>
+				<a href="http://google.com" class="js-click">link</a>
+				<i class="js-click">i</i>
+				<em class="js-click">em</em>
+				<q class="js-click">q</q>
+			</p>
+			<div id="clickResult">== Result for click ==</div><br><br>
+			<div id="clickXYbox" style="width: 200px; height: 100px; background: silver; border: 1px solid grey;"></div>
+			<script>
+				document.querySelectorAll('.js-click').forEach(function(e){
+					e.onclick = function(){ clickResult.innerHTML = this.tagName; return false; };
+				});
+				function clickXY(e){ e.target.innerHTML = 'Click: ' + e.clientX + ' - ' + e.clientY + '<br>OffsetTop: ' + e.target.offsetTop; }
+				clickXYbox.onclick = clickXY;
+			</script>
+			<code>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&lt;span class="js-click"&gt;span&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;strong class="js-click"&gt;strong&lt;/strong&gt;<br>
+				&nbsp;&nbsp;&lt;a href="http://google.com" class="js-click"&gt;link&lt;/a&gt;<br>
+				&nbsp;&nbsp;&lt;i class="js-click"&gt;i&lt;/i&gt;<br>
+				&nbsp;&nbsp;&lt;em class="js-click"&gt;em&lt;/em&gt;<br>
+				&nbsp;&nbsp;&lt;q class="js-click"&gt;q&lt;/q&gt;<br>
+				&lt;/p&gt;<br>
+				&lt;div id="clickResult"&gt;== Result for click ==&lt;/div&gt;&lt;br&gt;&lt;br&gt;<br>
+				&lt;div id="clickXYbox" style="width: 200px; height: 100px; background: silver; border: 1px solid grey;"&gt;&lt;/div&gt;<br><br>
+				document.querySelectorAll('.js-click').forEach(function(e){<br>
+				&nbsp;&nbsp;e.onclick = function(event){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;clickResult.innerHTML = this.tagName;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+				&nbsp;&nbsp;}<br>
+				});<br>
+				function clickXY(e){ e.target.innerHTML = 'Click: ' + e.clientX + ' - ' + e.clientY + '&lt;br&gt;OffsetTop: ' + e.target.offsetTop; }<br>
+				clickXYbox.onclick = clickXY;
+			</code>
+			<p>Щоб заборонити перехід по посиланню - можна зробити щоб функція повертала false:</p>
+			<code>
+				a.onclick = function(){<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;return false;<br>
+				};
+			</code>
+			<p>Або в будь-якому місці функції викликати метод події .preventDefault():</p>
+			<code>
+				a.onclick = function(e){<br>
+				&nbsp;&nbsp;e.preventDefault();<br>
+				&nbsp;&nbsp;...<br>
+				};
+			</code>
+			<p>Краще використовувати метод: <a href="http://stepansuvorov.com/blog/2013/05/%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B8%D0%B5-preventdefault-stoppropagation-%D0%B8-stopimmediatepropagation/" target="_blank">Отличие preventDefault, stopPropagation и stopImmediatePropagation</a>.</p>
+
+			<h3>Отримання та втрата фокуса</h3>
+			<p>Робота з фокусом зводиться до використання двох подій: .onfocus та .onblur:</p>
+			<p style="margin-bottom: 100px;"><label>Focus: <input type="text" class="js-focus"></label></p>
+			<script>
+				let focus = document.querySelector('.js-focus');
+				focus.onfocus = function(){ this.style.background = 'yellow'; };
+				focus.onblur = function(){ this.style.background = 'white'; };
+				window.onfocus = function(){ document.title = 'Welcome!'; };
+				window.onblur = function(){  document.title = 'Good bye'; };
+			</script>
+			<code>
+				&lt;input type="text" class="js-focus"&gt;<br><br>
+				let focus = document.querySelector('.js-focus');<br>
+				focus.onfocus = function(){ this.style.background = 'yellow'; };<br>
+				focus.onblur = function(){ this.style.background = 'white'; };<br>
+				window.onfocus = function(){ document.title = 'Welcome!'; };<br>
+				window.onblur = function(){  document.title = 'Good bye'; };
+			</code>
+
+			<h3>Події курсора миші</h3>
+			<p>При роботі з мишою є декілька подій:</p>
+			<code>
+				.onmousemove - рух курсора миші<br>
+				.onmouseenter - курсор зайшов на елемент<br>
+				.onmouseleave - курсор вийшов за межі елемента<br>
+				.onmouseover - курсор над елементом<br>
+				.onmouseout - курсор не над елементом<br>
+				.onmousedown - нажата кнопка миші<br>
+				.onmouseup - відпущена кнопка миші
+			</code>
+			<p>Ще є декілька подій .ondrag*, які ми розглянемо пізніше, при роботі з drag-n-drop.</p>
+			<p>Зверніть увагу на різницю clientY та layerY (якщо у вас сторінка прокручена).</p>
+			<div id="MouseMove" style="background: silver; border: 1px solid grey;" class="noselect">
+				<span>0</span><br>
+				<span>Mouse enter: </span><br>
+				<span>Mouse leave: </span><br>
+				<span>Mouse down: </span><br>
+				<span>Mouse up: </span><br>
+				<span>5</span>
+			</div>
+			<script>
+				let MouseMove = document.querySelector('#MouseMove');
+				let span = MouseMove.querySelectorAll('span');
+				MouseMove.onmousemove = function(event) {
+					span[0].innerHTML = event.layerX + ' - ' + event.layerY;
+				};
+				MouseMove.onmouseenter = function() {
+					span[1].innerHTML += '♡';
+				};
+				MouseMove.onmouseleave = function() {
+					span[2].innerHTML += '♡';
+				};
+				MouseMove.onmousedown = function() {
+					span[3].innerHTML += '♡';
+				};
+				MouseMove.onmouseup = function() {
+					span[4].innerHTML += '♡';
+				};
+			</script>
+			<code>
+				&lt;div id="MouseMove" style="background: silver; border: 1px solid grey;"&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;0&lt;/span&gt;&lt;br&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;1&lt;/span&gt;&lt;br&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;2&lt;/span&gt;&lt;br&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;3&lt;/span&gt;&lt;br&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;4&lt;/span&gt;&lt;br&gt;<br>
+				&lt;/div&gt;<br><br>
+				let MouseMove = document.querySelector('#MouseMove');<br>
+				let span = MouseMove.querySelectorAll('span');<br>
+				MouseMove.onmousemove = function(event) {<br>
+				&nbsp;&nbsp;span[0].innerHTML = event.layerX + ' - ' + event.layerY;<br>
+				};<br>
+				MouseMove.onmouseenter = function() {<br>
+				&nbsp;&nbsp;span[1].innerHTML += '♡';<br>
+				};<br>
+				MouseMove.onmouseleave = function() {<br>
+				&nbsp;&nbsp;span[2].innerHTML += '♡';<br>
+				};<br>
+				MouseMove.onmousedown = function() {<br>
+				&nbsp;&nbsp;span[3].innerHTML += '♡';<br>
+				};<br>
+				MouseMove.onmouseup = function() {<br>
+				&nbsp;&nbsp;span[4].innerHTML += '♡';<br>
+				};
+			</code>
+			<p>Є ще дві події, які контролюють зміну елемента під курсором миші: onmouseover та onmouseout. Вони спрацьовують тоді, коли курсор потрапляє на дочірні елементи.</p>
+			<p>Протестуйте у пісочниці:</p>
+			<code>
+				&lt;div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;<br>
+				div { padding: 40px; border: 1px solid #000;}<br><br>
+				let div = document.querySelector('div'); &nbsp;&nbsp; // нам потрібен лише зовнішній div<br>
+				div.onmouseenter = function(e){ console.log(e.type); }<br>
+				div.onmouseleave = function(e){ console.log(e.type); }
+			</code>
+			<p>Понаводьте курсор на прямокутники та подивіться результат в консолі. Простежте коли саме виникають події.</p>
+			<p>Змініть ці дві події на onmouseover та onmouseout і повторно простежте коли саме виникають події.</p>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Модифікуйте скрипт так, щоб він показував координати відносно блока, а не всієї сторінки.</li>
+				<li>Виводьте також інформацію про натиснуту кнопку миші - праву, ліву, середню.</li>
+				<li>Виводьте в консоль координати точки клієнтської області екрану в момент відпускання кнопки миші.</li>
+			</ol>
+			<h3>Програмний виклик події.</h3>
+			<p>Для програмного виклику події просто викличте метод:</p>
+			<code>
+				button.onclick();
+			</code>
+			<p>Видалити подію можна присвоївши значення <strong>null</strong> у метод:</p>
+			<code>
+				button.onclick = null;
+			</code>
+			<p>Після цього прописана раніше реакція на цю подію перестане виконуватися.</p>
+			<h3>Інші події</h3>
+			<p>Ще є події роботи з клавіатурою, із завантаженням документа чи ресурса, прокруткою, зміною розмірів, роботою з тачскріном, поворотом екрану і т.д.</p>
+			<p>Деякі з цих подій ми будемо використовувати на практиці, з деякими - ви самі познайомитеся, коли прийде час.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

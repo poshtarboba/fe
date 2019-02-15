@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Створення елементів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Створення елементів</h1>
+			<p>Створити елемент можна двома способами.</p>
+			<p>Можна його прописати у властивість innerHTML батьківського елемента:</p>
+			<code>
+				&lt;p&gt;&lt;/p&gt;<br><br>
+				let p = document.querySelector('p');<br>
+				p.innerHTML = '&lt;span class="big"&gt;SPAN&lt;/span&gt;';<br>
+				p.innerHTML += ' &lt;strong&gt;STRONG&lt;/strong&gt;';<br>
+				p.innerHTML = '&lt;em&gt;EM&lt;/em&gt; &lt;a href="http://google.com"&gt;test&lt;/a&gt; ' + p.innerHTML;
+			</code>
+			<p>Другий варіант - це явне створення елементів за допомогою метода документа:</p>
+			<code>
+				<strong>let змінна = document.createElement('назва_тега');</strong><br><br>
+				let p = document.createElement('p');<br>
+				let price = document.createElement('strong');
+			</code>
+			<p>При цьому елемент створюється в оперативній пам'яті, а не в DOM, не відображається в браузері.</p>
+			<p>Але з цим елементом можна робити різні маніпуляції:</p>
+			<code>
+				p.innerHTML = 'Основна &lt;b&gt;мета&lt;/b&gt; нашої зустрічі...';<br>
+				p.setAttribute('title', 'Основна мета');<br>
+				p.id = 'heyHo';<br>
+				if (p.classList.contain('...')) { ... }<br>
+				console.dir(p.parentElement);
+			</code>
+			<p>Після створення елемент можна розмістити на сторінці, вбудувати його в DOM:</p>
+			<code>
+				document.body<strong>.appendChild(p)</strong>;<br>
+				document.querySelector('.article')<strong>.appendChild(p)</strong>;
+			</code>
+			<p>
+				В першому випадку новостворений елемент добавиться в кінець body;<br>
+				в другому - в кінець першого знайденого елемента з класом article.
+			</p>
+			<p>Щоб добавити елемент в довільне місце - існує метод <strong>.insertBefore(elem, nextSibling)</strong>:</p>
+			<code>
+				document.body.insertBefore(p, document.body.firstChild);<br>
+				let div = document.getElementById('hey-ho');<br>
+				div.parentElement.insertBefore(p, div);
+			</code>
+			<p>В першому випадку вставляємо наш елемент на початок body, тобто - перед першим дочірнім елементом body.</p>
+			<p>Друга і третя строки - вставка елемента перед вибраним нами елементом.</p>
+			<p>щоб вставити створений елемент після вибраного нами елемента - потрібно звернутися до його сусіда:</p>
+			<code>
+				div.parentElement.insertBefore(p, div.nextElementSibling);
+			</code>
+			<p>При цьому, якщо після елемента div не буде інших елементів, то конструкція div.nextElementSibling поверне null.</p>
+			<p>Якщо .insertBefore приймає null у якості другого аргумента - він добавить елемент в кінець батьківського.</p>
+			<p>Видалити елемент можна методами:</p>
+			<code>
+				p.parentElement.removeChild(p);<br>
+				let k = p.parentElement.removeChild(p);<br>
+				p.remove(); &nbsp;&nbsp; // не підтримується в IE
+			</code>
+			<p>У змінну k буде збережено видалений елемент, якщо він потрібен буде в майбутньому.</p>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Створіть пустий список елементів.</li>
+				<li>
+					За допомогою властивості innerHTML добавте в нього 5 елементів:<br>
+					&lt;li id="item1"&gt;1&lt;/li&gt;<br>
+					&lt;li id="item2"&gt;2&lt;/li&gt;<br>
+					...
+				</li>
+				<li>
+					Створіть ще один елемент:
+					&lt;li id="item0"&gt;0&lt;/li&gt;
+					і вставте його перед першим елементом списка.</li>
+				<li>Перед списком вставте параграф з текстом "Список:".</li>
+				<li>Порахуйте суму всіх значень елементів списку.</li>
+				<li>Після списка вставте параграф з текстом "Сума цифр: ...".</li>
+				<li>Спробуйте порахувати суму значень і прописати її в потрібне місце "однією командою": скористайтеся методом масивів .reduce() для перебору всіх елементів списка.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Перенесення елементів</h2>
+			<p>Знайдений елемент можна перенести:</p>
+			<code>
+				let p = document.querySelectorAll('p')[11];<br>
+				let h2 = document.querySelector('h2');<br>
+				h2.parentElement.insertBefore(p, h2.nextElementSibling);<br><br>
+				document.body.appendChild(p);
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

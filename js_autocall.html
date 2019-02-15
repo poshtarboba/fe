@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Самовиклик функцій</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Самовиклик функцій</h1>
+			<p>На співбесідах можна часто почути питання: "Як зробити так, щоб створена функція одразу виконалась?".</p>
+			<p>Одразу приходить ідея:</p>
+			<code>
+				function test(){ console.log('test'); }<br>
+				test();
+			</code>
+			<p>Та отримуєте -1 бал в анкетку. Правильна відповідь - взяти функцію в дужки і поставити ще раз дужки поруч:</p>
+			<code>
+				<strong>(ініціалізація_функції)();</strong><br>
+				(function test() { console.log('test'); })();
+			</code>
+			<p>Якщо функція викликатиметься лише раз - її можна зробити анонімною:</p>
+			<code>
+				(function() { console.log('test'); })();
+			</code>
+			<p>З таким способом ми ближче познайомимося при вивченні бібліотеки jQuery.</p>
+			<p>Якщо потрібно передати аргументи - вони прописуються у другі дужки:</p>
+			<code>
+				(function(a, b) { console.log(a, b); })(5, 24);
+			</code>
+			<p>Вважається хорошим тоном огортати весь свій код у замикання. Маємо скрипт:</p>
+			<code>
+				let a...<br>
+				...<br>
+				...<br>
+				console.log(...);
+			</code>
+			<p>Можна його огорнути у функцію та викликати її:</p>
+			<code>
+				function homework37() {<br>
+				&nbsp;&nbsp;let a...<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;console.log(...);<br>
+				}<br>
+				homework37();
+			</code>
+			<p>Або огорнути дужками анонімну функцію:</p>
+			<code>
+				(function() {<br>
+				&nbsp;&nbsp;var a...<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;console.log(...);<br>
+				})();
+			</code>
+			<p>При такому способі всі створені вами змінні будуть локальними, а не глобальними, вони гарантовано не будуть конфліктувати з кодом інших розробників, бібліотек і т.п.</p>
+		</section>
+		
+		<!--
+			TODO: "Другое, более продвинутое решение – использовать дополнительную функцию для того, чтобы «поймать» текущее значение i:"
+			https://learn.javascript.ru/task/make-army
+			var shooter = (function(x){
+				return function(){ alert(x); };
+			})(i);
+		-->
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Елементи вебформ, добавлені в HTML5</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Елементи вебформ, добавлені в HTML5</h1>
+			<p>В HTML5 добавили нові елементи вебформ, що в майбутньому дозволить відмовитися від додаткових js-плагінів, які реалізовували календарі, ползунки та інші візуальні елементи.</p>
+			<p>Станом на кінець 2017 року з їх підтримкою у браузерах є серйозні проблеми: браузери відображають елементи по-різному, а деякі елементи досі не підтримуються. Порівняйте вигляд елементів, представлених у лекції, в різних браузерах (Chrome, Firefox, IE/Edge).</p>
+			<p>Звичайне текстове поле type="text" отримало декілька різновидів, що майже нічим від свого батьківського блока не відрізняються.</p>
+			<p>Це зроблено по-перше - для семантичної ідентифікації елементів, по-друге - на мобільних гаджетах при отриманні фокуса буде виникати більш зручна віртуальна клавіатура, де до основного набору клавіш будуть входити додаткові клавіші, наприклад, для набору е-мейлів, телефону і т.п.</p>
+			<p><strong>type="email"</strong> - поле для вводу адреси електронної пошти.</p>
+			<p><strong>type="tel"</strong> - поле для вводу телефона.</p>
+			<p><strong>type="url"</strong> - поле для вводу URL.</p>
+			<p><strong>type="search"</strong> - поле для пошуку.</p>
+			<fieldset>
+				<p><label><input type="email" placeholder="email"></label></p>
+				<p><label><input type="tel" placeholder="tel"></label></p>
+				<p><label><input type="url" placeholder="url"></label></p>
+				<p><label><input type="search" placeholder="search"></label></p>
+			</fieldset>
+			<p>Поля для вводу дати, часу і т.п.:</p>
+			<p><strong>type="date"</strong>.</p>
+			<p><strong>type="datetime"</strong>.</p>
+			<p><strong>type="time"</strong>.</p>
+			<p><strong>type="datetime-local"</strong>.</p>
+			<p><strong>type="month"</strong>.</p>
+			<p><strong>type="week"</strong>.</p>
+			<fieldset>
+				<p><label><input type="date" placeholder="date"></label></p>
+				<p><label><input type="datetime" placeholder="datetime"></label></p>
+				<p><label><input type="time" placeholder="time"></label></p>
+				<p><label><input type="datetime-local" placeholder="datetime-local"></label></p>
+				<p><label><input type="month" placeholder="month"></label></p>
+				<p><label><input type="week" placeholder="week"></label></p>
+			</fieldset>
+
+			<p>&nbsp;</p>
+
+			<p>Вибір кольору:</p>
+			<p><label><input type="color"> - type="color"</label></p>
+			<p>&nbsp;</p>
+
+			<p>Ввід числа:</p>
+			<p><label><input type="number"> - type="number"</label></p>
+			<p>&nbsp;</p>
+
+			<p>Ввід числа з певного діапазона:</p>
+			<p><label><input type="range" min="1" max="10"> - type="range"</label></p>
+			<code>
+				&lt;input type="range" min="1" max="10"&gt;
+			</code>
+			<p>&nbsp;</p>
+
+			<p>Полоса прогресу (керування нею здійснюється за допомогою JavaScript):</p>
+			<p><progress value="20" max="100">Завантажено: 20%</progress></p>
+			<code>
+				&lt;progress value="20" max="100"&gt;Завантажено: 20%&lt;/progress&gt;
+			</code>
+
+			<p>Список вибору:</p>
+			<p><label><input list="drop_list_1"></label></p>
+			<datalist id="drop_list_1">
+				<option value="Хмельницький">
+				<option value="Вінниця">
+				<option value="Львів">
+			</datalist>
+			<p>Цей елемент схожий на select, але в нього можна ввести будь-яке значення, в тому числі і таке, якого немає в списку.</p>
+			<p>Сам список задається в окремому тезі datalist і зв'язується з інпутом через ідентифікатор та атрибут list:</p>
+			<code>
+				&lt;label&gt;&lt;input list="drop_list_1"&gt;&lt;/label&gt;<br>
+				&lt;datalist id="drop_list_1"&gt;<br>
+				&nbsp;&nbsp;&lt;option value="Текст1"&gt;<br>
+				&nbsp;&nbsp;&lt;option value="Текст2"&gt;<br>
+				&lt;/datalist&gt;
+			</code>
+			<p>Список datalist може знаходитися в будь-якому місці сторінки, наприклад, в самому низу поряд зі скриптами, закриваючим тегом body.</p>
+			<p>&nbsp;</p>
+		</section>
+
+		<section>
+			<h2>Додаткові матеріали.</h2>
+			<p><a href="https://habrahabr.ru/post/111767/" target="_blank">10 порад по веб-формах</a>.</p>
+			<p><a href="https://habrahabr.ru/post/155213/" target="_blank">Рекомендації по інтерфейсу форм</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

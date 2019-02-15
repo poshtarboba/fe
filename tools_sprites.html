@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Спрайти</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Спрайти</h1>
+		
+		<section>
+			<h2>Створення спрайтів</h2>
+			<p>Спрайти - це об’єднання елементів дизайну, іконок в один файл.</p>
+			<p>Це робиться для того, щоб оптимізувати швидкість завантаження веб-сторінки і економії ресурсів сервера: один файл завантажиться значно швидше, ніж десяток-два маленьких файлів, запит до сервера буде лише один замість декількох десятків.</p>
+			<p>Приклади спрайтів:</p>
+			<figure>
+				<img src="img/tools_sprites_01.jpg" alt="Sprite">
+				<figcaption>Набір іконок</figcaption>
+			</figure>
+			<figure>
+				<img src="img/tools_sprites_02.jpg" alt="Sprites of google">
+				<figcaption>Спрайти гугла</figcaption>
+			</figure>
+			<figure>
+				<img src="img/tools_sprites_03.jpg" alt="Very big sprite">
+				<figcaption>Бувають спрайти, що містять дуже багато елементів</figcaption>
+			</figure>
+			<figure>
+				<img src="img/tools_sprites_04.jpg" alt="Sprite socicons">
+				<figcaption>Іконки соціальних мереж, зібрані у спрайт</figcaption>
+			</figure>
+			<h3>Практичне завдання</h3>
+			<p>Можете використати <a href="https://drive.google.com/open?id=1pznpPk6hRwQUZiVI1OCZbSzlseBsRZO6" target="_blank">іконки з макету Iskander</a> або взяти будь-які свої.</p>
+			<p>Один з варіантів створення спрайту:</p>
+			<p>1. Визначаємо які елементи будуть міститися у нас на спрайті і визначаємо розмір спрайта. Якщо в майбутньому у спрайт потрібно буде добавити елементи - збільшення розміру зображення не стане проблемою.</p>
+			<figure>
+				<img src="img/tools_sprites_05.png" alt="Change size">
+				<figcaption>Змінення розміру спрайта: Image > Canvas size</figcaption>
+			</figure>
+			<p>2. В фотошопі створюємо нове зображення потрібного розміру.</p>
+			<p><strong class="danger">Увага!</strong> Між елементами спрайту залишайте по 2 вільних пікселя. Закладіть ці відступи у розрахунок розміру зображення.</p>
+			<p>Наприклад, нам потрібно створити спрайт з 8 соціальних іконок, ми вирішили, що розмістимо їх по 4 у два ряда. Розмір кожної іконки - 32х32 пікселя. Отже, 32 * 4 = 128 пікселів в ширину, 64 пікселя в висоту. В рядах між іконками буде три відступи по 2 пікселя, отже, 128 + 6 = 134 пікселя. Між двома рядами всього один відступ, 64 + 2 = 66 пікселів. Створюємо зображення 134х66 пікселів.</p>
+			<p>3. На цьому порожньому зображенні лезом розмічаємо місця для наших майбутніх іконок:</p>
+			<figure>
+				<img src="img/tools_sprites_06.png" alt="Empty sprite">
+				<figcaption>Заготовка</figcaption>
+			</figure>
+			<p>4. Копіюємо елементи з різних файлів і вставляємо на наш спрайт, вирівнюючи відповідно до сітки.</p>
+			<p>5. Вимикаємо білий фон і зберігаємо спрайт у формат PNG.</p>
+			<p>Спрайт в форматі PSD теж бажано собі зберегти в папку з макетами - велика вірогідність, що вам доведеться щось добавляти, міняти.</p>
+			<figure>
+				<img src="img/tools_sprites_07.png" alt="Sprite">
+				<figcaption>Елементи спрайта на прозорому фоні</figcaption>
+			</figure>
+			<p>Не варто всі елементи зі всього сайту, з різних сторінок запихати в один великий спрайт. Краще намагатися розподілити елементи по декільком спрайтам, які будуть завантажуватися за потреби, а не завжди, на кожній сторінці.</p>
+		</section>
+
+		<section>
+			<h2>Використання спрайтів</h2>
+			Для використання спрайтів в стилях нам потрібен блок фіксованого розміру, що відповідає розміру елемента на спрайті.
+			В прикладі вище іконки мають розмір 32х32 пікселя, отже, нам потрібно створити блоки такого ж розміру:
+			<code>
+				&lt;ul class="social"&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="tw"&gt;Twitter&lt;/a&gt;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="fb"&gt;Facebook&lt;/a&gt;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;&lt;a href="#" class="gp"&gt;Google Plus&lt;/a&gt;&lt;/li&gt;<br>
+				&lt;/ul&gt;<br><br>
+				.social li {<br>
+					display: inline-block;<br>
+				}<br>
+				.social a {<br>
+				&nbsp;&nbsp;display: block;<br>
+				&nbsp;&nbsp;width: 32px;<br>
+				&nbsp;&nbsp;height: 32px;<br>
+				&nbsp;&nbsp;text-indent: -9000px;<br>
+				&nbsp;&nbsp;overflow: hidden;<br>
+				&nbsp;&nbsp;background: url(../images/sprite_social_icons.png) no-repeat left top;<br>
+				}<br>
+				.social a.fb { background-position: -34px 0;}<br>
+				.social a.gp { background-position: -68px 0;}<br><br>
+				/* .social a.tw не задаємо, у нього іконка і так на своєму місті */
+			</code>
+			<!-- добав приклад з іконкою поруч з текстом, як посилання на скайп в майнкрафті -->
+			<!-- добав маштабування фону -->
+			<p>Координати задаються від’ємні:</p>
+			<figure>
+				<img src="img/tools_sprites_08.jpg" alt="Coordinates">
+				<figcaption>Визначення координат елемента спрайта</figcaption>
+			</figure>
+			<p>Ці координати ви можете підглядати в фотошопі у властивостях вирізаного прямокутничка (слайса).</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Застосуйте спрайти у проекті Minecraft, об'єднайте соціконки, прапорець і значок скайпа в спрайт.</li>
+				<li>Застосуйте спрайти у проекті Iskander. Якщо ще не почали працювати над цим проектом - в першу чергу виріжте всі іконки і об'єднайте у спрайт.</li>
+				<li>У проекті <a href="https://drive.google.com/open?id=0By5OeYSvSbNLeXIxU2gzNjJnbkE" target="_blank">Таблиці</a> <small>(<a href="thumb/tables.jpg">jpg</a>)</small> зверстайте першу секцію Navigation. Зверніть увагу на приховані шари.</p>
+			</ol>
+			<p><a href="https://www.youtube.com/watch?v=6g1Fss62uN0" target="_blank">Відеоурок по спрайтам</a>.</p>
+		</section>
+
+		<!--
+			TODO: створити анімацію використання спрайтів у вигляді інтерактивного мультика:
+			- натискаємо Play - з'являється хтмл посилання і саме посилання;
+			- у посилання для візуальності постійно повільно мигає бордер (міняється чорний колір з альфа-каналом від 0.2 до 0);
+			- задаємо стилі, посилання стає квадратним, текст їде вліво за межі екрану;
+			- задаємо бекграунд з позицією left, top (бекграунд трішки просвіщається крізь фон довкола посилання);
+			- з'являється css з класами;
+			- з'являються кнопки зміни класів і кнопки вгору, вниз, вліво, вправо для руху бекграунда
+		-->
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

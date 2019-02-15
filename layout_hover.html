@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<title>Frontend. Модифікатори :hover, :active, :visited, :link</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		p.test { font-size: 24px; line-height: 1.4em;}
+		p.test a:hover { color: green !important;}
+		p.test a:active { color: red !important;}
+		p.test a:visited { color: silver;}
+		p.test a:link { color:orange;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h2>Модифікатори :hover, :active, :visited, :link</h2>
+			<p>До елементів в стилях можна додати реакцію на події миші (пробіл після двокрапки не ставте):</p>
+			<code>
+				<strong>a:hover</strong> { color: green;} - посилання, на яке навели курсор миші.<br>
+				<strong>a:active</strong> { color: red;} - посилання, на яке клацнули, але ще не відпустили кнопку миші.<br>
+				<strong>a:visited</strong> { color: silver;} - посилання, яке вже відвідали.<br>
+				<strong>a:link</strong> { color: orange;} - не відвідуване посилання (аналог простого запису a {...}).<br>
+			</code>
+			<p>Не клікайте по наступному посиланню до вказівки викладача:</p>
+			<p class="test"><a href="https://www.google.com/search?tbm=isch&amp;q=vue%20js">Тестове посилання</a>.</p>
+			<code>
+				a.first.active:hover {...} - якщо у елемента є класи, то :hover додаємо в кінець.<br>
+				a#id_element:hover {...} - аналогічно якщо в елемента є ID.<br>
+				a#first.active:hover {...},<br>
+				a.active#first:hover {...} - змішані приклади (еквівалентні між собою).<br><br>
+				<strong>img:hover</strong> {...} - стиль буде застосовано, якщо курсор миші навели на зображення.<br>
+				<strong>h2:hover</strong> {...} - стиль буде застосовано, якщо курсор миші навели на заголовок.
+			</code>
+			<p>Є й інші модифікатори - :checked, :disabled, :focus, :hidden і т.п., деякі з них розглянемо під час вивчення веб-форм.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

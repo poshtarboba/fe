@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Оператор let</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Оператор let</h1>
+			<p>В редакції EcmaScript6 з'явився оператор let, що доповнює оператор var.</p>
+			<p>Цей оператор створює змінну лише в межах структури, наприклад, умови чи циклу.</p>
+			<code>
+				for (var i = 0; i < 3; i++) { console.log(i); }<br>
+				console.log('i = ' + i);<br><br>
+				for (let j = 0; j < 3; j++) { console.log(j); }<br>
+				console.log('j = ' + j);<br><br>
+				if (true) {<br>
+				&nbsp;&nbsp;var a = 5;<br>
+				&nbsp;&nbsp;let b = 5;<br>
+				&nbsp;&nbsp;console.log(a, b);<br>
+				}<br>
+				console.log(a, b);
+			</code>
+			<p>Оператор let робить код чистішим.</p>
+			<p>Також було добавлено оператор <strong>const</strong>, що створює константи, змінні, які не можна змінити :)</p>
+			<p>Не можна змінювати значення константи, якщо це простий тип даних, чи посилання на масив чи об'єкт. Елементи масива, внутрішній вміст об'єкта змінювати можна.</p>
+			<code>
+				const a = 5;<br>
+				a = 7;<br><br>
+				const b = [1, 2, 3];<br>
+				b[0] = 42;<br>
+				console.log(b);
+			</code>
+			
+			<!-- TODO: дописати приклади з калл-бек функціями, наприклад, клік по кнопці, таймер -->
+			<!-- TODO: перенести на початок скриптів, замість var -->
+			<!-- TODO: добавити посилання: https://learn.javascript.ru/let-const -->
+			
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Кругові діаграми на CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Кругові діаграми на CSS</h1>
+			
+			<p>Пекмен:</p>
+			<code>
+				div {<br>
+				&nbsp;&nbsp;width: 0;<br>
+				&nbsp;&nbsp;border: 50px solid gold;<br>
+				&nbsp;&nbsp;border-radius: 50%;<br>
+				&nbsp;&nbsp;border-right-color: transparent;<br>
+				}
+			</code>
+			
+			<p>25%</p>
+			<code>
+				div {<br>
+				&nbsp;&nbsp;width: 0;<br>
+				&nbsp;&nbsp;border: 50px solid gold;<br>
+				&nbsp;&nbsp;border-radius: 50%;<br>
+				&nbsp;&nbsp;border-right-color: red;<br>
+				&nbsp;&nbsp;transform: rotate(-45deg);
+				}
+			</code>
+			
+			<p>0-50%</p>
+			<code>
+				div {<br>
+				&nbsp;&nbsp;position: relative;<br>
+				&nbsp;&nbsp;width: 0;<br>
+				&nbsp;&nbsp;background: gold;<br>
+				&nbsp;&nbsp;border-radius: 50%;<br>
+				&nbsp;&nbsp;overflow: hidden;<br>
+				}<br>
+				div:before {<br>
+				&nbsp;&nbsp;content: "";<br>
+				&nbsp;&nbsp;position: absolute;<br>
+				&nbsp;&nbsp;left: 50%;<br>
+				&nbsp;&nbsp;bottom: 50%;<br>
+				&nbsp;&nbsp;padding: 5000%;<br>
+				&nbsp;&nbsp;background: red;<br>
+				&nbsp;&nbsp;transform: scaleX(-1) rotate(-90deg) skewX(42deg);<br>
+				&nbsp;&nbsp;transform-origin: bottom left;<br>
+				}
+			</code>
+			
+			<p>50-100%</p>
+			<code>
+				--//--<br>
+				div.over-half {<br>
+				&nbsp;&nbsp;background: red;<br>
+				}<br>
+				div.over-half:before {<br>
+				&nbsp;&nbsp;background: gold;<br>
+				&nbsp;&nbsp;transform: rotate(-90deg) skewX(42deg);<br>
+				}
+			</code>
+			
+			
+			
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

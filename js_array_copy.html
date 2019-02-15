@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Вказівник, копіювання масивів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Вказівник, копіювання масивів</h1>
+			<p>У змінній зберігається не сам масив, а вказівник на комірку пам'яті, де починається масив.</p>
+			<p>Проведіть експеремент:</p>
+			<code>
+				let a = [1, 2, 3],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a;<br>
+				a[1] = 'а вже не два!';<br>
+				console.log(b);
+			</code>
+			<p>Можна створити рекурсивний масив, just for fun, практичного застосування такі масиви не мають, в багатьох випадках можуть викликати вічний цикл і підвісити браузер:</p>
+			<code>
+				let mas = [];<br>
+				mas[0] = mas;<br>
+				console.dir(mas);
+			</code>
+			<p>В функції масиви також передаються вказівником:</p>
+			<code>
+				let a = [1, 2, 3],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = 1;<br>
+				fun(a, b);<br>
+				console.log('end of fun:', a);<br>
+				console.log('end of fun:', b);<br><br>
+				function fun(x, y) {<br>
+				&nbsp;&nbsp;x[0] = x[0] + 13;<br>
+				&nbsp;&nbsp;y = y + 13;<br>
+				&nbsp;&nbsp;console.log('fun:', x);<br>
+				&nbsp;&nbsp;console.log('fun:', y);<br>
+				}
+			</code>
+			<p>Таким чином, щоб зкопіювати масив - треба копіювати його поелементно:</p>
+			<code>
+				let a = [1, 2, 3],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = [];<br><br>
+				// перший варіант:<br>
+				for (let i = 0; i < a.length; i++) {<br>
+				&nbsp;&nbsp;b[i] = a[i];<br>
+				}<br><br>
+				// другий варіант:<br>
+				a.forEach(function(e){ b.push(e); });
+			</code>
+			<p>Другий варіант детальніше розглянемо далі.</p>
+			<p>Скопіюйте двовимірний масив з попередньої підтеми, добавляючи до кожного елемента одиницю за допомогою унарного оператора. Результат виведіть в консоль.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

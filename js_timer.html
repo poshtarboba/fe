@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Таймери</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h2>Таймери</h2>
+			<p>Таймер - це затримка виконання функції на вказаний час.</p>
+			<p>JavaScript підтримує роботу з двома типами таймерів - одноразовим <strong>setTimeout()</strong> та багаторазовим <strong>setInterval()</strong>.</p>
+			<p>Кожна з цих функцій приймає в себе щонайменше 2 аргумента: функцію, яка має виконатися, і час в мілісекундах:</p>
+			<code>
+				setTimeout(function(){<br>
+				&nbsp;&nbsp;console.log('hello!');<br>
+				}, 5000);<br><br>
+				let i = 5;<br>
+				setInterval(fun, 1000);<br>
+				function fun(){ console.log(i++); }
+			</code>
+			<p>Якщо у функцію треба передати аргументи - вони прописуються в кінець, після часу затримки:</p>
+			<code>
+				setTimeout(function(a, b, c){<br>
+				&nbsp;&nbsp;console.log(a + b + c);<br>
+				}, 3000, 5, 10, 20);<br><br>
+				setInterval(fun, 1000, 'hello');<br>
+				function fun(k){ console.log(k); }
+			</code>
+			<p>Таймер можна зупинити, вимкнути. Кожна з вищевказаних функцій повертає ідентифікатор таймера (число), зупинити можна двома функціями:</p>
+			<code>
+				var a = setTimeout(fun, 5000);<br>
+				var b = setInterval(fun, 8000);<br>
+				button.onclick = function(){<br>
+				&nbsp;&nbsp;clearTimeout(a);<br>
+				&nbsp;&nbsp;clearInterval(b);<br>
+				}
+			</code>
+			<p>Функції таймерів є асинхронними, тобто - вони можуть виконуватися паралельно з виконанням іншого коду. Про це треба пам'ятати і бути обережним.</p>
+			<p>Розглянемо приклади:</p>
+			<code>
+				// що відобразить alert?<br>
+				let x = 5;<br>
+				setTimeout(function(){ alert(x); }, 100);<br>
+				x = 10;<br><br>
+				// хочемо вивести в консоль текст перших 5-и абзаців:<br>
+				let p = document.querySelectorAll('p');<br>
+				for (var i = 0; i < 5; i++){<br>
+				&nbsp;&nbsp;setTimeout(function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log(p[i].innerText);<br>
+				&nbsp;&nbsp;}, (i + 1) * 1000);<br>
+				}
+			</code>
+			<p><em>(Наступна інформація була актуальна у 2015-2017 роках, наразі є застарілою через повсюдне використання оператора let).</em></p>
+			<!-- TODO: сховати у додаткову інформацію -->
+			<p>Ця задача популярна на співбесідах:<br><em>"Що буде виведено в консоль?"</em></p>
+			<code>
+				const arr = [10, 12, 15, 21];<br>
+				for (var i = 0; i &lt; arr.length; i++) {<br>
+				&nbsp;&nbsp;setTimeout(function() {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('Index: ' + i + ', element: ' + arr[i]);<br>
+				&nbsp;&nbsp;}, 3000);<br>
+				}
+			</code>
+			<p>Останній варіант має декілька варіантів правильного розв'язку:</p>
+			<code>
+				// використаємо let замість var (<a href="http://exploringjs.com/es6/ch_variables.html#sec_let-const-loop-heads" target="_blank">подробиці тут</a>):<br>
+				let p = document.querySelectorAll('p');<br>
+				for (<strong>let</strong> i = 0; i < 5; i++){<br>
+				&nbsp;&nbsp;setTimeout(function(){ console.log(p[i].innerText); }, (i + 1) * 1000);<br>
+				}<br><br>
+				// передамо у функцію потрібний абзац у якості аргумента:<br>
+				var p = document.querySelectorAll('p');<br>
+				for (var i = 0; i < 5; i++){<br>
+				&nbsp;&nbsp;setTimeout(function(e){ console.log(e.innerText); }, (i + 1) * 1000, p[i]);<br>
+				}<br><br>
+				// елемент можна передати в функцію не як аргумент, а як батька:<br>
+				...<br>
+				setTimeout(function(){ console.log(this.innerText); }.bind(p[i]), ...);<br>
+				...<br><br>
+				// можна використати метод forEach, з ним також код буде працювати вірно. Спробуйте самі.
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Опишіть порядок виконання команд у наступних алгоритмах:
+					<code>
+						const arr = [10, 12, 15, 21];<br><br>
+						for (var i = 0; i &lt; arr.length; i++) {<br>
+						&nbsp;&nbsp;setTimeout((function(i) {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;return function() { console.log(i, arr[i]); }<br>
+						&nbsp;&nbsp;})(i), 3000);<br>
+						}<br><br>
+						for (var i = 0; i &lt; arr.length; i++) {<br>
+						&nbsp;&nbsp;(function(i){<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(function() { console.log(i, arr[i]); }, 3000);<br>
+						&nbsp;&nbsp;})(i);<br>
+						}
+					</code>
+				<li>
+			<ol>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Через 5 секунд після відкриття сторінки вивести на екран повідомлення "5 seconds!".</li>
+				<li>Зробити таймер, що починає відлік з 3:30, рахує посекундно у зворотньому напрямку і після досягнення значення 0:00 замість цифр видає текст "BOOM!!!" <em>(прим.: тероризм - це погано)</em>.</li>
+				<li>
+					Виправте код, щоб у консолі видавало цифри 1, 2, 3, 4, 5:
+					<code>
+						for (var i = 0; i &lt; 5; i++) {<br>
+						&nbsp;&nbsp;setTimeout(function() {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;console.log(i + 1);<br>
+						&nbsp;&nbsp;}, i * 1000);<br>
+						}
+					</code>
+					Переробіть цей код так, щоб у ньому була рекурсія.<br>
+					Спробуйте застосувати setInterval.
+				</li>
+				<li>
+					Зробити годинник, що відображає в браузері поточні дату та час - день, місяць, рік, день тижня, години, хвилини, секунди. Синхронізацію проводити 1 раз на 5 хвилин.<br>
+					Рекомендації до виконання: раціонально створити масив змінних [Y, M, D, d, h, m, s] та 3 функції: синхронізацію з годинником комп’ютера; функцію, що повертає оформлену строку з датою та часом та функцію, яка буде робити розрахунки додавання секунди та перевірки хвилин, годин і т.п. на перевищення допустимих значень. В таймері setInterval потрібно зробити додавання секунди, виведення строки та 1 раз на 300 циклів проводити синхронізацію.<br>
+					Зауваження. Можна щосекунди брати системний час та виводити його вбудованими функціями, типу .toString(), .toLocaleString() і т.п., але перед нами стоїть задача навчитися оперувати складовими дати та часу.
+				</li>
+			</ol>
+		</section>
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

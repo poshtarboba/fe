@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Аудио та відео</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Аудио та відео</h1>
+			<p>Аудио та відео вставляються в код такими тегами:</p>
+			<code>
+				&lt;audio src="media/sound.mp3">&lt;/audio&gt;<br>
+				&lt;video src="media/video.mp4">&lt;/video&gt;
+			</code>
+			<p>Часто відео вставляють у фон, наприклад, на сайті <a href="http://kmcnc.stfalcon.com/" target="_blank">Code'n'coffe</a> студії stFalcon. Дослідіть код сайту.</p>
+			<p>В тег можна вставити інформацію для старих браузерів, що не підтримують роботу з цими тегами. Можна використати html-код, наприклад - дати посилання на скачування файлу:</p>
+			<code>
+				&lt;video src="media/video.mp4"&gt;<br>
+				&nbsp;&nbsp;Ваш браузер застарів і не підтримує потокове відео.<br>
+				&nbsp;&nbsp;Можете &lt;a href="media/video.mp4" <strong>download</strong>&gt;скачати файл&lt;/a&gt;<br>
+				&nbsp;&nbsp;і подивитися його у відеоплеєрі.<br>
+				&lt;/video&gt;
+			</code>
+			<p>Деякі браузери можуть не підтримувати той чи інший формат медіаданих. Перевіряйте сумісність на сайті <a href="https://caniuse.com/" target="_blank">Can I Use</a>. Якщо доведеться використати декілька форматів - їх можна прописати в теги source:</p>
+			<code>
+				&lt;audio&gt;<br>
+				&nbsp;&nbsp;&lt;source src="audio/sound.ogg" type="audio/ogg; codecs=vorbis"&gt;<br>
+				&nbsp;&nbsp;&lt;source src="audio/sound.mp3" type="audio/mpeg"&gt;<br>
+				&nbsp;&nbsp;Ваш браузер застарів, неможливо відтворити звук.<br>
+				&nbsp;&nbsp;&lt;a href="sound/sound.mp3" download&gt;Скачати трек&lt;/a&gt;.<br>
+				&lt;/audio&gt;<br>
+				&lt;video&gt;<br>
+				&nbsp;&nbsp;&lt;source src="video/video.mkv" type="video/mkv; codecs=matroska"&gt;<br>
+				&nbsp;&nbsp;&lt;source src="video/video.mp4" type="video/mpeg"&gt;<br>
+				&nbsp;&nbsp;Ваш браузер застарів, неможливо відтворити відео.<br>
+				&nbsp;&nbsp;&lt;a href="video/video.mp4" download&gt;Скачати відео&lt;/a&gt;.<br>
+				&lt;/video&gt;
+			</code>
+			<p>Керувати аудио та відео можна за допомогою скриптів та деяких атрибутів:</p>
+			<p><strong>autoplay</strong> - автоматично запустити програвання після завантаження файлу чи веб-сторінки.</p>
+			<p><strong>controls</strong> - добавляє кнопки керування медіаплеєром.</p>
+			<p><strong>loop</strong> - програє медіафайл по колу, зациклено.</p>
+			<p><strong>preload</strong> - передзавантаження файла під час завантаження сторінки.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

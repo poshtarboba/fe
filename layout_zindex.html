@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Стиль z-index</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Стиль z-index</h1>
+			<p>Ще один стиль, який застосовується для позиціонованих елементів - <strong>z-index</strong>.</p>
+			<p>Цей стиль дозволяє керувати висотою шару елемента над поверхнею основного потоку, тобто, задавати який елемент буде знаходитися поверх якого елемента.</p>
+			<p>Задаються числові значення. В якого елемента z-index більший - той і буде умовно вище. Якщо ці значення однакові або відсутні, то хто нижче по коду - той перекриває інших.</p>
+			<p>Але z-index - це не абсолютні значення, все залежить від батьківських елементів:</p>
+			<figure>
+				<img src="img/layout_zindex_01.jpg" alt="z-index">
+				<figcaption>Правила застосування стиля z-index</figcaption>
+			</figure>
+			<p>Елементи, яким не задано z-index, мають це значення по-замовчуванню <strong>auto</strong>. Елементи з z-index: 0 знаходяться над ними, а із z-index: -1 - під ними.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

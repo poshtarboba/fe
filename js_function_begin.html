@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Введення в функції</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Введення в функції</h1>
+			<p>Функція - це набір команд, об'єднаних для зручності в блок.</p>
+			<p>Функцію можна уявити у вигляді "чорного" ящика з кнопкою. Коли нажимаємо на кнопку - щось всередині відбувається.</p>
+			<p>Створимо функцію, яка виконує декілька дій:</p>
+			<ol>
+				<li>вираховує формулу k*x+b;</li>
+				<li>виводить в консоль результат;</li>
+				<li>записує у змінну r половину результату;</li>
+				<li>дає Маші шоколадку.</li>
+			</ol>
+			<p>Функцію будемо запускати по кнопці. Поексперементуйте у пісочниці.</p>
+			<p>Створюємо html-код та ініціалізуємо змінні.</p>
+			<code>
+				&lt;p&gt;У Маші &lt;span id="chok"&gt;0&lt;/span&gt; шоколадок.&lt;/p&gt;<br>
+				&lt;button id="but"&gt;Дати Маші шоколадку&lt;/button&gt;<br><br>
+				var k = 4,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;x = 10,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = 7,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;r;
+			</code>
+			<p>Для взаємодії з елементами веб-сторінки їх потрібно спочатку знайти та занести у змінні.</p>
+			<code>
+				var Chok = document.getElementById('chok');<br>
+				var Butt = document.getElementById('but');
+			</code>
+			<p>Створюємо функцію. Замість трьох крапок впишіть потрібні команди, коментарі можна видалити.</p>
+			<code>
+				function giveChok() {<br>
+				&nbsp;&nbsp;// записати у змінну r результат обчислення формули<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;// вивести результат в консоль<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;// r поділити навпіл<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;// дати Маші шоколадку<br>
+				&nbsp;&nbsp;Chok.innerText = parseInt(Chok.innerText) + 1;<br>
+				}
+			</code>
+			<p>Запуск на виконання функції (нажимання кнопки на чорному ящику) називається викликом функції:</p>
+			<code>
+				Butt.onclick = function(){<br>
+				&nbsp;&nbsp;giveChok();<br>
+				&nbsp;&nbsp;console.log('Значення змінної r = ' + r);<br>
+				}
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Створіть функцію, що об'єднує всі завдання з корзиною та яблуками.<br>
+					Результати виводьте в консоль, а не на екран. Результати кожного виклику бажано групувати.<br>
+					Декілька разів задайте змінній значення і викличте функцію.<br>
+					Приклад коду виклику функції, слідкуйте за консоллю:
+					<code>
+						var a = 0;<br>
+						fun();<br>
+						a = 2;<br>
+						fun();<br>
+						a = 8;<br>
+						fun();<br>
+						a = 14;<br>
+						fun();
+					</code>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

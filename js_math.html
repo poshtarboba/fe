@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Бібліотека Math</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Бібліотека Math</h1>
+			<p><a href="http://javascript.ru/math" target="_blank">Math</a>.</p>
+			<p>В JavaScript є вбудована бібліотека математичних функцій Math. Розглянемо що вона містить.</p>
+			<p>Дослідіть бібліотеку:</p>
+			<code>
+				console.dir(Math);
+			</code>
+			<h3>Математичні константи</h3>
+			<code>
+				Math.PI - число Пі, 3.14159<br>
+				Math.E - константа Ейлера, 2.718...<br>
+				Math.LN2, Math.LOG2E, Math.LOG10E, Math.LN10 - логарифмічні константи<br>
+				Math.SQRT2, Math.SQRT12 - квадратні корені з 2 та 0,5
+			</code>
+			<p>Приклад використання:</p>
+			<code>
+				let r = parseInt(prompt('Задайте радіус кола:'));<br>
+				let s = <strong>Math.PI</strong> * r * r;<br>
+				alert('Площа заданого кола: ' + s + ' квадратних одиниць');
+			</code>
+			<h3>Математичні функції</h3>
+			<p>Math.random() - видає випадкове дробне число від 0 до 0.99999999.</p>
+			<code>
+				console.log(Math.random());<br><br>
+				// випадкове число від 0 до n включно<br>
+				function getRandom(n) {<br>
+				&nbsp;&nbsp;return Math.floor(Math.random() * (n + 1));<br>
+				}<br>
+				getRandom(10);<br><br>
+				// випадкове від min до max включно<br>
+				function getRandomMinMax(min, max) {<br>
+				&nbsp;&nbsp;return Math.floor(Math.random() * (max - min + 1)) + min;<br>
+				}<br>
+				getRandomMinMax(3, 6);
+			</code>
+			<p>Math.round(x) - округлює x в більшу чи меншу сторону.</p>
+			<!--  TODO: по-різному працюють з від'ємними числами -->
+			<p>Math.floor(x) - округлює x завжди в меншу сторону.</p>
+			<p>Math.ceil(x) - округлює x завжди в більшу сторону.</p>
+			<p>Math.trunc(x) - відкидає дробну частину.</p>
+			<p>
+				Наступні функції повертають найменше або найбільше з наданих значень:<br>
+				Math.min(a, b[, ...]);<br>
+				Math.max(a, b[, ...]);<br>
+				Функції можуть приймати більше, ніж 2 значення.
+			</p>
+			<code>
+				let k = 5, n = 12, p = k - n;<br>
+				let x = Math.min(k, n, p);<br><br>
+				// обмеження діапазона отриманих даних:<br>
+				let age = parseInt(prompt('Вкажіть рік свого народження:', ''));<br>
+				age = Math.min(Math.max(age, 1920), <span id="example_age">2005</span>);
+				<script>
+					let y = new Date();
+					document.querySelector('#example_age').innerText = y.getFullYear() - 16 + '';
+				</script>
+			</code>
+			<p>Math.sqrt(x) - отримання квадратного кореня з числа x.</p>
+			<p>Math.pow(x, e) - підносить x в степінь e.</p>
+			<p>Пам'ятаємо, що квадратний корінь числа - це число в степені 1/2, кубічний корінь - число в степені 1/3 і так далі. Обидва значення (аргумента функції) можуть бути дробними числами.</p>
+			<p>Від'ємна степінь числа - це обернене до себе число:<br>
+				5<sup>-1</sup> = 1 / 5<sup>1</sup><br>
+				2,5<sup>-3,2</sup> = 1 / 2,5<sup>3,2</sup>
+			</p>
+			<p>Math.abs(x) - повертає абсолютне значення числа x (відкидає мінус, якщо він є).</p>
+			<p>
+				Тригонометричні функції:<br>
+				Math.sin(x)<br>
+				Math.cos(x)<br>
+				Math.tan(x)<br>
+				Math.asin(x)<br>
+				Math.acos(x)<br>
+				Math.atan(x)
+			</p>
+			<p>Пам'ятаємо, що котангенс(x) = 1 / тангенс(x).</p>
+			<p>Math.exp(x), Math.log(x) - робота з логарифмами.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

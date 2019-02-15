@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Строкові і блочні елементи</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.layout-blocks-1 span,
+		.layout-blocks-1 em { background: yellow; border: 2px solid orange;}
+		.layout-blocks-2 { display: inline-block; width: 100%; box-sizing: border-box; background: yellow; border: 2px solid orange;}
+		.layout-blocks-3 { display: block; width: 360px; box-sizing: border-box; border: 2px solid blue;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Строкові і блочні елементи</h1>
+			<p>Майже всі теги поділяються на строкові і блочні.</p>
+			<p><strong>Строкові елементи</strong> є частиною текстової строки. До строкових елементів відносяться <strong>&lt;span&gt;</strong>, <strong>&lt;b&gt;</strong>, <strong>&lt;i&gt;</strong>, <strong>&lt;a&gt;</strong>, <strong>&lt;img&gt;</strong>, <strong>&lt;strong&gt;</strong>, <strong>&lt;em&gt;</strong>, та інші, які будуть розглянуті на наступних заняттях.</p>
+			<p>Строкові елементи як правило змінюють представлення частини текста.</p>
+			<p>Розмір строкового елемента визначається його контентом:</p>
+			<code class="layout-blocks-1">
+				&lt;p&gt;Lorem &lt;span&gt;<span>ipsum dolor</span>&lt;/span&gt; sit amet, consectetur adipisicing elit.<br>
+				Consectetur nobis pariatur tempora? Consequatur cum deleniti, &lt;em&gt;<em>ex iure<br>
+				labore nesciunt praesentium</em>&lt;/em&gt; reiciendis repellendus. Aspernatur<br>
+				consequuntur dicta facere, laborum quaerat soluta voluptatem!&lt;/p&gt;
+			</code>
+			<p>Lorem ipsum... - текст-риба, текст-заглушка для заповнення абстрактним текстом контентної частини сайта. Якщо в IDE налаштовано плагін Emmet - текст-риба створюється так: наберіть слово lorem і натисніть клавішу <kbd>Tab</kbd>.</p>
+			<p><strong>Блочні елементи</strong> утворюють блок прямокутного розміру. Цей блок за замовчуванням займає всю доступну йому ширину (наприклад, ширину екрана браузера чи ширину батьківського елемента), а його висота визначається його контентом і змінюється в залежності від наповнення.</p>
+			<p>Блочні елементи можна уявляти у вигляді коробки, в яку можна класти інші коробки або строкові елементи - яблука, фотографії, кошенята.</p>
+			<code>
+				&lt;div&gt;<span class="layout-blocks-2">Lorem ipsum dolor sit amet,&lt;br&gt;<br>
+				consectetur adipisicing elit. Aliquam animi,&lt;br&gt;<br>
+				commodi dolore expedita labore</span>&lt;/div&gt;<br><br>
+				&lt;div style="width: 360px"&gt;
+				<span class="layout-blocks-3">
+				&lt;div&gt;
+				<span class="layout-blocks-2">Lorem ipsum dolor sit amet,&lt;br&gt;<br>
+				consectetur adipisicing elit. Aliquam animi,&lt;br&gt;<br>
+				commodi dolore expedita labore</span>
+				&lt;/div&gt;
+				</span>
+				&lt;/div&gt;
+			</code>
+			<p>До блочних елементів належать <strong>&lt;div&gt;</strong>, <strong>&lt;h1&gt;</strong>, <strong>&lt;h2&gt;</strong>..., <strong>&lt;p&gt;</strong>, та інші, які будуть розглянуті нижче і на наступних заняттях.</p>
+			<figure>
+				<img src="img/layout_blocks_01.jpg" alt="div like a box">
+				<figcaption>Коробка з різними предметами як аналогія блочного елемента</figcaption>
+			</figure>
+			<p><span class="danger">Увага!</span> В строкові елементи не можна вставляти блочні елементи! Так само, як в кота не можна запхати коробку, тільки навпаки.</p>
+			<p><strong>Дочірні елементи</strong> - це ті елементи, які знаходяться всередині будь-якого тега. Можуть бути безпосередніми дочками, або певного порядку - другого, третього, залежить від глибини вкладення.</p>
+			<p><strong>Батьківські елементи</strong> - це елементи, які огортають поточний елемент, тобто, наш тег знаходиться всередині батьківських тегів по відношенню до нього. Батьківський елемент може бути безпосереднім, або першого порядку, або другого, третього і т.д.</p>
+			<p>Приклад:</p>
+			<code>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;Lorem ipsum &lt;span&gt;dolor sit amet&lt;/span&gt;, consectetur sed&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;test&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;a href="#"&gt;test&lt;/a&gt;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;test&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;test&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;/ul&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Тег &lt;div&gt; має два беспосередніх дочірніх елемента: &lt;p&gt; та &lt;ul&gt;, а в цілому - у нього 8 дітей: включаючи span, 4 елемента списка і посилання.</p>
+			<p>Тег &lt;span&gt; має безпосереднього батька - тег &lt;p&gt;, а також його батьками є div, body і html.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

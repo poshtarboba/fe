@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Об'єкти</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Об'єкти</h1>
+
+		<p><a href="http://javascript.ru/tutorial/object/intro" target="_blank">javascript.ru/tutorial/object/intro</a>.</p>
+		<p><a href="https://learn.javascript.ru/object" target="_blank">learn.javascript.ru/object</a>.</p>
+
+		<section>
+			<h2>Тип даних об'єкт</h2>
+			<p>Об’єкт за своєю суттю нагадує масив: він містить набір елементів довільного типу.</p>
+			<p>Відмінності полягають в тому, що елементи не пронумеровані (та не сортовані), а мають ключі. Тобто, до елементів об’єкту звертатися потрібно не по індексу, а по ключу. Порядок ключів у об'єкті немає значення, при виводі в консоль ключі для зручності сортуються в алфавітному порядку.</p>
+			<p>Іншими словами, об'єкт - це набір змінних (та функцій), об'єднаних одним іменем.</p>
+			<p>Об'єкт складається з властивостей (properties, keys) та методів. Ще кажуть: з пар "ключ - значення". Методи розглянемо пізніше.</p>
+			<p>Наведіть приклади об'єктів з життя, опишіть їх властивості.</p>
+			<p>Створення об'єкта:</p>
+			<code>
+				let a = {};<br>
+				let b = { name: 'Маша', age: 17 };<br>
+				let c = {'0':[1,2,3],'1':b,'привіт':'пока'};<br>
+				let car = {<br>
+				&nbsp;&nbsp;'марка': 'ЗАЗ',<br>
+				&nbsp;&nbsp;'модель': '969',<br>
+				&nbsp;&nbsp;doors: 2,<br>
+				&nbsp;&nbsp;power: '30 к.с.'<br>
+				};<br>
+				console.dir(a);<br>
+				console.dir(b);<br>
+				console.dir(c);<br>
+				console.dir(car);<br>
+				console.dir({});
+			</code>
+			<p>Об'єкт огортається у фігурні скобки. Після об'єкта ставиться крапка з комою. Ключ та значення розділяються двокрапкою. Властивості розділяються комою.</p>
+		</section>
+
+		<section>
+			<h2>Робота з властивостями об'єкта</h2>
+			<p>До властивостей об'єкта можна звертатися двома способами: властивість пишеться через крапку після змінної чи у квадратних дужках.</p>
+			<p>Якщо властивість має в собі пробіли, заборонені символи для імен змінних, починається з цифри чи є числом - можна використовувати тільки другий спосіб, з квадратними дужками.</p>
+			<p>Якщо властивість має в собі кириличні символи - бажано також використовувати квадратні дужки.</p>
+			<code>
+				car.power = '38 к.с.';<br>
+				console.log('У машини ' + car.doors + ' дверей');<br>
+				alert(car['марка']);<br>
+				car['модель'] = '969м';
+			</code>
+			<p>Якщо вказати неіснуючий ключ, то він буде створений, тобто, до об'єкта добавиться нова властивість:</p>
+			<code>
+				car.color = 'rgba(255, 0, 0, 0.5)';<br>
+				car['gear lever'] = '<a href="http://gallery.ykt.ru/galleries/avtoparts/2014/02/17/1460417_1.jpg" target="_blank">Трояндочка в епоксидці</a>';<br>
+				<!-- TODO: трояндочку в епоксидці локально зберегти -->
+				console.log(car);
+			</code>
+			<p>Властивості можна видаляти командою delete:</p>
+			<code>
+				delete car.door;<br>
+				delete car['color'];<br>
+				console.log(car);
+			</code>
+		</section>
+
+		<section>
+			<h2>Перебір властивостей, копіювання об'єктів</h2>
+			<p>Для того, щоб перебрати всі властивості об'єкта, є спеціальний формат цикла for:</p>
+			<code>
+				let obj = { ... };<br>
+				for (let key in obj) {<br>
+				&nbsp;&nbsp;console.log(key, '=', obj[key]);<br>
+				}
+			</code>
+			<p>Цикл по черзі перебирає всі властивості об'єкта. На кожній ітерації у змінну key записується назва властивості, а значення властивості доступне як obj[key].</p>
+			<p>Об'єкти, як і масиви, у змінних зберігають лише адресу на комірку пам'яті, тому копіювати напряму їх не можна:</p>
+			<code>
+				let a = { ... };<br>
+				let b = a; &nbsp;&nbsp; // у змінних a та b буде зберігатися один і той самий об'єкт
+			</code>
+			<p>Для копіювання об'єкта його треба перебрати та всі значення занести у новий об'єкт:</p>
+			<code>
+				let a = { ... };<br>
+				let b = {};<br>
+				for (let key in a) {<br>
+				&nbsp;&nbsp;b[key] = a[key];<br>
+				}
+			</code>
+			<p>Якщо властивості об'єкта містять складні структури даних (інші об'єети, масиви), то перебір потрібно здійснювати рекурсивно. Про рекурсію буде одна з наступних тем.</p>
+		</section>
+
+		<section>
+			<h2>Об'єкти як аргументи функцій та повернення результату</h2>
+			<p>Замість того, щоб передавати в функцію купу аргументів, які потребують строгої послідовності, можна передати об'єкт.</p>
+			<p>Спочатку вказуються обов'язкові аргументи, а потім - необов'язкові. Задаючи аргументи у вигляді об'єкта - не потрібно дотримуватися цього порядку, будь-який аргумент може стати незаданим.</p>
+			<code>
+				function setCSS(element, color, fs, bg) {<br>
+				&nbsp;&nbsp;element.style.color = color;<br>
+				&nbsp;&nbsp;element.style.fontSize = fs;<br>
+				&nbsp;&nbsp;element.style.backgroundColor = bg;<br>
+				}<br><br>
+				let css = {<br>
+				&nbsp;&nbsp;color: '...',<br>
+				&nbsp;&nbsp;fs: '...',<br>
+				&nbsp;&nbsp;bg: '...'<br>
+				}<br>
+				function setCSS(element, styles) {<br>
+				&nbsp;&nbsp;element.style.color = styles.color;<br>
+				&nbsp;&nbsp;element.style.fontSize = styles.fs;<br>
+				&nbsp;&nbsp;element.style.backgroundColor = styles.bg;<br>
+				}
+			</code>
+			<p>Якщо треба повертати декілька значень - їх зручно загнати в об'єкт, а не в масив, та повернути:</p>
+			<code>
+				function fun(){<br>
+				&nbsp;&nbsp;let res = {};<br>
+				&nbsp;&nbsp;res.x = ...;<br>
+				&nbsp;&nbsp;res.y = ...<br>
+				&nbsp;&nbsp;return res;<br>
+				}<br>
+				console.log( fun().x );<br>
+				let c = fun();<br>
+				alert( c.x + ', ' + c.y );
+			</code>
+		</section>
+
+		<section>
+			<h2>Приклад локалізації та задача про типи даних</h2>
+			<p>Для локалізації та подібних задач зручно робити словники:</p>
+			<code>
+				let eng = {<br>
+				&nbsp;&nbsp;'привіт': 'hello',<br>
+				&nbsp;&nbsp;'як ся маєш?': 'how are you?',<br>
+				&nbsp;&nbsp;'бувай': 'good bye'<br>
+				};
+			</code>
+			<p>Тепер локалізуємо текст:</p>
+			<code>
+				&lt;p&gt;привіт&lt;/p&gt;<br>
+				&lt;p&gt;як ся маєш?&lt;/p&gt;<br>
+				&lt;p&gt;бувай&lt;/p&gt;<br><br>
+				let p = document.getElementsByTagName('p');<br>
+				for (let i = 0; i < p.length; i++) {<br>
+				&nbsp;&nbsp;p[i].innerText = eng[p[i].innerText];<br>
+				}
+			</code>
+			<p>В задачі про видачу типів даних українською мовою можна використати той же принцип:</p>
+			<code>
+				створюємо словник відповідностей typeof та українських назв;<br>
+				ретурнимо значення типу ukr[typeof Ї];
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Створіть об'єкт з інформацією про себе: ім'я, прізвище, кількість копійок в кишені).</li>
+				<li>Добавте властивість "дата народження" (кирилицею) в форматі дд.мм.рррр</li>
+				<li>Добавте властивість age2033, в яку запишіть число, розрахувавши скільки вам буде років у 2033 році.</li>
+				<li>Добавте циклом властивості про ваш вік у 2010-2020 роках.</li>
+				<li>
+					Переберіть циклом всі властивості та виведіть їх в консоль у вигляді:
+					<code>
+						0 name Бобир<br>
+						1 fname Олександр<br>
+						2 coins 75<br>
+						3 дата народження 05.10.1982<br>
+						...
+					</code>
+				</li>
+				<li>Видаліть властивість про вміст кишені.</li>
+				<li>Скопіюйте об'єкт з інформацією про себе, всі строкові значення продублюйте ("Бобир" --&gt; "БобирБобир"), а числові - помножте на два (75 --&gt; 150); виведіть обидва об'єкта.</li>
+				<li>Створіть функцію розрахунку об'єму коробки яка приймає один аргумент у вигляді об'єкта. Функція повинна повертати два числових значення: в кубічних сантиметрах та літрах (см<sup>3</sup> та дм<sup>3</sup>);</li>
+				<li>Створіть функцію, що повертає об'єкти про користувачів, зчитуючи їх з форми: login, e-mail, phone, role (admin, moderator, user, viewer); створіть масив з 5 користувачів та виведіть його в консоль.</li>
+				<li>Локалізацію деяких елементів веб-сторінки покладено на фронтенд.<br>
+					Наразі сайт має базову українську мову та дві локалізації - англійську та російську.<br>
+					Бекенд добавляє у тег body атрибут data-lang зі значенням en або ru.<br>
+					Технічне завдання: Зробіть скриптом локалізацію на англійську мову. HTML-код:
+					<code>
+						table { width: 400px; border-collapse: collapse;}<br>
+						th, td { padding: 8px; border: 1px solid silver;}<br>
+						th { text-align: left;}<br>
+						th,	.total { font-size: 120%; line-height: 1.3em; font-weight: bold;}<br>
+						th:nth-child(3),<br>
+						td:nth-child(3),<br>
+						.total td:nth-child(2) { text-align: right;}<br><br>
+						&lt;h2&gt;&lt;span&gt;Корзина&lt;/span&gt;&lt;/h2&gt;<br>
+						&lt;table&gt;<br>
+						&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&lt;span&gt;Товар&lt;/span&gt;&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&lt;span&gt;Кількість&lt;/span&gt;&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&lt;span&gt;Ціна&lt;/span&gt;&lt;/th&gt;<br>
+						&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;strong&gt;Adapter 220/12 euro&lt;/strong&gt;:&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2 &lt;span&gt;шт.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;em&gt;40 &lt;span&gt;грн.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;strong&gt;Cable 5A&lt;/strong&gt;:&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7 &lt;span&gt;м.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;em&gt;8 &lt;span&gt;грн.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;strong&gt;Socket 2x 16A white&lt;/strong&gt;:&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1 &lt;span&gt;шт.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;em&gt;40 &lt;span&gt;грн.&lt;/span&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&lt;tr class="total"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td colspan="2"&gt;Загальна сума:&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;em&gt;320 &lt;span&gt;грн.&lt;/span&gt;&lt;/em&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&lt;/table&gt;
+					</code>
+					Вказівки до виконання:<br>
+					В першу чергу складіть алгоритм.<br>
+					Оскільки є дві мови - потрібно створити два словника.<br>
+					Щоб дізнатися яку мову встановив бекенд - задайте потрібний атрибут та дослідіть вміст елемента document.body.
+				</li>
+			</ol>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>Відео <a href="https://www.youtube.com/watch?v=BJHb7jSKC2A" target="_blank">CS50. Лекция #18. JavaScript [Гарвард, Основы программирования, осень 2015 год]</a>.</p>
+			<p><a href="https://courses.prometheus.org.ua/courses/Prometheus/CS50/2016_T1/about" target="_blank">Курс CS50 українською</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

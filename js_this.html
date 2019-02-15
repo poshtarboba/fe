@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Об'єкт this</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Об'єкт this</h1>
+			<p>Ключове слово this вказує на "власника" функції чи об'єкта. Вважайте, що в змінній this зберігається "батько" функції. Цю змінну створювати не треба, вона створюється та ініціалізується автоматично при кожному виклику будь-якої функції.</p>
+			<p>Власне, всі функції є методами глобального об'єкта window, з яким ми познайомимося трохи пізніше.</p>
+			<p>Щоб в цьому переконатися - створіть функцію та виведіть в консоль ключове слово this:</p>
+			<code>
+				function test(){<br>
+				&nbsp;&nbsp;console.log(this);<br>
+				}
+			</code>
+			<p>Виведіть в консоль інформацію про гарбуз:</p>
+			<code>
+				let pumpkin = {<br>
+				&nbsp;&nbsp;color: 'green',<br>
+				&nbsp;&nbsp;weight: '34 kg',<br>
+				&nbsp;&nbsp;text: function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log(this);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('Color:', this.color);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('Weight:', this.weight);<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				pumpkin.text();
+			</code>
+			<h3>Завдання.</h3>
+			<p>Створіть три об'єкта: яблуко, автомобіль та гудзик. Кожному задайте назву і колір та створіть метод, що виводить в консоль інформацію про поточний об'єкт:</p>
+			<code>
+				apple - green
+			</code>
+			<p>Створіть метод setColor, який запитує у користувача (prompt) колір об'єкта і встановлює цей колір.</p>
+			<p>Після змін кольорів знову викличте методи, що виводять в консоль інформацію про об'єкти.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

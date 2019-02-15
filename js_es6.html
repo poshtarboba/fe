@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. ECMAScript 6+</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>ECMAScript 6+</h1>
+
+		<section>
+			<h2>Коротка історія JavaScript / ECMAScript</h2>
+			<p>JavaScript - товарний знак, що належить компанії Oracle Corporation в США.</p>
+			<p>ECMAScript належить організації ECMA (European Computer Manufacturers Association) - міжнародній організації, що займається регулюванням та стандартизацією у сферах IT та комунікації.</p>
+			<p>Початкова розробка була здійснена в компанії Netscape, за прототип було взято скриптову мову Cmm (C--, ScriptEase), яка так і не здобула популярності. Змінивши декілька назв (Mocha, LiveScript/LiveWire) в 1995 році мова отримала назву JavaScript (під ліцензією Sun Microsystems, яку в 2010 році викупила Oracle).</p>
+			<p>Microsoft в 1996 році випустив аналогічну скриптову мову JScript, вбудував його в IE3.</p>
+			<p>Організація ECMA стандартизувала мови JavaScript, JScript і ScriptEase, прийнявши ECMAScript. Ці три скриптові мови є взаємосумісними, проте були ньюанси, варіанти реалізації BOM і DOM (дивись далі), що призводили до проблем крос-браузерності.</p>
+			<p>Між першою та другою версіями було багато мінорних версій: 1.1, 1.2 ... 1.8</p>
+			<p>ECMAScript 2 вийшов в червні 1998 року.</p>
+			<p>ECMAScript 3 вийшов у грудні 1999 року.</p>
+			<p>Робота над четвертою версією заглохла на пів-дорозі, вона так і не вийшла через сварки в консорціумі розробників, патенти, конкуренцію та лобіювання власних інтересів. Проте, технології, декларовані в цій версії, були реалізовані у різних браузерах (неофіційно).</p>
+			<p>ECMAScript 5 вийшов у грудні 2009 року (переназвана версія 3.1, яку розробили на заміну 4-ї версії, відкинувши всі серйозні нововведення і зосередившись на оптимізації).</p>
+			<p>Разом з впровадженням HTML5 та CSS3, виникненням нових концепцій веб-застосунків, прискоренням розробки браузерів (від 0,2-1 версії на рік до майже щомісячного реліза) ECMAScript також прискорився, впровадив багато нових можливостей, взяв курс на зближення з іншими мовами програмування.</p>
+			<p>ECMAScript 6 / 2015 &mdash; березень 2015 року.</p>
+			<p>Браузери не встигали завершити свій життєвий цикл, багато користувачів з різних причин сиділи на старих браузерах, що не підтримували нові можливості. Тому набули популярність транспайлери (конвертори нового JS в старий), наприклад, Babel, Traceur.</p>
+			<p>ECMAScript 6 / 2015 &mdash; березень 2015 року.</p>
+
+
+			<p>Таким чином, JavaScript створюють та супроводжують декілька компаній: ECMA, Oracle, Microsoft, Mozilla. На деяких етапах історії також долучалися Adobe, Opera, Yahoo та інші компанії.</p>
+		</section>
+
+		
+
+
+		<!--
+			<p><a href="https://codeguida.com/post/1428" target="_blank">Codeguida.com: Що нового в ES2018</a>.</p>
+		-->
+
+		<section>
+			<h2>Загальний огляд JavaScript</h2>
+			<p>
+				JavaScript складається з трьох компонентів:<br>
+				- ядро (ECMAScript);<br>
+				- об'єктна модель браузера (BOM);<br>
+				- об'єктна модель документа (DOM).
+			</p>
+			<p>Таким чином, якщо JS використовується у вбудованій техніці, робототехніці, як мова сценаріїв (макросів) у програмах, іграх, то використовується лише ядро і додаткові інтерфейси для роботи з портами вводу/виводу, файловою системою і т.д., без BOM і DOM. Ядро і віртуальна машина доволі компактні і дозволяють вшити їх в ROM, CMOS-чіпи невеликого об'єму та розміру.</p>
+			<p>BOM та DOM не стандартизуються організацією ECMA, специфікації розробляють спільноти WHATWG і W3C, а доки немає специфікацій - кожна з компаній-розробників ліпить свої варіанти реалізацій, що якраз і веде до проблем кросбраузерності.</p>
+		</section>
+
+		<section>
+			<h2>Нові можливості ECMAScript 6 / 2015</h2>
+			<code>
+				<em>Похилим шрифтом в коді показані класичні реалізації</em>
+			</code>
+			<p>Оголошення констант <strong>const</strong> та локальних змінних <strong>let</strong></p>
+			<code>
+				const COLUMNS_COUNT = 12;<br>
+				for (let n = 1; n &lt;= COLUMNS_COUNT; n++) {<br>
+				&nbsp;&nbsp;setTimeout(showMessage, n * 1000);<br>
+				}<br>
+				if (test) {<br>
+				&nbsp;&nbsp;let str = 'hello';<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+			<p>Змінні n та str будуть існувати лише в межах фігурних дужок</p>
+			<p>Змінна n буде доступна в асинхронній функції showMessage зі значеннями 1, 2, 3...</p>
+			<p>Оголошені змінні через let будуть доступні лише нижче по коду, в той час як змінні, оголошені через var будуть мати значення undefined вище по коду.</p>
+			<p><strong>Стрілочні функції</strong></p>
+			<p>Стрілочні функції завжди анонімні, не мають arguments та super, не можуть бути конструктором, не мають власного this, а використовують this з контексту вище.</p>
+			<code>
+				() => { ... }<br>
+				<em>function (){ ... }</em><br><br>
+				
+				() => window.innerWidth / 2;<br>
+				<em>function (){ return window.innerWidth / 2; }</em><br><br>
+				
+				() => alert('hello');<br>
+				<em>function (){ return alert('hello'); }</em><br><br>
+				
+				(a, b, c) => { ... }<br>
+				<em>function (a, b, c){ ... }</em><br><br>
+				
+				(a, b, c) => a + b * c;<br>
+				<em>function (a, b, c){ return a + b * c; }</em><br><br>
+				
+				a => { ... }<br>
+				a => a * a;<br>
+				let obj = { sqr: a => a * a; }<br>
+				obj.sqr(5); &nbsp;&nbsp; <em>// 25</em><br>
+				<em>
+					var obj = {<br>
+					&nbsp;&nbsp;sqr: function(a){ return a * a; }<br>
+					}
+				</em><br><br>
+
+				val => ({ str: val });<br>
+				<em>function(val){ return { str: val }; }</em><br><br>
+
+				(a, b, ...c) => { ... }<br>
+				(a = 5, b, c = 'hey') => { ... }<br>
+				let f = ([a, b] = [1, 2], {x: c} = {x: a + b}) => a + b + c;<br>
+				f(); &nbsp;&nbsp; <em>// 6</em><br><br>
+
+				function Person(){<br>
+  			&nbsp;&nbsp;this.age = 0;<br>
+  			&nbsp;&nbsp;setInterval(() => { this.age++; }, 1000);<br>
+				}<br>
+				let p = new Person();<br>
+				<em>
+					function Person(){<br>
+	  			&nbsp;&nbsp;this.age = 0;<br>
+	  			&nbsp;&nbsp;var that = this;<br>
+	  			&nbsp;&nbsp;setInterval(function(){ that.age++; }, 1000);<br>
+					}<br>
+					var p = new Person();
+				</em>
+			</code>
+			<p><strong>Класи</strong> (синтаксичний цукор поверх прототипів)</p>
+			<code>
+				class User {<br>
+				&nbsp;&nbsp;constructor(name, age){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.age = age;<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;hello(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;alert('Hello ' + this.name);<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				let user = new User('John', 25);<br>
+				user.hello();<br>
+				<em>
+					function User(name, age){<br>
+					&nbsp;&nbsp;this.name = name;<br>
+					&nbsp;&nbsp;this.age = age;<br>
+					}<br>
+					User.prototype.hello = function(){<br>
+					&nbsp;&nbsp;alert('Hello ' + this.name);<br>
+					};<br>
+					var user = new User('John', 25);<br>
+					user.hello();
+				</em><br><br>
+
+				let User = class {<br>
+  			&nbsp;&nbsp;sayHi() { alert('Привет!'); }<br>
+				};<br>
+				new User().sayHi();
+			</code>
+			<p>User, оголошений через class, неможна викликати без new (буде помилка).</p>
+			<p>Оголошення class веде себе як let: клас буде доступний лише в поточному блоці і лише нижче по коду.</p>
+			<p>Методи класа не злічені, вони не будуть доступні в конструкції for..in.</p>
+			<p><strong>Покращення об'єктних літералів</strong></p>
+			<code>
+				let offsetX = '70px';<br>
+				let n = 42;<br>
+				let obj = {<br>
+				&nbsp;&nbsp;offsetX,<br>
+				&nbsp;&nbsp;['item-' + n]: 'Sorok dva',<br>
+				&nbsp;&nbsp;hello42(){ alert(this['item-42']); }<br>
+				};<br>
+				// класичний варіант:<br>
+				var obj = {<br>
+				&nbsp;&nbsp;offsetX: offsetX,<br>
+				&nbsp;&nbsp;hello42: function(){ alert(this['item-42']); }<br>
+				};<br>
+				obj['item-42'] = 'Sorok dva';
+			</code>
+			<p></p>
+		</section>
+
+		<section>
+			<h2>Огляд нових можливостей редакцій ES-2015/16.</h2>
+			<p>Багато нового для фронтенд-розробника буде дійсно корисним.</p>
+			<p>Дещо ввели для серверного JS.</p>
+			<p>Багато нового добавили для різноманітних компромісів, взаємодій з іншими мовами програмування (в основному, на серверній частині), полегшення використання JS програмістами на Java, C#, Python.</p>
+			<p><strong>let/const</strong>.</p>
+			<p>Об'являють змінну та константу в локальному просторі імен, обмеженому фігурними дужками {}.</p>
+			<p>Специфікація радить відмовитися від використання var.</p>
+			<code>
+				const x = 10;<br>
+				for (let i = 0; i < x; i++) { alert(i); }
+			</code>
+			<p>Корисно для серверної частини. В деяких випадках призведе до збільшення строк коду:</p>
+			<code>
+				for (var i = 0; i < x; i++) { ... }<br>
+				console.log('next index: ' + i);<br><br>
+				let i;<br>
+				for (i = 0; i < x; i++) { ... }<br>
+				console.log('next index: ' + i);
+			</code>
+			<hr>
+			<p><strong>for-of</strong>.</p>
+			<p>Зручний та очевидний перебір елементів масива:</p>
+			<code>
+				for (var i = 0; i < arr.length; i++) { arr[i] - кожен елемент масива }<br>
+				arr.forEach(function(e){ e - кожен елемент масива });<br>
+				<strong>for (const e of arr)</strong> { e - кожен елемент масива }
+			</code>
+			<hr>
+			<p><strong>Шаблони в апострофах</strong>.</p>
+			<p>Тепер для виокремлення строк можна використовувати не тільки одинарні та подвійні лапки, а й апостроф, що знаходиться під тільдою.</p>
+			<p>Строка в цих апострофах може містити шаблони зі змінними:</p>
+			<code>
+				const s = 'Masha';<br>
+				alert('Hello ' + s + '!');<br>
+				alert(<strong>`Hello ${s}!`</strong>);
+			</code>
+			<hr>
+			<p><strong>Упаковування та розпаковування об'єктів</strong>.</p>
+			<p>Корисна річ, зменшує писанину, покращує читаємість коду:</p>
+			<code>
+				const name = 'Masha';<br>
+				const age = 17;<br><br>
+				var obj = { name: name, age: age, x: 4 };<br>
+				const obj = <strong>{ name, age, x: 4 }</strong>;<br><br>
+				var x = obj.x;<br>
+				const <strong>{x} = obj</strong>;<br>
+				console.log(x); &nbsp;&nbsp; // 4
+			</code>
+			<hr>
+			<p><strong>Spreads</strong>.</p>
+			<p>Зручне розпаковування масивів:</p>
+			<code>
+				function fun(a, b, c, d) { alert(a + b + c + d); }<br>
+				const arr = [3, 4, 5, 6];<br>
+				fun(...arr);<br>
+				const brr = [1, 2, ...arr, 7, 8];
+			</code>
+			<hr>
+			<p><strong>Генератори yield</strong>.</p>
+			<p>Добавлені для сумісності з Python та Ruby.</p>
+			<hr>
+			<p><strong>Аргументи функцій по-замовчуванню</strong>.</p>
+			<code>
+				function fun(x, y){<br>
+				&nbsp;&nbsp;if (typeof y === 'undefined') { y = 42; }<br>
+				&nbsp;&nbsp;...<br>
+				}<br><br>
+				function fun(x, <strong>y = 42</strong>) {<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+			<hr>
+			<p><strong>Стрілочні функції</strong>.</p>
+			<p>Стрілочні функції мають коріння в лямбда-виразах в інших мовах програмування.</p>
+			<code>
+				var fun = function(a, b, c) { return a + b + c; };<br>
+				var fun = <strong>(a, b, c) =></strong> { return a + b + c; };<br>
+				var fun = <strong>(a, b, c) =></strong> a + b + c;<br>
+				var kub = <strong>x =></strong> x * x * x;
+			</code>
+			<p>У стрілочних функції є особливості в this, arguments, їх не бажано використовувати як методи об'єктів.</p>
+			<hr>
+			<p><strong>Класи</strong>.</p>
+			<p>JS все-ж таки потроху йде в бік ООП, в ньому з'явилися класи.</p>
+			<p>Якщо ви на фронтенді активно створюєте прототипи і вигадуєте костилі для ООП - мабуть, ви дійшли до серйозного етапу своєї кар'єри, пишете браузерну гру чи онлайн-фотошоп. Так? Якщо ні - то, скоріш за все, ви знову на хибному шляху і все занадто ускладнюєте.</p>
+			<hr>
+			<p>Проміси, Fetch, нові типи даних...</p>
+		</section>
+
+		<section>
+			<h2>Анімація елементів</h2>
+			<p>Потрібно плавно перерсунути блок вправо на 100px не використовуючи CSS-анімацію та JS-бібліотеки.</p>
+			<p>Подумайте яким чином повинна відбуватися така анімація.</p>
+			<p>Спробуйте зробити анімацію елемента, аналогічну jQuery.slideToggle().</p>
+			<p>Зробіть схлопування блока, подібне до jQuery.slideUp(). Добавте розкривання блока, подібне до jQuery.slideUp()</p>
+			<code>
+				&lt;button&gt;move right 100px&lt;/button&gt;<br>
+				&lt;button&gt;slideToggle&lt;/button&gt;<br>
+				&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
+				&lt;div&gt;lorem ipsum ...&lt;/div&gt;<br><br>
+				div { padding: 12px 20px; width: 260px; border: 1px solid orange;}<br><br>
+				moveRight(selector, duration){<br>
+				&nbsp;&nbsp;???<br>
+				}<br><br>
+				slideToggle(selector, duration){<br>
+				&nbsp;&nbsp;???<br>
+				}
+			</code>
+		</section>
+		
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Закінчіть практичне завдання.</li>
+				<li>
+					При кліку по body зробіть щоб блок рухався в точку кліка.
+					<code>
+						&lt;button&gt;round&lt;/button&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
+						&lt;div&gt;hello&lt;/div&gt;<br><br>
+						body { margin: 0; min-height: 100vh;}<br>
+						div { position: absolute; left: 20px; top: 100px; font-size: 60px;}
+					</code>
+				</li>
+				<li>Зробіть рух блока по колу при кліку на кнопку.</li>
+				<li>При наведенні миші на блок плавно міняйте фоновий колір сторінки на рандомний безкінечно (по досягненні цільового кольору задайте новий рандомний колір і прагніть до нього).</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Спецсимволи</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Спецсимволи</h1>
+			<p>Зворотній слеш слугує для створення спеціальних символів. Це називається екрануванням символів.</p>
+			<code>
+				console.log('Hello,<strong>\n</strong>world');<br>
+				console.log('Кам<strong>\'</strong>янець Подільський');<br>
+				console.log("Газета <strong>\"</strong>Проскурів<strong>\"</strong>");<br>
+				console.log('D:<strong>\\</strong>work<strong>\\</strong>frontend<strong>\\</strong>');
+			</code>
+			<p>За допомогою зворотнього слеша можна представити будь-який символ юнікода, вказавши його номер в таблиці символів в 16-й системі зчислення (hex):</p>
+			<code>
+				console.log('\u00A9 \u03C0 \u2764');
+			</code>
+			<h3>Доступ до символів.</h3>
+			<p>Звернутися до кожного символа можна через його індекс (номер, починаючи з нуля) в квадратних дужках після змінної:</p>
+			<code>
+				var s = 'Hello!';<br>
+				console.log(s[0]);<br>
+				console.log(s[1]);<br>
+				console.log(s[2]);<br>
+				console.log(s[3]);
+			</code>
+			<p>У строки є властивість <strong>length</strong>, в ній зберігається число - кількість символів в строці, довжина строки.</p>
+			<code>
+				console.log(s.length);<br>
+				var n = s.length;<br>
+				console.log(s[n-1]); &nbsp;&nbsp; // останній символ строки<br>
+				console.log(s[n-2]); &nbsp;&nbsp; // передостанній символ строки<br><br>
+				console.log(s[s.length-1]);
+			</code>
+			<p>В JavaScript літери в строках не можна змінювати. Наступний код не призведе до зміни строки:</p>
+			<code>
+				var s = 'вода';<br>
+				s[0] = 'с';<br>
+				console.log(s);
+			</code>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Створіть 3 змінних, занесіть в них свої прізвище, ім'я та по-батькові.</li>
+				<li>Виведіть в консоль кількість літер в прізвищі.</li>
+				<li>
+					Виведіть в консоль знак копірайту, прізвище та ініціали, використовуючи конкатинацію строк:
+					<code>&copy; Бобир О.А.</code>
+				</li>
+				<li>
+					Виведіть в консоль однією командою прізвище, ім'я та по-батькові в стовбчик:
+					<code>
+						Бобир<br>
+						Олександр<br>
+						Анатолійович
+					</code>
+				</li>
+				<li>Виведіть в консоль строку з трьох літер: останні літери кожної змінної.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

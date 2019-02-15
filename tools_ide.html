@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Налаштування IDE</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Налаштування IDE</h1>
+
+		<section>
+			<h2>Налаштування Sublime text</h2>
+			<p>У редактора Sublime text немає звичного вікна налаштувань. Всі опції прописуються в текстовому файлі в форматі JSON.</p>
+			<p>Є 2 файла: з налаштуваннями по замовчуванню та користувацькими. Зміни вносьте в користувацький файл.</p>
+			<p>В першу чергу налаштуйте автозбереження та розмір табів:</p>
+			<code>
+				{<br>
+				&nbsp;&nbsp;"save_on_focus_lost": true,<br>
+				&nbsp;&nbsp;"tab_size": 2<br>
+				}
+			</code>
+			<p>Решту налаштувань робіть по ходу освоєння програми.</p>
+			<figure>
+				<img src="img/tools_ide_01.png" alt="Налаштування Sublime text">
+				<figcaption>Налаштування Sublime text</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Налаштування PhpStorm</h2>
+			<p>Раджу встановити тему "Дракула", темний фон IDE менше втомлює зір:</p>
+			<code>
+				File &gt; Settings... &gt; Appearance &amp; Behavior &gt; Appearance
+			</code>
+			<figure>
+				<img src="img/tools_ide_02.png" alt="Screenshot">
+				<figcaption>Встановлення теми Dracula</figcaption>
+			</figure>
+			<p>Налаштуйте відступи, табуляції:</p>
+			<figure>
+				<img src="img/tools_ide_03.png" alt="Screenshot">
+				<figcaption>Налаштування табуляцій, відступів</figcaption>
+			</figure>
+			<p>Встановіть відображення нумерації рядків:</p>
+			<figure>
+				<img src="img/tools_ide_04.png" alt="Screenshot">
+				<figcaption>Налаштування відображення нумерації рядків</figcaption>
+			</figure>
+			<p>Коли починаєте новий проект чи відкриваєте інший - використовуйте пункт меню "Open Directory". Не використовуйте IDE як звичайний блокнот з купою вкладок.</p>
+			<figure>
+				<img src="img/tools_ide_05.png" alt="Screenshot">
+				<figcaption>Відкриття проекту</figcaption>
+			</figure>
+			<p>При цьому в каталозі проекту створюється папка <strong>.idea</strong>. Тому бажано відкривати не папку html з вашим файлом index.html, а папку з назвою вашого проекту.</p>
+		</section>
+
+		<section>
+			<h2>Деякі гарячі клавіші PhpStorm</h2>
+			<p><kbd>Ctrl</kbd> + <kbd>D</kbd> - здублювати строку.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>Y</kbd> - видалити строку.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up/Down</kbd> - перенесення поточного рядка чи виділених рядків вгору або вниз.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd> - реформатування коду.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>Left/Right</kbd> - перескакування курсором через слова.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>G</kbd> - перейти до рядка із заданим номером.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>Space</kbd> - автодоповнення тегів, атрибутів, стилів, шляхів до файлу і т.п.</p>
+			<p><kbd>Alt</kbd> + <kbd>Click</kbd> - створити декілька курсорів вводу.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

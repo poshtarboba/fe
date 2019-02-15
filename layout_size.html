@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Розміри елемента</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Розміри елемента</h1>
+			<p>Кожен елемент має ширину та висоту. Блочним елементам можна задавати розміри:</p>
+			<code>
+				<strong>width:</strong> 100%;<br>
+				<strong>height:</strong> 75px;
+			</code>
+			<p>Намагайтеся уникати використання height, нехай блоки самі собі виставляють висоту. Використовуйте внутрішні відступи padding та висоту строки line-height для керування висотою блоків.</p>
+			<p class="noheight">height: 40px;</p>
+			<p>Не використовуйте висоту у відсотках. Така висота може працювати лише при абсолютному позиціонуванні елемента.</p>
+			<p class="noheight">height: 50%;</p>
+			<p>Додаткові стилі, що обмежують мінімальні та максимальні розміри блоків:</p>
+			<code>
+				min-width: 50px;<br>
+				max-width: 200px;<br>
+				min-height: 50px;<br>
+				max-height: 200px;
+			</code>
+			<p>Приклад застосування у <a href="https://jsfiddle.net/poshtarboba/b6t013hx/" target="_blank">jsFiddle</a>.</p>
+			<p>"Обнулення" стилів:</p>
+			<code>
+				min-width: 0;<br>
+				min-height: 0;<br>
+				max-width: none;<br>
+				max-height: none;
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

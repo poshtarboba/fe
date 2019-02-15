@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Бібліотека функцій jQuery</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Бібліотека функцій jQuery</h1>
+			<p><strong>jQuery</strong> - javascript-бібліотека, розроблена для полегшення роботи з DOM веб-сторінки, анімації та асинхронними запитами до сервера за технологією <a href="https://uk.wikipedia.org/wiki/AJAX" target="_blank">AJAX</a>.</p>
+			<p><a href="http://jquery.com/" target="_blank">http://jquery.com</a> - домашня сторінка бібліотеки.</p>
+			<p><a href="http://api.jquery.com/" target="_blank">http://api.jquery.com</a> - документація.</p>
+			<p><a href="https://jquery-docs.ru/" target="_blank">https://jquery-docs.ru</a> - документація російською мовою.</p>
+			<p><a href="http://code.jquery.com/" target="_blank">http://code.jquery.com</a> - версії бібліотеки.</p>
+			<p>Версії:</p>
+			<code>
+				1.x - підтримує старі версії браузерів, в т.ч. IE 6-7<br>
+				2.x - прибрана підтримка старих версій браузерів<br>
+				3.x - підтримуються тільки свіжі версії браузерів і такі, що мають значну долю ринку<br>
+				3.x slim - "тонка" версія, видалено ajax, анімацію та деякі функції, що рідко використовуються.
+			</code>
+			<h3>Підключення та використання jQuery</h3>
+			<p>Бібліотеки підключаємо в першу чергу, далі - плагіни, користувацькі скрипти - в останню чергу:</p>
+			<code>
+				&lt;script src="js/jquery-1.9.min.js"&gt;&lt;/script&gt;<br>
+				&lt;script src="js/script.js"&gt;&lt;/script><br><br>
+				&lt;script src="http://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;<br>
+				&lt;script src="js/jquery.cycle2.min.js"&gt;&lt;/script&gt;<br>
+				&lt;script src="js/script.js"&gt;&lt;/script&gt;
+			</code>
+			<p>Перевірте, чи підключена бібліотека jQuery до даної сторінки, введіть в консолі:</p>
+			<code>
+				jQuery
+			</code>
+			<p>Повторіть цю операцію до сторінки пошуку Google.</p>
+			<p>Для уникнення конфліктів з іншими бібліотеками, плагінами та користувацькими змінними код jQuery пишуть у функції-обгортці.</p>
+			<p>Наприклад, в проекті потрібно використати дві бібліотеки, і обидві використовують символ долара як ім'я функції чи змінної:</p>
+			<code>
+				(function($){<br>
+				&nbsp;&nbsp;// код, що використовує jQuery<br>
+				&nbsp;&nbsp;...<br>
+				})(jQuery);<br><br>
+				(function($){<br>
+				&nbsp;&nbsp;// код, що використовує бібліотеку jsSuperTool<br>
+				&nbsp;&nbsp;...<br>
+				})(jsSuperTool);
+			</code>
+			<p>При цьому ми ізолюємо змінну з ім'ям значка долара лише межами даної функції.</p>
+			<p>Всередині цього замикання можна використовувати як псевдонім, так і повне ім'я функції:</p>
+			<code>
+				(function($){<br>
+				&nbsp;&nbsp;jQuery('.active').text('Active item');<br>
+				&nbsp;&nbsp;$('.active').removeClass('active');<br>
+				})(jQuery);
+			</code>
+			<p>Обгортки можуть мати різний вигляд, але суть у них одна - ізолювати змінну $.</p>
+			<p>Заради справедливості - ви можете використовувати і повне ім'я функції, і псевдонім без всілякої обгортки:</p>
+			<code>
+				jQuery('.active').text('Active item');<br>
+				$('.active').removeClass('active');
+			</code>
+			<p>Таким чином, <b>$ === jQuery</b>, в цьому можна переконатися переглянувши код внизу скрипта <a href="http://code.jquery.com/jquery-latest.js" target="_blank">code.jquery.com/jquery-latest.js</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

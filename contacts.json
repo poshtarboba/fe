@@ -1,0 +1,44 @@
+[
+	{
+		"name": "Іванов Іван Іванович",
+		"birthday": "05.11.1976",
+		"phone": "068-305-12-16",
+		"email": "ivanov@gmail.com"
+	},
+	{
+		"name": "Глушко Валентина Клементієвна",
+		"birthday": "14.02.1991",
+		"phone": "099-453-74-28",
+		"email": "glushko1991@gmail.com"
+	},
+	{
+		"name": "Кучерук Василь Григорович",
+		"birthday": "07.01.1951",
+		"phone": "067-743-72-55",
+		"email": "zibzib32@gmail.com"
+	},
+	{
+		"name": "Корольов Сергій Степанович",
+		"birthday": "30.04.1982",
+		"phone": "066-347-23-31",
+		"email": "sskorol@gmail.com"
+	},
+	{
+		"name": "Борщ Вадим Дем'янович",
+		"birthday": "08.06.2000",
+		"phone": "066-789-45-01",
+		"email": "borshch@gmail.com"
+	},
+	{
+		"name": "Товстяк Ірен Гнатівна",
+		"birthday": "22.11.1995",
+		"phone": "097-893-78-49",
+		"email": "iren2211@gmail.com"
+	},
+	{
+		"name": "Шкіряк Зорян",
+		"birthday": "16.07.1979",
+		"phone": "067-562-08-41",
+		"email": "shkiryak@gmail.com"
+	}
+]

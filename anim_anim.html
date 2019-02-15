@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Анімація елементів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Анімація елементів</h1>
+			<p>Потрібно плавно перерсунути блок вправо на 100px не використовуючи CSS-анімацію та JS-бібліотеки.</p>
+			<p>Подумайте яким чином повинна відбуватися така анімація.</p>
+			<p>Спробуйте зробити анімацію елемента, аналогічну jQuery.slideToggle().</p>
+			<p>Зробіть схлопування блока, подібне до jQuery.slideUp(). Добавте розкривання блока, подібне до jQuery.slideUp()</p>
+			<code>
+				&lt;button&gt;move right 100px&lt;/button&gt;<br>
+				&lt;button&gt;slideToggle&lt;/button&gt;<br>
+				&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
+				&lt;div&gt;lorem ipsum ...&lt;/div&gt;<br><br>
+				div { padding: 12px 20px; width: 260px; border: 1px solid orange;}<br><br>
+				moveRight(selector, duration){<br>
+				&nbsp;&nbsp;???<br>
+				}<br><br>
+				slideToggle(selector, duration){<br>
+				&nbsp;&nbsp;???<br>
+				}
+			</code>
+		</section>
+		
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Закінчіть практичне завдання.</li>
+				<li>
+					При кліку по body зробіть щоб блок рухався в точку кліка.
+					<code>
+						&lt;button&gt;round&lt;/button&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br>
+						&lt;div&gt;hello&lt;/div&gt;<br><br>
+						body { margin: 0; min-height: 100vh;}<br>
+						div { position: absolute; left: 20px; top: 100px; font-size: 60px;}
+					</code>
+				</li>
+				<li>Зробіть рух блока по колу при кліку на кнопку.</li>
+				<li>При наведенні миші на блок плавно міняйте фоновий колір сторінки на рандомний безкінечно (по досягненні цільового кольору задайте новий рандомний колір і прагніть до нього).</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<title>Frontend. Акуратність коду</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<!--
+			TODO:
+			+ правильна табуляція - використовуйте автоформатування коду;
+			+ хороші, зрозумілі назви класів, id;
+			+ структуровані CSS-селектори;
+			+ посортовані CSS-стилі;
+			+ валідний код - використовуйте валідатори.
+		-->
+	
+		<section>
+			<h1>Акуратність коду</h1>
+			<p>Акуратний код легко читати та розбирати на окремі елементи.</p>
+			<p>Всі внутрішні елементи (діти першого порядку) по відношенню до батьківського повинні мати однаковий відступ, використовуйте для цього клавішу <kbd>Tab</kbd>, не використовуйте пробіли.</p>
+			<p>Великі блоки можна відділяти в коді пустими строками для полегшення навігації по коду.</p>
+			<p>Часто для цього використовують коментарі виду:</p>
+			<code>
+				&lt;!-- Header begin --&gt;<br>
+				&lt;div class="header"&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&lt;/div&gt;<br>
+				&lt;!-- Header end --&gt;
+			</code>
+			<p>Але я вважаю, що вдало названі блоки і задані класи цілком і повністю будуть описувати контент поточного блока.</p>
+			<p>Приклади хорошого і поганого оформлення кода:</p>
+			<figure>
+				<img src="img/tools_accuracy_01.png" alt="HTML code">
+				<figcaption>HTML-код, акуратний та аби як зроблений</figcaption>
+			</figure>
+			<p>В HAML-коді (як і в багатьох сучасних мовах програмування) неакуратний код просто не буде працювати: вкладення тегів один в один визначається виключно відступами:</p>
+			<figure>
+				<img src="img/tools_accuracy_02.png" alt="HAML code">
+				<figcaption>HAML-код - завжди акуратний</figcaption>
+			</figure>
+			<p>В сучасних IDE є функція, що автоматично відформатовує код. Наприклад, в jsFiddle вона називається "Tidy", в PHPStorm знаходиться в меню Code (<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>):</p>
+			<figure>
+				<img src="img/tools_accuracy_03.png" alt="Реформатування коду в PHPStorm">
+				<figcaption>Реформатування коду в PHPStorm</figcaption>
+			</figure>
+			<p><strong>Принцип бритви Оккама</strong> - рос.: "не плоди сущее без необходимости", тобто, не треба створювати зайвих елементів, які не несуть ніякого змісту. Якщо 2 блока можна об’єднати в один - це варто зробити.</p>
+			<p>Звичайно, не треба прагнути до принципового мінімалізму, часто зменшення HTML-коду збільшує CSS-код і навпаки. Або деякі фрагменти можна зробити економно, але дуже неочевидними способами, в яких важко розібратися, які важко пристосувати до інших умов.</p>
+			<p><strong>Валідатор</strong> - це програма, що перевіряє правильність коду. В сучасних IDE його можна зустріти у версіях з коробки або скачати у вигляді плагіна.</p>
+			<figure>
+				<img src="img/tools_accuracy_04.png" alt="Валідний та невалідний код">
+				<figcaption>Валідний та невалідний код в PHPStorm</figcaption>
+			</figure>
+			<p>До появи зручних IDE кожний файл потрібно було перевірити онлайн-валідатором.</p>
+			<p>Спробуйте на своїх файлах <a href="https://validator.w3.org/nu/" target="_blank">валідатор для HTML</a> та <a href="http://jigsaw.w3.org/css-validator/" target="_blank">для CSS</a> щоб ознайомитися як він працює, яку інформацію видає, що пропонує змінити.</p>
+		</section>
+		
+		<section>
+			<h2>Порядок стилів</h2>
+			<p>Порівняйте дві пари блоків зі стилями. Дайте відповідь - які варіанти кращі і чому.</p>
+			<p>Варіант 1:</p>
+			<!-- TODO: переробити на скріншот, як і з хтмл-кодом -->
+			<code>
+				p.title { padding:4px 10px;border: 1px solid&nbsp;&nbsp;red;color: red;&nbsp;&nbsp;&nbsp;display: inline-block; margin:0;&nbsp;&nbsp;font-size: 14px; background:#eee; border-radius: 4px; text-decoration:none;}<br><br>
+				.menu li{<br>
+				border-right-color:&nbsp;&nbsp;red;<br>
+				&nbsp;&nbsp;color: red;<br>
+				&nbsp;&nbsp;list-style:none;<br>
+				&nbsp;&nbsp;&nbsp;padding:&nbsp;&nbsp;0 0 0 24px;<br>
+				&nbsp;font-style:italic;<br>
+				&nbsp;&nbsp;background-image: url(img/red_li.png);<br><br>
+				&nbsp;&nbsp;border-left-color: red;<br>
+				&nbsp;&nbsp;text-transform:uppercase;<br>
+				&nbsp;&nbsp;margin-bottom:&nbsp;&nbsp;4px;&nbsp;&nbsp;<br>
+				&nbsp;&nbsp;&nbsp;}
+			</code>
+			<p>Варіант 2:</p>
+			<code>
+				p.title { display: inline-block; margin: 0; padding: 4px 10px; color: red; font-size: 14px; text-decoration: none; background: #eee; border: 1px solid red; border-radius: 4px;}<br><br>
+				.menu li {<br>
+				&nbsp;&nbsp;list-style: none;<br>
+				&nbsp;&nbsp;margin-bottom: 4px;<br>
+				&nbsp;&nbsp;padding: 0 0 0 24px;<br>
+				&nbsp;&nbsp;color: red;<br>
+				&nbsp;&nbsp;font-style: italic;<br>
+				&nbsp;&nbsp;text-transform: uppercase;<br>
+				&nbsp;&nbsp;background-image: url(img/red_li.png);<br>
+				&nbsp;&nbsp;border-left-color: red;<br>
+				&nbsp;&nbsp;border-right-color: red;<br>
+				}
+			</code>
+			<p>Для того, щоб стилі легко було читати, знаходити потрібне, дотримуйтесь такого порядку запису стилів:</p>
+			<ol>
+				<li>глобальні стилі, пов'язані з позиціонуванням блоку</li>
+				<li>блочні стилі</li>
+				<li>стилі шрифта</li>
+				<li>фон, границі</li>
+				<li>рідко вживані стилі</li>
+			</ol>
+			<p>Використовуйте нову строку для кожного селектора, якщо селекторів декілька.</p>
+			<p>Використовуйте табуляцію у випадку запису в стовбчик.</p>
+			<p>Використовуйте пробіли між стилем і його значенням, перед відкриваючою фігурною дужкою.</p>
+			<p>Шаблон стилів:</p>
+			<code>
+				selector1,<br>
+				selector2,<br>
+				selector3 {<br>
+				&nbsp;&nbsp;position: relative;<br>
+				&nbsp;&nbsp;left, top, right, bottom<br>
+				&nbsp;&nbsp;z-index<br>
+				&nbsp;&nbsp;display<br>
+				&nbsp;&nbsp;list-style<br>
+				&nbsp;&nbsp;box-sizing<br>
+				&nbsp;&nbsp;margin, padding<br>
+				&nbsp;&nbsp;width, height<br>
+				&nbsp;&nbsp;color<br>
+				&nbsp;&nbsp;font*<br>
+				&nbsp;&nbsp;text*<br>
+				&nbsp;&nbsp;background*<br>
+				&nbsp;&nbsp;border*<br>
+				&nbsp;&nbsp;border-radius<br>
+				&nbsp;&nbsp;cursor<br>
+				&nbsp;&nbsp;opaticy<br>
+				&nbsp;&nbsp;overflow<br>
+				&nbsp;&nbsp;user-select<br>
+				&nbsp;&nbsp;transform<br>
+				&nbsp;&nbsp;transition<br>
+				}
+			</code>
+			<p>Селектори повинні розширятися до низу, а також бути згруповані в одному місці, а не розкидані по файлу, якщо належать одному й тому ж блоку:<p>
+			<code>
+				.navigation { ... }<br>
+				.navigation .menu { ... }<br>
+				.navigation .menu li { ... }<br>
+				.navigation .menu li:hover,<br>
+				.navigation .menu li.active { ... }<br>
+				.navigation .menu li:hover a,<br>
+				.navigation .menu li.active a { ... }<br><br>
+				.navigation .menu li:hover a,<br>
+				.navigation .menu li.active a { ... }<br>
+				p.title { ... }<br>
+				.navigation .menu { ... }<br>
+				.navigation .menu li:hover,<br>
+				.navigation .menu li.active { ... }<br>
+				.section-contacts { ... }<br>
+				.navigation .menu li { ... }<br>
+				.navigation { ... }
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Перевірте свій HTML-код і CSS за допомогою онлайн-валідаторів. Зробіть деякі помили, приберіть атрибути <strong>alt</strong> у зображень і повторно зробіть перевірку.</li>
+				<li>Приведіть свій HTML та CSS у належний, акуратний вигляд.</li>
+			</ol>
+		</section>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

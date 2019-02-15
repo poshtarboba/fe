@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Іменовані та анонімні функції</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Іменовані та анонімні функції</h1>
+			<p>Якщо функцію ініціалізують, задаючи їй ім'я - то це іменована функція.</p>
+			<p>Якщо функція ініціалізується без імені - це анонімна функція.</p>
+			<p>Анонімні функції як правило присвоюються в змінні, можуть ставати методами об'єктів, бути каллбек-функціями і т.п.</p>
+			<code>
+				function fun(...){ ... }<br>
+				var fun = function(...){ ... }
+			</code>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>
+					Протестуйте наступний код, виправте помилку, зробіть висновки:
+					<code>
+						var a = A(3);<br>
+						var b = B(5);<br>
+						console.log(a, b);<br><br>
+						function A(x){ return x * 2; }<br>
+						var B = function(x){ return x + 3; }
+					</code>
+				</li>
+			</ol>
+		</section>
+		
+		<!--
+			TODO: https://learn.javascript.ru/task/make-army
+			var shooter = function me() {
+				alert( me.i );
+			};
+			shooter.i = i;
+		-->
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

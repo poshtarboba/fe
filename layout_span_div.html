@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Теги span та div</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.layout-span-div-1 { color: red;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Теги SPAN, DIV</h1>
+			<p>Тег <strong>&lt;span&gt;</strong> - строчний елемент, його необхідно використовувати в тих випадках, коли частина тексту в строці має інший стиль: колір, розмір, накреслення. Також &lt;span&gt; використовується для вставки різних декоративних елементів в строку, для виділення значень, що можуть динамічно змінюватися і т.п.</p>
+			<code>
+				<span class="layout-span-div-1">Червона</span> карточка означає видалення гравця з поля.<br><br>
+				.red { color: red; }<br><br>
+				&lt;p&gt;&lt;span class="red"&gt;Червона&lt;/span&gt; карточка означає видалення гравця з поля.&lt;/p&gt;
+			</code>
+			<p>Виділення тегом динамічного значення (число завантажується з бази даних за допомогою скрипта):</p>
+			<code>
+				Ціна: 48 грн.<br><br>
+				&lt;p class="price"&gt;Ціна: &lt;span&gt;0&lt;/span&gt; грн.&lt;/p&gt;<br><br>
+				$('.price span').text( getPriceFromDB() );
+			</code>
+			<p>Тег <strong>&lt;div&gt;</strong> - це основний блочний елемент, основний тип коробок. Він може виконувати як семантичну, так і декоративну роль.</p>
+			<p>Семантична роль полягає в тому, що тег &lt;div&gt; об'єднує, групує певні елементи однакових категорій, розділяє дані різних типів. Якщо поглянути на макет Колесова - в нього є такі елементи: хедер, футер, контентна частина, а в ній - текст і меню. Кожен з цих елементів - це блоки div.</p>
+			<p>Декоративна роль - розміщення декоративних елементів на сторінці, додаткових фонових зображень, фрагментів, виправлення помилок (фікси, костилі) і тому подібне.</p>
+			<figure>
+				<!-- TODO: переробити скріншот - клас .container -->
+				<!-- TODO: переробити скріншоти CounterStrike -->
+				<img src="img/layout_span_div_01.jpg" alt="Full page">
+				<figcaption>Поділ на основні блоки всієї сторінки.</figcaption>
+			</figure>
+			<figure>
+				<img src="img/layout_span_div_02.jpg" alt="Resize part">
+				<figcaption>Поділ блока <strong>.resize</strong>.</figcaption>
+			</figure>
+			<figure>
+				<img src="img/layout_span_div_03.jpg" alt="Header part">
+				<figcaption>Поділ блока <strong>.header</strong>.</figcaption>
+			</figure>
+			<figure>
+				<img src="img/layout_span_div_04.jpg" alt="Content part">
+				<figcaption>Поділ блока <strong>.content</strong>.</figcaption>
+			</figure>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

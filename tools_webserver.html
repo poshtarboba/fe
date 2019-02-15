@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Веб-сервер</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Веб-сервер</h1>
+
+		<section>
+			<h2>Що таке веб-сервер, для чого він фронтенд-розробнику</h2>
+			<p>Ве</p>
+		</section>
+
+		<section>
+			<h2>Вибір та установка веб-сервера</h2>
+		</section>
+
+		<section>
+			<h2>Створення віртуальних хостів</h2>
+			<p>Після встановлення веб-сервера вам буде дана папка - домашній каталог веб-сервера, localhost'а. Як правило, вона називається <strong>htdocs</strong>, <strong>www</strong>, <strong>home</strong> і т.п.</p>
+			<p>В такому каталозі ви зможете створити один проект. Якщо вам треба 2, 3, 10, 100 проектів, то не потрібно встановлювати 100 копій веб-сервера, можна налаштувати віртуальний хост на будь-яку папку.</p>
+			<p>Нехай у нас є проект і ми хочемо відкривати його через веб-сервер:</p>
+			<code>
+				D:\work\<span class="js-year">2017</span>-<span class="js-month">12</span>\wp-minecraft\html\
+			</code>
+			<p>
+				Потрібно налаштувати веб-сервер, щоб він сприймав папку <strong>html</strong> як домашній каталог<br>
+				(не сидіть без діла, створюйте новий проект, закидуйте туди верстку майнкрафта).
+			</p>
+			<p>Для створення нового віртуального хоста знайдіть папку і файл налаштування вашого веб-сервера <strong>apache</strong>, приклад для xampp:</p>
+			<code>
+				... \xampp\apache\conf\<strong>httpd.conf</strong>
+			</code>
+			<p>Іноді віртуальні хости прописуються прямо в цьому файлі. Але частіше - є для цього окремий файл. Шукаємо директиву <strong>Virtual hosts</strong> і перевіряємо, чи наступна строка не закоментована (чи не стоїть ришітка перед нею), має бути ось так:</p>
+			<code>
+				# Virtual hosts<br>
+				Include conf/extra/httpd-vhosts.conf
+			</code>
+			<p>Тепер відкриваємо файл <strong>httpd-vhosts.conf</strong>:</p>
+			<code>
+				... \xampp\apache\conf\extra\httpd-vhosts.conf
+			</code>
+			<p>Тут прописані віртуальні хости, їх вже може бути декілька, або один - localhost. Якщо localhost закоментований - його необхідно створити:</p>
+			<code>
+				&lt;VirtualHost *:80&gt;<br>
+				&nbsp;&nbsp;ServerName localhost<br>
+				&nbsp;&nbsp;DocumentRoot "C:/xampp/htdocs/"<br>
+				&nbsp;&nbsp;ErrorLog "logs/localhost-error.log"<br>
+				&nbsp;&nbsp;CustomLog "logs/localhost-access.log" common<br>
+				&nbsp;&nbsp;&lt;Directory "C:/xampp/htdocs/"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Require all granted<br>
+				&nbsp;&nbsp;&lt;/Directory&gt;<br>
+				&lt;/VirtualHost&gt;
+			</code>
+			<p><strong class="danger">Увага!</strong> Перевірте правильність шляхів!</p>
+			<p>Зробіть відступ в 1-2 пустих строки і добавте новий блок в кінець файла:</p>
+			<code>
+				&lt;VirtualHost *:80&gt;<br>
+				&nbsp;&nbsp;ServerName minecraft.local<br>
+				&nbsp;&nbsp;DocumentRoot "D:/work/<span class="js-year">2017</span>-<span class="js-month">12</span>/wp-minecraft/html"<br>
+				&nbsp;&nbsp;ErrorLog "logs/minecraft.local-error.log"<br>
+				&nbsp;&nbsp;CustomLog "logs/minecraft.local-access.log" common<br>
+				&nbsp;&nbsp;&lt;Directory "D:/work/<span class="js-year">2017</span>-<span class="js-month">12</span>/wp-minecraft/html"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Require all granted<br>
+				&nbsp;&nbsp;&lt;/Directory&gt;<br>
+				&lt;/VirtualHost&gt;
+			</code>
+			<p><strong>ServerName</strong> - назва сервера, URL.</p>
+			<p><strong>DocumentRoot</strong> - шлях до домашнього каталога проекта.</p>
+			<p><strong>*Log</strong> - шлях до лог-файлів (в даному випадку вони будуть в папці веб-сервера).</p>
+			<p><strong>Directory</strong> - відкриває дозволи на доступ до файлів папки.</p>
+			<p>Потрібно відредагувати ще один файл:</p>
+			<code>
+				C:\windows\system32\drivers\etc\hosts
+			</code>
+			<p>В кінець файла допишіть:</p>
+			<code>
+				127.0.0.1 minecraft.local
+			</code>
+			<p>Після збереження файлу можна запускати веб-сервер і тестувати. Якщо веб-сервер був запущений до цього - його треба рестартнути, або зупинити і запустити знову.</p>
+			<p>Тестуємо. Введіть в браузері URL:</p>
+			<code>
+				minecraft.local
+			</code>
+			<p>Має відкритися веб-сторінка з нашою версткою Minecraft.</p>
+		</section>
+
+		<section>
+			<h2>Відновлення роботи веб-сервера після переустановки ОС, переносу в іншу папку, на інший диск, на інший комп</h2>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

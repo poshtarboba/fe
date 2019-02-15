@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Абсолютні та відносні шляхи до файлів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<!-- TODO: переіменуй на tools_paths.html -->
+
+		<section>
+			<h1>Абсолютні та відносні шляхи до файлів</h1>
+			<p>Наприклад, у нас є посилання типу http://mysite.com/index.html</p>
+			<p>Логіка користувача комп'ютера підказує, що десь інсує файл index.html, який завантажується з сервера у наш браузер.</p>
+			<p>Якщо сервер працює під операційною системою Linux чи BSD, то, скоріш за все, цей файл буде знаходитися в папці з таким чи подібним шляхом:</p>
+			<code>/var/www/public-html/</code>
+			<p>Можна налаштувати веб-сервер так, щоб він брав файли для http://mycite.com/ з папки D:\work\frontend\magazin_futbolok\.</p>
+			<p>Папка, з якої беруться файли для веб-сайту - називається <strong>коренем, кореневим каталогом</strong>.</p>
+			<p>Таким чином, якщо у нас на сайті є зображення чи pdf-файл, то їх адреса буде приблизно такою:</p>
+			<code>
+				http://mysite.com/images/cat.jpg<br>
+				http://mycite.com/files/pdf/instruction.pdf
+			</code>
+			<p>а в реальності файли будуть зберігатися за адресою:</p>
+			<code>
+				/var/www/public-html/images/cat.jpg<br>
+				/var/www/public-html/files/pdf/instruction.pdf<br>
+				або<br>
+				d:\work\frontend\magazin_futbolok\images\cat.jpg<br>
+				d:\work\frontend\magazin_futbolok\files\pdf\instruction.pdf
+			</code>
+			<p>Кореневий каталог сайта це папка, в якій зберігаються всі файли сайта (доступні для фронтенда).</p>
+			<p>Кореневий каталог в операційних системах Linux, BSD, MacOS є <strong>/</strong> (слеш).</p>
+			<p>В цьому каталозі можна бачити папки var, home, usr, dev, bin і т.п.</p>
+			<p>В операційній системі Windows кожен диск є кореневим каталогом: C:\, D:\, E:\ і т.д.</p>
+			<p>В інтернеті кожен сайт має кореневий каталог <strong>/</strong>.</p>
+			<code>
+				localhost<br>
+				localhost/
+			</code>
+			<p>На одному комп'ютері (сервері) може розташовуватися багато сайтів, в кожного буде свій домен, свій кореневий каталог:</p>
+			<code>
+				d:\server\sites\localhost\<br>
+				d:\server\sites\magazin_futbolok\<br>
+				d:\server\sites\landing_honey\<br>
+				d:\server\sites\wp-blog\<br>
+				d:\server\sites\test1.ru\<br>
+				d:\server\sites\humor.km.ua\
+			</code>
+			<p><strong>Абсолютний шлях</strong> - повний шлях до файлу, ресурсу на конкретному комп'ютері чи веб-сайті:</p>
+			<code>
+				d:\work\frontend\magazin_futbolok\images\cat.jpg<br>
+				/var/www/public-html/images/cat.jpg<br>
+				http://mysite.com/images/cat.jpg
+			</code>
+			<p>Якщо ви будете використовувати абсолютні шляхи до файлів, то при перенесенні папки в інше місце, переіменуванні папки, відправленні zip-архіва сайта замовнику чи колезі, зміні домена сайта така адреса стане неправильною:</p>
+			<code>
+				&lt;img src="d:\work\frontend\magazin_futbolok\images\cat.jpg" alt=""&gt;<br>
+				&lt;img src="http://ukr-futbolki.com/images/cat.jpg" alt=""&gt;
+			</code>
+			<p>На сайтах можна використовувати абсолютний шлях:</p>
+			<code>
+				&lt;img src="/images/cat.jpg" alt=""&gt;
+			</code>
+			<p>Фактично, такий скорочений шлях браузер автоматично перетворить на повний:</p>
+			<code>
+				&lt;img src="<strong>http://mysite.com</strong>/images/cat.jpg" alt=""&gt;
+			</code>
+			<p>але під час розробки сайту якщо ви не використовуєте локальний веб-сервер, це буде не зручно, всі файли будуть зсилатися на кореневі каталоги операційної системи.</p>
+			<p><strong class="danger">Примітка:</strong> в ОС Windows також використовуйте прямий слеш, а не зворотній:<br>
+				d:/work/frontend/magazin_futbolok/images/cat.jpg<br>
+				ця операційна система розуміє обидва варіанта слешів, прямий слеш є універсальним для всіх ОС та URI-адрес в інтернеті.
+			</p>
+			<!-- TODO: вінда може не розуміти прямий слеш в командах копіювання, переіменовування, видалення... -->
+			<p><strong>Відносний шлях</strong> - це шлях до файлів з поточного каталога.</p>
+			<p>Наприклад, ми відкрили папку d:\video\mults\, в цій папці є папка Simpsons\, в ній s06\, в останній - всі серії шостого сезону, серед яких файл s06e12.avi.<br>
+				відносний шлях до файла з поточного каталога d:\video\mults\ буде таким:</p>
+			<code>
+				Simpsons\s06\s06e12.avi
+			</code>
+			<p>Якщо ми зайдемо у папку Simpsons, то відносний шлях до того ж файлу буде таким:</p>
+			<code>
+				s06\s06e12.avi
+			</code>
+			<p>Якщо перейдемо на диск D:\, то відносний шлях буде таким:</p>
+			<code>
+				video\mults\Simpsons\s06\s06e12.avi
+			</code>
+			<p>Відносний шлях на сайті також відраховується з поточної сторінки. Для сторінки http://mysite.com/index.html відносний шлях до картинки з котом буде:</p>
+			<code>images/cat.jpg</code>
+			<p>Якщо ми перейдемо в каталог files:<br>
+				http://mysite.com/files/pdf/<br>
+				фактично буде відображено файл<br>
+				http://mysite.com/files/pdf/index.html,<br>
+				з цієї сторінки відносний шлях до інструкції буде просто назвою файлу:
+			</p>
+			<code>
+				instruction.pdf
+			</code>
+			<p>а з головної сторінки сайту відносний шлях буде:</p>
+			<code>
+				files/pdf/instruction.pdf
+			</code>
+			<p>Каталог <strong>../</strong> - це перехід в батьківську папку.</p>
+			<p>Нехай ми відкрили папку:</p>
+			<code>
+				d:\video\mults\Simpsons\
+			</code>
+			<p>Відносний шлях <strong>..\</strong> - це звернення до батьківського каталога<br>
+				d:\video\mults\<br>
+				Також можна використовувати і абсолютний шлях:<br>
+				d:\video\mults\Simpsons\..\<br>
+				те саме, що і<br>
+				d:\video\mults\
+			</p>
+			<p>Можна використати декілька звернень до батьківського каталога:<br>
+				d:\video\mults\Simpsons\s06\..\..\..\<br>
+				це звернення до папки<br>
+				d:\video\
+			</p>
+			<p>Якщо ми відкрили папку s06\, то відносний шлях<br>
+				..\..\..\<br>
+				також вкаже на папку video\</p>
+			<p>Тепер розглянемо відносні шляхи у межах сайту. Нехай ми переглядаємо веб-сторінку:</p>
+			<code>
+				http://mysite.com/files/pdf/index.html
+			</code>
+			<p>Для того, щоб помістити зображення на цю сторінку, використовується код з вказанням відносної або абсолютної адреси:</p>
+			<code>
+				&lt;img src="../../images/cat.jpg" alt=""&gt; - відносна адреса<br>
+				&lt;img src="/images/cat.jpg" alt=""&gt; - абсолютна адреса
+			</code>
+			<p>Але не завжди посилання - це є файл в конкретній папці на сервері, комп'ютері. Зображення, файл може зберігатися у базі даних, у специфічних файлових системах, або ж мати приблизно таку реальну адресу:<br>
+				http://s261435zc.files.bin/45f894ca15a/20161204/03/azr/k3cf919do7cc79.jpg<br>
+				а буди доступним за "фіктивною" адресою:<br>
+				http://mysite.com/funpics/cat.jpg<br>
+				http://mysite.com/download?file=45159_cat.jpg
+			</p>
+			<p>Також сучасні технології передбачають створення окремої веб-сторінки з багатьох окремих файлів.</p>
+			<p>Так, сторінка http://mysite.com/index.html насправді може бути відсутня на сервері, а при зверненні до цієї адреси файл index.html буде збиратися як конструктор з окремих файлів:<br>
+				- main.php;<br>
+				- head.php;<br>
+				- header.php;<br>
+				- aside.php;<br>
+				- content.php;<br>
+				- footer.php;<br>
+				- widgets.php;<br>
+				- map.inc;<br>
+				і так далі.
+			</p>
+			<p>Тому розрізняють два такі поняття:</p>
+			<p><strong>URL</strong> (Unique Resource Location) - унікальне розміщення ресурса (справжня адреса файла).</p>
+			<p><strong>URI</strong> (Unique Resource Identificator) - унікальний ідентифікатор ресурса (посилання, за яким можна отримати файл).</p>
+			<p>Кожен URL є також і URI, але не навпаки, URI може зсилатися на ресурс, який не існуює у вигляді окремого файла, або ж є потоковими даними - стрім-відео реального часу, телеметрія, біржеві індекси і тому подібне.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Ресурси</h2>
+			<p><a href="http://phpfaq.ru/newbie/paths" target="_blank">Различие между абсолютными и относительными путями</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

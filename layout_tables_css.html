@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Таблиці CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Таблиці CSS</h1>
+			<p>Стилями можна перетворити будь-які блоки на таблиці. Використовуються такі стилі:</p>
+			<code>
+				display: table;<br>
+				display: table-cell;<br>
+				display: table-row;
+			</code>
+			<p>Якщо потрібно використати псевдо-табличну верстку для одного рядка - table-row можна опустити.</p>
+			<code>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;Комірка 1&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;Комірка 2&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;span&gt;Комірка 3&lt;/span&gt;<br>
+				&lt;/p&gt;<br><br>
+				p { display: table;}<br>
+				span { display: table-cell;}
+			</code>
+			<p>Зверніть увагу, що тег &lt;p&gt; в цьому випадку перестане займати всю ширину сторінки чи батьківського елемента і звузиться до мінімально можливої ширини. Задайте тегу width.</p>
+			<p>Якщо потрібно декілька рядків таблиці:</p>
+			<code>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 1&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 2&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 3&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 4&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 5&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 6&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 7&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 8&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Комірка 9&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;/p&gt;<br>
+				&lt;div&gt;<br><br>
+				div { display: table; }<br>
+				p { display: table-row; }<br>
+				span { display: table-cell; }
+			</code>
+			<p>Є ще один корисний в деяких випадках стиль, який не дозволяє колонкам автоматично підлаштовувати свою ширину:</p>
+			<code>
+				table { table-layout: fixed; }
+			</code>
+		</section>
+				
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Зверстайте третій і четвертий блоки проекта <a href="https://drive.google.com/open?id=0By5OeYSvSbNLeXIxU2gzNjJnbkE" target="_blank">Таблиці</a> <small>(<a href="../fe-files/psd/tables.jpg">jpg</a>)</small>.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

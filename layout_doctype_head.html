@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Doctype, head</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Doctype, head</h1>
+
+		<section>
+			<h2>!DOCTYPE</h2>
+			<p>Кожен html-файл повинен починатися зі строки-сігнатури &lt;!DOCTYPE ... &gt;</p>
+			<p>Цей елемент призначений для того, щоб браузер розумів як інтерпретувати веб-сторінку.</p>
+			<p>Зараз ми завжди будемо використовувати простеньку строку: <strong>&lt;!DOCTYPE html&gt;</strong>, вона означає, що наша сторінка написана згідно стандарту HTML5.</p>
+			<p>Раніше ця сігнатура мала значно монструозніший вигляд, описувала строгий, перехідний синтаксиси HTML, використання фреймів, і виглядала приблизно так:<br>
+				&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</p>
+			<p>Детальніше з цим елементом можна ознайомитися в вікіпедії чи на проекті htmlbook.ru (webref.ru).</p>
+		</section>
+
+		<section>
+			<h2>HEAD</h2>
+			<p>Між тегами &lt;html&gt; та &lt;body&gt; повинен знаходитися ще один блок: <strong>&lt;head&gt;</strong></p>
+			<p>Цей блок не відображається на сторінці і містить певні установки для налаштування браузера.</p>
+			<p>Ось приклад блока <strong>&lt;head&gt;</strong>:</p>
+			<code>
+				&lt;!DOCTYPE html&gt;<br>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;<br>
+				&nbsp;&nbsp;&lt;title&gt;Frontend. Заняття 4.&lt;/title&gt;<br>
+				&nbsp;&nbsp;&lt;meta name="keywords" content=""&gt;<br>
+				&nbsp;&nbsp;&lt;meta name="description" content=""&gt;<br>
+				&nbsp;&nbsp;&lt;meta name="format-detection" content="telephone=no"&gt;<br>
+				&nbsp;&nbsp;&lt;link type="text/css" rel="stylesheet" href="css/style.css"&gt;<br>
+				&nbsp;&nbsp;&lt;script type="text/javascript" src="js/script.js"&gt;&lt;/script&gt;<br>
+				&lt;/head&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;div ...&gt;<br>
+			</code>
+			<p>Метатег з кодуванням повинен бути першим, що браузер зустріне в тезі head.</p>
+			<p>Тег <strong>&lt;title&gt;</strong> містить в собі строку - заголовок сторінки. Цю строку можна побачити на вкладці браузера</p>
+			<figure>
+				<img src="img/layout_doctype_head_01.jpg" alt="Tag title">
+				<figcaption>Текст з тега &lt;title&gt; відображається на вкладці браузера</figcaption>
+			</figure>
+			<p>Далі йдуть мета-теги. Вони описують мета-дані сторінки та підлаштовують браузер для її відображення:<br>
+				- ключові слова інформації, що представлена на сторінці;<br>
+				- опис інформації, що представлена на сторінці;<br>
+				- format-detection - це параметр, від значення якого залежить як будуть представлені різні формати даних.</p>
+			<p>В нашому випадку значення "telephone=no" означає те, що браузери мобільних додатків не будуть намагатися представити телефон у вигляді посилання. Клік на таке посилання дає змогу одразу зателефонувати за вказаним номером, але небажане посилання може попортити зовнішній вигляд сторінки.</p>
+			<p>Тег <strong>&lt;link&gt;</strong> призначений для підключення ресурсів, в даному випадку - файл стилів.</p>
+			<p>Тег <strong>&lt;script&gt;</strong> призначений для підключення скриптів чи їх безпосереднє включення в код сторінки.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

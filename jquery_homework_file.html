@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery homework 1</title>
+	<meta charset="utf-8">
+	<style>
+		.active { color: red;}
+		.passive { color: silver;}
+		.rainbow.active { color: white;}
+		.col1 { background: red;}
+		.col2 { background: orange;}
+		.col3 { background: yellow;}
+		.col4 { background: green;}
+		.col5 { background: deepskyblue;}
+		.col6 { background: blue;}
+		.col7 { background: darkviolet;}
+		.greenshadow { text-shadow: 2px 2px 3px green;}
+		.blueshadow { text-shadow: 2px 2px 3px blue;}
+		a.ftp { color: green;}
+
+		.silver.active { background: #aaa;}
+		.specwrap { background: #888;}
+		.upper { text-transform: uppercase;}
+		.week > *,
+		.week2 > *,
+		.rainbow > li { cursor: pointer;}
+		.check { display: inline-block; padding: 8px 16px; background: silver; border: 1px solid black; cursor: pointer;}
+		.check.active { background: yellow; border-color: red;}
+		.wave1 { background: #777;}
+		.wave2 { background: #888;}
+		.wave3 { background: #999;}
+		.wave4 { background: #aaa;}
+		.wave5 { background: #bbb;}
+		.wave6 { background: #ccc;}
+		.wave7 { background: #ddd;}
+		.wave8 { background: #eee;}
+	</style>
+</head>
+<body>
+
+<p><strong>Rainbow:</strong></p>
+<ul class="rainbow">
+	<li>red</li>
+	<li>orange</li>
+	<li>yellow</li>
+	<li>green</li>
+	<li>deepskyblue</li>
+	<li class="bl"><strong>blue</strong></li>
+	<li>darkviolet</li>
+</ul>
+
+<br><br>
+
+<p><strong>Test:</strong></p>
+<ul id="test">
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li class="lol">test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test
+		<ul>
+			<li>subtest</li>
+			<li>subtest</li>
+			<li>subtest</li>
+			<li>subtest</li>
+			<li>subtest</li>
+		</ul>
+	</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+	<li>test</li>
+</ul>
+
+<p><strong>Links:</strong></p>
+<ul title="links">
+	<li><a href="http://google.com/">aaaa</a></li>
+	<li><a href="http://yahoo.com/">bbbb</a></li>
+	<li><a href="ftp://crcl.cf/">cccc</a></li>
+	<li><a href="http://crcl.cf/">dddd</a></li>
+	<li><a href="ftp://8.8.8.8/">eeee</a></li>
+</ul>
+
+<br><br><br><br>
+
+<div class="wrapper">
+	<p class="silver">No background!</p>
+	<p class="week">
+		<s>sunday</s>
+		<span>monday</span>
+		<em>tuesday</em>
+		<strong>wednesday</strong>
+		<sub>thursday</sub>
+		<sup class="big">friday</sup>
+		<i>saturday</i>
+	</p>
+	<section class="silver">
+		<article>
+			<p><strong>Big <span class="special">brother</span> watch you!</strong></p>
+		</article>
+	</section>
+	<p class="week2">
+		<span>monday</span>
+		<span data-click="3">tuesday</span>
+		<span data-click="5">wednesday</span>
+	</p>
+</div>
+
+<br><br><br><br>
+
+<form>
+	<p><label><input type="text" class="name" placeholder="name"></label></p>
+	<p><label><input class="phone" placeholder="phone" type="text"></label></p>
+	<p><label><input type="checkbox"> adult</label></p>
+	<p><label><input type="radio" name="sex" checked> man</label></p>
+	<p><label><input type="radio" name="sex"> woman</label></p>
+	<p><label><input class="phone" type="text" placeholder="phone"></label></p>
+	<p><span class="check active">CHECK</span></p>
+</form>
+
+<br><br><br><br>
+
+<ul class="wave">
+</ul>
+
+<br><br><br><br>
+
+</body>
+</html>

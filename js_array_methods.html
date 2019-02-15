@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Методи масивів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Методи масивів</h1>
+			<p><strong>.join()</strong> - зворотній до строкового метода .split(), повертає строку, що складається з елементів масиву, записаних через кому.</p>
+			<code>
+				console.log([1, 2, 3].join()); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // '1,2,3'<br>
+				console.log([1, 2, 3].join('; ')); &nbsp;&nbsp; // '1; 2; 3'<br>
+				console.log([1, 2, 3].join('')); &nbsp;&nbsp;&nbsp;&nbsp; // '123'
+			</code>
+			<p><strong>.concat(a, b, ...)</strong> - повертає новий масив, об'єднує декілька масивів в один, може добавляти інші елементи.</p>
+			<code>
+				let a = [1, 2, 3],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = [4, 5, 6],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c = [7, 8, 9],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;d = 'hello',<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;e = 42,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;f = a.concat(b, c, d, e);<br>
+				console.log(f);
+			</code>
+			<p><strong>.includes(e)</strong> - перевіряє чи є в масиві елемент e, повертає true або false.</p>
+			<code>
+				let a = [1, 2, 3];<br>
+				console.log(a.includes(1)); &nbsp;&nbsp; // true<br>
+				console.log(a.includes(42)); &nbsp;&nbsp; // false
+			</code>
+			<p><strong>.indexOf(e)</strong> - шукає в масиві елемент e і повертає його індекс або -1, якщо елемент не знайдено.</p>
+			<p><strong>.lastIndexOf(e)</strong> - шукає в масиві елемент e з кінця масиву і повертає його індекс або -1, якщо елемент не знайдено.</p>
+			<p>Ці два метода можуть приймати два аргумента, другий - з якого елемента починати пошук.</p>
+			<p><strong>.fill(n)</strong> - заповнює масив елементами n.</p>
+			<code>
+				let a = [1, 2, 3, , , 6, 7];<br>
+				a.fill('hey');<br>
+				console.log(a);
+			</code>
+			<p><strong>.reverse()</strong> - змінює порядок розташування елементів на зворотній.</p>
+			<code>
+				let a = [4, 5, 6];<br>
+				a.reverse();<br>
+				console.log(a);
+			</code>
+			<p><strong>.slice(a, b)</strong> - повертає підмасив починаючи з індекса a до індекса b, не включаючи його.</p>
+			<code>
+				let a = [1, 2, 3, 4, 5, 6, 7],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a.slice(5); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // [6, 7]<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a.slice(2, 5); &nbsp;&nbsp; // [3, 4, 5]
+			</code>
+			<p><strong>.splice(k, n, a, b, ...)</strong> - комплексний метод по видаленню та добавлянню елементів масива.</p>
+			<p>Перші два аргумента - з якого індекса та скільки елементів видалити. Решта аргументів - елементи, які необхідно вставити на місце видалених.</p>
+			<code>
+				let a = [1, 2, 'hello', 6, 7, 42, 43, 44, 8, 9, 10];<br>
+				a.splice(5, 3);<br>
+				a.splice(2, 1, 3, 4, 5);
+			</code>
+
+			<h3>Робота з масивом як зі стеком (стаканом)</h3>
+			<p><strong>.push()</strong> - добавляє елемент(и) в кінець масива.</p>
+			<p><strong>.unshift()</strong> - добавляє елемент(и) на початок масива.</p>
+			<p><strong>.pop()</strong> - видаляє елемент з кінця масива і повертає його.</p>
+			<p><strong>.shift()</strong> - видаляє елемент з початку масива і повертає його.</p>
+			<code>
+				let a = [4, 5, 6];<br>
+				a.push(7);<br>
+				a.push(8, 9, 10);<br>
+				a.unshift(1);<br>
+				a.unshift(2, 3);<br>
+				let b = a.pop(),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c = a.shift();<br>
+				console.log(a);<br>
+				console.log(b);<br>
+				console.log(c);
+			</code>
+
+			<h3>Методи з callback-функціями або методи інтерфейсів</h3>
+			<p>Наступні методи приймають в себе в якості аргумента функцію.</p>
+			<p>Звичайну функцію або метод можна уявити у вигляді викрутки: аргументами в даному випадку виступають ширина кінчика викрутки, довжина жала.</p>
+			<div class="image">
+				<img src="img/js_array_methods_01.jpg" alt="Default function">
+				<p>Аналогія звичайної функції.</p>
+			</div>
+			<p>Функція, що приймає в себе іншу функцію, тоді буде мати вигляд викрутки з насадками. Без насадок таку викрутку можна застосувати до гвинтиків з шестигранною голівкою, а насадки (бити) сильно розширюють спектр використання інструмента. Насадки в даному випадку виступають у ролі функцій, що передаються в якості аргумента (вставляються у викрутку).</p>
+			<div class="image">
+				<img src="img/js_array_methods_02.jpg" alt="Callback function">
+				<p>Аналогія функції, що приймає в себе іншу функцію.</p>
+			</div>
+			<p>Кожна така функція може приймати в себе до трьох аргументів:</p>
+			<code>
+				function fun(element, index, arr) { ... }
+			</code>
+			<p>Callback-функції, механізм їх роботи розглянемо пізніше.</p>
+			<p><strong>.find(fun)</strong> - шукає в масиві перший елемент, що відповідає умові, заданій у callback-функції. Якщо елемент не знайдено - повертає undefined.</p>
+			<p><strong>.findIndex(fun)</strong> - шукає в масиві індекс першого елемента, що відповідає умові, заданій у callback-функції. Якщо елемент не знайдено - повертає -1.</p>
+			<code>
+				let a = [1, 2, 3, 4, 5],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a.findIndex(nnn);<br><br>
+				function nnn(e) { return e > 3 && e < 10; }
+			</code>
+			<!-- TODO: форіч поставити на перше місце -->
+			<p><strong>.forEach(fun)</strong> - перебирає всі елементи масива, виконуючи для кожного функцію fun.</p>
+			<code>
+				let a = [1, 2, 3, 4, 5];<br>
+				a.forEach(fun);<br><br>
+				function fun(e, i){ console.log('Елемент №' + i + ' = ' + e); }
+			</code>
+			<p><strong>.map(fun)</strong> - повертає новий масив, застосувавши функцію fun для кожного елемента масива.</p>
+			<code>
+				let a = [1, 2, 4, 9, 16],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a.map(fun);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c = a.map(Math.sqrt);<br>
+				console.log(b);<br>
+				console.log(c);<br>
+				function fun(e, i){ return e * i; }
+			</code>
+			<p><strong>.sort(fun)</strong> - функція сортування елементів масиву.</p>
+			<p>За замовчуванням сортування відбувається як з елементами-строками.</p>
+			<p>Можна передати функцію, яка вкаже яким чином зробити сортування.</p>
+			<code>
+				let a = [40, 12, 1, 172, 5, 90];<br>
+				a.sort();<br>
+				console.log(a);<br><br>
+				a = [40, 12, 1, 172, 5, 90];<br>
+				a.sort(fun);<br>
+				console.log(a);<br><br>
+				function fun(a, b){ return a - b; }
+			</code>
+			<p>Якщо callback-функція повертатиме число менше нуля - елементи a та b поміняються місцями, а якщо 0 або більше - то залишаться на своїх місцях.</p>
+			<p><strong>.some(fun)</strong> - перевіряє чи хоч один елемент в масиві задовільняє умові, заданій в функції.</p>
+			<p><strong>.every(fun)</strong> - перевіряє чи всі елементи в масиві задовільняють умові, заданій в функції.</p>
+			<code>
+				let a = [3, 5, 7, 10];<br>
+				console.log(a.some(fun));<br>
+				console.log(a.every(fun));<br><br>
+				function fun(e){ return e >= 6; }
+			</code>
+			<p><strong>.filter(fun)</strong> - відфільтровує масив від елементів, що не підходять по певній умові, повертає новий масив.</p>
+			<code>
+				let a = [1, 2, 3, 4, 5, 6, 7, 8],<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = a.filter(isEven);<br>
+				console.log(b);<br><br>
+				function isEven(n){ return n % 2 === 0; };<br>
+			</code>
+			<!-- Добав .reduce() -->
+			<p>Решта методів вам навряд чи знадобиться або ж вони не кросбраузерні.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+<head>
+	<title>Frontend. Пошук елементів в DOM</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Пошук елементів в DOM</h1>
+			<p>Для пошуку елементів в DOM (Document Object Model, дерево наших HTML-тегів) об'єкт document має декілька методів. Розглянемо їх по черзі:</p>
+			<code>
+				var p = document.getElementById('price');<br>
+				var p = document.getElementsByTagName('p');<br>
+				var p = document.getElementsByClassName('title');<br>
+				var l = document.getElementsByName('login');
+			</code>
+			<p>Кожен з цих методів, окрім першої, повертає набір тегів (можливий варіант набір з 0 або 1 елемента) - HTMLCollection.</p>
+			<p>Перший метод завжди знаходить лише один елемент, навіть якщо в коді навмисно прописати однакові id декільком елементам.</p>
+			<p>Зверніть увагу на літеру s перед словом By.</p>
+			<p>Ще два нових метода, querySelector знаходить один елемент, перший підходящий, а querySelectorAll - всі підходящі, повертає набір елементів NodeList.</p>
+			<code>
+				var p = document.querySelector('p');<br>
+				var p = document.querySelectorAll('p');
+			</code>
+			<p>Порівняйте прототипи HTMLCollection та NodeList:</p>
+			<code>
+				var a = document.querySelectorAll('h1');<br>
+				var b = document.getElementsByTagName('h1');<br>
+				console.dir(a);<br>
+				console.dir(b);
+			</code>
+			<p>Методи по запиту селектора зручні тим, що туди можна вписувати селектор, як в CSS-коді:</p>
+			<code>
+				var q = 'form.login ul > li > label span + input[name^="phone"]';<br>
+				var inp = document.querySelectorAll(q);
+			</code>
+			<p>Якщо зі знайденими елементами треба зробити лише одну дію - у змінну їх записувати не треба.</p>
+			<p>До елементів в наборі можна звертатися по їх індексу, використовуючи квадратні дужки.</p>
+			<code>
+				var year = document.getElementsByName('birthday')[0].value;<br>
+				document.getElementById('price').innerText = '333 грн.';<br>
+				document.querySelector('h1').style.color = 'red';<br>
+				document.querySelectorAll('button')[1].onclick = function(){ ... }
+			</code>
+			<p>Та якщо потрібно звернутися до елемента декілька разів, то варто цей елемент зберігти у змінну, так як при кожному зверненні цей елемент наново шукається по всьому DOM.</p>
+			<p>Зверніть увагу: ви не можете звернутися до всього набору одночасно. Наступний код невірний:</p>
+			<code>
+				document.getElementsByTagName('p').style.color = 'green';<br>
+				document.getElementsByClassName('button').onclick = function(){ ... };<br>
+				document.querySelectorAll('.hey').innerText = 'Hey!';
+			</code>
+			<p>Потрібно перебрати елементи циклом чи методом forEach і працювати з кожним окремо.</p>
+		</section>
+
+		<section>
+			<h2>Пошук елементів в елементах</h2>
+			<p>У кожного тега є всі вищепредставлені методи пошуку. Таким чином ви можете шукати в елементі його дочірні елементи:</p>
+			<code>
+				var sections = document.body.getElementsByTagName('section');<br>
+				var ul = sections[2].getElementById('menu');<br>
+				var li = ul.querySelectorAll('li');<br>
+				var active = ul.getElementsByClassName('active')[0];
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання <small>(в т.ч. на декілька наступних занять)</small>.</h2>
+			<ol>
+				<li>Скачайте файл <a href="js_dom_homework.html" target="_blank">js_dom_homework.html</a> і виконуйте завдання у ньому (скрипти прописуйте внизу файла).</li>
+				<li>Виведіть <a href="https://uk.wikipedia.org/wiki/User_agent" target="_blank">User Agent</a> вашого браузера у span#useragent (дивіться властивість window.navigator).</li>
+				<li>В кожній формі є скрите поле. В його value потрібно добавити form1, form2... Використайте об'єкт document.forms.</li>
+				<li>Кожна таблиця має заголовок. В заголовки добавте нумерацію: Таблиця 1. ... В даному випадку краще працювати з текстовою нодою.</li>
+				<li>У деяких посилань немає протоколу. Добавте протокол http до посилань там, де це необхідно. Також всі посилання повинні відкриватися в новому вікні.</li>
+				<li>Усі зображення повинні мати максимальну ширину 140 пікселів.</li>
+				<li>Для елементів з класом bordered добавте червону рамку.</li>
+				<li>Виділіть слово "Шкарпетки" червоним жирним шрифтом і жовтим фоном.</li>
+				<li>Добавте скриптом ховер-ефект для меню першого рівня - рожевий фон, для меню другого рівня - блакитний фон.</li>
+				<li>Добавте в таблицю про транспортні гілки Хмельниччини в заголовок те, що ця таблиця стосується 2100 року, а в тіло таблиці пропишіть рандомні числа від 0 до 10.</li>
+				<li>Змініть рік на 2080 та цифри так, щоб 0 в 10 разів зустрічався частіше, ніж 9, в 9 разів частіше ніж 8, в 8 разів частіше, ніж 7 і так далі.</li>
+				<li>В таблиці множення зробіть ховер-ефект: коли рухаєте мишкою по комірках &lt;td&gt; - повинні підсвітитися рожевим кольором відповідні &lt;th&gt;.</li>
+				<li>Створіть нове зображення будь-якої тематики, добавте його в кінець div#box</li>
+				<li>Перенесіть меню на початок сторінки.</li>
+				<li>Скопіюйте меню в кінець сторінки.</li>
+				<li>Створіть новий стиль, який до всіх зображень додасть фіолетову рамку товщиною 5 пікселів.</li>
+				<li>У всіх чекбоксів приберіть галочки.</li>
+				<li>Пронумеруйте всі абзаци атрибутом data-id.</li>
+				<li>До кожного другого абзаца добавте клас hey.</li>
+				<li>У абзаців, в яких є клас bordered - заберіть цей клас, а в яких немає - добавте.</li>
+			</ol>
+		</section>
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Спецсимволи</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.layout_symbols_01 { padding: 20px; background: #eeffee; }
+		.layout_symbols_01 p { padding: 0; }
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Спецсимволи</h1>
+			<p>В проекті теплохода КолесовЪ нам зустрічалися такі символи, як знак копірайта і кавички у вигляді ялинок:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<strong>&copy;</strong> Банкетный теплоход КолесовЪ<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<strong>&laquo;</strong>Колесовъ<strong>&raquo;</strong></p>
+			<p>Як правило - подібні символи записуються їхніми html-кодами, для того, щоб вони не похєрилися при конвертації кодувань, чи для того, щоб дати зрозуміти браузеру, що знаки &lt; та &gt; - це знаки менше/більше, а не якийсь тег.</p>
+			<code>
+				&copy; - &amp;copy;<br>
+				&lt; - &amp;lt;<br>
+				&gt; - &amp;gt;<br>
+				&laquo; - &amp;laquo;<br>
+				&raquo; - &amp;raquo;<br>
+				&amp; - &amp;amp;<br>
+				&amp;nbsp; - символ нерозривного пробілу, а також ми будемо ним користуватися як "примусовим пробілом".
+			</code>
+			<p>Після кожного коду обов'язково ставимо крапку з комою.</p>
+			<p>Весь перелік кодів символів легко знайти в гуглі: "html код символа".</p>
+			<p>Коди символів можуть мати вигляд <strong>&amp;#6527;</strong> - це номер символа в Unicode-таблиці.</p>
+			<p>&nbsp;</p>
+			<p>Звичайний пробіл в деяких місцях може ігноруватися і пустий блок схлопнеться (не буде відображений).</p>
+			<p>Нерозривні пробіли можна використовувати для того, щоб такі блоки не схлопувалися:</p>
+			<code>
+				&lt;p&gt;Строка 1&lt;p&gt;<br>
+				&lt;p&gt;&lt;/p&gt;<br>
+				&lt;p&gt;Строка 3&lt;/p&gt;<br>
+				&lt;p&gt;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br>
+				&lt;p&gt;Строка 5&lt;/p&gt;<br>
+				&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br>
+				&lt;p&gt;Строка 7&lt;/p&gt;
+			</code>
+			<p>Результат (для &lt;p&gt; задані нульові відступи - margin:0; padding:0;):</p>
+			<div class="layout_symbols_01">
+				<p>Строка 1</p>
+				<p></p>
+				<p>Строка 3</p>
+				<p></p>
+				<p>Строка 5</p>
+				<p>&nbsp;</p>
+				<p>Строка 7</p>
+			</div>
+			<p>Нерозривні пробіли використовуються відповідно правил типографіки щоб заборонити переносити на іншу строку ініціали, одиниці вимірювання, скорочення і т.п.</p>
+			<code>
+				<strong>32 кг.</strong> = 32&amp;nbsp;кг;<br>
+				<strong>Іванов С.К.</strong> = Іванов&amp;nbsp;С.К.<br>
+				<strong>р. Дністер</strong> = р.&amp;nbsp;Дністер;
+			</code>
+			<p>Ну і небажане використання нерозривного пробілу в якості заповнювача простору:</p>
+			<p>Адмін: &nbsp; &nbsp; &nbsp; &nbsp; +38 (068) 123-45-67</p>
+			<code>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;Адмін: &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; +38 (068) 123-45-67<br>
+				&lt;/p&gt;
+			</code>
+			<p>Такі пробіли не схлопуються, але їх використання тут не бажане, не доречне, користуйтеся відступами, вирівнюванням блоків і т.п.</p>
+			<p>"Легальний" спосіб використання нерозривних пробілів - користувацький ввід: наприклад, є поле вводу, куди користувач вводить деяку інформацію. Далі ця інформація повинна у такому ж виді відобразитися в деякій &lt;p&gt;, зберігаючи усі пробіли. В цьому випадку скриптом варто замінити кожну пару пробілів на " &amp;nbsp;"</p>
+			<p>Ну і я в лекціях використовую нерозривні пробіли в блоках кода для того, щоб зформувати сходинки ієрархії блоків.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Коментарі</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Коментарі</h1>
+			<p>Коментар - це частина файлу, який не обробляється браузером.</p>
+			<p>У коментарях може знаходитися пояснення до коду або частина коду, яка з певних причин не повинна виконатися.</p>
+			<p>Приклади коментарів HTML (<a href="https://jsfiddle.net/poshtarboba/w52vhzLa/2/" target="_blank">jsFiddle</a>):</p>
+			<code>
+				&lt;!-- Блок користувача, відображається тільки коли користувач залогінився --&gt;<br>
+				<strong>&lt;div class="user"&gt;</strong><br>
+				&nbsp;&nbsp;<strong>...</strong><br><br>
+				<strong>&lt;p&gt;1&lt;/p&gt;<br>
+				&lt;p&gt;2</strong>&lt;!-- коментар всередині тега --&gt;<strong>&lt;/p&gt;</strong><br>
+				&lt;!--&lt;p&gt;3&lt;/p&gt;--&gt;<br>
+				<strong>&lt;p&gt;4&lt;/p&gt;</strong><br><br>
+				&lt;!-- Приклад неправильного коментаря: --&gt;<br>
+				<span class="danger">&lt;div</span> &lt;!-- class="test" --&gt;<span class="danger">&gt;test&lt;/div&gt;</span>
+			</code>
+			<p>Приклад коментарів CSS:</p>
+			<code>
+				/* стилі тексту */<br>
+				<strong>.text1 { color: red;</strong> /*font-style: italic;*/ <strong>}</strong><br>
+				/*.text2 { color: yellow; }*/<br>
+				<strong>.text3 { color: blue; }<br>
+				.text4 { color: green; font-style: italic; }</strong><br>
+				/*.text5 { color: pink; }<br>
+				.text6 { color: aqua; }<br>
+				.text7 { color: violet; }*/
+			</code>
+			<p>Чи потрібно коментувати код, пояснюючи що робить той чи інший блок?</p>
+			<p>Я зустрічав доволі фанатичних розробників, в їхньому коді пояснень більше, ніж самого коду.</p>
+			<p>В коді варто залишати:</p>
+			<ol>
+				<li>коментарі, які відповідають на питання "чому?", а не "що?", такі коментарі пояснюють незрозумілі ділянки коду, а не просто описують код;</li>
+				<li>коментарі перед великими блоками коду, в яких в декількох словах пояснюється що робить даний шмат коду. Це полегшує читання і навігацію по коду;</li>
+				<li>коментарі, що описують закоментовані шматки коду: чому цей шматок коду закоментований і коли слід безповоротно видалити цей шматок коду.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

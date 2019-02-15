@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Основні теги веб-форм</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.def, .def2 { padding: 40px 0;}
+		.def label { display: block;}
+		.def label span { display: inline-block; width: 100px; vertical-align: top;}
+		.def label input,
+		.def label textarea { width: 250px; outline: none;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Основні теги веб-форм</h1>
+
+		<section>
+			<h2>Інтерактивність веб-форм</h2>
+			<p>Веб-форми - це елементи за допомогою яких можна передавати інформацію від користувача до сервера.</p>
+			<p>Веб-форми зазвичай використовуються для виконання пошуку, відправки е-мейла, запису, коментаря, логінації користувача і т.ін.</p>
+			<p>Приклад форми відправки е-мейла з сайта на скриньку власника сайта:</p>
+			<form class="def">
+				<p><label><span>Name:</span> <input type="text" name="name"></label></p>
+				<p><label><span>E-mail*:</span> <input type="text" name="email"></label></p>
+				<p><label><span>Phone*:</span> <input type="text" name="phone"></label></p>
+				<p><label><span>Message:</span> <textarea name="message"></textarea></label></p>
+				<p class="small light">*) E-mail or phone must be not empty.</p>
+				<p><input type="submit" value="Submit"> <input type="reset" value="Clear"></p>
+			</form>
+			<p>При натисканні на кнопку "Submit" дані форми відправляться на сервер, там буде сформоване е-мейл повідомлення і відправлене за вказаною у налаштуваннях чи у скрипті адресою.</p>
+		</section>
+
+		<section>
+			<h2>Батьківські теги вебформ</h2>
+			<p>Тег <strong>&lt;form&gt;</strong> об’єднує елементи в одну форму. На одній сторінці може бути декілька форм.</p>
+			<p>Основні атрибути тега &lt;form&gt; є action та method.</p>
+			<p><em>action</em> - атрибут, що вказує на файл-обробник форми на сервері, часто це є або сама поточна сторінка (наприклад, index.html) чи деякий php-файл, типу mail_sender.php</p>
+			<p><em>method</em> - атрибут, що вказує на спосіб обробки даних форм. Може приймати два значення: POST - дані відправляються на сервер через запит; GET - дані передаються у рядку URL-адреси, їх розмір може бути не більше 4 кб (включаючи саму URL-адресу).</p>
+			<code>
+				Приклад GET-запиту:<br>
+				http://google.com/search?lang=en&q=css3+html5<br><br>
+				Приклад тега:<br>
+				&lt;form action="sender.php" method="post"&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&lt;/form&gt;
+			</code>
+			<p>Тег <strong>&lt;fieldset&gt;</strong> об’єднує декілька елементів в одну групу всередині форми. У невеликих формах його краще не використовувати.</p>
+			<p>Тег <strong>&lt;legend&gt;</strong> відповідає за напис над елементами.</p>
+			<form class="def2">
+				<p><label><span>Name:</span> <input type="text" name="name"></label></p>
+				<fieldset>
+					<legend>Select one or more items:</legend>
+					<p><label><input type="checkbox" name="cb1"> I like books</label></p>
+					<p><label><input type="checkbox" name="cb2"> I like boxes</label></p>
+					<p><label><input type="checkbox" name="cb3"> I like boxing</label></p>
+				</fieldset>
+				<p><input type="submit" value="Submit"></p>
+			</form>
+			<code>
+				&lt;form&gt;<br>
+				&nbsp;&nbsp;&lt;fieldset&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;Select one or more items:&lt;/legend&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&lt;/fieldset&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;input type="submit" value="Submit"&gt;&lt;/p&gt;<br>
+				&lt;/form&gt;
+			</code>
+			<p>Тег <strong>&lt;label&gt;</strong> - це супровідний текст до елементів форм.</p>
+			<p>Потрібно або огортати цим тегом елемент форми, чи прописувати спеціальний атрибут <em>for</em>, а самому елементу задавати <em>id</em>.</p>
+			<p>Елемент <em>&lt;label&gt;</em> клікабельний, якщо клацнути по ньому мишою, то елемент форми, до якого він відноситься, стане активним.</p>
+			<code>
+				&lt;p&gt;<strong>&lt;label&gt;</strong>&lt;input type="checkbox" name="cb1"&gt; I like books<strong>&lt;/label&gt;</strong>&lt;/p&gt;<br>
+				&lt;p&gt;&lt;input type="checkbox" name="cb2" id="cb2"&gt; <strong>&lt;label for="cb2"&gt;</strong>I like boxes<strong>&lt;/label&gt;</strong>&lt;/p&gt;
+			</code>
+			<form>
+				<p><label><input type="checkbox" name="cb1"> I like books</label></p>
+				<p><input type="checkbox" name="cb2" id="cb2"> <label for="cb2">I like boxes</label></p>
+			</form>
+			<p><strong class="danger">Увага!</strong> Всі елементи форм, окрім кнопок та прихованих полів, повинні мати свій &lt;label&gt;.</p>
+		</section>
+
+		<section>
+			<h2>Тег input</h2>
+			<p>Тег &lt;input&gt; відповідає за відображення майже всіх елементів. Те, як буде виглядати елемент - регулює атрибут <em>type</em>:</p>
+			<p><label><input type="text"> type="text" - звичайне текстове поле. Тип в цьому випадку можна не вказувати.</label></p>
+			<p><label><input type="text" value="some text"> type="text" - звичайне текстове поле (value="some text").</label></p>
+			<code>
+				&lt;input type="text"&gt;<br>
+				&lt;input&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="password"> type="password" - поле ввода пароля.</label></p>
+			<code>
+				&lt;input type="password"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="hidden"> type="hidden" - приховане поле, застосовується для відправки на сервер службових даних.</label></p>
+			<code>
+				&lt;input type="hidden"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="radio"> type="radio" - радіокнопка.</label></p>
+			<code>
+				&lt;input type="radio"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="checkbox"> type="checkbox" - чекбокс.</label></p>
+			<code>
+				&lt;input type="checkbox"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="button" value="my button"> type="button" - кнопка.</label></p>
+			<code>
+				&lt;input type="button"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="file"> type="file" - поле вибору файлу.</label></p>
+			<code>
+				&lt;input type="file"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="submit" value="send"> type="submit" - кнопка відправлення даних на сервер.</label></p>
+			<code>
+				&lt;input type="submit"&gt;
+			</code>
+			<p>&nbsp;</p>
+			<p><label><input type="reset" value="clear"> type="reset" - кнопка очищення даних форми.</label></p>
+			<code>
+				&lt;input type="reset"&gt;
+			</code>
+			<p><strong>&lt;textarea&gt;&lt;/textarea&gt;</strong> - поле вводу тексту.</p>
+			<code>
+				&lt;textarea&gt;Some text&lt;/textarea&gt;
+			</code>
+			<p><label><textarea></textarea></label></p>
+			<p><label><textarea placeholder="Введіть який-небудь текст" style="font-size:40px; line-height: 1.2em;"></textarea></label></p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

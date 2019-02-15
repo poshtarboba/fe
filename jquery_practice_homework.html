@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Пркатика по jQuery, завдання.</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="format-detection" content="telephone=no">
+	<style>
+		#mainwrapper { padding: 0 60px;}
+		section { padding: 0 0 100px;}
+		section:after { content: ''; display: block; clear: both;}
+
+		#menu span { cursor: pointer;}
+		#menu span:hover { background: #aaa;}
+		#menu .expmenu { width: 200px;}
+		#menu ul { font-size: 140%; padding-left: 20px;}
+		#menu ul ul { font-size: 80%;}
+		#menu a, #menu span { display: inline-block; padding: 6px 4px;}
+		#menu a:hover { color: red;}
+
+		#akk p { margin: 0;}
+		#akk .akkordion { float: left; margin: 0 40px 0 0; padding: 0; width: 234px;}
+		#akk li { list-style: none; border: 1px solid #999;}
+		#akk li:not(:first-child) { border-top: none;}
+		#akk .akk-title,
+		#akk .akk-box { padding: 8px 16px;}
+		#akk .akk-title { cursor: pointer; border-bottom: 1px solid #999;}
+		#akk .akk-title:hover { background: #ccc;}
+		#akk .active .akk-title { background: rgba(255, 0, 0, 0.3);}
+
+		#tabs ul, #tabs p { margin: 0; padding: 0;}
+		#tabs div { padding: 8px 16px; width: 400px; border: 1px solid #999;}
+		#tabs img { width: 100%;}
+		#tabs hr { margin: 60px 0;}
+		#tabs li { display: inline-block; list-style: none; border: 1px solid #999; border-bottom: none;}
+		#tabs li a { display: inline-block; padding: 8px 16px; text-decoration: none; color: #000;}
+		#tabs li a:hover { background: #ccc;}
+		#tabs li.active a { background: rgba(255, 0, 0, 0.3);}
+		
+		.to-top {
+			position: fixed;
+			right: 20px;
+			bottom: 80px;
+			width: 80px;
+			height: 80px;
+			font-size: 0;
+			line-height: 0;
+			background: white;
+			border: 1px solid silver;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.to-top:before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 1px;
+			height: 1px;
+			border-left: 24px solid transparent;
+			border-right: 24px solid transparent;
+			border-bottom: 24px solid #aaa;
+			transform: translate(-50%, -50%);
+		}
+		.to-top:focus {
+			outline: none;
+		}
+		.to-top:hover {
+			border-color: #999;
+		}
+		.to-top:hover:before {
+			border-bottom-color: #777;
+		}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+
+	<h1>Практика по jQuery.</h1>
+
+	<section id="menu">
+		<h2>Меню.</h2>
+
+		<header>
+			<ul class="expmenu">
+				<li><span>Пункт 1</span>
+					<ul>
+						<li><span>Пункт 1-1</span>
+							<ul>
+								<li><a href="#">Пункт 1-1-1</a></li>
+								<li><a href="#">Пункт 1-1-2</a></li>
+							</ul>
+						</li>
+						<li><span>Пункт 1-2</span>
+							<ul>
+								<li><a href="#">Пункт 1-2-1</a></li>
+								<li><a href="#">Пункт 1-2-2</a></li>
+								<li><a href="#">Пункт 1-2-3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Пункт 1-3</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Пункт 2</a></li>
+				<li><span>Пункт 3</span>
+					<ul>
+						<li><span>Пункт 3-1</span>
+							<ul>
+								<li><a href="#">Пункт 3-1-1</a></li>
+								<li><a href="#">Пункт 3-1-2</a></li>
+								<li><a href="#">Пункт 3-1-3</a></li>
+							</ul>
+						</li>
+						<li><span>Пункт 3-2</span>
+							<ul>
+								<li><a href="#">Пункт 3-2-1</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><span>Пункт 4</span>
+					<ul>
+						<li><a href="#">Пункт 4-1</a></li>
+						<li><span>Пункт 4-2</span>
+							<ul>
+								<li><a href="#">Пункт 4-2-1</a></li>
+								<li><a href="#">Пункт 4-2-2</a></li>
+								<li><a href="#">Пункт 4-2-3</a></li>
+								<li><a href="#">Пункт 4-2-4</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</header>
+
+		<hr>
+		<main>{{ content }}</main>
+		<hr>
+
+		<footer>
+			<ul class="expmenu">
+				<li><span>Пункт 1</span>
+					<ul>
+						<li><span>Пункт 1-1</span>
+							<ul>
+								<li><a href="#">Пункт 1-1-1</a></li>
+								<li><a href="#">Пункт 1-1-2</a></li>
+							</ul>
+						</li>
+						<li><span>Пункт 1-2</span>
+							<ul>
+								<li><a href="#">Пункт 1-2-1</a></li>
+								<li><a href="#">Пункт 1-2-2</a></li>
+								<li><a href="#">Пункт 1-2-3</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Пункт 1-3</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Пункт 2</a></li>
+				<li><span>Пункт 3</span>
+					<ul>
+						<li><span>Пункт 3-1</span>
+							<ul>
+								<li><a href="#">Пункт 3-1-1</a></li>
+								<li><a href="#">Пункт 3-1-2</a></li>
+								<li><a href="#">Пункт 3-1-3</a></li>
+							</ul>
+						</li>
+						<li><span>Пункт 3-2</span>
+							<ul>
+								<li><a href="#">Пункт 3-2-1</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><span>Пункт 4</span>
+					<ul>
+						<li><a href="#">Пункт 4-1</a></li>
+						<li><span>Пункт 4-2</span>
+							<ul>
+								<li><a href="#">Пункт 4-2-1</a></li>
+								<li><a href="#">Пункт 4-2-2</a></li>
+								<li><a href="#">Пункт 4-2-3</a></li>
+								<li><a href="#">Пункт 4-2-4</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</footer>
+	</section>
+
+	<section id="akk">
+		<h2>Акордеон.</h2>
+
+		<ul class="akkordion">
+			<li>
+				<p class="akk-title">Заголовок 1</p>
+				<div class="akk-box"><p>Lorem ipsum dolor sit amet, vidit signiferumque an cum, nemore facilisis abhorreant eam no. Nam ut ullum velit petentium, sea te eleifend intellegebat.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 2</p>
+				<div class="akk-box"><p>Tale euripidis at qui, pro sumo munere aeterno ut.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 3</p>
+				<div class="akk-box"><img src="http://stephboreldesign.com/wp-content/uploads/2012/03/lorem-ipsum-logo.jpg" alt="" width="200"></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 4</p>
+				<div class="akk-box"><p>Quo ea expetenda periculis vituperatoribus. Eleifend senserit an qui, modus partem est eu. Id soluta facilis complectitur qui, sea homero fastidii gloriatur ut, qui tritani eruditi definitionem te.</p></div>
+			</li>
+		</ul>
+
+		<ul class="akkordion">
+			<li>
+				<p class="akk-title">Заголовок 1</p>
+				<div class="akk-box"><p>Lorem ipsum dolor sit amet, vidit signiferumque an cum, nemore facilisis abhorreant eam no. Nam ut ullum velit petentium, sea te eleifend intellegebat.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 2</p>
+				<div class="akk-box"><p>Tale euripidis at qui, pro sumo munere aeterno ut.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 3</p>
+				<div class="akk-box"><img src="http://stephboreldesign.com/wp-content/uploads/2012/03/lorem-ipsum-logo.jpg" alt="" width="200"></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 4</p>
+				<div class="akk-box"><p>Quo ea expetenda periculis vituperatoribus. Eleifend senserit an qui, modus partem est eu. Id soluta facilis complectitur qui, sea homero fastidii gloriatur ut, qui tritani eruditi definitionem te.</p></div>
+			</li>
+		</ul>
+
+		<ul class="akkordion">
+			<li>
+				<p class="akk-title">Заголовок 1</p>
+				<div class="akk-box"><p>Lorem ipsum dolor sit amet, vidit signiferumque an cum, nemore facilisis abhorreant eam no. Nam ut ullum velit petentium, sea te eleifend intellegebat.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 2</p>
+				<div class="akk-box"><p>Tale euripidis at qui, pro sumo munere aeterno ut.</p></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 3</p>
+				<div class="akk-box"><img src="http://stephboreldesign.com/wp-content/uploads/2012/03/lorem-ipsum-logo.jpg" alt="" width="200"></div>
+			</li>
+			<li>
+				<p class="akk-title">Заголовок 4</p>
+				<div class="akk-box"><p>Quo ea expetenda periculis vituperatoribus. Eleifend senserit an qui, modus partem est eu. Id soluta facilis complectitur qui, sea homero fastidii gloriatur ut, qui tritani eruditi definitionem te.</p></div>
+			</li>
+		</ul>
+	</section>
+
+	<section id="tabs">
+		<h2>Таби.</h2>
+
+		<ul class="tabs">
+			<li><a href="#tab_a1">Кот 1</a></li>
+			<li><a href="#tab_a2">Кот 2</a></li>
+			<li><a href="#tab_a3">Кот 3</a></li>
+			<li><a href="#tab_a4">Кот 4</a></li>
+		</ul>
+
+		<div id="tab_a1"><img alt="cat" src="https://pbs.twimg.com/media/CPMfjl2WwAA3Qt8.jpg"></div>
+		<div id="tab_a2"><img alt="cat" src="http://2.bp.blogspot.com/-RiV85iTK7fE/UZC8TLmA97I/AAAAAAAAAAg/zBkPUJUMXLQ/s1600/iStock_000007621423Small.jpg"></div>
+		<div id="tab_a3"><img alt="cat" src="https://pbs.twimg.com/profile_images/686281053242306561/ZlPUMXqg.jpg"></div>
+		<div id="tab_a4"><img alt="cat" src="http://cms.hostelbookers.com/hbblog/wp-content/uploads/sites/3/2012/02/cat.jpg"></div>
+
+		<hr>
+
+		<ul class="tabs">
+			<li><a href="#tab_b1">Таб 1</a></li>
+			<li><a href="#tab_b2">Таб 2</a></li>
+			<li><a href="#tab_b3">Таб 3</a></li>
+			<li><a href="#tab_b4">Таб 4</a></li>
+		</ul>
+
+		<div id="tab_b1"><p>Lorem ipsum dolor sit amet, vidit signiferumque an cum, nemore facilisis abhorreant eam no. Nam ut ullum velit petentium, sea te eleifend intellegebat.</p></div>
+		<div id="tab_b2"><p>Tale euripidis at qui, pro sumo munere aeterno ut.</p></div>
+		<div id="tab_b3"><img src="http://stephboreldesign.com/wp-content/uploads/2012/03/lorem-ipsum-logo.jpg" alt="" width="200"></div>
+		<div id="tab_b4"><p>Quo ea expetenda periculis vituperatoribus. Eleifend senserit an qui, modus partem est eu. Id soluta facilis complectitur qui, sea homero fastidii gloriatur ut, qui tritani eruditi definitionem te.</p></div>
+
+	</section>
+
+	<section>
+		<img src="http://www.pethealthnetwork.com/sites/default/files/cat-secretly-stressed178832700.jpg" alt="cat"><br><br>
+		<img src="http://www.cutecatgifs.com/wp-content/uploads/2014/07/cute-aww.gif" alt="cat"><br><br>
+		<img src="http://domesticcatworld.com/wp-content/uploads/2012/10/catwhiskers.jpg" alt="cat"><br><br>
+		<img src="http://www.catbehaviorassociates.com/wp-content/uploads/2012/10/iStock_000000177340XSmall.jpg" alt="cat"><br><br>
+		<img src="https://media.tenor.com/images/f13bb5650f28b5bd24ad28447c0c00f6/tenor.gif" alt="cat"><br><br>
+	</section>
+
+</div>
+</body>
+</html>

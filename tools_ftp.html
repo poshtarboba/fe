@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Робота з FTP</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Робота з FTP</h1>
+			<p>FTP - протокол передачі файлів. Часто використовується для заливання файлів на сервер.</p>
+			<p>Для роботи протоколу використоється дві програми: FTP-клієнт та FTP-сервер, на клієнтському комп'ютері і на сервері відповідно.</p>
+			<p>Для роботи з FTP є багато різних програм. В більшості IDE вже є вбудований FTP-клієнт.</p>
+			<p>В крайньому випадку можна скористатися вбудованим FTP в оболонку Windows, ввівши в поле адреси посилання:</p>
+			<figure>
+				<img src="img/tools_ftp_01.png" alt="Windows FTP">
+				<figcaption>FTP-клієнт оболонки OS Windows.</figcaption>
+			</figure>
+			<p>Формат URL-адреси FTP-з'єднання та приклади:</p>
+			<code>
+				ftp://user_name:password@host<br>
+				ftp://user_name:password@host:port<br>
+				ftp://admin:fRoSDmWHiQav_@mysite.com:440<br>
+				ftp://moderator7:lalala@192.168.17.21
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>FTP-хост, ім'я користувача, пароль дасть викладач.</li>
+				<li>Приєднайтесь до сервера по протоколу FTP за допомогою вбуованої в ОС оболонки.</li>
+				<li>Створіть папку зі своїм ніком чи ім'ям (пам'ятайте про обмеження у використанні символів!).</li>
+				<li>Закиньте на сервер в свою папку картинку чи текстовий файл.</li>
+			</ol>
+			<p>Але є більш зручні програми, наприклад, Total Commander, FTP-менеджер викликається клавішами Ctrl + F:</p>
+			<figure>
+				<img src="img/tools_ftp_02.png" alt="Total Commander FTP">
+				<figcaption>FTP-менеджер в програмі Total Commander.</figcaption>
+			</figure>
+			<p>Безкоштовна програма <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>.</p>
+			<p><strong class="danger">Увага!</strong> Слідкуйте що встановлюєте. Разом з ФайлЗіллою можуть встановитися сторонні програми, браузери, агенти.</p>
+			<figure>
+				<img src="img/tools_ftp_03.png" alt="FileZilla">
+				<figcaption>Інтерфейс програми FileZilla.</figcaption>
+			</figure>
+			<p>Для створення нового з'єднання клацніть на кнопку зліва зверху.</p>
+			<figure>
+				<img src="img/tools_ftp_04.png" alt="FileZilla new connection.">
+				<figcaption>Створення нового з'єднання у FileZilla.</figcaption>
+			</figure>
+			<p>
+				Клацніть на кнопку нового з'єднання та задайте наступні налаштування:<br>
+				- назву з'єднання (назву обирайте таку, щоб вам була зрозуміла);<br>
+				- хост у вигляді IP-адреси сервера або домен;<br>
+				- тип з'єднання FTP чи sFTP;<br>
+				- тип авторизації;<br>
+				- логін, пароль.
+			</p>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Створіть з'єднання у програмах FileZilla чи Total Commander.</li>
+				<li>Закиньте в свою папку зображення чи текстовий файл за допомогою цих програм.</li>
+				<li>Зкачайте з сервера файли ваших товаришів.</li>
+			</ol>
+		</section>
+		
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Створіть в своєму каталозі на FTP структуру, подібну до тієї, що описана в розділі "<a href="tools_workspace.html" target="_blank">Організація робочого простору</a>".</li>
+				<li>Заляйте на FTP порізку футболок та інших макетів, які зробили.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

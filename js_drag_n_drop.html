@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Drag'n'drop.</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Drag'n'drop</h1>
+
+		<!-- !!!!!!!!!!!!! https://jsfiddle.net/poshtarboba/abwcc8js/ !!!!!!!!!!!!!!!!! перероби лекцію 49 -->
+
+		<section>
+			<h2>Вбудований drag'n'drop</h2>
+			<p>Можливість перетягувати мишкою об'єкти значно спростило інтерфейс і покращило UX (User Expirience).</p>
+			<p>Процес перетягування складається з декількох операцій:</p>
+			<ol>
+				<li>Захоплення об'єкта.</li>
+				<li>Перетягування об'єкта.</li>
+				<li>Відпускання об'єкта.</li>
+				<li>
+					Перевірка контекста чи він може прийняти в себе об'єкт:<br>
+					- якщо може - приймає в себе об'єкт;<br>
+					- якщо не може - об'єкт повертається на своє місце.
+				</li>
+			</ol>
+			<p>
+				HTML5 дав можливість використовувати 6 подій:<br>
+				<strong>dragstart</strong> - початок перетягування;<br>
+				<strong>dragenter</strong> - перетягування елемента на дропабельну область;<br>
+				<strong>dragleave</strong> - драгабельний елемент вийшов за межі дропабельної області;<br>
+				<strong>dragover</strong> - перетягування елемента над дропабельною областю;<br>
+				<strong>drop</strong> - кидання елемента на дропабельну область;<br>
+				<strong>dragend</strong> - подія завершення перетягування.
+			</p>
+			<p>На практиці це виглядає так:</p>
+			<code>
+				&lt;div&gt;&lt;/div&gt;<br>
+				&lt;span draggable="true"&gt;test&lt;/span&gt;<br><br>
+				div { margin-bottom: 16px; width: 200px; height: 120px; border: 1px solid red; }<br>
+				span { display: inline-block; padding: 2px 10px; border: 1px solid green; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; cursor: move; }<br>
+				.over { background: pink; }<br><br>
+				let span = document.querySelector('span');<br>
+				let div = document.querySelector('div');<br>
+				span.addEventListener('dragstart', hDragStart);<br>
+				span.addEventListener('dragend', hDragEnd);<br>
+				div.addEventListener('dragenter', hDragEnter);<br>
+				div.addEventListener('dragleave', hDragLeave);<br>
+				div.addEventListener('dragover', hDragOver);<br>
+				div.addEventListener('drop', hDrop);<br><br>
+				function hDragStart(e) {<br>
+				&nbsp;&nbsp;this.style.opacity = '0.5';<br>
+				&nbsp;&nbsp;this.style.boxShadow = '0 0 3px rgba(0, 0, 0, 1)';<br>
+				}<br><br>
+				function hDragEnd(e) {<br>
+				&nbsp;&nbsp;console.log('end');<br>
+				&nbsp;&nbsp;div.classList.remove('over');<br>
+				&nbsp;&nbsp;span.style.opacity = '';<br>
+				&nbsp;&nbsp;span.style.boxShadow = '';<br>
+				}<br><br>
+				function hDragEnter(e) {<br>
+				&nbsp;&nbsp;this.classList.add('over');<br>
+				}<br><br>
+				function hDragLeave(e) {<br>
+				&nbsp;&nbsp;this.classList.remove('over');<br>
+				}<br><br>
+				function hDragOver(e) {<br>
+				&nbsp;&nbsp;if (e.preventDefault) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;e.dataTransfer.dropEffect = 'move';<br>
+				&nbsp;&nbsp;console.log('move');<br>
+				&nbsp;&nbsp;return false;<br>
+				}<br><br>
+				function hDrop(e) {<br>
+				&nbsp;&nbsp;if (e.stopPropagation) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;e.stopPropagation();<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;console.log('drop');<br>
+				&nbsp;&nbsp;return false;<br>
+				}
+			</code>
+			<p>В даному випадку у нас реалізовано лише механізм перетягування. Ніяких дій, окрім стилізації, не відбувається.</p>
+		</section>
+
+		<section>
+			<h2>Ручний drag'n'drop</h2>
+			<p>Вбудований drag'n'drop не дозволяє контролювати багато різних параметрів, наприклад, перетягування елемента лише в межах певної області.</p>
+			<p>Давайте спробуємо реалізувати перетягування в ручному режимі.</p>
+			<p>HTML-код та стилі візьмемо з попереднього експеремента.</p>
+			<p>В першу чергу заборонимо автоматичний drag'n'drop.</p>
+			<p>Далі реалізуємо події натискання та відпускання кнопки миші та наведення миші:</p>
+			<p>- при натисканні миші на span він стає драгабельним;</p>
+			<p>- при відпусканні миші на вікні span перестає бути драгабельним;</p>
+			<p>- при відпусканні миші на div він має прийняти span всередину себе.</p>
+			<code>
+				.move { opacity: 0.5; boxShadow: 0 0 3px rgba(0, 0, 0, 1); }<br><br>
+				let span = document.querySelector('span');<br>
+				let div = document.querySelector('div');<br>
+				span.ondragstart = function(){ return false; };<br><br>
+				span.onmousedown = function(){<br>
+				&nbsp;&nbsp;this.classList.add('move');<br>
+				}<br><br>
+				window.onmouseup = function(e){<br>
+				&nbsp;&nbsp;span.classList.remove('move');<br>
+				}<br><br>
+				div.onmouseup = function(e){<br>
+				&nbsp;&nbsp;if (!span.classList.contains('move')) { return false; }<br>
+				&nbsp;&nbsp;this.appendChild(span);<br>
+				}
+			</code>
+			<h3>Візуалізація перетягування об'єкта.</h3>
+			<p>Добавимо візуалізацію елелемента, на який можна дропнути елемент, що перетягується.</p>
+			<code>
+				div.onmouseenter = function(e){<br>
+				&nbsp;&nbsp;if (!span.classList.contains('move')) { return false; }<br>
+				&nbsp;&nbsp;this.classList.add('over');<br>
+				}<br><br>
+				div.onmouseleave = function(e){<br>
+				&nbsp;&nbsp;this.classList.remove('over');<br>
+				}<br><br>
+				// і модифікуємо подію:<br>
+				div.onmouseup = function(e){<br>
+				&nbsp;&nbsp;this.classList.remove('over');<br>
+				&nbsp;&nbsp;if (!span.classList.contains('move')) { return false; }<br>
+				&nbsp;&nbsp;this.appendChild(span);<br>
+				}
+			</code>
+			<p>Тепер зробимо, щоб наш span тягався за мишою.</p>
+			<p>В першу чергу span перенесемо у body, якщо він має іншого батька.</p>
+			<p>Далі - при рухові мишки будемо переміщати наш елемент в нові координати.</p>
+			<code>
+				.move { ... position: absolute; }<br><br>
+				span.onmousedown = function(){<br>
+				&nbsp;&nbsp;document.body.appendChild(this);<br>
+				&nbsp;&nbsp;this.classList.add('move');<br>
+				}<br><br>
+				window.onmousemove = function(e){<br>
+				&nbsp;&nbsp;// якщо в нас немає драгабельних елементів, то нічого не робимо:<br>
+				&nbsp;&nbsp;if (!span.classList.contains('move')) { return false; }<br>
+				&nbsp;&nbsp;span.style.left = e.pageX + 'px';<br>
+				&nbsp;&nbsp;span.style.top = e.pageY + 'px';<br>
+				}<br><br>
+				// і модифікуємо подію:<br>
+				div.onmouseup = function(e){<br>
+				&nbsp;&nbsp;if (!span.classList.contains('move')) { return false; }<br>
+				&nbsp;&nbsp;div.appendChild(span);<br>
+				}
+			</code>
+			<p>Як бачимо - є недоліки, при кліку на елемент - він відмальовується так, що його лівий верхній кут в позиції курсора.</p>
+			<p>Також подія div.onmouseup не відбувається (поясніть чому).</p>
+			<p>Окрім того, всі методи бажано реалізувати через EventListener.</p>
+			<p>&nbsp;</p>
+			<p><a href="https://jsfiddle.net/poshtarboba/abwcc8js/" target="_blank">jsFiddle</a></p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Реалізуйте перетягування зображення по div.</li>
+				<li>Створіть два блока, реалізуйте перетягування елементів між цими блоками.</li>
+				<li>Дано блок, всередині якого input[type="file"]. Реалізуйте перетягування файла в блок з візуалізацією.</li>
+				<li>Створіть плагін Sortable, подібний до <a href="https://jqueryui.com/sortable/" target="_blank">jQuery UI Sortable</a>.</li>
+			</ol>
+			<p><a href="https://learn.javascript.ru/drag-and-drop" target="_blank">learn.javascript.ru: Мышь: Drag'n'Drop</a>.</p>
+			<p><a href="http://javascript.ru/ui/draganddrop" target="_blank">javascript.ru: Drag and drop</a>.</p>
+			<p><a href="https://habrahabr.ru/post/125424/" target="_blank">habrahabr.ru: HTML5 Drag and Drop загрузка файлов</a>.</p>
+			<p><a href="https://learn.javascript.ru/drag-and-drop-objects" target="_blank">learn.javascript.ru: Мышь: Drag'n'Drop более глубоко</a>.</p>
+			<p><a href="https://www.html5rocks.com/ru/tutorials/dnd/basics/" target="_blank">html5rocks.com: Встроенные функции перетаскивания в HTML5</a>.</p>
+		</section>
+
+		<!--<section>
+			<h2>Перетягування файлів</h2>
+			<p></p>
+		</section>-->
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

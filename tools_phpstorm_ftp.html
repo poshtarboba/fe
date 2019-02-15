@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Налаштування деплоймента на FTP в PhpStorm</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Налаштування деплоймента на FTP в PhpStorm</h1>
+			<p><strong>Деплоймент (розгортання проекту)</strong> - завантаження файлів на сервер.</p>
+			<p>
+				Наприклад, для заливання файлів на FTP потрібно:<br>
+				&nbsp;&nbsp; - відкрити FTP-менеджер;<br>
+				&nbsp;&nbsp; - створити з'єднання з сервером;<br>
+				&nbsp;&nbsp; - відкрити потрібні папки на локальній машині та на сервері;<br>
+				&nbsp;&nbsp; - вибрати потрібні файли;<br>
+				&nbsp;&nbsp; - заляти вибрані файли на FTP;<br>
+				&nbsp;&nbsp; - від'єднатися від сервера;<br>
+				&nbsp;&nbsp; - переключитися в IDE та згадати над чим ми працювали.
+			</p>
+			<p>IDE дозволяє значно спростити завантаження файлів на сервер, зробивши цю процедуру автоматичною чи напів-автоматичною: файл може автоматично заливатися на сервер після його зміни та збереження, або при кліку на потрібний пункт меню.</p>
+			<p>Деплоймент є сенс налаштовувати якщо ви плануєте довготривалу роботу над проектом. Якщо планується зверстати сторінку і один раз завантажити її на сервер - простіше скористатися FTP-менеджером.</p>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Скопіюйте минулий проект (Колесовъ) у новий, дайте йому назву "deploy".</li>
+				<li>На FTP у своїй папці створіть підпапку deploy.</li>
+				<li>Налаштуйте у своїй IDE деплоймент на сервер (дані FTP дивіться на <a href="index.html" target="_blank">головній сторінці</a> лекцій).</li>
+				<li>Внесіть зміни у html-файл, перевірте чи відбувся автоматичний деплоймент.</li>
+				<li>Створіть новий файл test.html з будь-яким вмістом, задеплойте його на сервер.</li>
+			</ol>
+			<p>В Sublime Text для деплоя потрібно встановити <a href="https://packagecontrol.io/packages/Simple%20FTP%20Deploy" target="_blank">плагін</a> та виконати деякі налаштування.</p>
+			<p>В IDE PHPStorm модуль деплоймента вже вбудований. Відкрийте папку з проектом "deploy", налаштуйте деплоймент:</p>
+			<div class="image">
+				<img src="img/tools_phpstorm_ftp_01.png" alt="FTP-options">
+				<p>Налаштування опцій FTP.</p>
+			</div>
+			<p>Зверніть увагу: у вас коренева папка проекту - deploy, а файли верстки в папці html. На сервер потрібно вивантажувати лише внутрішній вміст папки html.</p>
+			<p>Також потрібно налаштувати віддалену папку:</p>
+			<div class="image">
+				<img src="img/tools_phpstorm_ftp_02.png" alt="Deploy-options">
+				<p>Налаштування папок деплоя.</p>
+			</div>
+			<p>Якщо деякі файли не потрібно заливати на сервер - виключення можна прописати на вкладці "Excluded Paths" та в опціях:</p>
+			<code>
+				Tools &gt; Deployment &gt; Options... &gt; Exclude items by name
+			</code>
+			<p>Для завантаження файлів на сервер використовується пункт меню:</p>
+			<p>При цьому в менеджері проектів ви повинні знаходитися на тій папці чи файлі, який потрібно деплоїти.</p>
+			<code>
+				Tools &gt; Deployment &gt; Upload to Default Server
+			</code>
+			<p>Також можна клацнути правою кнопкою миші по вкладці файла вгорі і у контекстному меню обрати пункт деплоймента.</p>
+			<p>Для автоматичного деплоймента файлів встановіть галочку на пункті меню:</p>
+			<code>
+				Tools &gt; Deployment &gt; Automatic Deployment
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

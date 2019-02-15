@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Навігація по DOM</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Навігація по DOM</h1>
+
+		<section>
+			<h2>Ноди та елементи</h2>
+			<p>HTML-код складається з вузлів двох типів: ноди і елементи.</p>
+			<p>Поексперементуємо на такому шматку кода:</p>
+			<code>
+				&lt;h1&gt;Hello&lt;/h1&gt;<br>
+				&lt;h2&gt;<br>
+				&nbsp;&nbsp;Заголовок<br>
+				&nbsp;&nbsp;&lt;span style="color: red;"&gt;з червоним&lt;/span&gt;<br>
+				&nbsp;&nbsp;текстом<br>
+				&lt;/h2&gt;<br>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;Посилання на &lt;a href="http://google.com"&gt;google&lt;/a&gt;.&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;span&gt;1&lt;/span&gt; &lt;span&gt;2&lt;/span&gt; &lt;span&gt;3&lt;/span&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;1&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;2&lt;/span&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;3&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;/p&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Виведіть в консоль дерево нод та дослідіть його:</p>
+			<code>
+				console.dir(document.body.childNodes);
+			</code>
+			<p>Спробуйте змінити nodeValue різних елементів.</p>
+			<p>Виведіть в консоль дерево елементів та дослідіть його:</p>
+			<code>
+				console.dir(document.body.children);
+			</code>
+		</section>
+
+		<section>
+			<h2>Навігація по DOM</h2>
+			<p><a href="https://learn.javascript.ru/traversing-dom" target="_blank">Навигация по DOM-элементам</a>.</p>
+			<p>Окрім методів .getElement* та .querySelector* пошук елементів можна здійснювати наступним чином:</p>
+			<p><strong>.parentNode</strong> - батьківська нода.</p>
+			<p><strong>.childNodes</strong> - дочірні ноди.</p>
+			<p><strong>.firstChild</strong> - перша дочірня нода.</p>
+			<p><strong>.lastChild</strong> - остання дочірня нода.</p>
+			<p><strong>.previousSibling</strong> - попередня нода-сусід.</p>
+			<p><strong>.nextSibling</strong> - наступна нода-сусід.</p>
+			<p>В сучастому JS з нодами працюють рідко, цей спосіб вважається застарілим, краще працювати з елементами.</p>
+			<p>Для навігації по елементам (тегам) існують такі властивості:</p>
+			<p><strong>.parentElement</strong> - батьківський елемент.</p>
+			<p><strong>.children</strong> - дочірні елементи.</p>
+			<p><strong>.firstElementChild</strong> - перший дочірній елемент.</p>
+			<p><strong>.lastElementChild</strong> - останній дочірній елемент.</p>
+			<p><strong>.previousElementSibling</strong> - попередій сусідній елемент.</p>
+			<p><strong>.nextElementSibling</strong> - наступний сусідній елемент.</p>
+		</section>
+		
+		<section>
+			<h2>Додаткові матеріали</h2>
+			<p>Елегантний спосіб перебрати всі дочірні елементи першого порядку:</p>
+			<code>
+				for ( let elem = parent.firstChild; elem; elem = elem.nextSibling ) {
+				&nbsp;&nbsp;...
+				}
+			</code>
+		</section>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

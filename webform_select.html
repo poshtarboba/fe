@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Випадаючий список select</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Випадаючий список select</h1>
+			<p>Тег <strong>&lt;select&gt;</strong> формує або випадаючий список, або поле вибору варіантів:</p>
+			<p>
+				<label>
+					<select>
+						<option disabled>Виберіть місто:</option>
+						<option value="khm">Хмельницький</option>
+						<option value="vn">Вінниця</option>
+						<option value="ter">Тернопіль</option>
+						<option value="lv">Львів</option>
+					</select>
+				</label>
+			</p>
+			<p>
+				<label>
+					<select size="3" multiple>
+						<option value="khm">Хмельницький</option>
+						<option value="vn" selected>Вінниця</option>
+						<option value="ter">Тернопіль</option>
+						<option value="lv" disabled>Львів</option>
+					</select>
+				</label>
+			</p>
+			<p>Тег списку може мати атрибут <strong>size</strong>, в значенні якого прописується число видимих строк. Якщо число дорівнює 1 або цей атрибут відсутній - список буде випадаючим.</p>
+			<p>Якщо задано розмір списку, то можна добавити атрибут <strong>multiple</strong>, що відповідає за можливість вибору декількох строк списку.</p>
+			<p>Елементи списку задаютьса тегами <strong>&lt;option&gt;</strong>.</p>
+			<p>Тег <em>opiton</em> може мати такі атрибути:</p>
+			<p><em>selected</em> - вибрана по-замовчуванню строка.</p>
+			<p><em>disabled</em> - строка, яку неможливо вибрати</p>
+			<p><em>value</em> - значення, що передається на сервер в парі [ключ - значення].</p>
+			<p>Ви не можете стилізувати елементи option.</p>
+			<code>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&lt;label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;select&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option disabled&gt;Виберіть місто:&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="khm"&gt;Хмельницький&lt;option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="vn"&gt;Вінниця&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="ter"&gt;Тернопіль&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="lv"&gt;Львів&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
+				&nbsp;&nbsp;&lt;/label&gt;<br>
+				&lt;/p&gt;<br>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&lt;label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;select size="3" multiple&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="khm"&gt;Хмельницький&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="vn" selected&gt;Вінниця&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="ter"&gt;Тернопіль&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="lv" disabled&gt;Львів&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
+				&nbsp;&nbsp;&lt;/label&gt;<br>
+				&lt;/p&gt;
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

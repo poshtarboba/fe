@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Заняття 57.</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="format-detection" content="telephone=no">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style>
+		html { padding:0; margin:0;}
+		body { position:relative; margin:0; padding:0; color:#666; font:normal 18px/28px Helvetice, Arial, sans-serif; background:#fff;}
+		p { margin:0; padding:10px 0;}
+		a img { border:none;}
+		h1, h2, h3, h4, h5, h6 { margin:0; padding:0; font-weight:bold; color:#000;}
+		h1 { padding:40px 0 24px; line-height:1.4em;}
+		h2 { padding:0 0 12px;}
+		strong { font-weight:bold;}
+		em { font-style:italic;}
+		form, menu, iframe { display:block; margin:0; padding:0; border:none;}
+		ol, ul, dl, li, dt, dd { margin:0; padding:0; list-style:none;}
+		.resize { padding: 20px 40px;}
+
+		.faq { padding-bottom: 80px;}
+		.faq dt { padding-top: 32px; font-weight: bold; color: #1c2a46; cursor: pointer;}
+		/*.faq dd { display: none;}*/
+		.gamburger { position: relative; padding: 0 0 240px;}
+		.gamburger span { cursor: pointer;}
+		.gamburger ul { position: absolute; left: 0; top: 70px; border: 1px  solid #aaa;}
+		.gamburger a { display: block; padding: 2px 12px;}
+
+
+		#nav1, #nav1 menu { margin: 0; padding: 0;}
+		#nav1 menu:after { content: ''; display: block; clear: both;}
+		#nav1 menu > li { float: left; position: relative; list-style: none; margin-right: 2px;}
+		#nav1 span, #nav1 a { display: block; padding: 12px 24px; border: 1px solid #000; cursor: pointer;}
+		#nav1 menu ul { position: absolute; left: 0; top: 100%; margin: -1px 0 0; border-top: 1px solid #000;}
+		#nav1 menu ul li a { padding: 4px 24px; border-top: none;}
+
+		.popup_action { padding: 200px 0;}
+		.popup_action span { display: inline-block; padding: 20px 40px; font-weight: bold; border: 1px solid #000; cursor: pointer;}
+		#overlay { display: none; position: fixed; z-index: 990; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); cursor: pointer;}
+		#popup { display: none; position: fixed; z-index: 995; left: 50%; top: 50%; margin: -80px 0 0 -150px; width: 300px; background: #fff;}
+		#popup .header { padding: 6px 12px; font-weight: bold; border-bottom: 1px solid #aaa;}
+		#popup .content { padding: 12px;}
+		#popup .buttons { margin: 0; padding: 6px 12px 16px; text-align: center;}
+		#popup .buttons a { display: inline-block; padding: 2px 20px; border: 1px solid #000;}
+
+		.mooo { position: relative; height: 2500px;}
+		.mooo span { position: absolute; left: 0; top: 150px; font-size: 16px; color: #000;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<div class="gamburger">
+			<span class="gamb"><img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" width="64"></span>
+			<ul>
+				<li><a href="#">Головна</a></li>
+				<li><a href="#">Про нас</a></li>
+				<li><a href="#">Наша продукція</a></li>
+				<li><a href="#">Презентація</a></li>
+				<li><a href="#">Партнерство</a></li>
+				<li><a href="#">Контакти</a></li>
+			</ul>
+		</div>
+
+		<div class="popup_action">
+			<span>Show popup</span>
+		</div>
+
+		<div class="faq">
+			<h2>Часті питання:</h2>
+			<dl>
+				<dt>1. Де я можу знайти безкоштовний доступ до Інтернет, щоб заповнити електронну візову анкету DS-160?</dt>
+				<dd>Будь ласка, відвідайте найближчий до Вас Центр Проекту "Інтернет для читачів публічних бібліотек" (LEAP).</dd>
+				<dt>2. Як я, будучи американським громадянином, можу допомогти українському громадянину отримати візу США?</dt>
+				<dd>Громадяни США мають право надсилати петиції до Служби громадянства та імміграції США з тим, щоб спонсорувати різні категорії іноземців, котрі мають намір іммігрувати або тимчасово попрацювати у США. Однак, громадяни США не мають легального права спонсорувати іноземного громадянина з тим, щоб посприяти його в’їзду до США з метою короткострокового візиту.</dd>
+				<dt>3. Які документи потрібно мати українському громадянину для того, щоб довести свою відповідність вимогам отримання неімміграційної візи?</dt>
+				<dd>Згідно законодавства США, рішення стосовно справи кожного апліканта грунтується на дослідженні особливостей цієї справи, які є індивідуальними для кожного апліканта. Таким чином, було б несправедливим вимагати від кожного апліканта документи, щоб довести факти А, Б та В і визначити, що він/вона відповідають вимогам для отримання візи. Кожен аплікант має свою особливу мету подорожі та зв'язки поза межами США.</dd>
+				<dt>4. Чи можливо громадянину України подати документи на отримання візи без призначення співбесіди у випадку, якщо подорож є терміновою?</dt>
+				<dd>Якщо Вам необхідно терміново подорожувати до США, і термін Вашої попередньої візи до США закінчився протягом останніх дванадцяти місяців, Ви можете скористатися процедурою поновлення візи (без призначення співбесіди).</dd>
+				<dt>5. Чому українському громадянинові, котрого я запросив, було відмовлено у видачі неімміграційної візи США?</dt>
+				<dd>Відмова у відкритті візи найчастіше відбувається через те, що аплікант не зміг/змогла довести, що він/вона не підпадає під статтю 214(b) Закону про імміграцію та громадянство (INA) від 1952 року.<br>
+					Стаття 214 (б) Закону США про імміграцію та громадянство часто є приводом для відмови у неімміграціній візі. За цією статтею, кожен аплікант "вважатиметься потенційним іммігрантом, якщо він/вона на час подання заяви на отримання візи не надасть вагомих доказів, ...</dd>
+			</dl>
+			<p><em>Часті питання взято з сайту посольства США, http://ukrainian.ukraine.usembassy.gov/niv-faq.html</em></p>
+		</div>
+
+		<nav id="nav1">
+			<menu>
+				<li><span>Головна</span>
+					<ul>
+						<li><a href="#">Лендінг</a></li>
+						<li><a href="#">Презентація</a></li>
+						<li><a href="#">Стіл замовлень</a></li>
+					</ul>
+				</li>
+				<li><span>Про нас</span>
+					<ul>
+						<li><a href="#">Наші співробітники</a></li>
+						<li><a href="#">Вакансії</a></li>
+					</ul>
+				</li>
+				<li><span>Продукція</span>
+					<ul>
+						<li><a href="#">Милиці та палиці</a></li>
+						<li><a href="#">Інвалідні візки</a></li>
+						<li><a href="#">Протези</a></li>
+						<li><a href="#">Апарати Ілізарова</a></li>
+					</ul>
+				</li>
+				<li><span>Контакти</span>
+					<ul>
+						<li><a href="#">Наші контакти</a></li>
+						<li><a href="#">Зворотній зв’язок</a></li>
+					</ul>
+				</li>
+			</menu>
+		</nav>
+
+		<br><br><br><br>
+
+		<div class="mooo">
+			<span>Moving text</span>
+		</div>
+
+		<br><br><br><br>
+
+	</div>
+</div>
+
+
+<!-- popup -->
+<div id="overlay"></div>
+<div id="popup">
+	<div class="header">Заголовок попапа</div>
+	<div class="content">Повідомлення для користувача</div>
+	<p class="buttons"><a href="#">Ok</a></p>
+</div>
+
+</body>
+</html>

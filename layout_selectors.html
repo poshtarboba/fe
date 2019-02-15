@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Селектори CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+
+	<div class="resize">
+
+		<section>
+			<h1>Селектори CSS</h1>
+			<p><strong>A B</strong> { ... } - задає стилі для всіх елементів B, що знаходяться всередині тега A на будь-якому рівні вкладення.</p>
+			<p><strong>A &gt; B</strong> { ... } - задає стилі лише для дочірніх елементів першого рівня.</p>
+			<p><strong>A ~ B</strong> { ... } - задає стилі для всіх елементів B, що слідують після елемента A.</p>
+			<p><strong>A + B</strong> { ... } - задає стилі для елемента B, що йде одразу після елемента A.</p>
+			<code>
+				&lt;p&gt;&lt;span&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;<br>
+				p a { color: green;}<br>
+				p > span { background: red;}<br>
+				p > a { background: green;} /* не буде працювати */<br>
+				<br>
+				&lt;p class="nobel"&gt;Some text.&lt;/p&gt;<br>
+				&lt;p&gt;...&lt;/p&gt;<br>
+				&lt;h2&gt;Header&lt;/h2&gt;<br>
+				.nobel ~ h2 { color: green;}<br>
+				.nobel + p { color: blue;}<br>
+				.nobel + h2 { color: navy;} /* не буде працювати */
+			</code>
+			<p><strong>[атрибут]</strong> - задає стилі для елементів, у яких задано вказаний атрибут.</p>
+			<p><strong>[атрибут="значення"]</strong> - задає стилі для елементів, у яких задано атрибут та конкретне значення.</p>
+			<p><strong>[href^="ftp://"]</strong> - вибирає елементи, у яких вказаний атрибут починається з вказаного значення.</p>
+			<p><strong>[href$=".png"]</strong> - вибирає елементи, у яких вказаний атрибут закінчується вказаним значенням.</p>
+			<p><strong>[href*="google"]</strong> - вибирає елементи, у яких значення вказаного атрибута містить строку, вказану у значенні.</p>
+			<p><strong>[class~="green"]</strong> - вибирає елементи у яких в значенні атрибута є задана підстрока, відділена пробілами від інших підстрок.</p>
+			<code>
+				Виділити червоним і жирним всі елементи, в яких використовуються внутрітегові стилі:<br>
+				[style] { color: red; font-weight: bold;}<br>
+				<br>
+				Добавити рамку до зображень, в яких атрибут alt має значення "Фото":<br>
+				img[alt="Фото"] { border: 2px solid #aaa;}<br>
+				<br>
+				Всі посилання на FTP зробити зеленого кольору:<br>
+				a[href^="ftp://"] { color: green;}<br>
+				<br>
+				Всі посилання на gif-файли зробити сірого кольору:<br>
+				a[href$=".gif"] { color: #777;}<br>
+				<br>
+				Сховати всі посилання, які містять в собі підстроку "yandex":<br>
+				a[href*="yandex"] { display: none;}<br>
+				<br>
+				Вибирає всі елементи в яких є клас "green" і задає їм зелений колір:<br>
+				[class~="green"] { color: green;}<br>
+				.green { color: green;} /* виконує ту саму дію */
+			</code>
+			<p>Селектори, що дозволяють вибрати конкретний елемент:</p>
+			<code>
+				.box:first-child { ... }<br>
+				.box:last-child { ... }<br>
+				.box:nth-child(2) { ... }<br>
+				.box:nth-child(8) { ... }<br>
+				.box:nth-child(odd) { ... }<br>
+				.box:nth-child(even) { ... }<br>
+				.box:nth-child(3n+2) { ... }<br>
+				.box:nth-child(-n+5) { ... }<br>
+				.box:not(p) { ... }<br>
+				li:not(.active, #info) { ... }
+			</code>
+			<p>Додаткові стилі для вибору першої букви і першої строчки:</p>
+			<code>
+				p:first-letter { color: red;}<br>
+				p:first-line { font-weight: bold;}
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Додаткові матеріали</h2>
+			<p><a href="http://everstudent.ru/blog/htmlcss/30-css-seletors-to-memorize/">30 CSS-селекторов, которые вы должны запомнить</a>.</p>
+			<p><a href="https://habrahabr.ru/post/273471/">Коллекция практических советов и заметок по вёрстке</a></p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

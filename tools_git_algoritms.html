@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Типові алгоритми дій в Git</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Типові алгоритми дій в Git</h1>
+			<p>Деякі базові алгоритми виконання команд та дій для швидкого засвоєння Git.</p>
+			<h3>Створення нового проекту на GitHub.</h3>
+			<p>Ви починаєте новий проект. Найпростіше - створити його на сервері GitHub та клонувати собі на локальну машину:</p>
+			<code>
+				<strong>Створити новий проект на GitHub.</strong><br>
+				<strong>Створити в себе на комп'ютері папку проекту.</strong><br>
+				// копіюємо його собі на комп'ютер:<br>
+				<strong>Запустіть консоль і перейдіть в папку проекту.</strong><br>
+				<strong>git clone https://github.com/your_login/project_name.git html</strong>
+			</code>
+			<p>При цьому проект з GitHub буде склоновано у папку html.</p>
+			<h3>Створення нового проекту на localhost.</h3>
+			<p>Можна створити проект спочатку на localhost, після чого заляти на GitHub:</p>
+			<code>
+				<strong>Створити в себе на комп'ютері папку проекту.</strong><br>
+				<strong>В цій папці створіть папку html.</strong><br>
+				<strong>Запустіть консоль і перейдіть в створену папку html.</strong><br>
+				// створюємо проект Git:<br>
+				<strong>git init</strong><br>
+				<strong>Створити новий проект на GitHub.</strong><br>
+				<strong>git remote add origin https://github.com/your_login/project_name.git</strong>
+			</code>
+			<h3>Створення проекту Git з існуючої верстки.</h3>
+			<p>Буває так, що ви вже щось зверстали і лише тепер вирішили результати своєї праці заляти на Git.</p>
+			<p>Можете скористатися попереднім алгоритмом (створення проекту на localhost) або створити новий проект і добавити у нього файли:</p>
+			<code>
+				<strong>Закрийте IDE, папку проекту переіменуйте</strong>, добавивши символ підкреслення в кінець.<br>
+				<strong>Створіть нову папку з назвою проекту, в ній - папку html.</strong><br>
+				<strong>На GitHub створіть новий проект та клонуйте його собі в цю папку:</strong><br>
+				<strong>git clone https://github.com/your_login/project_name.git html</strong><br>
+				<strong>Скопіюйте потрібні файли з переіменованої папки в нову.</strong>
+			</code>
+			<h3>"Всё пропало, шеф!".</h3>
+			<p>Буває так, що щось напортили, і не знаєте як виправити ситуацію.</p>
+			<code>
+				<strong>Закрийте IDE, папку проекту переіменуйте</strong>, добавивши символ підкреслення в кінець.<br>
+				<strong>Створіть нову папку з назвою проекту, в ній - папку html.</strong><br>
+				// склонуйте з сервера останню версію в нову папку:<br>
+				<strong>git clone https://github.com/your_login/project_name.git html</strong><br>
+				<strong>Вручну проведіть синхронізацію клонованого проекту зі старою папкою.</strong>
+			</code>
+			<h3>Створення комітів, оновлення проекту на сервері.</h3>
+			<p>До цих пір ви все робили локально. Проект у вас вже є, і ви навіть внесли зміни у файли, добавили новий блок, виправили стилі, поправили верстку, переробили меню і т.п.</p>
+			<p>Час закинути оновлення на сервер:</p>
+			<code>
+				// перед кожною командою перевіряйте стан вашого проекту:<br>
+				<strong>git status</strong><br><br>
+				// готуємо коміт:<br>
+				<strong>git add .</strong><br>
+				<strong>git commit -m "Коментар до коміта"</strong><br>
+				// заливаємо оновлення на сервер:<br>
+				<strong>git push origin master</strong>
+			</code>
+		</section>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

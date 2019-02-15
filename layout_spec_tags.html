@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Рідко вживані теги</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+
+	<div class="resize">
+
+		<section>
+			<h1>Рідко вживані теги</h1>
+			<code>
+				&lt;abbr title="Розшифровка абревіатури"&gt; - абревіатура;<br>
+				&lt;address&gt; - географічна адреса, аналог до &lt;p class="address"&gt;...&lt;/p&gt;<br>
+				&lt;time&gt; - дані про час, дату, день тижня і тому подібне.<br>
+				&lt;q&gt;, &lt;blockquote&gt;, &lt;cite&gt; - цитати;<br>
+				&lt;code&gt; - тег для програмного коду, розмітки;<br>
+				&lt;pre&gt; - попередньо відформатований текст;<br>
+				&lt;sup&gt;, &lt;sub&gt; - верхній та нижній індекси.
+			</code>
+			<p>Ми вивчаємо <abbr title="HyperText Markup Language">HTML</abbr>.</p>
+			<p><time>1960-08-19</time> перший політ собак у космос.</p> 
+			<p><time datetime="2020-08-19T08:23:11+07:00">Сьогодні</time> річниця польоту.</p>
+			<code>
+				&lt;p&gt;Ми вивчаємо &lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;.&lt;/p&gt;<br>
+				&lt;p&gt;&lt;time&gt;1960-08-19&lt;/time&gt; перший політ собак у космос.&lt;/p&gt;<br>
+				&lt;p&gt;&lt;time datetime="2020-08-19T08:23:11+07:00"&gt;Сьогодні&lt;/time&gt; річниця польоту.&lt;/p&gt;
+			</code>
+			<p>Приклад цитати:</p>
+			<div style="margin-bottom: 20px; padding: 10px 20px; width: 350px; background: #ddd;">
+				<blockquote>Homo homini lupus est.</blockquote>
+				<p class="tar"><cite>В.І. Ленін.</cite></p>
+			</div>
+			<p style="margin-bottom: 20px; padding: 10px 20px; background: #ddd;">Клара Цеткін вигукнула у натовп: <q>Дайош восьмоє марта!!!</q></p>
+			<code>
+				&lt;div style="padding:10px 20px; width: 350px; background: #ddd;"&gt;<br><br>
+				&nbsp;&nbsp;&lt;blockquote&gt;Homo homini lupus est.&lt;/blockquote&gt;<br>
+				&nbsp;&nbsp;&lt;p class="tar"&gt;&lt;cite&gt;В.І. Ленін.&lt;/cite&gt;&lt;/p&gt;<br><br>
+				&lt;/div&gt;<br>
+				&lt;p&gt;Клара Цеткін вигукнула у натовп: &lt;q&gt;Дайош восьмоє марта!!!&lt;/q&gt;&lt;/p&gt;
+			</code>
+			<p>Верхній та нижній індекси: <strong>x<sup>2</sup>, H<sub>2</sub>SO<sub>4</sub></strong></p>
+			<code>
+				x&lt;sup&gt;2&lt;/sup&gt;, H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;<br><br>
+				Для індексів можна задавати шрифт трохи меньшого розміру, результат буде кращим:<br>
+				sup, sub { font-size: 0.6em;} &nbsp;&nbsp; // Результат нижче
+			</code>
+			<p><strong>x<sup style="font-size: 0.6em;">2</sup>, H<sub style="font-size: 0.6em;">2</sub>SO<sub style="font-size: 0.6em;">4</sub></strong></p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

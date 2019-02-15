@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Повернення результату функцією</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Повернення результату функцією</h1>
+			<p>Функція виконує деякі дії та за потреби може повернути результат своїх обчислень. Повернутий результат можна присвоїти у змінну або використати будь-яким іншим чином.</p>
+			<p>Згадайте "чорну" коробку з механізмом всередині і кнопкою. В цієї коробки може бути знизу отвір, через який випадає результат щоразу, як нажимаємо кнопку.</p>
+			<p>Для простоти розуміння - закресліть в коді виклик функції і над ним запишіть повернений результат. Такий остаточний вигляд прийме команда, в якій застосовано виклик функції.</p>
+			<code>
+				// створення функцій<br>
+				function <strong>hello()</strong>{<br>
+				&nbsp;&nbsp;return "Hello!";<br>
+				}<br><br>
+				function <strong>calc()</strong>{<br>
+				&nbsp;&nbsp;var result = a * b + c;<br>
+				&nbsp;&nbsp;console.log(result);<br>
+				&nbsp;&nbsp;return result;<br>
+				}<br><br>
+				function <strong>MashasLikes()</strong>{<br>
+				&nbsp;&nbsp;var likes = getLikesFromServer('Маша');<br>
+				&nbsp;&nbsp;return 'Маша отримала ' + likes + ' лайків до аватарки.';<br>
+				}<br><br>
+				// використання функцій:<br>
+				alert(<strong>hello()</strong>);<br>
+				var a = 5, b = 3, c = 7, d = <strong>calc()</strong>;<br>
+				document.getElementById('likes').innerText = <strong>MashasLikes()</strong>;
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Створіть функцію error, що видає повідомлення (alert) про невірно введений пароль і повертає код помилки 403 (число).</li>
+				<li>Створіть функцію, що розраховує об'єм коробки, заданої змінними x, y та z і повертає результат розрахунку.</li>
+				<li>Створіть функцію, яка повертає значення true чи false в залежності чи є змінна x парною.</li>
+			</ol>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Створіть функцію, що повертає протилежне значення х. Результат виводьте в консоль:
+					<code>
+						x = 5;<br>
+						в консоль вивести число -5<br>
+						x = -4;<br>
+						в консоль вивести число 4
+					</code>
+				</li>
+				<li>
+					Створіть функцію, що розраховує об'єм коробки і повертає результат розрахунку.<br>
+					Розміри коробки x, y та z питайте у користувача за допомогою prompt
+				</li>
+				<li>
+					Створіть функцію, що повертає одне зі значень:
+					<code>
+						x більше 20 - квадрат цього числа<br>
+						х менше 0 - куб цього числа<br>
+						х дорівнює 0 - null<br>
+						x від 0 до 20 і парне - половину цього числа<br>
+						x від 0 до 20 і непарне - потрійне число (наприклад, x = 17, результат = 171717)
+					</code>
+				</li>
+				<li>
+					Створіть функцію, яка запитує в користувача його ім'я (prompt) і повертає вітання виду: "Ласкаво просимо, %username% !".<br>
+					Викличте цю функцію для того, щоб задати текст для &lt;h1&gt; сторінки:
+					<code>
+						document.querySelector('h1').innerText = ???;
+					</code>
+				</li>
+				<li>
+					Дано кнопку і чотири текстових поля: first-name, last-name, phone, email (не огортайте їх в тег form, нам поки що не потрібно нічого відправляти на сервер).<br>
+					Звернутися до введеного в поле значення можна таким чином:
+					<code>
+						document.querySelector('[name="phone"]').value
+					</code>
+					Створіть функцію валідації форми - перевірки на те, чи немає пустих полів.<br>
+					Якщо пустих полів немає, то функція повинна повертати true, інакше - false;<br>
+					Валідацію виконуйте при натисканні на кнопку.<br>
+					<em>Порада: почніть з одного поля. Коли скрипт буде працювати - додайте ще одне і т.д.</em>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

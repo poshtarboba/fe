@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Геттери в об'єктах</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Сеттери, геттери, дескриптори в об'єктах</h1>
+
+			<p>Об'єкти можуть містити в собі властивості, методи, сеттери, геттери:</p>
+			<code>
+				let obj = {<br>
+				&nbsp;&nbsp;name: 'Ivan',<br>
+				&nbsp;&nbsp;hello: function () { return 'Hello ' + this.name; },<br>
+				&nbsp;&nbsp;
+				&nbsp;&nbsp;get letters() { return this.name.length; }<br>
+				}<br>
+				obj.name = 'Larisa';<br>
+				alert(obj.hello());<br>
+				alert('Letters: ' + obj.letters);
+			</code>
+			<p>Властивості подібні змінним - їх можна переприсвоювати.</p>
+			<p>Методи, як правило, повертають певне значення або обробляють дані об'єкта.</p>
+		</section>
+
+		<section>
+			<h2>Сеттери</h2>
+			<p>Сеттери обробляють вхідні дані і вносять зміни в об'єкт.</p>
+			<p>Сеттер дозволяє контролювати вхідну інформацію і блокувати невалідні дані.</p>
+			<p>Наприклад, є поле textarea, в якому не задано атрибут maxlength і воно ніяк не валідується скриптами. В це поле вводиться опис деякого об'єкта:</p>
+			<code>
+				&lt;textarea name="descr"&gt;&lt;/textarea&gt;<br><br>
+				let obj = {<br>
+				&nbsp;&nbsp;...,<br>
+				&nbsp;&nbsp;description: ''<br>
+				}<br><br>
+				obj.description = document.getElementsByName('descr')[0].value;
+			</code>
+			<p>Нехай за умовами ТЗ розміри поля description не повинні перевищувати 200 символів. У цьому випадку об'єкт ніяк не захищений від внесення даних більшого розміру.</p>
+			
+		</section>
+
+		<section>
+			<h2>Геттери</h2>
+			<p>Геттери обробляють дані об'єкта і повертають певне значення.</p>
+			<p>Геттер на відміну від властивості неможна змінити, переприсвоїти. На відміну від метода звернення до геттера відбувається без круглих дужок.</p>
+			<p>Приклад геттера - властивість length у масива. Її неможна змінити напряму, вона щоразу обчислюється при зверненні до неї.</p>
+			<p>Приклад геттера:</p>
+			<code>
+				let myObj = {<br>
+				&nbsp;&nbsp;a: 5,<br>
+				&nbsp;&nbsp;b: 7,<br>
+				&nbsp;&nbsp;get sum() { return this.a + this.b; }<br>
+				};<br>
+				alert(myObj.sum); &nbsp;&nbsp; // 12
+			</code>
+			<p>Додавання геттера до існуючого об'єкта:</p>
+			<code>
+				let myObj = {<br>
+				&nbsp;&nbsp;a: 5,<br>
+				&nbsp;&nbsp;b: 7<br>
+				};<br>
+				Object.defineProperty(myObj, 'sum', {<br>
+				&nbsp;&nbsp;get: function() { return this.a + this.b; }<br>
+				});
+			</code>
+			<p>Приблизна реалізація властивості length:</p>
+			<code>
+				Array.prototype = {<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;get length(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;let max = -1;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;for (let key in this)<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (typeof key === 'number' && key &gt; max) max = key;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return max + 1;<br>
+				&nbsp;&nbsp;}<br>
+				}
+			</code>
+			<p>Пам'ятаємо, що властивість length у масива на один більше за максимальний індекс.</p>
+			<p>Очевидно, що звертатися до властивості length у кожній ітерації при роботі з масивом незмінної довжини не зовсім коректно, весь час буде виконуватися один і той самий код:</p>
+			<code>
+				let arr = масив із мільйона елементів;<br>
+				for (let i = 0; i &lt; arr.length; i++) { ... }
+			</code>
+			<p>В цьому випадку геттер length виконається 1 000 001 раз, в самому геттері відбувається більше мільйона звернень до ключів, в результаті маємо більше, ніж 1 000 000 000 000 операцій.</p>
+			<p>На невеликих масивах (в межах 100-1000 значень) це не критично, але, все ж таки, не найоптимальніший варіант.</p>
+			<p>Скоріш за все, інтерпретатор проведе певні оптимізації, але вірним варіантом буде власноруч оптимізувати код, ніж покладатися на інтерпретатор:</p>
+			<code>
+				let arr = масив із мільйона елементів;<br>
+				let n = arr.length;<br>
+				for (let i = 0; i &lt; n; i++) { ... }
+			</code>
+			<p>У випадку, коли масив динамічно і контрольовано змінюється - краще також використати зовнішню змінну:</p>
+			<code>
+				let arr = масив із мільйона елементів;<br>
+				let n = arr.length;<br>
+				for (let i = 0; i &lt; n; i++) {<br>
+				&nbsp;&nbsp;if (arr[i] &lt; 0) { arr.push(...); n++; }<br>
+				&nbsp;&nbsp;if (arr[i] &gt; 100) { bk.push(arr.pop()); n--; }<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+			<p>І лише у випадку, коли масив змінюється асинхронно, сторонніми засобами, доведеться щоразу використовувати реальний length.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

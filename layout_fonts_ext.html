@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Підключення шрифтів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<p>Картинка на базовій лінії шрифта: <a href="https://jsfiddle.net/poshtarboba/9dw06qLj/" target="_blank">jsFiddle</a></p>
+			<p>Мінусові маргіни (колесов, ресайз паддінг, сині лінії з мінусовими маргінами): <a href="https://jsfiddle.net/poshtarboba/9huzeubn/" target="_blank">jsFiddle</a></p>
+		</section>
+
+		<h1>Підключення шрифтів</h1>
+
+		<section>
+			<h2>Підключення зовнішніх шрифтів з Google Fonts</h2>
+			<p>Часто в макеті використовуються нестандартні шрифти, які відсутні у більшості користувачів інтернету, або взагалі - фірмовий шрифт.</p>
+			<p>В першу чергу перевірте наявність шрифта на сервісі <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>. Часто використовують шрифт Open Sans, зробіть пошук "google fonts Open Sans" і за першим посиланням потрапите на сторінку потрібного шрифта.</p>
+			<figure>
+				<img src="img/layout_fonts_ext_01.png" alt="Google fonts search">
+				<figcaption>Пошук шрифта в сервісі Google Fonts</figcaption>
+			</figure>
+
+			<p>На цій сторінці потрібно вибрати "Select this font".</p>
+			<figure>
+				<img src="img/layout_fonts_ext_02.png" alt="Google fonts Open Sans">
+				<figcaption>Вибираємо потрібний нам шрифт</figcaption>
+			</figure>
+
+			<p>Знизу праворуч з'явиться плашка, при кліку на яку можна переглянути як використовувати шрифт та налаштувати його:<br>
+				&nbsp;&nbsp;1. Різні види накреслення.<br>
+				&nbsp;&nbsp;2. Набір символів для різних мов.<br>
+				&nbsp;&nbsp;3. Тег &lt;link&gt;, який необхідно вставити в заголовок &lt;head&gt; для підключення шрифта.<br>
+				&nbsp;&nbsp;4. Приклад застосування шрифта у стилях.<br></p>
+			<figure>
+				<img src="img/layout_fonts_ext_03.png" alt="Google fonts Open Sans">
+				<figcaption>Підказка по застосуванню шрифта на своїй сторінці</figcaption>
+			</figure>
+			<figure>
+				<img src="img/layout_fonts_ext_04.png" alt="Google fonts Open Sans">
+				<figcaption>Налаштування шрифта</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Підключення зовнішніх шрифтів з файлів</h2>
+			<p>Якщо у макеті використовується фірмовий, комерційний чи малорозповсюджений шрифт - його необхідно сконвертувати у формати веб-шрифтів і підключити їх.</p>
+			<p>Для конвертування є зручний інструмент <a href="http://www.fontsquirrel.com/" target="_blank">FontSquirrel</a>. Цей сервіс готує повний пакет зі шрифтів і CSS-файлів. Якщо він відмовиться конвертувати - доведеться робити це вручну.</p>
+			<p>Скористайтесь одним з онлайн-конверторів, наприклад, <a href="https://cloudconvert.com/" target="_blank">CloudConvert</a>. Загружаємо по черзі наші файли шрифтів, обираємо для конвертування формати: <strong>woff</strong>, <strong>eot</strong>, <strong>svg</strong>.</p>
+			<p>Перевірте за допомогою сервіса <a href="http://caniuse.com/" target="_blank">Can I Use.com</a> підтримувані формати шрифтів різними браузерами. Можливо, вам не знадобляться всі формати файлів, а лише 1-2.</p>
+			<p>Після того, як отримаєте всі файли - скопіюйте їх у каталог <strong>fonts</strong>. Сюди ж можна помістити і файл стилів з підключенням шрифта:</p>
+			<code>
+				@font-face {<br>
+				&nbsp;&nbsp;font-family: 'open_sansregular';<br>
+				&nbsp;&nbsp;src: url('opensans-webfont.eot');<br>
+				&nbsp;&nbsp;src: url('opensans-webfont.eot?#iefix') format('embedded-opentype'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url('opensans-webfont.woff2') format('woff2'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url('opensans-webfont.woff') format('woff'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url('opensans-webfont.ttf') format('truetype'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url('opensans-webfont.svg#open_sansregular') format('svg');<br>
+				&nbsp;&nbsp;font-weight: normal;<br>
+				&nbsp;&nbsp;font-style: normal;<br>
+				}
+			</code>
+			<p>Але краще підключати шрифти у своїй CSS, скопіюйте код підключення і вставте в самий початок файлу стилів. При цьому необхідно вказати шлях до файлів шрифтів:</p>
+			<code>
+				src: url('../fonts/opensans.woff');
+			</code>
+			<p>Наразі всі браузери підтримують шрифт woff, тому підключення можна скоротити:</p>
+			<code>
+				@font-face {<br>
+				&nbsp;&nbsp;font-family: 'Open Sans';<br>
+				&nbsp;&nbsp;src: url('../fonts/opensans.woff') format('woff');<br>
+				&nbsp;&nbsp;font-weight: normal;<br>
+				&nbsp;&nbsp;font-style: normal;<br>
+				}
+			</code>
+			<p><strong class="danger">Зверніть увагу!</strong> Коли підключаєте файл <strong>SVG</strong> - через решітку у імені файла необхідно вказати id шрифта:</p>
+			<figure>
+				<img src="img/layout_fonts_ext_05.png" alt="SVG font id">
+				<figcaption>ID шрифта в файлі SVG</figcaption>
+			</figure>
+			<p>Якщо підключаєте декілька шрифтів з одним іменем та різним накресленням, наприклад, <strong>Open Sans Regular</strong> і <strong>Open Sans bold</strong> (їх імена відповідно open_sansregular і open_sansbold), то їх логічно підключити одним іменем, але різними стилями:</p>
+			<code>
+				@font-face {<br>
+				&nbsp;&nbsp;font-family: 'Open Sans';<br>
+				&nbsp;&nbsp;src: url('opensans.woff') format('woff');<br>
+				&nbsp;&nbsp;<strong>font-weight: normal;</strong><br>
+				&nbsp;&nbsp;font-style: normal;<br>
+				}<br>
+				@font-face {<br>
+				&nbsp;&nbsp;font-family: 'Open Sans';<br>
+				&nbsp;&nbsp;src: url('opensans.woff') format('woff');<br>
+				&nbsp;&nbsp;<strong>font-weight: bold;</strong><br>
+				&nbsp;&nbsp;font-style: normal;<br>
+				}
+			</code>
+			<p>Після чого шрифт можна використовувати на сайті:</p>
+			<code>
+				body { font: normal 18px/1.3em "Open Sans", Helvetica, Arial, sans-serif;}<br>
+				h1 { font-family: "Open Sans", Helvetica, Arial, sans-serif;}
+			</code>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=MTQ9FpT3ayc" target="_blank">HTML Шорти - Сторонні шрифти</a> (7:16).</p>
+		</section>
+
+		<section>
+			<a name="icons"></a>
+			<h2>Іконочні шрифти</h2>
+			<p>У великих проектах часто використовуються <a href="http://wrapbootstrap.com/preview/WB0R5L90S" target="_blank">десятки іконок</a> різних кольорів, розмірів, з використанням hover- та active-ефектів. В таких випадках доцільно підключити один з іконочних шрифтів та використовувати іконки як букви шрифта.</p>
+			<p>Приклади іконочних шрифтів:</p>
+			<ul>
+				<li><a href="http://glyphicons.com/" target="_blank">Glyph Icons</a>, <a href="http://getbootstrap.com/docs/3.3/components/#glyphicons" target="_blank">Glyph Icons in Bootstrap 3</a></li>
+				<li><a href="http://fontawesome.io/" target="_blank">Font Awesome</a></li>
+				<li><a href="http://ionicons.com/" target="_blank">Ion Icons</a></li>
+				<li><a href="https://material.io/icons/" target="_blank">Material Icons</a></li>
+				<li><a href="https://octicons.github.com/" target="_blank">Oct Icons</a></li>
+				<li><a href="http://evil-icons.io/" target="_blank">Evil Icons</a></li>
+			</ul>
+			<p>Як правило, іконки в верстку вставляються тегом &lt;i&gt;, якому прописують один чи два класи. Самі іконки вставляються псевдоелементом :before.</p>
+			<p>Дослідіть стилі іконок на представлених сайтах.</p>
+		</section>
+
+		<section>
+			<h2>Додаткові матеріали</h2>
+			<p>Розмір файлів шрифтів можна зменшити <a href="https://everythingfonts.com/subsetter" target="_blank">прибравши з нього зайві символи</a> (або прописати тільки потрібні символи), те саме можна зробити і на <a href="http://www.fontsquirrel.com/" target="_blank">FontSquirrel</a>.</p>
+			<p>Щоб швидко розібратися в шрифтах - почитайте статті <a href="https://antar27.ru/articles/kratko-o-shriftah/" target="_blank">про шрифти</a>, про <a href="https://www.compgramotnost.ru/shrifty/parametry-shrifta" target="_blank">параметри шрифтів</a>, про те, які <a href="https://www.artlebedev.ru/kovodstvo/business-lynch/typeface/" target="_blank">шрифти хороші, якісні, а які зроблені аби як</a>.</p>
+			<p>Також пройдіть <a href="https://type.method.ac/" target="_blank">тест на кернінг</a>.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>В макеті Minecraft задайте всій сторінці шрифт OpenSans.</li>
+				<li>Активному пункту меню та hover-ефекту задайте жирність 800, решті пунктів - bold. Порівняйте шрифти.</li>
+				<li>Телефонам задайте жирність 300.</li>
+				<li>Заголовок h1 і текст новин зробіть шрифтом Scada.</li>
+				<li>Бокове меню зробіть шрифтом Lobster.</li>
+				<li>В макеті Iskander підключіть шрифт Scada до всієї веб-сторінки.</li>
+				<li>Створіть новий проект, підключіть до нього шрифти fontawesome і ionicons. Вставте на сторінку по десятку іконок з кожного шрифта. Задайте їм різні стилі, колір, ховер-ефект.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

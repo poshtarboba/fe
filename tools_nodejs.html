@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Зборщики проектів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Зборщики проектів</h1>
+		
+		<figure>
+			<img src="img/tools_nodejs_01.png" alt="install node; install bower...">
+			<figcaption>На маленьких проектах зборщики будуть тягарем</figcaption>
+		</figure>
+		
+		<section>
+			<h2>Навіщо нам зборщики?</h2>
+			<p>Якщо вам доведеться працювати над проектом дещо більшим, ніж лендінг чи кількасторінковий сайт, то файли CSS, JS дуже швидко розростатимуться в об'ємах. Невелика правка в шапці чи підвалі сайту потребуватиме редагування десятків, сотень html-файлів.</p>
+			<p>
+				Зборщики дозволяють краще організувати роботу в проекті:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- використати препроцесори та постпроцесори;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- порозносити HTML, CSS та JS по різних файлах і папках, згрупувавши по логічним блокам, модулям;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- під час зборки об'єднати всі потрібні шматочки до купи;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- об'єднати весь CSS та весь JS в 2 файла;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- перевіряти, валідувати код;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- стискати, мініфікувати, обфускувати код;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- оптимізувати зображення;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- створювати спрайти;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- автоматично створювати документацію;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- проводити автоматичне тестування;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;- оновлювати патч-версії бібліотек і плагінів...<br>
+				Ну і так далі.</p>
+			<p>Фактично зборщики є таск-ранерами, тобто, вони запускають по черзі ряд своїх плагінів (програм). Що, коли і як запускати - можна гнучко налаштовувати, підключати нові плагіни.</p>
+			<p>В один проект можна встановити декілька зборщиків і розподіляти між ними списки задач, з якими найкраще справляється той, чи інший зборщик.</p>
+		</section>
+
+		<section>
+			<h2>Node.js</h2>
+			<p>Node.js - програма, що виконує JavaScript (+ I/O + бібліотеки). Побудована на базі віртуальної машини від Google, яка вбудована в Chromium (FireFox, IE/Edge, Safari мають свої віртуальні машини для виконання JavaScript).</p>
+			<p>JavaScript доступний нам в основному в браузері. Віртуальна машина V8 дозволяє виконувати скрипти на комп'ютері незалежно від браузера, і навіть на пристроях типу пральних машинок, кавоварок, прасок, в дронах, робототехніці...</p>
+			<p>Та V8 не вміє повноцінно працювати з файлами (заради безпеки JavaScript не може записувати чи зчитувати файли з комп'ютера). Тому в Node.js добавлені програми- та бібліотеки-проксі.</p>
+			<p>Node.js має обширну базу репозиторіїв різноманітних модулів, в т.ч. не пов'язаних з веб-розробкою.</p>
+			<p>Переважна більшість популярних зборщиків використовує Node.js.</p>
+		</section>
+
+		<section>
+			<h2>Структура проекту</h2>
+			<code>
+				<strong>/app/</strong> - робоча версія проекту<br>
+				<strong>/dist/</strong> - продакшн-версія проекту<br>
+				<strong>/resource/</strong> - всілякі ресурси для розробки (макети, технічні завдання, таблиці...)<br>
+				<strong>/app/src/</strong> - верстка<br>
+				<strong>/app/src/css/</strong> - стилі, в т.ч. SASS, Less, Stylus<br>
+				<strong>/app/src/css/images/</strong> - статичні зображення<br>
+				<strong>/app/src/css/partial/</strong> - стилі окремих блоків, модулів<br>
+				<strong>/app/src/fonts/</strong> - шрифти<br>
+				<strong>/app/src/img/</strong> - динамічні зображення<br>
+				<strong>/app/src/js/</strong> - JavaScripts, CoffeeScript<br>
+				<strong>/app/src/js/libs/</strong> - бібліотеки<br>
+				<strong>/app/src/js/plugins/</strong> - плагіни<br>
+				<strong>/app/src/view/</strong> - html-код<br>
+				<strong>/app/src/view/index.html</strong><br>
+				<strong>/app/src/view/partials/</strong> - html-код окремих блоків, модулів<br>
+				<strong>/app/src/view/includes/</strong> - html-код окремих блоків, модулів<br>
+				<strong>/app/src/index.html</strong><br>
+				<strong>/app/src/partials/</strong> - html-код окремих блоків, модулів<br>
+				<strong>/app/src/includes/</strong> - html-код окремих блоків, модулів<br>
+			</code>
+			<p><!-- TODO: розгребти авгієві конюшні своїх минулих великих проектів -->(тема в процесі розробки)</p>
+			<h3>.gitignore</h3>
+			<p>В файл .gitignore прописуються файли і папки, які Git не буде добавляти в репозиторій.</p>
+			<p>Створіть цей файл (з крапкою на початку) в корені проекту.</p>
+			<p>Якщо ви користуєтеся IDE від JetBrains, то в першу чергу пропишіть туди папку .idea.</p>
+			<p>Модулі Node.js в репозиторій не заливаються (навіщо в репозиторії десятки-сотні мегабайт файлів, які і так є в репозиторіях тих модулів?).</p>
+			<p>Інформація про всі модулі зберігається в файлі package.json, якщо ви з репозиторія скачаєте проект собі, то відновити всі модулі (розвертання проекту) можна командою:</p>
+			<code>
+				npm i
+			</code>
+			<p>Таким чином, файл .gitignore буде виглядати приблизно так:</p>
+			<code>
+				.idea<br>
+				/resource/<br>
+				/node_modules/
+			</code>
+		</section>
+
+		<section>
+			<h2>Gulp</h2>
+			<p><a href="http://learn.javascript.ru/screencast/gulp" target="_blank">Скрінкаст по Gulp 4</a> на learn.javascript.ru.</p>
+			<p>Переваги: швидкість, компактність конфігурації.</p>
+			<p>Недоліки: не у всьому найкращий.</p>
+			<p>Запустіть консоль в папці поточного місяця, наприклад, D:\work\<span class="js-year">2016</span>-<span class="js-month">12</span>\</p>
+			<p>Встановіть зборщик Gulp (виконується один раз):</p>
+			<code>npm install --global gulp-cli</code>
+			<p>Наступні команди дозволяють створити новий проект <strong>gulp-test</strong>, проінсталювати в нього Gulp. Пільнуйте, щоб не було помилок.</p>
+			<code>
+				npx mkdirp gulp-test<br>
+				cd gulp-test<br>
+				npm init<br>
+				npm install --save-dev gulp
+			</code>
+			<p>Перегляньте вміст папки проекту. Дослідіть папку node_modules, файли JSON.</p>
+			<p>Тепер можна створювати задачі для Gulp. Створіть файл <strong>gulpfile.js</strong> - це конфігурація зборщика.</p>
+			<p>Задачі пишуться на мові JavaScript, синтаксис такий:</p>
+			<code>
+				function defaultTask(callback) {<br>
+				&nbsp;&nbsp;// дії, які потрібно виконати<br>
+				&nbsp;&nbsp;callback();<br>
+				}<br><br>
+				exports.default = defaultTask;
+			</code>
+			<p>Приклад задачі:</p>
+			<code>
+				function defaultTask(callback) {<br>
+				&nbsp;&nbsp;console.log('Hello, this is my first (default) task');<br>
+				&nbsp;&nbsp;callback();<br>
+				}<br>
+				function myHelloTask(callback) {<br>
+				&nbsp;&nbsp;console.log('Hello-hello-hello! This is my second task');<br>
+				&nbsp;&nbsp;callback();<br>
+				}<br><br>
+				exports.default = defaultTask;<br>
+				exports.hello = myHelloTask;
+			</code>
+			<p>Протестуємо. Запустіть в консолі:</p>
+			<code>
+				gulp<br>
+				gulp hello
+			</code>
+			<p>Щоб виконувати щось більш корисне - потрібно гуглити та читати документацію.</p>
+			<p>Наприклад, для того, щоб користуватися препроцесором Less, потрібно встановити відповідний плагін-вочер (watcher), це програма, яка стежить за зміною less-файлів і запускає компіляцію в потрібні моменти. Можна запускати компіляцію і вручну.</p>
+			<p>Google: gulp less або gulp less watcher</p>
+			<p><strong class="danger">Увага!!!</strong> До версії 4 синтаксис був інакшим, в новому Gulp він вже не актуальний, викликає помилку:</p>
+			<code>
+				gulp.task('назва_задачі', function(){<br>
+				&nbsp;&nbsp;// дії, які потрібно виконати<br>
+				});
+			</code>
+			<p>Шукайте актуальну інформацію.</p>
+			<h3>Корисні плагіни:</h3>
+			<p><strong>gulp-sass</strong> - компілятор SASS.</p>
+			<p><strong>gulp-minify-css</strong> - мініфікація CSS.</p>
+			<p><strong>gulp-uglify</strong> - мініфікація JS.</p>
+			<p><strong>browser-sync</strong> - локальний сервер з live-reload і тунелем на наш localhost для демонстрації проекта замовнику.</p>
+			<p><strong>gulp-imagemin</strong> - стискання картинок.</p>
+			<p><strong>imagemin-pngquant</strong> - доповнення до попереднього плагіну для роботи з PNG.</p>
+			<p><strong>gulp-sourcemaps</strong> - генерує css sourscemaps.</p>
+			<p><strong>gulp-rigger</strong> - дозволяє інклудити один файл в інший простою конструкцією:</p>
+			<code>
+				//= footer.html
+			</code>
+		</section>
+
+		<section>
+			<h2>Grunt</h2>
+			<p>Переваги: універсальний, популярний, дуже багато плагінів, розвинене комюніті.</p>
+			<p>Недоліки: багатослівний (конфіг простого проекта в сотні строк), не дуже швидкий, сповільнюється з ростом проекту.</p>
+			<p></p>
+		</section>
+
+		<section>
+			<h2>Broccolli</h2>
+			<p>Переваги: як конкурент Gulp усуває його проблемні місця.</p>
+			<p>Недоліки: мало плагінів.</p>
+		</section>
+
+		<section>
+			<h2>Brunch</h2>
+			<p>Переваги: заточений саме під фронтенд, значно швидший за Grunt, компактна конфігурація може бути на писана як на JS, так і на CoffeeScript.</p>
+			<p>Недоліки: по швидкості не дотягує до Gulp, Broccolli, плагінів значно менше, ніж у Grung, Gulp.</p>
+		</section>
+
+		<section>
+			<h2>Bower - пакетний менеджер</h2>
+			<p><a href="http://nano.sapegin.ru/all/bower" target="_blank">Почитати про роботу з Bower</a>.</p>
+			<p>В сучасній розробці і сайтів, і додатків, і програм прогресує нездорова тенденція підключати безмежну кількість модулів. Потрібна якась маленька кнопочка, свічер, повзунок - розробник тягне з мережі модуль на десятки мегабайт і тисячі файлів.</p>
+			<p>Біда не приходить одна: модулі мають залежності: щоб та кнопочка запрацювала - потрібно скачати інший модуль, плагін, бібліотеку, а та, в свою чергу, теж може чогось потребувати...</p>
+			<p>Таким чином розробник бігає з сайту на сайт, по репозиторіям гітхаба і збирає всі необхідні пакети.</p>
+			<p>Пакетні менеджери дозволяють це все автоматизувати - підтримувати залежності, викачувати всі необхідні модулі, пакети в автоматичному режимі чи при введенні команди в консолі.</p>
+			<p>Простота використання пакетних менеджерів дозволяє створювати сайти, що <a href="https://reactjs.org/" target="_blank">з'їдають браузером 200-500 Мб оперативної пам'яті</a> на кожну вкладку, <a href="https://blog.timac.org/2017/0410-analysis-of-the-facebook-app-for-ios-v-87-0/" target="_blank">300-мегабайтні додатки на смартфонах з мінімальною функціональністю</a>, <a href="https://habr.com/post/423889/" target="_blank">комп'ютерні програми</a> типу блокнота зі смайликами, які важать більше, ніж весь пакет програм Microsoft Office 2000...</p>
+			<p>Бажаю вам навчитися користуватися пакетними менеджерами з розумом, не тягнути в свій проект весь смітник інтернета, контролювати залежності (щоб одна пімпочка не притягнула за собою 30 тисяч файлів загальним розміром у кілька сотень мегабайт).</p>
+			<p>Вчіться писати свої модулі, плагіни, без чи з мінімальними залежностями.</p>
+			<p>Використовуйте фреймворки тільки якщо без них буде дійсно важко і довго. Контролюйте файли фреймворків, намагайтеся відмовитися від зайвого баласту (як приклад - замість всього бутстрапа використовуйте лише сітку).</p>
+		</section>
+		
+		<section>
+			<h2>Webpack</h2>
+			<p><a href="http://learn.javascript.ru/screencast/webpack" target="_blank">Скрінкаст по Webpack</a> на learn.javascript.ru.</p>
+			<p><a href="https://habr.com/ru/post/309306/" target="_blank">Webpack</a> на Habr.</p>
+		</section>
+		
+		<section>
+			<h2>Babel</h2>
+			<p>Babel - це модуль, що перетворює код сучасного JS (ECMA Script 6+, 2015) в код згідно специфікації ECMA Script 5 (2009).</p>
+			<p>Потрібен для максимальної підтримки браузерів починаючи з IE7, також для підтримки браузерів в старих пристроях Palm Pilot, Blackberry, Opera Mini, які досі мають деяку долю ринку.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

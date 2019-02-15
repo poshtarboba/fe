@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Цикли</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Цикли</h1>
+			<p>Цикл це повторюваний набір дій.</p>
+			<p><em>Ітерація циклу</em> - один крок виконання циклу.</p>
+			<p><em>Ітератор (лічильник)</em> - змінна, що збільшує або зменшує своє значення на кожному кроці циклу, використовується для рахування ітерацій, доступу до елементів масиву і т.п.</p>
+			<p><strong class="danger">Увага!</strong> Будьте обережні! Якщо невірно задати умову циклу - може створитися безкінечний цикл, при цьому браузер підвисає і його доведеться перезапустити.</p>
+		</section>
+
+		<section>
+			<h2>Цикл while</h2>
+			<p>Даний цикл має в собі умову. Поки вона ствердна - виконуються ітерації циклу.</p>
+			<p>Керування ітератором здійснюється в тілі циклу, а його ініціалізація - перед циклом.</p>
+			<p>Ітератор не є обов'язковим, якщо не потрібно рахувати ітерації.</p>
+			<code>
+				<strong>
+					while ( умова ) {<br>
+					&nbsp;&nbsp;тіло циклу;<br>
+					}
+				</strong><br><br>
+				let s = 'hello';<br>
+				let i = 0;<br>
+				while (i &lt; s.length) {<br>
+				&nbsp;&nbsp;console.log(s[i]);<br>
+				&nbsp;&nbsp;i++;<br>
+				}<br><br>
+				// коротший варіант:<br>
+				let s = 'hello', i = 0;<br>
+				while (i &lt; s.length) console.log(s[i++]);
+			</code>
+			<p>Даний цикл може не виконати жодної ітерації:</p>
+			<code>
+				let s = '';<br>
+				let i = 0;<br>
+				while (i &lt; s.length) {<br>
+				&nbsp;&nbsp;console.log(s[i]);<br>
+				&nbsp;&nbsp;i++;<br>
+				}
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>
+					Створіть запит імені користувача:
+					<code>
+						let n = prompt("Введіть ім'я:");<br>
+						if (n === null) n = '';
+					</code>
+				</li>
+				<li>Переберіть циклом while всі літери отриманої змінної.</li>
+				<li>Якщо код символа парний - виведіть цей символ і його код в консоль за допомогою console.error,<br>інакше - за допомогою console.warn.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Цикл do-while</h2>
+			<p>Даний цикл спочатку виконує ітерацію, а в кінці перевіряє чи виконувати наступну.</p>
+			<code>
+				<strong>
+					do {<br>
+					&nbsp;&nbsp;тіло циклу;<br>
+					} while ( умова );
+				</strong><br><br>
+				let i = 1, img;<br>
+				do {<br>
+				&nbsp;&nbsp;img = document.createElement('img');<br>
+				&nbsp;&nbsp;img.setAttribute('src', 'images/slide_' + i++ + '.jpg');<br>
+				&nbsp;&nbsp;slider.appendChild(img);<br>
+				} while (i &lt; 6);
+			</code>
+			<p>Цикл do-while мінімум одну ітерацію виконає.</p>
+			<p>Даний цикл використовується найрідше, оскільки не часто зустрічаються задачі, в яких потрібно виконати мінімум одну ітерацію.</p>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Виводьте в консоль квадрати чисел 1, 2, 3, 4..., останній квадрат повинен бути більшим за 2100.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Цикл for</h2>
+			<p>Цикл for найпоширеніший, тому що суміщає в одній короткій строці кода ініціалізацію ітератора, умову і інкремент ітератора.</p>
+			<code>
+				<strong>for ( ініціалізація лічильника ; умова ; інкремент лічильника ) {<br>
+					&nbsp;&nbsp;тіло цикла;<br>
+					}</strong><br><br>
+				for (let i = 1; i &lt; 5; i = i + 1) {<br>
+				&nbsp;&nbsp;console.log(i);<br>
+				}<br>
+				let s = 'Маша', r = '';<br>
+				for (let i = s.length - 1; i &gt;= 0; i--) {<br>
+				&nbsp;&nbsp;r += s[i];<br>
+				}<br>
+				console.log(r);
+			</code>
+			<p>Порядок виконання циклу:</p>
+			<ol>
+				<li>Ініціалізація ітератора.</li>
+				<li>Перевірка умови.</li>
+				<li>Виконання ітерації.</li>
+				<li>Інкремент лічильника.</li>
+				<li>Перевірка умови.</li>
+				<li>Виконання ітерації.</li>
+				<li>Інкремент лічильника.</li>
+				<li>Перевірка умови.</li>
+				<li>...</li>
+			</ol>
+			<h3>Різниця між let і var в циклі</h3>
+			<p>Змінна, що створена за допомогою let, існує тільки в межах циклу. Змінна var - також і поза межами циклу.</p>
+			<code>
+				for (let i = 0; ...) { ... }<br>
+				for (let i = 0; ...) { ... }<br>
+				for (let i = 0; ...) { ... }<br><br>
+				for (var i = 0; ...) { ... }<br>
+				for (i = 0; ...) { ... }<br>
+				for (i = 0; ...) { ... }
+			</code>
+			<p>Протестуйте два наступних фрагмента кода:</p>
+			<code>
+				for (var i = 0; i &lt; 3; i++) console.log('&gt;', i);<br>
+				console.log('=', i);<br><br>
+				for (let i = 0; i &lt; 3; i++) console.log('&gt;', i);<br>
+				console.log('=', i);
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>
+					Створіть змінну зі своїм іменем. Виведіть в консоль в стовбчик кожну букву строки і через пробіл - номер букви в строці:
+					<code>
+						М 0<br>
+						а 1<br>
+						ш 2<br>
+						а 3
+					</code>
+				</li>
+				<li>Створіть пусту строку і циклом занесіть у неї цифри від 0 до 5. Виведіть строку в alert, повинно відобразитися "012345".</li>
+				<li>Виведіть в консоль 10 випадкових чисел від 0 до 1. Використайте групування в консолі.</li>
+			</ol>
+		</section>
+		
+		<section>
+			<h2>Вічний цикл, break, continue</h2>
+			<p>Вічний цикл має завжди ствердну умову:</p>
+			<code>
+				for (i = 0; true; i++) { ... }<br>
+				for (i = 1; i &gt; 0; i++) { ... }<br>
+				while (1) { ... }<br>
+				do { ... } while ('hey');
+			</code>
+			<p>Такі цикли підвісять браузер. Тому у таких циклах потрібно передбачати примусове завершення ітерацій.</p>
+			<p>Команда <strong>break</strong> дозволяє обірвати цикл.</p>
+			<p>Наприклад, наступний код шукає букву d в тексті. Знайшли букву - далі перебирати строку немає потреби (звісно, можна скористатися методом строк для пошуку букви, даний код представлено лише для приклада).</p>
+			<code>
+				let s = 'Lorem ipsum dolor sit amet';<br>
+				for (var i = 0; i &lt; s.length; i++) {<br>
+				&nbsp;&nbsp;if (s[i] === 'd') break;<br>
+				}<br>
+				console.log('Буква d на ' + i + ' місці.'); &nbsp;&nbsp; // починаючи з одиниці<br><br>
+				// що буде, якщо в циклі використати let ?
+			</code>
+			<p>Команда <strong>continue</strong> дозволяє закінчити поточну ітерацію циклу і перейти до наступної.</p>
+			<p>Даний код знайде прості числа, виведе їх в консоль і створить з них масив. Якщо число не просте, то і немає сенсу далі щось робити з таким числом.</p>
+			<code>
+				arr = [];<br>
+				for (let i = 1; i < 300; i++) {<br>
+				&nbsp;&nbsp;if (!ifSimple(i)) { continue; }<br>
+				&nbsp;&nbsp;console.log(i);<br>
+				&nbsp;&nbsp;arr.push(i);<br>
+				}<br>
+				console.log(arr);<br><br>
+				function ifSimple(n) {<br>
+				&nbsp;&nbsp;for (let i = 2; i &lt; n; i++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;if (n % i === 0) return false;<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;return true;<br>
+				}
+			</code>
+			<p>Оператори <strong>break</strong> та <strong>continue</strong> можна застосовувати у всіх типах циклів.</p>
+			<p>В циклі можна не задавати лічильник, якщо його задано раніше. При цьому ставиться крапка з комою:</p>
+			<code>
+				let i = s.length - 1;<br>
+				for (; i >= 0; i++) { ... }
+			</code>
+			<p>В циклі можна не задавати зміну лічильника, якщо лічильник буде мінятися в тілі циклу:</p>
+			<code>
+				let i = 0;<br>
+				for (; i &lt; 10;) {<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;i++;<br>
+				}
+			</code>
+			<p>В циклі можна не задавати умову, в результаті у нас вийде безкінечний цикл:</p>
+			<code>
+				for (;;) { console.log('Браузер підвис'); }<br><br>
+				let i = parseInt(prompt('Введіть число:', 100));<br>
+				if (isNaN(i)) i = 100;<br>
+				for (;;) {<br>
+				&nbsp;&nbsp;if (i > 10000) break;<br>
+				&nbsp;&nbsp;console.log(i);<br>
+				&nbsp;&nbsp;i *= 2;<br>
+				&nbsp;&nbsp;if (i % 7 === 0) i--;<br>
+				}
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Створіть циклом строку з не менше 17 букв, що повторюються: "сода" (содасодасода...). Виведіть в консоль.<br>
+					Виведіть в консоль строку, в якій всі букви "с" будуть замінені на букву "в".
+				</li>
+				<li>
+					Порахуйте циклом кількість букв "о" у наступному виразі:
+					<code>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+					</code>
+				</li>
+				<li>
+					Створіть функцію, що видає випадкове число від 50 до 100.<br>
+					Виведіть в консоль 20 випадкових чисел за допомогою цієї функції.<br>
+					Використайте групування в консолі.
+				</li>
+				<li>
+					Створіть функцію, яка повертатиме дану їй строку задом наперед. За допомогою неї виведіть в консоль ваше ім'я:
+					<code>
+						рднаскелО
+					</code>
+				</li>
+				<li>
+					Дано функцію, яка "з сервера" присилає дані про випадкового користувача:<br>
+					<code>
+						let name, age;<br>
+						function getUser(){<br>
+						&nbsp;&nbsp;let users = ['Коля','Іра','Льоша','Маша','Грыша','Пєтя','Гоша','Аня','Свєта','Іван'];<br>
+						&nbsp;&nbsp;let ages = ['19','21','14','18','27','22','18','21','24','31'];<br>
+						&nbsp;&nbsp;let n = Math.floor(Math.random()*10);<br>
+						&nbsp;&nbsp;name = users[n];<br>
+						&nbsp;&nbsp;age = ages[n];<br>
+						}
+					</code>
+					Виведіть в консоль вік Маші, наприклад:
+					<code>
+						Маша: 17 років.
+					</code>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

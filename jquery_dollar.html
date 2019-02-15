@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Символ долара в імені змінної</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Символ долара в імені змінної</h1>
+			<p>Ім'я змінної в класичному JS може складатися з символів латинського алфавіту в обох регістрах, цифр, символа підкреслення і знака долара. Ім'я змінної не повинно починатися з цифри:</p>
+			<code>
+				/[A-Za-z$_][0-9A-Za-z$_]*/
+			</code>
+			<p>Таким чином, <strong>$</strong> - символ, допустимий в імені змінної:</p>
+			<code>
+				let $name = 'Masha';<br>
+				let $$$mony$$$ = '$ 300';<br>
+				let xa$ker = { look: false };
+			</code>
+			<p>Протестуйте в консолі:</p>
+			<code>
+				let a = 5;<br>
+				let $ = 7;<br>
+				let price$ = a + $;<br>
+				let gold_$_gold = a * $;<br>
+				let $$$money$$$ = Math.pow(a, $);<br>
+				console.log( price$ + ' ' + gold_$_gold + ' ' + $$$money$$$ );<br><br>
+				function $(a, b, c){<br>
+				&nbsp;&nbsp;return a + b + c;<br>
+				}<br>
+				console.log($(5, 7, 12));
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Localstorage</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Localstorage</h1>
+			<p>В редакції HTML5 з'явився новий об'єкт <strong>window.localStorage</strong>.</p>
+			<p>Локальне сховище даних має подібну функціональність до cookies, але дозволяє зберігати більше даних.</p>
+			<p>Окрім того, локальні сховища дозволяють створювати <a href="http://blog.darkcrimson.com/2010/05/local-databases/" target="_blank">локальні бази даних</a> та <a href="https://www.html5rocks.com/en/tutorials/file/filesystem/" target="_blank">локальну файлову систему</a>.</p>
+			<p>Для роботи з локальним сховищем є декілька зручних методів:</p>
+			<code>
+				<strong>localStorage.setItem(key, value);</strong><br>
+				<strong>localStorage.getItem(key);</strong><br>
+				<strong>localStorage.removeItem(key);</strong><br>
+				<strong>localStorage.clear();</strong><br><br>
+				console.dir(localStorage);<br><br>
+				let data = [5, 12, '32', 7, 'html', '99'];<br>
+				localStorage.setItem('bar', data);<br>
+				localStorage.setItem('hey', 'ho');<br><br>
+				let foo = localStorage.getItem('bar');<br>
+				console.log(foo);<br>
+				console.log(localStorage.getItem('hello'));<br><br>
+				localStorage.removeItem('bar');<br>
+				localStorage.clear();
+			</code>
+			<p>Окрім того, до елементів локального сховища можна звертатися як до властивостей об'єкта:</p>
+			<code>
+				localStorage.setItem('name', 'Masha');<br>
+				alert(localStorage.name);
+			</code>
+			<p>В локальне сховище можна зберігати масиви, об'єкти:</p>
+			<code>
+				let obj = { name: 'Masha', age: 17, gender: 'female' };<br>
+				localStorage.setItem('user', JSON.stringify(obj));<br><br>
+				let newObj = localStorage.getItem('user');<br><br>
+				newObj = JSON.parse(newObj);<br><br>
+				let newObj = JSON.parse(localStorage.getItem('user'));
+			</code>
+			<p>
+				Якщо потрібно задати термін дії для даних, що зберігаються - доведеться робити це вручну:<br>
+				- записати дані;<br>
+				- записати дату (в числовому форматі) - кінцевий термін "придатності даних";<br>
+				- при відкритті сторінки звіряти дату, якщо вона просрочена - видалити дані.
+			</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Підключіть файл <a href="cookie.js">cookie.js</a> у ваш проект.</li>
+				<li>Запишіть в куки: "car=Mercedes"; "planer=Boeing". Зчитайте значення цих куки, збережіть у змінні та виведіть в консоль. В консолі введіть document.cookie, подивіться всі куки.</li>
+				<li>Створіть 2 кнопки і поле вводу. По кліку на одну буде записано cookie з текстом поля вводу, по кліку на другу - виводити alert зі строкою. Закрийте вкладку, відкрийте знову, перевірте, чи зберіглося куки, клацнувши на другу кнопку.</li>
+				<!--<li>Запишіть куки з часом дії 5 секунд, зчитайте його через 2 і через 7 секунд, виводьте в консоль.</li>-->
+				<li>При вході на сторінку перевіряйте наявність куки зі своїм іменем. Якщо воно є - виведіть у який-небудь блок, наприклад, &lt;p&gt; вітання: "Привіт, %username% !", якщо немає - запитайте ім'я за допомогою функції prompt(). Після вводу імені запишіть кукі та виведіть вітання.</li>
+				<!--<li>До попереднього завдання додаткова умова: термін дії куки має бути 1 хвилина. Не забудьте поновити куки при закритті сторінки.</li>-->
+				<li>Створіть масив довжиною 8 елементів з довільних чисел. Додайте на 4 та 7 місця строки зі своїм ім’ям та прізвищем, на 2 місце - об’єкт "Гарбуз" з трьома властивостями. Запишіть цей масив в localStorage, зчитайте його у змінну та виведіть у консоль.</li>
+				<li>Зробіть завдання 1..6 за допомогою localStorage.</li>
+				<li>
+					Дано бокове (вертикальне) меню.<br>
+					Потрібно зробити можливість змінювати позиції пунктів меню. Створіть кнопку, яка б переключала меню в режим редагування:<br>
+					біля кожного пункта меню повинно з'явитися дві кнопки зі стрілками вгору і вниз.<br>
+					При кліку на відповідну кнопку пункт меню повинен переміститися вгору чи вниз.<br>
+					Поточний порядок пунктів меню зберігайте у localstorage.
+				</li>
+			</ol>
+		</section>
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

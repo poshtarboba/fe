@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<title>Frontend. Бордери, границі, рамки</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Бордери, границі, рамки</h1>
+			<code>
+				<strong>border: 2px solid #2e2e2e;</strong> - об’єднуючий стиль.<br><br>
+				<strong>border-width: 2px;</strong> - ширина границі.<br>
+				<strong>border-style: dashed;</strong> - тип границі.<br>
+				<strong>border-color: #f00;</strong> - колір границі.
+			</code>
+			<p>Типи границь (порівняйте їх вигляд у різних браузерах):</p>
+			<code>
+				<span style="display: inline-block; padding: 12px 20px; border: 5px solid red;">border-style: solid;</span><br><br>
+				<span style="display: inline-block; padding: 12px 20px; border: 5px dashed red;">border-style: dashed;</span><br><br>
+				<span style="display: inline-block; padding: 12px 20px; border: 5px dotted red;">border-style: dotted;</span>
+			</code>
+			<p>Є ще <a href="http://htmlbook.ru/css/border-style" target="_blank">декілька екзотичних</a> стилів бордерів, проте, сьогодні вони майже не використовуються.</p>
+			<p>Можна задати окремі стилі для кожного з чотирьох бордерів, синтаксис подібний до стилів margin та padding:</p>
+			<code>
+				border-width: 4px 2px;<br>
+				border-style: dashed soild;<br>
+				border-color: #f00 #0f0 #ff0 #f0f;
+			</code>
+			<p>Можна задавати тільки одну границю: зверху, знизу, зліва чи зправа (або декілька границь, окремо):</p>
+			<code>
+				border-left: 1px solid red;<br>
+				border-top: 2px solid blue;<br>
+				border-right: 20px dashed green;<br>
+				border-bottom: 1px dotted yellow;
+			</code>
+			<p>Ну і 12 стилів для того, щоб задати кожному бордеру один з параметрів:</p>
+			<code>
+				border-left-width: 2px;<br>
+				border-bottom-color: #aaa;<br>
+				border-top-style: solid;<br>
+				...
+			</code>
+			<p>Прибрати границю можна задавши значення <strong>none</strong>:</p>
+			<code>
+				border: none;<br>
+				border-bottom: none;
+			</code>
+			<p>Прозорий бордер для ховер-ефекта (<a href="https://jsfiddle.net/poshtarboba/t2w3nyzr/" target="_blank">jsFiddle</a>):</p>
+			<code>
+				.box { border: 1px solid transparent;}<br>
+				.box:hover { border-color: blue;}
+			</code>
+			<p>За допомогою бордерів можна робити <a href="https://www.diviguide.com/section-dividers/" target="_blank">кутики</a>.</p>
+			<p><!-- TODO: CSS кутики, https://www.diviguide.com/section-dividers/ --></p>
+			<h3>Заокруглення країв блока</h3>
+			<p>Заокруглення можна застосовувати навіть якщо у блока не буде бордерів, буде заокруглюватися фон.</p>
+			<p>Задати радіус скруглення країв можна як для всіх чотирьох кутів одночасно, так і для кожного окремо, подібно як в margin/padding:</p>
+			<code>
+				border-radius: 10px;<br>
+				border-radius: 10px 20px;<br>
+				border-radius: 10px 20px 30px;<br>
+				border-radius: 10px 20px 30px 40px;<br><br>
+				// еліпсоподібні скруглення:<br>
+				border-radius: 20px/10px;<br>
+				border-radius: 10px 20px 30px 40px/20px 10px 50px 5px;
+			</code>
+			<p>Квадратний елемент можна зробити круглим, задавши радіус скруглення 50%. Прямокутний елемент стане овальним.</p>
+			<p>Перевага в тому, що вам не треба знати розмір елемента, 50% з любого квадрата зробить круг:</p>
+			<code>
+				border-radius: 50%;
+			</code>
+			<p>Самостійно познайомтеся зі стилем <strong>border-image</strong>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

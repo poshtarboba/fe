@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Ajax</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Ajax.</h1>
+
+		<section>
+			<h2>Технологія Ajax.</h2>
+			<p><strong>AJAX</strong> - асинхронний обмін даними з сервером.</p>
+			<p>Ajax набув широкого розповсюдження у Web2.0, ця технологія дозволяє "на льоту" отримувати дані з сервера, динамічно оновлювати вміст сторінки без перезавантаження.</p>
+			<p>Синхронний обмін даними - браузер відправляє запит на сервер і очікує відповіді, в цей час нічого не робить. Таким чином працює стандартне завантаження веб-сторінки, контенту, потоковий контент.</p>
+			<p>Асинхронний обмін даними - браузер відправляє запит на сервер і нечекає відповіді, а продовжує виконувати скрипти, "займається своїми справами".</p>
+		</section>
+
+		<section>
+			<h2>XMLHttpRequest.</h2>
+			<p>В базовому JavaScript робота з запитами за технологією ajax реалізовано через об'єкт XMLHttpRequest.</p>
+			<p>Технологія Ajax працює по протоколам http/https, тому для тестування коду вам знадобиться веб-сервер.</p>
+			<p>Приклад синхронного запиту:</p>
+			<code>
+				<strong>// відправка запиту на файл:</strong><br>
+				var xhr = new XMLHttpRequest();<br>
+				xhr.open('GET', 'text.txt', false);<br>
+				xhr.send();<br><br>
+				<strong>// отримання результату:</strong><br>
+				console.log(xhr.responseText);<br>
+				console.log('======== FINISH =========');
+			</code>
+			<p>Вищевказаний код є дуже ненадійним, з сервером може виникнути багато різних неприємностей, тому не можна напряму звертатися до відповіді сервера, потрібно робити перевірки на помилки:</p>
+			<code>
+				<strong>// отримання результату:</strong><br>
+				if (xhr.status != 200){<br>
+				&nbsp;&nbsp;console.error('Error ' + xhr.status + ': ' + xhr.statusText);<br>
+				} else {<br>
+				&nbsp;&nbsp;console.log(xhr.responseText);<br>
+				}<br>
+				console.log('======== FINISH =========');
+			</code>
+			<p><strong>xhr.responseText</strong> - відповідь сервера (в більшості випадків в текстовому вигляді).</p>
+			<p><strong>xhr.status</strong> - статус відповіді.</p>
+			<p><strong>xhr.statusText</strong> - текст статусу сервера.</p>
+			<p>Статус сервера - це звичайні коди відповіді сервера:</p>
+			<code>
+				0 - нічого не відбулося, запит на відправлено, відсутнє з'єднання з інтернетом;<br>
+				200 - все гаразд, сервер прислав відповідь;<br>
+				403 - доступ заборонено (forbidden);<br>
+				404 - ресурс не знайдено (file not found);<br>
+				502 - сервер не відповідає (bad gateway);<br>
+				і так далі.
+			</code>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Створіть в папці з проектом текстовий файл hello.txt в форматі UTF-8.</li>
+				<li>Внесіть у цей текстовий файл деякий текст.</li>
+				<li>У проекті створіть скрипт, що робить запит до сервера і отримує вміст цього текстового файлу.</li>
+				<li>Результат (вміст файла) виведіть у заголовок &lt;h1&gt;.</li>
+			</ol>
+			<p>Даний код свторює запит, відправляє його на сервер і очікує результат. Під час очікування робота всіх скриптів, завантажень ресурсів призупиняється.</p>
+			<p>Час заморозки може тривати від лічених мілісекунд до декількох секунд.</p>
+			<p>Ви отримаєте попередження в консолі, що синхронні запити вважаються застарілими через негативні наслідки для користувача.</p>
+			<p>Повний синтаксис налаштування запиту:</p>
+			<code>
+				xhr.open(method, URL, async, user, password);
+			</code>
+			<p><strong>method</strong> - метод GET або POST (доступні також інші методи, наприклад DELETE, PUT і т.п.).</p>
+			<p><strong>URL</strong> - посилання на ресурс або скрипт на сервері.</p>
+			<p><strong>async</strong> - асинхронність запиту, може приймати true або false.</p>
+			<p><strong>user, password</strong> - доступ до ресурсу, в разі потреби.</p>
+			<p>Зробіть запит асинхронним та обґрунтуйте результат виводу в консоль.</p>
+			<h3>Події xhr.</h3>
+			<p>Виведіть в консоль об'єкт xhr та дослідіть його.</p>
+			<p>При асинхронному запиті потрібно відловити подію зміни статуса запита:</p>
+			<code>
+				...<br>
+				xhr.send();<br>
+				xhr.onreadystatechange = function(){<br>
+				&nbsp;&nbsp;if (xhr.readyState != 4) return;<br>
+				&nbsp;&nbsp;if (xhr.status != 200){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.error('Error ' + xhr.status + ': ' + xhr.statusText);<br>
+				&nbsp;&nbsp;} else {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log(xhr.responseText);<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				console.log('======== FINISH =========');
+			</code>
+			<p>Статуси запиту:</p>
+			<code>
+				0 - UNSENT, початковий стан<br>
+				1 - OPENED, запит відкрито<br>
+				2 - HEADERS_RECEIVED, отримані заголовки<br>
+				3 - LOADING, отримано пакет даних<br>
+				4 - DONE, запит завершено
+			</code>
+			<p>Стани запиту змінюються в такій послідовності (статус 3 може встановлюватися багато разів):</p>
+			<code>
+				0 &gt; 1 &gt; 2 &gt; 3 &gt; 3 &gt; ... &gt; 3 &gt; 4.
+			</code>
+			<h3>GET, POST, timeout, abort.</h3>
+			<p>GET-запит передає на сервер лише URL, а POST-запит може передавати пари "ключ: значення" в методі send:</p>
+			<code>
+				xhr.open('GET', 'test.php?name=Masha&amp;age=17');<br>
+				xhr.send();<br><br>
+				xhr.open('POST', 'test.php');<br>
+				xhr.send('name=Masha&amp;age=17');
+			</code>
+			<p>Запит до сервера можна обірвати якщо в ньому пропадає потреба або сервер занадто довго не відповідає.</p>
+			<p>Також можна встановити таймаут на виконання запиту.</p>
+			<code>
+				if (вже_не_треба) { xhr.abort(); }<br><br>
+				xhr.timeout = 3000; // 3 секунди<br>
+				xhr.ontimeout = function() {<br>
+				&nbsp;&nbsp;xhr.abort();<br>
+				}
+			</code>
+			<h3>JSON</h3>
+			<p><strong>JSON</strong> (JavaScript Object Notation) - текстовий файл, що містить в собі масив або об'єкт в форматі JS.</p>
+			<p>Файли JSON широко використовуються для передачі даних по HTTP, для збереження налаштувань. Формат виявився дуже вдалим і його використовують в інших мовах програмування.</p>
+			<p>Його попередником є XML, громіздкий, надлишковий формат передачі даних, заснований на SGML.</p>
+			<p>Приклади JSON-файлів:</p>
+			<code>
+				<strong>week.json</strong><br>
+				['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'нд']<br><br>
+				<strong>user.json</strong><br>
+				{<br>
+				&nbsp;&nbsp;"name": "Маша",<br>
+				&nbsp;&nbsp;"age": 17,<br>
+				&nbsp;&nbsp;"phone": "068-202-12-12"<br>
+				}
+			</code>
+			<p>Для роботи з JSON вам можуть знадобитися наступні методи:</p>
+			<code>
+				var str = JSON.stringify(obj); // перетворити об'єкт чи масив у строку<br>
+				var obj = JSON.parse(str); // перетворення строки на масив, об'єкт
+			</code>
+			<p>Формат файлу JSON трохи капризний, вимагає щоб всі ключі і строки були огорнуті лише подвійними кавичками:</p>
+			<code>
+				{<br>
+				&nbsp;&nbsp;"name": "Masha",<br>
+				&nbsp;&nbsp;"age": 17<br>
+				}
+			</code>
+			<p>За потреби - скористайтесь <a href="https://jsonlint.com/" target="_blank">онлайн-валідатором JSON</a>.</p>
+			<h3>Завдання</h3>
+			<ol>
+				<li>
+					Створіть текстовий файл, в який пропишіть декілька тегів, наприклад:
+					<code>
+						&lt;h3&gt;Hello!&lt;/h3&gt;<br>
+						&lt;p&gt;Lorem ipsum dolor&lt;/p&gt;<br>
+						&lt;img src="cat.jpg" alt="cat"&gt;
+					</code>
+				</li>
+				<li>Закиньте в папку з проектом картинку cat.jpg.</li>
+				<li>Створіть чи відредагуйте файл index.html.</li>
+				<li>Створіть кнопку і &lt;div id="test1"&gt;. При натисканні кнопки робіть запит до файла і вставте отриманий код в блок.</li>
+				<li>Запишіть у JSON-файл масив чисел, отримайте цей масив запитом, знайдіть суму чисел і результат виведіть повідомленням alert.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Ajax в jQuery.</h2>
+			<p>Бібліотека jQuery надає більш зручний інструмент для роботи з асинхронними запитами.</p>
+			<p>Все зібрано в один зручний метод:</p>
+			<code>
+				$.ajax({<br>
+				&nbsp;&nbsp;type: "POST",<br>
+				&nbsp;&nbsp;url: "test.php",<br>
+				&nbsp;&nbsp;data: "name=Masha&amp;age=17",<br>
+				&nbsp;&nbsp;success: function(msg){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log("Відповідь сервера: " + msg);<br>
+				&nbsp;&nbsp;},<br>
+				&nbsp;&nbsp;error: function (jqXHR, exception) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;var msg = getErrorMessage(jqXHR, exception);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;alert(msg);<br>
+				&nbsp;&nbsp;}<br>
+				});<br><br>
+				function getErrorMessage(jqXHR, exception){<br>
+				&nbsp;&nbsp;if (jqXHR.status === 0) { return 'Not connect.\n Verify Network.'; }<br>
+				&nbsp;&nbsp;if (jqXHR.status == 404) { return 'Requested page not found. [404]'; }<br>
+				&nbsp;&nbsp;if (jqXHR.status == 500) { return 'Internal Server Error [500].'; }<br>
+				&nbsp;&nbsp;if (exception === 'parsererror') { return 'Requested JSON parse failed.'; }<br>
+				&nbsp;&nbsp;if (exception === 'timeout') { return 'Time out error.'; }<br>
+				&nbsp;&nbsp;if (exception === 'abort') { return 'Ajax request aborted.'; }<br>
+				&nbsp;&nbsp;return 'Uncaught Error.\n' + jqXHR.responseText;<br>
+				}
+			</code>
+			<p>Повний синтаксис метода можна глянути <a href="http://api.jquery.com/jquery.ajax/" target="_blank">в документації</a> (<a href="https://jquery-docs.ru/jQuery.ajax/" target="_blank">російською мовою</a>).</p>
+			<h3>Завдання.</h3>
+			<p>Отримайте з сервера <a href="contacts.json" target="_blank">json-файл</a> та виведіть дані у вигляді таблиці.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання.</h2>
+			<ol>
+				<li>Зверстайте просту сторінку з переліком товарів, ціни вкажіть в доларах.</li>
+				<li>Добавте кнопки "в гривнях", "в євро", "в злотих".</li>
+				<li>Створіть файл kurs.json куди занесіть курси валют до долара.</li>
+				<li>При кліку на кнопку отримайте дані про поточний курс відповідної валюти та зробіть зміни на сайті.</li>
+				<li>Зробіть заготовку сайту погоди на поточний день (погода вранці, вдень, ввечері і вночі).</li>
+				<li>Інформацію про погоду отримуйте динамічно з JSON-файла.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

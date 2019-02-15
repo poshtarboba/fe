@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Списки</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Списки</h1>
+			<p>В HTML є особлива група тегів - списки. Всі елементи цієї групи є блочними елементами.</p>
+			<p>Списки - це певний набір однотипних даних: перелік учнів чи книг, список новин, постів чи коментарів, список товарів на сторінці інтернет-магазину.</p>
+			<p>Бувають списки марковані (звичайні) <strong>&lt;ul&gt;</strong>, нумеровані (наприклад, список учнів в класі в алфавітному порядку) <strong>&lt;ol&gt;</strong> і список визначень <strong>&lt;dl&gt;</strong>.</p>
+			<iframe src="layout_lists_iframe.html"></iframe>
+			<p>Звичайні несортовані списки найпоширеніші, тому їх треба вивчити в першу чергу. На сайті списки використовуються для організації навігаційного меню, сторінкової навігації, кнопок соціальних мереж, банерів партнерів, товарів, змісту, переліку посилань, і просто як список чогось.</p>
+			<p>Батьківським елементом списку є тег <strong>&lt;ul&gt;</strong> або <strong>&lt;ol&gt;</strong>. Елементами списку виступають блоки <strong>&lt;li&gt;</strong>.</p>
+			<p>Список визначень складається з пар тегів <strong>&lt;dt&gt;</strong> та <strong>&lt;dd&gt;</strong>, що чергуються. Типові списки визначень - FAQ, список характеристик.</p>
+			<p>Приклад HTML-кода списків:</p>
+			<code>
+				&lt;ul&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Сметана&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Сир&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Ковбаса<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;варена&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;копчена&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+				&nbsp;&nbsp;&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Хліб&lt;/li&gt;<br>
+				&lt;/ul&gt;<br><br>
+				&lt;ol&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Іванов П.С.&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Петров С.І.&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;li&gt;Сидоров І.П.&lt;/li&gt;<br>
+				&lt;/ol&gt;<br><br>
+				&lt;h3&gt;FAQ:&lt;/h3&gt;<br>
+				&lt;dl&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Зламався ноут. Що робити?&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;Неси в сервісний центр.&lt;/dd&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Закрили файлообмінники, як бути?&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;Переходь на торренти.&lt;/dd&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Що робити якщо змерз?&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;Закутайся в пледик і пий чаї з імбирем, лимоном, малиною.&lt;/dd&gt;<br>
+				&lt;/dl&gt;<br><br>
+				&lt;dl&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Процесор:&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;Intel Core i5&lt;/dd&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Пам'ять:&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;8 Gb DDR3&lt;/dd&gt;<br>
+				&nbsp;&nbsp;&lt;dt&gt;Вінчестер:&lt;/dt&gt;<br>
+				&nbsp;&nbsp;&lt;dd&gt;1 Тб HDD&lt;/dd&gt;<br>
+				&lt;/dl&gt;
+			</code>
+			<p><span class="danger">Увага!</span> Ніякі інші елементи, включаючи <strong>&lt;div&gt;</strong>, <strong>&lt;br&gt;</strong>, <strong>&lt;p&gt;</strong> і т.д. не можуть знаходитися в тегах <strong>&lt;ul&gt;</strong>, <strong>&lt;ol&gt;</strong>, <strong>&lt;dl&gt;</strong> безпосередньо, тобто, бути безпосередніми доньками.</p>
+			<p>
+				UL - Untyped List;<br>
+				OL - Ordered List;<br>
+				DL - Definition List;<br><br>
+				LI - List Item;<br>
+				DT - Definition Title<br>
+				DD - Definition Description.
+			</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Зробити порізку макета <a href="https://drive.google.com/open?id=0By5OeYSvSbNLUWJPY25SRXh4b2s" target="_blank">Minecraft</a> (<a href="thumb/minecraft.jpg" target="_blank">jpg</a>), написати html-код.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

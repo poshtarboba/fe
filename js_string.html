@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Операції зі строками</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Операції зі строками</h1>
+			<p>
+				<a href="http://javascript.ru/string" target="_blank">http://javascript.ru/string</a><br>
+				<a href="http://learn.javascript.ru/string" target="_blank">http://learn.javascript.ru/string</a>
+			</p>
+			<p>Строка - це набір символів, обмежених одинарними чи подвійними лапками.</p>
+			<h3>Створення строк</h3>
+			<code>
+				var a = 'hello';<br>
+				var b = "hello";<br>
+				var c = 13 + '';<br>
+				var d = (42.5).toString();<br>
+				console.log(a, b, c, d);
+			</code>
+			<p>Метод .toString() - найкоректніший спосіб перетворити будь-яку змінну в строку:</p>
+			<code>
+				let a = [,null,5,Infinity,NaN,true,[1,2,3],{}];<br>
+				for (let i = 0; i < a.length; i++){<br>
+				&nbsp;&nbsp;console.log(typeof a[i]);<br>
+				&nbsp;&nbsp;console.dir(a[i]);<br>
+				&nbsp;&nbsp;try {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log(a[i].toString(),'\n======');<br>
+				&nbsp;&nbsp;} catch (err) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.error('Error:');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.dir(err);<br>
+				&nbsp;&nbsp;}<br>
+				}
+			</code>
+			<p>Не плутайте назви змінних і строки:</p>
+			<code>
+				var hello = 42;<br>
+				console.log(hello);<br>
+				console.log('hello');
+			</code>
+			<h3>Дії зі строками</h3>
+			<p>Строки можна об'єднувати, це називається конкатинацією строк.</p>
+			<code>
+				var a = "Hello," + ' world!';<br>
+				var n1 = 'Іванов',<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;n2 = 'Іван',<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;n3 = 'Іванович';<br>
+				var n = n1 + ' ' + n2 + ' ' + n3;<br>
+				console.log(a);<br>
+				console.log(n);
+			</code>
+			<p>Строку можна об'єднати з числом, змінною, об'єктом. Це все перетвориться в строку.</p>
+			<code>
+				var b = 64 + ' кг.';<br>
+				var price = 42,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c = 'Ціна: ' + price + ' грн.';<br>
+				var d = 'Масив: ' + [1, 2, 3];<br>
+				var und, e = "Не задано: " + und;<br>
+				console.log(b);<br>
+				console.log(c);<br>
+				console.log(d);<br>
+				console.log(e);
+			</code>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Атрибути елементів веб-форм</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.special input + span { display: inline-block; padding: 0 4px;}
+		.special input:checked + span { background: #f00; color: #fff;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Атрибути елементів веб-форм</h1>
+			<p>Для того, щоб нормально працювали радіокнопки - їм необхідно задати однакові атрибути <em>name</em>:</p>
+			<p>
+				<label><input type="radio" name="gender"> ч</label><br>
+				<label><input type="radio" name="gender"> ж</label><br>
+				<label><input type="radio" name="gender"> т</label><br>
+				<label><input type="radio" name="gender2"> ч2</label><br>
+				<label><input type="radio" name="gender2"> ж2</label><br>
+				<label><input type="radio" name="gender2"> т2</label>
+			</p>
+			<code>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; ч&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; ж&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; т&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; ч2&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; ж2&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; т2&lt;/label&gt;&lt;/p&gt;
+			</code>
+			<p>Атрибут <strong>name</strong> необхідно задати для кожного елемента форми, якщо її дані відправляються на сервер. Дані відправляються пакетом із пар: [ключ - значення], де ключ - це значення атрибута name, а значення - те, що міститься в атрибуті value.</p>
+			<p>Елементи radio та checkbox можуть мати статус checked - він робить активним елемент веб-форми:</p>
+			<p>
+				<label><input type="radio" name="gender3"> ч</label><br>
+				<label><input type="radio" name="gender3" checked> ж</label><br>
+				<label><input type="checkbox" checked> чекбокс</label>
+			</p>
+			<code>
+				&lt;label&gt;&lt;input type="radio" name="gender3"&gt; ч&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="radio" name="gender3" checked&gt; ж&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="checkbox" checked&gt; чекбокс&lt;/label&gt;
+			</code>
+			<!-- TODO: стилізація :checked + label -->
+			<p class="special"><label><input type="checkbox" name="red"> <span>text</span></label></p>
+			<p>&nbsp;</p>
+			<p>Елементи, в які можна вводити дані з клавіатури, можуть мати атрибут <strong>placeholder</strong>, значення цього атрибута - строка, яка буде відображатися у пустому полі вводу до того момента, коли користувач почне вводити текст:</p>
+			<p><label><input type="text" placeholder="Input text here"> &lt;&lt; пропозиція ввести текст.</label></p>
+			<p><label><textarea placeholder="Placeholder for <textarea>" style="width: 226px;"></textarea></label></p>
+			<code>
+				&lt;label&gt;&lt;input type="text" placeholder="Input text here"&gt;&lt;/label&gt;<br>
+				&lt;label&gt;&lt;textarea placeholder="Placeholder for &lt;textarea&gt;"&gt;&lt;/textarea&gt;&lt;/label&gt;
+			</code>
+			<p>Стилізація плейсхолдера:</p>
+			<code>
+				label input::-webkit-input-placeholder,<br>
+				label input::-ms-input-placeholder,<br>
+				label input::-moz-placeholder {<br>
+				&nbsp;&nbsp;color: silver;<br>
+				&nbsp;&nbsp;font-style: italic;<br>
+				&nbsp;&nbsp;opacity: 1;<br>
+				}
+			</code>
+			<p>Поля для ввода текста можна обмежити максимально допустимою кількістю символів, що користувач може ввести. Наприклад, для поля ввода телефона можна задати обмеження в 10-13 символів, для логіна при створенні аккаунта - 24, і т.п. За це відповідає атрибут <strong>maxlength</strong>:</p>
+			<p><label>Введіть рік народження: <input type="text" placeholder="Input year" maxlength="4"></label></p>
+			<code>
+				&lt;p&gt;&lt;label&gt;&lt;input type="text" maxlength="4"&gt;&lt;label&gt;&lt;/p&gt;
+			</code>
+			<p>Всі видимі елементи веб-форм можуть мати атрибут <strong>disabled</strong>, який робить елемент неактивним.</p>
+			<p>Схожий атрибут <strong>readonly</strong> - дане поле неможна редагувати.</p>
+			<p><label><input type="checkbox" disabled> - неактивний чекбокс.</label></p>
+			<p><label><input type="text" disabled> - неактивне текстове поле.</label></p>
+			<p><label><input type="text" readonly value="1234"> - текстове поле readonly.</label></p>
+			<code>
+				&lt;label&gt;&lt;input type="checkbox" disabled&gt; - неактивний чекбокс.&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="text" disabled&gt; - неактивне текстове поле.&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="text" readonly value="1234"&gt; - readonly.&lt;/label&gt;
+			</code>
+			<p>Елементи форми можуть знаходитися за межами батьківського елемента форми. З формою такі елементи повинні зв’язуватися по ідентифікатору форми через атрибут <strong>form</strong>:</p>
+			<code>
+				&lt;form id="our_form"&gt;Форма, порожня всередині&lt;/form&gt;<br>
+				...<br>
+				&lt;p>&lt;label&gt;Input name: &lt;input type="text" form="our_form"&gt;&lt;/label&gt;&lt;/p&gt;
+			</code>
+			<!--
+				приклад застосування:
+				<p>bla-bla <form style="display: inline;">...<button> </form> bla-bla</p> - fail
+				<p>bla-bla <button form="..."> bla-bla</p> - win
+				---
+				протестити
+				<form one> ... <button form="two"> ... </form>
+				<form two> ... </form>
+			-->
+			
+			<p>Кожен елемент форми може мати атрибут <strong>value</strong>, яке відповідає те, яке значення передасться на сервер у парі [ключ - значення]. Для текстових полів це значення буде рівним тексту, що ввів користувач. Для решти елементів - можуть бути варіанти.</p>
+			<code>
+				&lt;label&gt;&lt;input type="radio" name="gender" value="male"&gt; ч&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="radio" name="gender" value="female"&gt; ж&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="radio" name="gender" value="trans"&gt; т&lt;/label&gt;
+			</code>
+			<p>Якщо передавати дані за допомогою GET і зробити активним другу радіокнопку, то в результаті буде сформовано URL-адресу:</p>
+			<code>
+				http://site.com/form.html?gender=female
+			</code>
+			<h3>Селектори атрибутів</h3>
+			<p>Статуси видимих елементів веб-форм можуть мати наступні селектори в стилях:</p>
+			<code>
+				input:checked { ... }<br>
+				input:focus { ... }<br>
+				input:disabled { ... }<br>
+				input:readonly { ... }
+			</code>
+			<p>Селектор :focus можуть мати також посилання, кнопки.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Зверстайте технічний макет <a href="https://drive.google.com/open?id=0By5OeYSvSbNLRUhkQW03VUVuZXM">forms.zip</a> <small>(<a href="thumb/forms.jpg">jpg</a>)</small>.</li>
+				<li>Зверстайте макет з анкетою <a href="https://drive.google.com/open?id=0By5OeYSvSbNLRC1YTDMzTDVPUEE">АвтоЗАЗ</a> (<a href="thumb/autozaz.jpg" target="_blank">jpg</a>).</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

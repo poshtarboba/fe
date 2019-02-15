@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Методи строк</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Методи строк</h1>
+			<p>Методи застосовуються до змінних, або до самих строк. Прописуються через крапку:</p>
+			<code>
+				var s = 'Іванов Іван Іванович';<br>
+				var m = s.split();<br>
+				'Hello!'.toUpperCase();
+			</code>
+			<p>Дослідіть результат роботи наступного коду:</p>
+			<code>
+				console.dir(Object(''));<br>
+				console.dir(Object('Hello!'));
+			</code>
+			<p><strong>.toLowerCase(), .toUpperCase()</strong> - повертають строку, в якій змінено регістр.</p>
+			<code>
+				var s = "Привіт, Світ!";<br>
+				console.log(s.toLowerCase());<br>
+				var T = s.toUpperCase();<br>
+				console.log(T);
+			</code>
+			<p><strong>.substring(a, b), .substr(a, b), .slice(a, b)</strong> - повертають частину строки.</p>
+			<code>
+				var s = 'маргарин';<br>
+				console.log(s.substring(3));<br>
+				console.log(s.substring(3, 6));<br>
+				console.log(s.slice(3));<br>
+				console.log(s.slice(3, 6));<br>
+				console.log(s.substr(3));<br>
+				console.log(s.substr(3, 3));
+			</code>
+			<p>Можна задавати від'ємні значення - в такому випадку нумерація символів ведеться з кінця строки.</p>
+			<p><strong>.indexOf(c, n), .lastIndexOf(c, n)</strong> - повертають індекс підстроки в строці.</p>
+			<p>Якщо підстроку не знайдено - буде повернено -1.</p>
+			<code>
+				var s = 'маргарин';<br>
+				console.log(s.indexOf('a'));<br>
+				console.log(s.indexOf('гaр'));<br>
+				console.log(s.indexOf('a', 2));<br>
+				console.log(s.lastIndexOf('a'));
+			</code>
+			<p><strong>.split(sep)</strong> - розбиває строки по роздільнику (сепаратору), повертає масив.</p>
+			<code>
+				var s = '5, 12, привіт, 42';<br>
+				var m = s.split(', ');<br>
+				console.log(m);
+			</code>
+			<p>&nbsp;</p>
+			<p><strong>.charCodeAt(n)</strong> - повертає код символа.</p>
+			<code>
+				var s = 'abc';<br>
+				console.log(s.charCodeAt(0));<br>
+				console.log(s.charCodeAt(1));<br>
+				console.log(s.charCodeAt(2));
+			</code>
+			<p>Обернена функція:</p>
+			<code>
+				var a = String.fromCharCode(97);
+			</code>
+			<p><strong>.trim()</strong> - обрізає пробіли з початку і з кінця строки.</p>
+			<code>
+				&lt;input type="email" name="email" id="email"&gt;<br><br>
+				var email = document.getElementById('email').value.trim();
+			</code>
+			<p>Застарілі або рідковживані методи в лекції не представлено.</p>
+			<p>Методи для роботи з регулярними виразами будуть розглянуті на наступній лекції.</p>
+		</section>
+		
+		<!--
+			TODO: чому починаємо рахувати з 0 (скрита тема)
+			рахуються не предмети, а стани, перше значення - порожньо, пуста корзина, 1 яблуко, два яблука
+			"А то, что полночь в 00:00, а не в 01:01, вас не смущает?)"
+			предмети в програмуванні рахуються з 1, приклад тому - .length
+			http://eterevsky.livejournal.com/239876.html
+			https://habrahabr.ru/post/244765/
+		-->
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Створіть строку та виведіть її в консоль:
+					<code>
+						Компанію "Об'єкт" визнано банкрутом.<br>
+						Реквізити: АУ\\3277085.
+					</code>
+				</li>
+				<li>
+					Створіть 2 строки з вашими ім'ям та прізвищем.<br>
+					Створіть функцію, що повертає строку: ім'я та прізвище, кома і кількість символів (без пробіла).<br>
+					Використайте функцію, задавши їй дві створені змінні, виведіть результат в консоль:
+					<code>
+						Бобир Олександр, 14 символів
+					</code>
+				</li>
+				<li>
+					Дано телефон в форматі "0682091234". Потрібно його перетворити у формат "+38 (068) 209-12-34".<br>
+					Створіть функцію, яка виконує цю задачу.
+				</li>
+				<li>Задайте у змінну своє ім'я. Виведіть його повідомленням на екран у верхньому та нижньому регістрах.</li>
+				<li>Виведіть в консоль індекс букви "ї" в стрічці "Ми приїхали в Запоріжжя".</li>
+				<li>Розбийте цю стрічку на окремі слова та виведіть масив в консоль.</li>
+				<li>
+					Виведіть в консоль підстроку з 6 по 20 символ включно;<br>
+					виведіть в консоль підстроку починаючи з 3 символа, довжиною 8 символів;<br>
+					виведіть в консоль підстроку починаючи з букви ї до пробіла, не включаючи його.
+				</li>
+				<li>
+					Задайте у дві змінні ваші ім'я та прізвище.<br>
+					Створіть функцію, що повертає строку, яка починається з перших трьох символів вашого імені та останніх трьох символів прізвища.<br>
+					Результат виведіть в консоль.
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

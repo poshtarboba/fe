@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Атрибути елементів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Атрибути елементів</h1>
+			<p>До деяких атрибутів можна звертатися напряму, вони вже є присутніми в об'єкті:</p>
+			<ul>
+				<li>e.id</li>
+				<li>e.name</li>
+				<li>e.href</li>
+				<li>e.className</li>
+				<li>e.checked</li>
+				<li>e.disabled</li>
+				<li>...</li>
+			</ul>
+			<p>Та кращий і універсальний спосіб роботи з атрибутами - це декілька методів:</p>
+			<code>
+				p.hasAttribute('title');<br>
+				p.getAttribute('id');<br>
+				p.setAttribute('title', 'Hello');<br>
+				p.removeAttribute('class');
+			</code>
+			<p>Використання властивостей об'єкта напряму загрожує неочевидними помилками. Протестуйте у jsFiddle:</p>
+			<code>
+				&lt;a href="/"&gt;test&lt;/a&gt;<br><br>
+				let a = document.links[0];<br>
+				console.log(a.href);<br>
+				console.log(a.title);<br>
+				console.log(a.getAttribute('href'));<br>
+				console.log(a.getAttribute('title'));
+			</code>
+			<p>Для роботи з атрибутами data-* є спеціальна властивість <strong>.dataset</strong>:</p>
+			<code>
+				p.dataset.id = '32';<br>
+				p.dataset.big = 'true';<br>
+				img.dataset.src = 'image.jpg';<br><br>
+				&lt;p data-id="32" data-big="true"&gt;<br>
+				&lt;img src="..." alt="..." data-src="image.jpg"&gt;
+			</code>
+			<p>Якщо data-атрибут має декілька слів, то до нього треба звертатися як до властивості в форматі camelCase:</p>
+			<code>
+				&lt;input type="text" <strong>data-max-length</strong>="32" <strong>data-valid-type</strong>="firstUpper"&gt;<br><br>
+				let input = document.querySelector('input');<br>
+				let max = parseInt(input<strong>.dataset.maxLength</strong>);<br>
+				input<strong>.dataset.validType</strong> = 'email';
+			</code>
+			<h3>Завдання</h3>
+			<p>Виконуйте у jsFiddle, CodePen.</p>
+			<ol>
+				<li>Створіть html-код з заголовком, посиланням, зображенням &lt;img src="..." width="32"&gt;.</li>
+				<li>Виведіть повідомлення (alert) якщо у зображення не буде атрибута alt.</li>
+				<li>Змініть зображення у картинки, задавши нове значення атрибута src.</li>
+				<li>Якщо посилання має протокол http - задайте йому червоний колір тексту, якщо https - зелений.</li>
+				<li>Приберіть атрибут width у зображення.</li>
+				<li>Перед зміною зображення картинки зберігайте старий url у атрибут data-src.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

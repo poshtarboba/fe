@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<title>Frontend. Вага стилів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Вага стилів</h1>
+			<p>В межах однієї веб-сторнки може бути багато тегів з однаковими класами, та ідентифікатори не повинні повторюватися, вони є унікальними:</p>
+			<code>
+				&lt;div class="box" id="box"&gt;...&lt;/div&gt;<br>
+				&lt;div class="box" id="box2"&gt;...&lt;/div&gt;<br>
+				&lt;div class="box" id="box3"&gt;...&lt;/div&gt;
+			</code>
+			<p>Селектори в CSS-коді можуть містити назви тегів, класи та ідентифікатори:</p>
+			<code>
+				div { ... }<br>
+				div.box { ... }<br>
+				div#box { ... }<br>
+				#box { ... }<br>
+				.box { ... }<br>
+				#box1.box { ... }<br>
+				.box#box2 { ... }<br>
+				div.box#box { ... }
+			</code>
+			<p>Стилі перекривають один одного, який стиль стоїть нижче в коді - той і перекриє попередні стилі (за умови, що у селекторів буде однакова вага).</p>
+			<p>Елементи селектора мають умовну вагу. Для всього селектора вага вважається сумою всіх його елементів.</p>
+			<p>Для простоти розрахунку вагу елементів прийнято вважати такою:</p>
+			<code>
+				стилі браузера - 0<br>
+				* - 0.1<br>
+				тег - 1<br>
+				клас - 10<br>
+				id - 100<br>
+				інлайновий стиль (внутритеговий, індивідуальний) - 1000<br>
+				!important - 10000
+			</code>
+			<p><strong>!important</strong> - костиль, який можна додавати до стилів для збільшення їх ваги. Це слово зі знаком оклику записується в кінець значення стиля через пробіл:</p>
+			<code>
+				.green { color: green !important;}<br>
+				.section h2 { color: blue;}<br><br>
+				&lt;div class="section"&gt;&lt;h2&gt;Блок 1 ...<br>
+				&lt;div class="section"&gt;&lt;h2&gt;Блок 2 ...<br>
+				&lt;div class="section"&gt;&lt;h2 class="green"&gt;Блок 3 ...<br>
+				&lt;div class="section"&gt;&lt;h2&gt;Блок 4 ...
+			</code>
+			<p>Порахуйте вагу селекторів:</p>
+			<code>
+				p { color: red;}<br>
+				p * { color: green;}<br>
+				p.big span { color: yellow;}<br>
+				.news h2#title { color: blue;}<br>
+				span.active + span + span { color: aqua;}<br>
+				&lt;p class="violet" style="color: violet;"&gt;<br>
+				p { color: pink !important; font-size: 24px;}
+			</code>
+			<p>Та 10-кратні різниці - це лище умовність, 11 класів в селекторі не будуть мати більшу вагу за один ідентифікатор. І 20 теж, і 9000, будь-яка кількість класів слабші за один ідентифікатор.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

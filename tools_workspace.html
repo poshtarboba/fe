@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Організація робочого простору</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.filerus strong:nth-child(1) { display: block; font-size: 40px; line-height: 50px; color: red;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Організація робочого простору</h1>
+
+		<section>
+			<h2>Робоче місце веб-розробника</h2>
+			<p>Робоче місце повинно бути обладнане зручним столом і кріслом, в якому ви будете проводити по 6-12 годин на добу. Не сідайте навпроти вікна - яскраве світло швидко втомлюватиме очі. Також не працюйте в повній темряві, вмикайте настольну лампу, торшер. В темний період зменшуйте яскравість екранів.</p>
+			<p>Системний диск комп'ютера чи ноутбука повинен бути SSD, це значно прискорить запуск і роботу програм (IDE, Photoshop, браузера).</p>
+			<figure>
+				<img src="img/tools_workspace_02.jpg" alt="SSD">
+				<figcaption>Жорсткий диск SSD</figcaption>
+			</figure>
+			<p>На ноутбуці з невеликим екраном не завжди зручно створювати сайти чи програми. Попіклуйтесь про встановлення додаткового великого монітора з IPS-матрицею. Раджу використовувати кронштейни, щоб підставки під монітори не займали місця на столі.</p>
+			<p>Обираючи ноутбук для роботи в першу чергу звертайте увагу на об'єм пам'яті, наявність чи можливість встановити SSD. Процесор, відеокарта, розмір жорсткого диску, роздільна здатність екрану мало впливатимуть на швидкодію вашої роботи (у веб-розробці ви не помітите різниці між бюджетним AMD і Intel Core i7, між вбудованою найдешевшою і дискретною потужною відеокартами). Малопотужний ноутбук буде легшим і довше працюватиме від батареї, матиме невеликий блок живлення.</p>
+			<p>Вибирайте ноутбук з мінімум 8 Гб ОЗУ. 128 Гб SSD буде цілком достатньо для роботи, якщо ви користуватиметесь однією ОС, розбийте диск на 80 Гб для системи і що залишиться - для роботи.</p>
+			<p>Якщо ви надаєте перевагу ОС Windows - для деяких проектів вам знадобиться Linux (або MacOS), на один ноутбук можна поставити дві операційних системи, але жорсткий диск знадобиться більшого об'єму - орієнтовно + 40 Гб.</p>
+			<p>З технікою іноді трапляються неприємності - вона ламається, розбивається, злітає ОС. Найгірше, коли це стається під кінець дедлайна важливого проекту. Тому я раджу обзавестися запасним ноутбуком, можна взяти б/в, за 200-400 доларів, з меншою кількістю пам'яті.</p>
+			<figure>
+				<img src="img/tools_workspace_03.jpg" alt="Workplace">
+				<figcaption>Робоче місце веб-розробника</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Організація робочих файлів у комп'ютері</h2>
+			<p>З часом у вас буде все більше і більше проектів, різноманітних робіт.</p>
+			<p>Щоб дотримуватися якогось порядку, не перетворити робочий стіл і вінчестер на хаотичне нагромадження файлів, прислухайтесь до порад.</p>
+			<p>Створіть папку <strong>work</strong> на диску D:\ (чи будь-якому іншому, не на C:\), для MacOS та Linux - в документах, домашньому каталозі.</p>
+			<p>Взагалі-то, бажано тримати робочу папку на іншому жорсткому диску, якщо це можливо. Час від часу робити архівацію (backup) на флешку чи зовнішній жорсткий диск, активно використовувати хмарні сервіси (github, dropbox, google drive і т.п.).</p>
+			<figure>
+				<img src="img/tools_workspace_01.png" alt="Workspace">
+				<figcaption>Папка work та її вміст</figcaption>
+			</figure>
+			<p>Подальша структура вашої робочої папки:</p>
+			<code>
+				<strong>D:\work\</strong><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month1">2016-11</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month1">2016-12</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month1">2017-01</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month1">2017-02</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month1">2017-03</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;archive\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month2">2015-09</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month2">2015-10</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month2">2015-11</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month2">2015-12</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-month2">2015-01</span>\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;some_folder<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;some_other_folder<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;test
+			</code>
+			<p>Щоб в робочій папці не накопичувалися десятки папок з місяцями (що утруднить роботу) - старіші місяці скидайте в папку archive.</p>
+			<p>В папках кожного місяця створюйте папки проектів:</p>
+			<code>
+				<strong>D:\work\<span class="js-year">2016</span>-<span class="js-month">12</span>\</strong><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;andrey_izoterika<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;andrey_strahovka<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;andrey_magazin_eurohimiya<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;futbolki<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;kolesov<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;project_name<br>
+			</code>
+			<p>Якщо потрібна звичайна верстка, без веб-серверів, зборщиків, то структура папки проекта має бути такою:</p>
+			<code>
+				<strong>D:\work\<span class="js-year">2016</span>-<span class="js-month">12</span>\futbolki\</strong><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;html &nbsp;&nbsp; <em>(папка з версткою)</em><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;psd &nbsp;&nbsp;&nbsp; <em>(папка з макетами)</em><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;tz &nbsp;&nbsp;&nbsp;&nbsp; <em>(або todo, папка з технічним завданням)</em><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;futbolki_<span class="js-date">20151204</span>.zip &nbsp;&nbsp; <em>(архів для клієнта)</em><br>
+			</code>
+			<p class="filerus">
+				<strong>Увага!</strong>
+				<strong>Не використовуйте кирилицю, великі літери та пробіли</strong> в іменах файлів та шляхах.<br>
+				З кирилицею є великі проблеми якщо передаватимете файли в архіві на інший комп'ютер з іншою операційною системою чи заливатимете на FTP (linux).<br>
+				З великими літерами часто виникають проблеми на серверах.<br>
+				З пробілами часто бувають проблеми при вказуванні шляху до файлу.<br>
+				Тому завжди використовуйте в іменах папок та файлів лише:<br>
+				<strong class="success">маленькі англійські літери та дифіс чи підкреслення замість пробіла</strong>.
+			</p>
+			<p>Структура кожної папки проекту:</p>
+			<code>
+				<strong>D:\work\<span class="js-year">2016</span>-<span class="js-month">12</span></span>\futbolki\</strong><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;html<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;images<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;css<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;js<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.html<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;psd<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;futbolki.psd<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;futbolki.zip<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;tz (або todo)<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tz_futbolki.zip<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;техническое задание.doc<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes.txt
+			</code>
+		</section>
+		
+		<section>
+			<h2>Формат архівів</h2>
+			<p>Завжди використовуйте лише архів формату <strong class="success">ZIP</strong>. Архіви в форматах RAR, 7z можуть не розпакуватися у замовника.</p>
+			<p>Завжди добавляйте дату до імені архіву.</p>
+			<p>Завжди давайте зрозумілі назви архівів, не плодіть файли html.zip, html(2).zip, html(3).zip...</p>
+			<code>
+				<strong style="font-size: 2em; line-height: 2em;" class="success">projectName_date.zip</strong><br>
+				futbolki_<span class="js-date">20181110</span>.zip<br>
+				futbolki_<span class="js-date">20181110</span>a.zip<br>
+				futbolki_<span class="js-date">20181110</span>b.zip<br>
+				futbolki_<span class="js-date">20181110</span>c.zip<br>
+			</code>
+			<p>Такий формат зручний у використанні: одразу зрозуміло що за проект і коли був створений архів. У файлових менеджерах списки таких архівів зручно сортуються за датою.</p>
+		</section>
+
+	</div>
+</div>
+
+<script>
+	(function(){
+		/* поміняти дати у лекції на поточні */
+		function add0(n){ return n < 10 ? '0' + n : n; }
+		let d = new Date(), y = d.getFullYear(), m = d.getMonth() + 1;
+		d = '' + y + add0(m) + add0(d.getDate());
+		let m1 = document.querySelectorAll('.js-month1');
+		let m2 = document.querySelectorAll('.js-month2');
+		m1.forEach(function(span, i){
+			let year = y, month = m - m1.length + i + 1;
+			if (month < 1) { month += 12; year -= 1; }
+			span.innerHTML = year + '-' + add0(month);
+		});
+		m2.forEach(function(span, i){
+			let year = y, month = m - m1.length - m2.length + i + 1;
+			if (month < 1) { month += 12; year -= 1; }
+			span.innerHTML = year + '-' + add0(month);
+		});
+		document.querySelectorAll('.js-date').forEach(function(span){ span.innerHTML = d; });
+	})();
+</script>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

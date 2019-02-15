@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Програма Adobe Photoshop</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Програма Adobe Photoshop</h1>
+
+		<section>
+			<h2>Альтернативи</h2>
+			<p>Під ОС Linux є популярний і потужний редактор <a href="https://www.gimp.org/" target="_blank">Gimp</a> (портований і в інші операційні системи). Проте, він не повністю підтримує формат PSD, можливі проблеми з відображенням шарів, кольорів і т.п., тому, я його не рекомендую використовувати у комерційній веб-розробці.</p>
+			<p>Веб-дизайнери часто створюють макети у програмі <a href="https://www.sketchapp.com/" target="_blank">Sketch</a> (станом на 2018 рік існує версія лише під MacOS). Користувачі інших ОС можуть відкрити макети Sketch в онлайн-редакторах (дивись нижче).</p>
+			<p>Існує хороший інструмент для верстальника <a href="https://avocode.com/" target="_blank">Avocode</a>: відкриває макети фотошопа, скетча, фігми, адоб xd. Є зручний експорт картинок, у блоків одразу можна взяти їх стилі (проте, для навчання ця програма - поганий варіант: ви повинні навчитися розуміти стилі, а не копіювати).</p>
+			<p>Є онлайн-редактори, наприклад, <a href="https://www.photopea.com/" target="_blank">PhotoPea</a>, <a href="https://sketch.io/sketchpad/" target="_blank">Sketch</a>, <a href="https://studio.psdetch.com/" target="_blank">PSDец</a>, які відкривають макети PSD, Sketch. Для тимчасового користування, використання чужого комп'ютера, планшета вони ще годяться, але не для постійної роботи.</p>
+			<p>Все популярнішими стають онлайн-конструктори макетів: <a href="https://www.figma.com/" target="_blank">Figma</a>, <a href="https://share.axure.com/" target="_blank">Axure</a>, і т.п.</p>
+		<section>
+		
+		<section>
+			<h2>Налаштування Adobe Photoshop</h2>
+			<p>Запустіть програму Adobe Photoshop, скачайте і відкрийте <a href="https://drive.google.com/open?id=0By5OeYSvSbNLNWtDYUdaZ3dYRXM" target="_blank">макет сайту з продажу футболок</a> <small>(<a href="thumb/futbolki.jpg" target="_blank">jpg</a>)</small>.</p>
+			<p><kbd>Ctrl</kbd> + <kbd>H</kbd> - прибрати блакитні лінії (направляючі).</p>
+			<figure>
+				<img src="img/tools_photoshop_01.png" alt="Photoshop Screenshot">
+				<figcaption>Скріншот головного вікна Adobe Photoshop</figcaption>
+			</figure>
+			<p>Для порізки спочатку нам необхідно трохи налаштувати фотошоп.</p>
+			<p>Першим чином включіть панель інструментів роботи з текстом:</p>
+			<code>
+				Window &gt; Character
+			</code>
+			<p>Ми будемо використовувати панелі <strong>Layers</strong>, <strong>Character</strong>, <strong>Paragraph</strong>, решту панелей можна прибрати, щоб вони нас не відволікали і не займали простору екрану.</p>
+			<p>Виберіть інструмент Move Tool (зліва перша іконка зверху), поставте галочку "Auto-Select" і в списку виберіть Layer. Це дозволить кліком мишки активізувати той шар, по якому елементу ми клацнули.</p>
+			<figure>
+				<img src="img/tools_photoshop_02.png" alt="Move Tool">
+				<figcaption>Налаштування інструменту Move Tool</figcaption>
+			</figure>
+			<p>Налаштуйте використання одиниць вимірювання, встановивши значення <strong>Pixels</strong> в перших двох пунктах:</p>
+			<code>
+				Edit &gt; Preferences &gt; Units &amp; Rules...
+			</code>
+			<figure>
+				<img src="img/tools_photoshop_03.png" alt="Units and Rules">
+				<figcaption>Налаштування одиниць вимірювання</figcaption>
+			</figure>
+			<p>За потреби можна переналаштувати розміщення тимчасових файлів фотошопа:</p>
+			<code>
+				Edit &gt; Preferences &gt; Performance...
+			</code>
+			<figure>
+				<img src="img/tools_photoshop_04.png" alt="Performance">
+				<figcaption>Налаштування розміщення тимчасових файлів</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Основні інструменти верстальника</h2>
+			<figure>
+				<!-- TODO: переробити скріншот - у зума інші гарячі клавіші -->
+				<img src="img/tools_photoshop_05.png" alt="Screenshot">
+				<figcaption>Інструменти верстальника</figcaption>
+			</figure>
+			<p><strong>Move Tool, стрілочка</strong> <kbd>v</kbd> - вибір елементів, шарів, їх переміщення по канві.</p>
+			<p><strong>Slice Tool, скальпель</strong> <kbd>c</kbd> - вирізання елементів з макету (створює рамочки, які в подальшому будуть вирізані).</p>
+			<p><strong>Eyedropper Tool, піпетка</strong> <kbd>i</kbd> - визначення кольору (не використовувати для тексту!).</p>
+			<p><strong>Horizontal Type Tool, текст</strong> <kbd>t</kbd> - визначення параметрів шрифта, кольору тексту.</p>
+			<p><strong>Hand Tool, рука</strong> <kbd>h</kbd>, <kbd>Space</kbd> - переміщення канви, якщо вона не влізає на екран.</p>
+			<p><strong>Zoom Tool, зум</strong> <kbd>z</kbd>, <kbd>ctrl</kbd> + <kbd>+/-</kbd>, <kbd>alt</kbd> + <kbd>scroll</kbd>, - збільшення/зменшення маштабу канви.</p>
+			<figure>
+				<img src="img/tools_photoshop_06.png" alt="Screenshot">
+				<figcaption>Панель шарів</figcaption>
+			</figure>
+			<p><strong>Opacity, Fill</strong> - прозорість шару.</p>
+			<p><strong>Око</strong> - видимість шару, включити/відключити шар.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

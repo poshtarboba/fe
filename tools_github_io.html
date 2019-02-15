@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Хостинг на github.io</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Хостинг на github.io</h1>
+			<p>GitHub надає безкоштовний хостинг для ваших проектів (GitHub Pages). На кожен ваш логін можна створити один сайт виду:</p>
+			<code>
+				https://ваш_логін.github.io
+			</code>
+			<p>Цей сайт ви можете використовувати собі як портфоліо, викладати туди свої проекти, свою інформацію.</p>
+			<p>Свої лекції я також тримаю на цьому сервісі.</p>
+			<p>Даний хостинг не має бекенду - ви не можете використовувати базу даних, серверні скрипти та служби, зборщики і т.п. Лише фронтенд-частину: окремі веб-сторінки, стилі, зображення, документи, js-скрипти та JSON-файли.</p>
+			<p>Отже, приступимо. Зайдіть на <a href="https://github.com/" target="_blank">github.com</a>, створіть новий проект (репозиторій), клацнувши по плюсику вгорі справа і задайте йому ім'я такого виду:</p>
+			<code>
+				ваш_логін.github.io<br><br>
+				<em>// наприклад:</em><br>
+				poshtarboba.github.io
+			</code>
+			<p>Перше слово - ваш логін (його ви можете побачити правіше - Owner). Далі йде крапка і домен github.io.</p>
+			<p>Ви не можете створювати довільні піддомени на GitHub Pages, лише один піддомен на один аккаунт.</p>
+			<p>Назва репозиторія hello.github.io не призведе до створення відповідного сайту, якщо ваш логін не hello.</p>
+			<figure>
+				<img src="img/tools_github_io_01.png" alt="Створення репозиторія для github.io">
+				<figcaption>Створення репозиторія для github.io</figcaption>
+			</figure>
+			<p>В папці <strong>work</strong> створіть папку з назвою вашого репозиторія: <strong>ваш_логін.github.io</strong>. Цю папку не треба ховати в підпапках років і місяців, скоріш за все ви будете часто працювати з цим репозиторієм, хай він буде завжди під рукою.</p>
+			<p>Клонуйте репозиторій в папку work (підпапка з назвою репозиторія створиться сама):</p>
+			<code>
+				d:\work&gt; <strong>git clone https://github.com/ваш_логін/ваш_логін.github.io.git</strong>
+			</code>
+			<p>Створіть index.html (не забудьте про кодування UTF-8, якщо користуєтесь Notepad++):</p>
+			<code>
+				&lt;meta charset="utf-8"&gt;<br>
+				&lt;h1&gt;Привіт. Це сайт і портфоліо Васі Пупкіна&lt;/h1&gt;
+			</code>
+			<p>Заляйте файл на GitHub:</p>
+			<code>
+				git add .<br>
+				git commit -m "hello github.io"<br>
+				git push
+			</code>
+			<p>Зачекайте секунд 30-60 і спробуйте зайти на ваш новий сайт https://ваш_логін.github.io</p>
+		</section>
+		
+		<section>
+			<h2>Окремі репозиторії як папки проекта github.io</h2>
+			<p>Наприклад, ви робите портфоліо на гітхабі і хочете викласти свої роботи в папки:</p>
+			<code>
+				<strong>vasyapupkin.github.io:</strong><br>
+				project1/<br>
+				project2/<br>
+				magazin-obuvi/<br>
+				index.html<br>
+				style.css
+			</code>
+			<p>В цьому випадку ваш основний репозиторій швидко розростеться до великих об'ємів, його адміністрування буде неефективним. Окрім того, GitHub має обмеження на розмір репозиторія (станом на 2018 рік - 1 Gb), але кількість репозиторіїв необмежена.</p>
+			<p>Основний репозиторій тримайте в чистоті, без зайвих файлів:</p>
+			<code>
+				<strong>vasyapupkin.github.io:</strong><br>
+				index.html<br>
+				styles.html
+			</code>
+			<p>Кожну роботу заливайте в окремий репозиторій. Створюйте нову гілку від master і заливайте на гітхаб:</p>
+			<code>
+				git checkout -b gh-pages<br>
+				git push origin gh-pages
+			</code>
+			<p>Відкрийте налаштування репозиторія на GitHub (вкладка Settings) і переконайтесь, що поточний репозиторій став підрозділом вашого проекту github.io:</p>
+			<figure>
+				<img src="img/tools_github_io_02.png" alt="В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages">
+				<figcaption>В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages</figcaption>
+			</figure>
+			<p><strong>Порада:</strong> зручно називати репозиторії проектів для вашого портфоліо наступним чином:</p>
+			<code>
+				<strong>рік-назва_проекту</strong><br>
+				<strong>рік-місяць-назва_проекту</strong><br>
+				2017-project1<br>
+				2017-project2<br>
+				2018-04-magazin-obuvi<br>
+				2018-04-beer_world<br>
+				2018-07-multiplex<br>
+			</code>
+			<h3>Практика</h3>
+			<ol>
+				<li>Створіть на GitHub репозиторій test-io</li>
+				<li>Клонуйте його в папку поточного місяця в своїй робочій папці.</li>
+				<li>
+					Створіть файл index.html:
+					<code>
+						&lt;meta charset="utf-8"&gt;<br>
+						&lt;h1&gt;Це підпапка test-io мого проекта на github.io&lt;/h1&gt;
+					</code>
+				</li>
+				<li>
+					Закиньте файл на сервер, створіть гілку gh-pages і її також запуште:
+					<code>
+						git add .<br>
+						git commit -m "make subpage for my github.io"<br>
+						git push<br>
+						git checkout -b gh-pages<br>
+						git push origin gh-pages
+					</code>
+				</li>
+				<li>Перевірте налаштування репозиторія на GitHub.</li>
+				<li>Зайдіть на новостворену сторінку https://ваш_логін.github.io/test-io/</li>
+			</ol>
+
+		</section>
+	</div>
+</div>
+
+<!--
+підключити будь-який репозиторій до github.io
+https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/
+-->
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

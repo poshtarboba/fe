@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Бутстрап 4</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Бутстрап 4</h1>
+			<p>Що змінилося у новій версії Bootstrap?</p>
+			<ul>
+				<li>Замість float колонки вирівнюються за допомогою flex</li>
+				<li>
+					Стоп-точок стало на одну більше:<br>
+					- xs<br>
+					- sm <small>(576+)</small><br>
+					- md <small>(768+)</small><br>
+					- lg <small>(992+)</small><br>
+					- xl <small>(1200+)</small>
+				</li>
+				<li>
+					Замість розмірів у пікселях тепер розміри задаються у відносних величинах rem та em<br>
+					<small>(1rem = розмір базового шрифта, заданого у body; 1em = поточний розмір шрифта у елемента)</small>
+				</li>
+				<li>Стилі тепер розділені на 3 окремих файла: сітка, обнуляшка і все решта (тема)</li>
+				<li>Гліф-іконки тепер не входять до складу бутстрапа, використовуйте <a href="layout_fonts_ext.html#icons" target="_blank">іконочні шрифти</a></li>
+			</ul>
+			<p>Взагалі, змін є багато, деякі з них для нас малозначущі:</p>
+			<ul>
+				<li>Збільшено шрифт за замовчуванням з 14px до 16px</li>
+				<li>Змінено дизайн деяких елементів, наприклад - кнопок (прибрали тіні, градієнт)</li>
+				<li>Згідно концепції <a href="https://material.io/guidelines/" target="_blank">Material Design</a> замість .panel використовуються .card<br><small>(Material Design був популярним в 2014-2016 роках, зараз ця концепція трохи застаріла)</small></li>
+				<li>Замість препроцесора Less у четвертій версії Bootstrap використовується Sass</li>
+				<li>В зв'язку з переходом на flex і EcmaScript 6 старі браузери тепер не підтримуються, лише IE10+</li>
+				<li>і т.п.</li>
+			</ul>
+			<p><a href="https://getbootstrap.com/docs/4.0/getting-started/download/" target="_blank">Скачайте Bootstrap 4</a>, дослідіть файли стилів, сітку.</p>
+			<p><a href="https://youtu.be/g25wH4Xtyh8" target="_blank">youtube: Bootstrap 4</a></p>
+		</section>
+
+		<!--
+		TODO:
+		<section>
+			<h2>Розробка власного фрейм-ворка</h2>
+			http://nicothin.github.io/NTH-start-project/blocks-demo.html
+		</section>
+		-->
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

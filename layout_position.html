@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Стиль position</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Стиль position</h1>
+			<p>Стиль <strong>position</strong> дозволяє змінювати розташування елемента відносно свого початкового положення або відносно положення батьківських елементів.</p>
+			<p>Може приймати такі значення:</p>
+			<code>
+				position: static;<br>
+				position: relative;<br>
+				position: absolute;<br>
+				position: fixed;
+			</code>
+			<p><strong>static</strong> - значення по-замовчуванню. На статичні блоки не впливають стилі left, top, right, bottom. Статичні блоки можна зміщувати зі своїх позицій за допомогою зовнішніх відступів, (<a href="https://jsfiddle.net/poshtarboba/p5e4sr9h/1/" target="_blank">jsFiddle</a>).</p>
+			<p><strong>relative</strong> - відносне позиціонування елемента. Стилі left, top, right, bottom зсувають елемент відносно поточної позиції, (<a href="https://jsfiddle.net/poshtarboba/3h7bwzh5/" target="_blank">jsFiddle</a>).</p>
+			<p><strong>absolute</strong> - абсолютне позиціонування елемента. Стилі left, top, right, bottom зсувають елемент відносно країв першого НЕ-статичного батьківського елемента. Якщо серед батьків немає НЕ-статичних батьків - позиціонування відбувається відносно вікна браузера в момент завантаження сторінки (<a href="https://jsfiddle.net/poshtarboba/o1qn60yw/" target="_blank">jsFiddle</a>).</p>
+			<p><strong>fixed</strong> - фіксоване позиціонування елемента.  Стилі left, top, right, bottom зсувають елемент відносно вікна браузера, прокрутка сторінки не впливає на положення елемента у вікні браузера, (<a href="https://jsfiddle.net/poshtarboba/ysbqkney/" target="_blank">jsFiddle</a>).</p>
+			<p>При абсолютному та фіксованому позиціонуванні батьківські елементи перестають бачити свої дочірні елементи і схлопуються (абсолютно і фіксовано зпозиціоновані блоки виділяються в окремий шар). Інші блоки, текст також не бачать ці блоки (<a
+				href="https://jsfiddle.net/poshtarboba/jmf424yp/" target="_blank">jsFiddle</a>).</p>
+			<p>Абсолютне та фіксоване позиціонування перетворюють будь-який елемент у блочний, стиль display буде проігнорований, його задавати не треба (<a href="https://jsfiddle.net/poshtarboba/yqsxop8m/" target="_blank">jsFiddle</a>).</p>
+			<p>Позиціонування можна задавати від'ємними значеннями. А також використовувати пари left і right, top і bottom, при цьому, якщо не задана ширина чи висота - блок буде розтягуватися відповідно до цих значень.</p>
+			<p>Стилі <strong>left, top, right, bottom</strong> ігноруються для статичних блоків, для решти блоків - задають зміщення блоку зліва, зверху, справа та знизу.</p>
+			<p>На перший час <span class="danger">запам'ятайте таке правило</span>:</p>
+			<code>
+				елементу - absolute, батьку - relative
+			</code>
+			<p>Поексперементуйте у <a href="https://jsfiddle.net/poshtarboba/nkub4jm9/" target="_blank">jsFiddle</a>: розкоментовуйте по черзі стилі і дивіться результат.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Додаткові матеріали</h2>
+			<p><a href="http://jsfiddle.net/poshtarboba/qv1g5a3a/">jsFiddle: фіксований блок</a>.</p>
+			<p><a href="https://habrahabr.ru/post/189696/">Хабра: Абсолютное горизонтальное и вертикальное центрирование</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

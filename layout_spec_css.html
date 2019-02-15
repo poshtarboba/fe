@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Більше стилів богу стилів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.twocol { overflow: hidden;}
+		.twocol>div { width: 50%; float: left; padding: 20px 0;}
+		.boxsz { margin: 0; padding: 0 60px; width: 300px; background: #ccf;}
+		.boxsz.ok { box-sizing: border-box;}
+		.boxsz span { display: block; padding: 4px 10px; height: 100px; background:#aaa;}
+		.obvodka { color: #fff; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black, -1px 0 0 black, 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black; }
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Більше стилів богу стилів</h1>
+			<p><strong>box-sizing</strong> - визначає, чи враховувати внутрішні відступи і границі в загальний розмір блоку.</p>
+			<p>При значенні <strong>box-sizing: content-box;</strong> внутрішні відступи і границі не враховуються в розмір блока, width та height задають розмір контента.</p>
+			<p>При значенні <strong>box-sizing: padding-box;</strong> внутрішні відступи враховуються в розмір блока, а границі - ні.</p>
+			<p>При значенні <strong>box-sizing: border-box;</strong> внутрішні відступи і границі враховуються в розмір блока.</p>
+			<div style="font-size: 80%;" class="twocol">
+				<div><p class="boxsz"><span>width: 300px;<br>padding: 0 60px;</span></p></div>
+				<div><p class="boxsz ok"><span>width: 300px;<br>padding: 0 60px;<br>box-sizing: border-box;</span></p></div>
+			</div>
+			<p>&nbsp;</p>
+			<p><strong>box-shadow</strong> - добавляє тінь до блока.</p>
+			<code>
+				span {<br>
+				&nbsp;&nbsp;display: inline-block;<br>
+				&nbsp;&nbsp;padding: 20px 40px;<br>
+				&nbsp;&nbsp;<strong>box-shadow: 5px 5px 10px rgba(0,0,0,0.3);</strong><br>
+				}<br>
+				span ~ span { box-shadow: 3px 3px 10px rgba(255,0,0,0.3) <strong>inset</strong>;}<br>
+				span.four { box-shadow: 5px 5px 5px <strong>10px</strong> rgba(0,0,255,0.5);}
+			</code>
+			<p style="margin-bottom: 20px;">
+				<span style="display: inline-block; padding: 20px 40px; box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">Блок з тінню ззовні</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="display: inline-block; padding: 20px 40px; box-shadow: 3px 3px 10px rgba(255,0,0,0.3) inset;">Блок з тінню всередині</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="display: inline-block; padding: 20px 40px; box-shadow: 5px 5px 5px 10px rgba(0,0,255,0.5);">Блок</span>
+			</p>
+			<p>Можна застосувати декілька тіней одночасно, записавши їх через кому:</p>
+			<code>
+				.box { box-shadow: 5px 5px 10px rgba(0,0,0,0.3),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				3px 3px 10px rgba(255,0,0,0.3) inset,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				5px 5px 5px 10px rgba(0,0,255,0.5); }
+			</code>
+			<p>&nbsp;</p>
+			<p><strong>text-shadow</strong> - добавляє тінь до тексту.</p>
+			<code>
+				p { text-shadow: 3px 3px 10px rgba(255,0,0,0.3);}<br>
+				p.white { color: #fff; text-shadow: 0 0 5px rgba(0,0,0,1);}<br>
+			</code>
+			<p style="text-shadow: 3px 3px 10px rgba(255,0,0,1);">Текст з червоною тінню.</p>
+			<p style="color: #fff; text-shadow: 0 0 5px rgba(0,0,0,1);">Білий текст на білому фоні.</p>
+			<p>Декількома тінями можна зробити обводку довкола текста:</p>
+			<code>
+				.text { text-shadow: -1px -1px 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				1px -1px 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				-1px 1px 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				1px 1px 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				-1px 0 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				1px 0 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				0 -1px 0 black,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				0 1px 0 black; }
+			</code>
+			<p class="obvodka">Білий текст з чорною обводкою.</p>
+			<p>&nbsp;</p>
+			<p><strong>Градієнт</strong>.</p>
+			<p>Градієнт добавляється до фона як зображення:</p>
+			<code>
+				.bg {<br>
+				&nbsp;&nbsp;background: #f00; /* фон якщо браузер не підтримує градієнт */<br>
+				&nbsp;&nbsp;background-image: linear-gradient(to bottom, #f00, #00f);<br>
+				}<br>
+				.bg1 {<br>
+				&nbsp;&nbsp;background-image: linear-gradient(30deg, #f00, #0f0, #f0f, #00f);<br>
+				}
+			</code>
+			<p>
+				<span style="display: inline-block; padding: 40px; color: #fff; background: #f00; background-image: linear-gradient(to bottom, #f00, #00f);">Блок з градієнтом</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="display: inline-block; padding: 40px; color: #fff; background: #f00; background-image: linear-gradient(30deg, #f00, #0f0, #f0f, #00f);">Блок .bg1 з градієнтом</span>
+			</p>
+			<p>Повторювані та радіальні градієнти:</p>
+			<code>
+				background: repeating-linear-gradient(red, yellow 10%, green 20%);<br>
+				background: radial-gradient(red, yellow, green);<br>
+				background: radial-gradient(red 5%, yellow 15%, green 60%);<br>
+				background: radial-gradient(circle, red, yellow, green);<br>
+				background: repeating-radial-gradient(red, yellow 10%, green 15%);
+			</code>
+			<p>Про зміщення центру градієнта можна почитати на сайті <a href="http://www.w3schools.com/css/tryit.asp?filename=trycss3_gradient-radial_size" target="_blank">w3schools</a></p>
+			<p><a href="http://lea.verou.me/css3patterns/" target="_blank">CSS3 Patterns Gallery</a>.</p>
+			<p>&nbsp;</p>
+			<p>Стилі <a href="http://htmlbook.ru/css/counter-increment" target="_blank">counter-increment</a> та <a href="http://htmlbook.ru/css/counter-reset" target="_blank">counter-reset</a> застосовуються для псевдоелементів :before, :after у списках &lt;ul&gt;, &lt;ol&gt;, &lt;dl&gt; для створення нумерації пунктів списків.</p>
+			<p>&nbsp;</p>
+			<p>Стиль <strong>cursor</strong> задає вид курсора коли користувач наведе вказівник миші на блок.</p>
+			<p>Всі курсори можна подивитися на <a href="https://webref.ru/css/cursor" target="_blank">webref.ru/css/cursor</a></p>
+			<figure>
+				<img src="img/layout_spec_css_01.png" alt="cursor">
+				<figcaption>Вигляд курсорів.</figcaption>
+			</figure>
+			<p>Можна задати свій власний курсор, поексперементуйте у jsFiddle.</p>
+			<p>Після коми задається курсор, що буде застосовано, якщо картинка не загрузиться</p>
+			<code>
+				.box {	cursor: url(images/my-cursor.png), auto; }
+			</code>
+			<p><a href="http://cdn-img.easyicon.net/png/5389/538929.gif" target="_blank">Приклад картинки</a>, хто не бажає шукати власну.</p>
+			<p>&nbsp;</p>
+			<p>Стилі <strong>letter-spacing</strong> та <strong>word-spacing</strong> служать для зміни міжсимвольних та міжслівних інтервалів. За замовчуванням значення - 0(px).</p>
+			<p>Стиль <strong>white-space</strong> регулює поведінку при перенесенні рядків, відображенні тексту. <em>white-space: nowrap;</em> забороняє переніс слів на наступний рядок, <em>white-space: pre;</em> - задає блоку стиль, аналогічний тегу &lt;pre&gt;</p>
+			<code>
+				.text { letter-spacing: 5px;}<br>
+				.text { letter-spacing: -2px;}<br>
+				.text { word-spacing: 20px;}<br>
+				.text { word-spacing: -10px;}<br>
+				.text { white-space: nowrap;}<br>
+				.text { white-space: pre;}
+			</code>
+			<p style="letter-spacing: 5px;">Текст зі стилем letter-spacing: 5px.</p>
+			<p style="letter-spacing: -2px;">Текст зі стилем letter-spacing: -2px.</p>
+			<p style="word-spacing: 20px;">Текст зі стилем word-spacing: 20px.</p>
+			<p style="word-spacing: -10px;">Текст зі стилем word-spacing: -10px.</p>
+			<p style="white-space: nowrap;">Дуже-дуже довгий текст, який не буде переноситися, тому що в нього встановлено заборону переносу строк стильом white-space: nowrap.</p>
+			<p style="white-space: pre;">Текст  з       купою    пробілів  ,  які не   скорочуються  !!</p>
+			<p>Текст, до якого застосовується стиль text-transform: uppercase; виглядає зжатим. До такого тексту зазвичай застосовують розрідження у декілька пікселів: letter-spacing:&nbsp;2px;</p>
+			<p style="text-transform: uppercase;">Привіт, Світ!!!</p>
+			<p style="text-transform: uppercase; letter-spacing: 2px;">Привіт, Світ!!!</p>
+			<p>&nbsp;</p>
+			<p>Стиль <strong>opacity</strong> встановлює рівень прозорості елемента від 0% до 100% або від 0 до 1 дробними числами.</p>
+			<p>Для дробних значень більше 0 і менше 1 нуль можна не вказувати: opacity: .4 (загальне правило в програмуванні).</p>
+			<figure style="background: url(img/bg.png) repeat left top;">
+				<img src="img/cat.jpg" alt="cat opacity" style="opacity: .4;">
+				<figcaption>Картинка з прозорістю 0.4 на фоні</figcaption>
+			</figure>
+			<p>&nbsp;</p>
+			<p>Стиль <strong>overflow</strong> регулює, чи буде відображатися контент за межами блока.</p>
+			<p>overflow-x, overflow-y - обмеження видимості тільки по горизонталі чи вертикалі, часто використовується для відображення однієї полоси прокрутки і приховування іншої.</p>
+			<p>Стиль <strong>text-overflow</strong> схожий стиль, використовується для текста.</p>
+			<code>
+				/* текст в одну строку, якщо задовгий - обривати його трьома крапками: ... */<br>
+				p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+			</code>
+			<p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.</p>
+			<p>Нажаль, цей стиль працює тільки для текста в одну строку.</p>
+			<p>&nbsp;</p>
+			<p><strong>text-decoration</strong> - оформлення тексту:</p>
+			<p style="text-decoration: underline;">text-decoration: underline;</p>
+			<p style="text-decoration: line-through;">text-decoration: line-through;</p>
+			<p style="text-decoration: overline;">text-decoration: overline;</p>
+			<p>&nbsp;</p>
+			<p><strong>text-indent</strong> - зміщення першого рядка тексту:</p>
+			<p style="text-indent: 40px;"><em>text-indent: 40px;</em> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.Lorem ipsum dolor sit amet.</p>
+			<p style="text-indent: -40px;"><em>text-indent: -40px;</em> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.Lorem ipsum dolor sit amet.</p>
+			<p>&nbsp;</p>
+			<p><strong>vertical-align</strong> - розташування строчного елементу у відношенні від базової лінії шрифта:</p>
+			<p>vertical-align: baseline - Зображення <img src="img/cat_small.jpg" width="100"> на базовій лінії шрифта (по замовчуванню).</p>
+			<p>vertical-align: middle - Зображення <img src="img/cat_small.jpg" width="100" style="vertical-align: middle;"> вирівняне по центру.</p>
+			<p>vertical-align: top - Зображення <img src="img/cat_small.jpg" width="100" style="vertical-align: top;"> вирівняне по верху.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Вміст тега</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Вміст тега</h1>
+			<p>Для того, щоб зчитати чи змінити вміст тега - є декілька властивостей:</p>
+			<code>
+				p.textContent;<br>
+				p.innerText;<br>
+				p.innerHTML;<br>
+				p.outerHTML;
+			</code>
+			<p><strong>.textContent</strong> - внутрішній текст тега зі всіма пробілами та переносами строк:</p>
+			<code>
+				&lt;p&gt;hey ho &lt;strong&gt;hello&lt;/strong&gt;&lt;/p&gt;<br>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hey &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ho<br>
+				&nbsp;&nbsp;&lt;strong&gt;hello &nbsp;&nbsp;&nbsp; &lt;/strong&gt;<br>
+				&lt;/p&gt;
+			</code>
+			<p>Ці два параграфи в браузері будуть виглядати однаково, але у них буде різний textContent, у першого - просто строка з трьох слів, у другого - з переносами строк і пробілами, перевірте у пісочниці.</p>
+			<p><strong>.innerText</strong> - внутрішній текст тега, будьте обережні: в деяких випадках видає варіант тексту, який ми бачемо в браузері, та останнім часом може видати текст зі всіма пробілами та переносами строк, аналогічно властивості textContent.</p>
+			<p><strong>.innerHTML</strong> - внутрішній html-код, включаючи дочірні теги.</p>
+			<p><strong>.outerHTML</strong> - html-код всього елемента, включаючи дочірні теги, а також - атрибути цього елемента.</p>
+			<p>Всі ці властивості можна змінити:</p>
+			<code>
+				&lt;p&gt;&lt;span&gt;Hey!&lt;/span&gt;&lt;/p&gt;<br><br>
+				p.textContent = 'Ho!!';<br>
+				p.innerText = 'Ho!!';<br>
+				p.innerHTML = '&lt;strong&gt;Ho!!&lt;/strong&gt;';<br>
+				p.outerHTML = '&lt;section class="main"&gt&lt;strong&gt;Ho!!&lt;/strong&gt;&lt;/section&gt';
+			</code>
+			<p>Передостання строчка кода автоматично створить дочірній елемент strong у параграфа.</p>
+			<p>Остання строчка перетворить параграф на секцію і добавить клас main.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

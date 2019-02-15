@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Псевдоелементи :before та :after</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		p.layout_beforeafter_01 { margin-bottom:40px; padding:20px; font-size:140%; background:#c3e3f3;}
+		p.layout_beforeafter_01:before { content:">>>> ";}
+		p.layout_beforeafter_01:after { content:"!!!";}
+		p.layout_beforeafter_02 { margin-bottom:40px; padding:20px; font-size:140%; background:#c3e3f3;}
+		p.layout_beforeafter_02:before,
+		p.layout_beforeafter_02:after { content:""; display:block; height:20px; background:green;}
+		.layout_beforeafter_03 { padding:16px 16px 13px; font-size:140%; border:4px solid red;}
+		.layout_beforeafter_03.clr:after { height:2px; border-bottom: 1px solid silver;}
+		.layout_beforeafter_03>div { padding:16px; border:2px solid blue;}
+		.layout_beforeafter_03>div:first-child { float:left; width:250px; height:60px;}
+		.layout_beforeafter_03>div:last-child { float:right; width:400px; height:80px;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Псевдоелементи :before та :after</h1>
+			<p>В CSS для кожного тега можна створити два додаткових віртуальних псевдоелементи. Ці елементи відсутні в HTML-коді і повністю відносяться до оформлення даних.</p>
+			<p>Псевдоелементи вбудовуються всередину елемента, до якого застосовано стилі:<br>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>:before</strong> - у початок елемента, перед всіма його дочірніми елементами;<br>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>:after</strong> - в кінець елемента, після всіх його дочірніх елементів.</p>
+			<p>Приклад застосування:</p>
+			<code>
+				&lt;p&gt;Привіт&lt;/p&gt;<br><br>
+				p { padding: 20px; background: #c3e3f3;}<br>
+				p:before { content: ">>>> ";}<br>
+				p:after { content: "!!!";}
+			</code>
+			<p>Результат:</p>
+			<p class="layout_beforeafter_01">Привіт</p>
+			<p>Але не кожен тег може мати псевдоелементи. Деякі теги самі по собі не можуть мати контенту, дочірніх елементів, а отже, і псевдоелементів. Застосування стилів до таких тегів, як &lt;img&gt;, &lt;br&gt;, &lt;hr&gt;, &lt;input&gt; буде безрезультативним.</p>
+			<p>Псевдоелементи за замовчуванням є інлайновими елементами. Основний їх атрибут - <strong>content</strong>. Якщо не задати цей атрибут - псевдоелемент не з’явиться на веб-сторінці.</p>
+			<p>Атрибут content доволі складний, може містити в собі символ чи строку тексту, зображення, лічильник, що буде змінювати значення з кожним наступним використанням псевдоелемента і т.п. Інформацію про всі варіанти можна подивитися на <a href="http://htmlbook.ru/css/content" target="_blank">htmlbook.ru/css/content</a> чи <a href="https://webref.ru/css/content" target="_blank">webref.ru/css/content</a>.</p>
+			<p>Але найчастіше в нас буде використовуватися порожній контент - <strong>content: "";</strong>, в псевдоелементи ми будемо вставляти фонові зображення.</p>
+			<p>Псевдоелементи, як і інші елементи, можуть змінити свою властивість display з inline на inline-block чи block. Ось приклад:</p>
+			<code>
+				&lt;p&gt;Привіт&lt;/p&gt;<br><br>
+				p { padding: 20px; background: #c3e3f3;}<br>
+				p:before,<br>p:after { content: ""; display: block; height: 20px; background: green;}
+			</code>
+			<p>Результат:</p>
+			<p class="layout_beforeafter_02">Привіт</p>
+			<p><strong>Завдання.</strong> Вставте псевдоелементами після тексту "Контроль" напис дрібним шрифтом: (квиток зберігайте до кінця поїздки), а над текстом - <a href="img/cut_here.png" target="_blank">картинку з ножицями</a>.</p>
+			<p class="danger">УВАГА!!! Міняти треба тільки CSS, HTML-код не чіпайте, не добавляйте в нього картинку і текст!</p>
+			<iframe src="layout_beforeafter_iframe.html" style="height: 240px;"></iframe>
+			<code>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;h2&gt;Квитанція:&lt;/h2&gt;<br>
+				&nbsp;&nbsp;&lt;p class="info"&gt;Екскурсія для групи з &lt;strong&gt;20&lt;/strong&gt; школярів.&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p class="price"&gt;Ціна: &lt;strong&gt;100 грн.&lt;/strong&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p class="control"&gt;Контроль&lt;/p&gt;<br>
+				&lt;/div&gt;<br><br>
+				div { padding: 4px 20px; width: 170px; border: 1px solid #999;}<br>
+				h2 { margin: 0; padding: 10px 0;}<br>
+				p { margin: 0; padding: 10px 0;}<br>
+				.info { font-size: 120%; line-height: 1.3em;}<br>
+				.price { padding-bottom: 30px; font-style: italic;}
+			</code>
+			<p>За допомогою псевдоелемента :after можна легко очищувати прив’язки після елементів з властивостями float. В даному випадку просто додаємо клас з цим псевдоблоком батьківському елементу. У прикладі псевдоелементу спеціально задано висоту і фоновий колір для демонстрації, в реальності використовується нульова висота і не задається фон:</p>
+			<code>
+				&lt;div class="example <strong>clearfix</strong>"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="box left"&gt;float: left;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="box right"&gt;float: right;&lt;/div&gt;<br>
+				&nbsp;&nbsp;<span class="stroke">&lt;div class="clearfix"&gt;&lt;/div&gt;</span><br>
+				&lt;/div&gt;<br><br>
+				.example { padding: 16px; border: 4px solid red;}<br>
+				<strong>.clearfix:after { content: ""; display: block; <span class="danger">clear: both;</span></strong>}<br>
+				.example .box { border: 2px solid blue;}<br>
+				.example .left { float: left; width: 250px; height: 60px;}<br>
+				.example .right { float: right; width: 400px; height: 80px;}<br>
+			</code>
+			<p>Результат:</p>
+			<div class="layout_beforeafter_03 clr">
+				<div>float: left;</div>
+				<div>float: right;</div>
+			</div>
+			<p>У чужому коді ви можете зустріти цей очищуючий клас під назвами <strong>clr</strong>, <strong>clear</strong>, <strong>clearfix</strong>.</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>В своїх проектах очищуйте плаваючі блоки (float) за допомогою псевдоелемента :after замість тега &lt;div class="clearfix"&gt;.</li>
+			</ol>
+			<p>Корисне посилання про <a href="https://habrahabr.ru/post/180473/" target="_blank">види меню</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

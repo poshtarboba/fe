@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Анімація jQuery та CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		p { position: relative;}
+		.action { display: inline-block; padding: 8px 16px; border: 1px solid #000;}
+		.click { cursor: pointer;}
+		.toggle6, .toggle7 { position: absolute; left: 150px; top: 10px;}
+		.ex1 { padding: 20px 0;}
+		.test1, .test3 {
+			display: inline-block;
+			padding: 24px 60px;
+			font-weight: bold;
+			color: black;
+			background: silver;
+			transition: background 2s linear 2s;
+		}
+		.test1:hover, .test3.active {
+			color: white;
+			background: blue;
+		}
+		.test3 { cursor: pointer;}
+		.test2 {
+			display: inline-block;
+			padding: 24px 60px;
+			font-weight: bold;
+			color: black;
+			background: silver;
+			transition: all 400ms;
+		}
+		.test2:hover {
+			color: white;
+			background: blue;
+			transition: color 10s linear, background 1s linear;
+		}
+		.test4:focus {
+			padding: 4px 10px;
+			background: yellow;
+			transition: background 2s linear;
+		}
+		.ex2 { padding: 20px 0; line-height: 80px;}
+		.ex2 span { display: inline-block; position: relative; margin: 0 20px 0 0; padding: 16px 24px; line-height: 18px; border: 1px solid #777;}
+		.ex2.an span { transition: transform 1s ease;}
+		.ex2.an span:nth-child(6):hover { transform: skewY(40deg);}
+		.ex2 span:nth-child(7) { transition: transform 1s cubic-bezier(0.9, -6, 0.7, 0);}
+		.ex2 span:nth-child(1):hover { transform: rotate(40deg);}
+		.ex2 span:nth-child(2):hover { transform: translate(-5%, 10px);}
+		.ex2 span:nth-child(3):hover { transform: scale(2);}
+		.ex2 span:nth-child(4):hover { transform: scale(0.3, 0.7);}
+		.ex2 span:nth-child(5):hover { transform: skewX(40deg);}
+		.ex2 span:nth-child(6):hover { transform: skewY(40deg);}
+		.ex2 span:nth-child(7):hover { transform: scale(1.2);}
+		.ex2 span:nth-child(8):hover { transform: scale(1, -1);}
+		.ex2 span:nth-child(9):hover { transform: scale(-1, 1);}
+
+		.tmenu { display: inline-block; position: relative; margin: 0 50px 100px 0;}
+		.tmenu span { display: inline-block; padding: 20px 40px; color: #fff; background: #0073bb;}
+		.tmenu ul { overflow: hidden; position: absolute; margin: 0; padding: 0; left: 0; top: 100%; height: 0;}
+		.tmenu ul li { padding: 12px 30px; list-style: none; background: #fffe98; border: 1px solid #777; border-top: none;}
+		.tmenu:hover ul { }
+
+		.menu1:hover ul, .menu2:hover ul { transition: height 400ms linear;}
+		.menu1:hover ul { height: auto;}
+		.menu2:hover ul { height: 159px;}
+		.menu3 span { cursor: pointer;}
+		.menu3 ul { height: auto; display: none;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Анімація в jQuery та CSS</h1>
+
+		<section>
+			<h2>Анімація в jQuery</h2>
+
+			<h3>Show, hide</h3>
+			<p>.hide( [ duration ] [, complete ] ); - параметри функції: тривалість анімації та call-back функція, що виконається по закінченню анімації.</p>
+			<p><strong>$('.submenu').hide();</strong> - ховає елемент моментально (display: none).</p>
+			<p><strong>$('.submenu').show();</strong> - відображає елемент моментально.</p>
+			<p><strong>$('.submenu').toggle();</strong> - ховає або відображає елемент.</p>
+			<p><strong>$('.submenu').hide('slow');</strong> - можна ховати та відображати елемент плавно, змінюючи його розміри від 0 до реальних. В якості аргумента використовується строка 'slow', 'fast' або число - кількість мілісекунд.</p>
+			<p><strong>$('.submenu').hide(2000, function(){ $(this).addClass('hidden'); });</strong> - після анімації можна викликати функцію, яка виконає якісь дії.</p>
+			<p><span class="action click toggle_click1">click me</span> ==&gt; <span class="action toggle1">Element</span></p>
+			<p><span class="action click toggle_click2">click me</span> ==&gt; <span class="action toggle2">Slow animation</span></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.toggle_click1').on('click', function(){ $('.toggle1').toggle(); });
+					$('.toggle_click2').on('click', function(){
+						$('.toggle2').toggle(3000, function(){ alert('animation is end'); });
+					});
+				});
+			</script>
+			<code>
+				$('button').on('click', function(){<br>
+				&nbsp;&nbsp;$('.box').toggle();<br>
+				});<br><br>
+				$('button').on('click', function(){<br>
+				&nbsp;&nbsp;$('.box').toggle(3000, function(){ alert('animation is end'); });<br>
+				});
+			</code>
+			<p>Стандартні значення тривалості анімації:</p>
+			<code>
+				jQuery.fx.speeds = {<br>
+				&nbsp;&nbsp;_default: 400<br>
+				&nbsp;&nbsp;slow: 600,<br>
+				&nbsp;&nbsp;fast: 200,<br>
+				};
+			</code>
+
+			<h3>Fade</h3>
+			<p><strong>.fadeIn( [ duration ] [, complete ] );</strong> - параметри функції: тривалість анімації та call-back функція, що виконається по закінченню анімації.</p>
+			<p><strong>$('.submenu').fadeIn();</strong> - відображає елемент, збільшуючи його прозорість (на початку анімації елемент отримує display: block, inline-block, inline i т.п.).</p>
+			<p><strong>$('.submenu').fadeOut();</strong> - ховає елемент, зменшуючи його прозорість (в кінці анімації елемент отримує display: none;).</p>
+			<p><strong>$('.submenu').fadeToggle();</strong> - ховає чи відображає елемент.</p>
+			<p><strong>$('.submenu').fadeTo(600, 0.3);</strong> - змінює прозорість (opacity) елемента до 0.3 за 600 мс.</p>
+			<p><span class="action click toggle_click3">click me</span> ==&gt; <span class="action toggle3">Element</span></p>
+			<p><span class="action click toggle_click4">click me</span> ==&gt; <span class="action toggle4">Slow animation (2000 ms)</span></p>
+			<p><span class="action click toggle_click5">click me</span> ==&gt; <span class="action toggle5">Fade to 0.2</span></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.toggle_click3').on('click', function(){ $('.toggle3').fadeToggle(); });
+					$('.toggle_click4').on('click', function(){ $('.toggle4').fadeToggle(2000); });
+					$('.toggle_click5').on('click', function(){ $('.toggle5').fadeTo(1000, 0.2); });
+				});
+			</script>
+			<code>
+				$('button').on('click', function(){ $('.box').fadeToggle(); });<br>
+				$('button').on('click', function(){ $('.box').fadeToggle(2000); });<br>
+				$('button').on('click', function(){ $('.box').fadeTo(1000, 0.2); });
+			</code>
+
+			<h3>Slide</h3>
+			<p><strong>.slideUp( [ duration ] [, complete ] );</strong> - параметри функції: тривалість анімації та call-back функція, що виконається по закінченню анімації.</p>
+			<p><strong>$('.submenu').slideDown();</strong> - відображає елемент, збільшуючи його висоту.</p>
+			<p><strong>$('.submenu').slideUp();</strong> - ховає елемент, зменшуючи його висоту.</p>
+			<p><strong>$('.submenu').slideToggle();</strong> - змінює видимість елемента.</p>
+			<p><span class="action click toggle_click6">click me</span> ==&gt; <span class="action toggle6">Element</span></p>
+			<p><span class="action click toggle_click7">click me</span> ==&gt; <span class="action toggle7">Slow animation</span></p>
+			<p><span class="action click toggle_click7a">stop</span> ==&gt; <span class="action toggle7a">Slow animation</span></p>
+			<p><span class="action click toggle_click7b">stop(true)</span> ==&gt; <span class="action toggle7b">Slow animation</span></p>
+			<p><span class="action click toggle_click7c">stop(true, true)</span> ==&gt; <span class="action toggle7c">Slow animation</span></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.toggle_click6').click(function(){ $('.toggle6').slideToggle(); });
+					$('.toggle_click7').click(function(){ $('.toggle7').slideToggle(1000); });
+					$('.toggle_click7a').click(function(){ $('.toggle7a').stop().slideToggle(1000); });
+					$('.toggle_click7b').click(function(){ $('.toggle7b').stop(true).slideToggle(1000); });
+					$('.toggle_click7c').click(function(){ $('.toggle7c').stop(true, true).slideToggle(1000); });
+				});
+			</script>
+			<code>
+				$('button').click(function(){ $('.box').slideToggle(); });<br>
+				$('button').click(function(){ $('.box').slideToggle(1000); });
+			</code>
+
+			<h3>Animate</h3>
+			<p><strong>.animate( properties [, duration ] [, easing ] [, complete ] )</strong> - метод анімації, повний синтаксис.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>properties</em></strong> - стилі, що потребують анімації.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>duration</em></strong> - тривалість анімації.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>easing</em></strong> - плавність переходу, тип переходу (параметрична функція).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>complete</em></strong> - функція, що буде виконана після завершення анімації.</p>
+			<p>Є ще один синтаксис, <a href="http://api.jquery.com/animate/" target="_blank">з більшою кількістю налаштувань</a>.</p>
+			<code>
+				$('.submenu').animate( {	opacity: 0.25, left: "+=50" }, 500, 'linear', function(){<br>
+				&nbsp;&nbsp;console.log('Анімацію завершено.');<br>
+				});
+			</code>
+			<p><strong>.stop( [clearQueue ] [, jumpToEnd ] );</strong> - зупиняє анімацію, якщо вона виконується в даний момент. Можна передати 2 булевих значення: очищення стеку анімацій та перехід в кінцевий стан анімації.</p>
+			<p>Перед початком анімації бажано зупинити попередні анімації:</p>
+			<code>$('.submenu').stop(true, true).animate(...);.</code>
+			<p><strong>.delay( 800 );</strong> - затримка, пауза перед виконанням наступної анімації.</p>
+			<p><span class="action click toggle_click8">click me</span> ==&gt; <span class="action toggle8">Slow animation</span></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.toggle_click8').on('click', function(){
+						$('.toggle8').slideUp(2000).delay(2000).fadeIn(2000);
+					});
+				});
+			</script>
+			<code>
+				$('button').on('click', function(){<br>
+				&nbsp;&nbsp;$('.box').slideUp(2000).delay(2000).fadeIn(2000);<br>
+				});
+			</code>
+			<p>Якщо у вас не хоче працювати .delay(), скористайтесь класичним <strong>setTimeout();</strong></p>
+			<p>Для анімації кольору потрібно підключити додатковий плагін, або jQuery UI, або використати CSS-анімацію.</p>
+			<p>Часто замість того, щоб намагатися зробити нескладну анімацію на jQuery, можна просто переключати у елемента клас, а анімацію покласти на CSS, про що буде йтися у наступному розділі.</p>
+			<code>
+				$('.box').toggleClass('active');<br><br>
+				.box { color: green; left: 20px; top: 20px; transition: all ease 400ms;}<br>
+				.box.active { color: red; left: 40px; top: 40px; }
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Завдання</h2>
+			<ol>
+				<li>Збережіть собі в папку нового проекту файл <a href="jquery_animation_homework.html" target="_blank">jquery_animation_homework.html</a>.</li>
+				<li>Анімуйте першу менюшку .gamburger. Спробуйте метод .toggle(), задайте час анімації.<br> Замість .toggle() спробуйте методи .hide(), .show(), задаючи в кінці відображення жовтий фон для меню, а при початку ховання - повертати білий фон.</li>
+				<li>При кліку на кнопку "Show popup" плавно відобразити попап, а при кліку на кнопку "Ок" чи темну область довкола - плавно сховати його.</li>
+				<li>Анімуйте за допомогою .slideDown() блок "Часті питання". Відповіді повинні бути по-замовчуванню сховані (розкоментуйте відповідний стиль в горі сторінки).</li>
+				<li>Анімуйте меню #nav1 за допомогою .slideToggle().</li>
+				<li>При наведенні курсора на текст "Moving text" його шрифт повинен плавно збільшитися до 70px. Якщо курсор забрати - плавно зменшитися до 16px.</li>
+				<li>Зробіть так, що при прокрутці екрана текст "Moving text" переміщався зліва направо (і навпаки при прокрутці вгору).</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>CSS-анімація</h2>
+			<!-- https://html5book.ru/css3-transform/ -->
+			<p>Для різноманітних ефектів часто цілком достатньо CSS-анімації, наприклад, для постійно діючої анімації (крутиться шестерня), ховер-ефектів, випадаючих елементів та ін.</p>
+			<p><strong>transition: property duration timing_function delay;</strong> - стиль, що робить анімацію між двома станами.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>property</em></strong> - стилі, які необхідно анімувати (all - всі стилі).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>duration</em></strong> - тривалість анімації в секундах, мілісекундах, хвилинах...</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>timing_function</em></strong> - <a href="http://htmlbook.ru/css/transition-timing-function" target="_blank">функція плавності анімації</a> (linear, ease, ...).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>delay</em></strong> - затримка перед початком анімації.</p>
+			<p>Розглянемо приклад:</p>
+			<p class="ex1"><span class="test1">TEST</span></p>
+			<code>
+				.test1 {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;padding: 24px 60px;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: black;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: silver;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: background 2s linear 2s;<br>
+				}<br>
+				.test1:hover {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: blue;<br>
+				}
+			</code>
+			<p>При ховері міняється колір тексту та фон. Але для фона задано анімацію тривалістю 2 секунди, яка має виконатися із затримкою у 2 секунди.</p>
+			<p>Можна задати окремо анімацію для різних стилів, окремо на втрату ховера:</p>
+			<p class="ex1"><span class="test2">TEST</span></p>
+			<code>
+				.test2 {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: black;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: silver;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: all 400ms;<br>
+				}<br>
+				.test1:hover {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: blue;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: color 10s, background 2s;<br>
+				}
+			</code>
+			<p>Змінити стан можна багатьма способами, зміною класів, атрибутів, checked, didabled, :focus...</p>
+			<p class="ex1"><span class="test3">Клік = toggleClass('active')</span> &nbsp;&nbsp;&nbsp;&nbsp; input:focus <label><input class="test4"></label></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.test3').on('click',function(){$(this).toggleClass('active');});
+				});
+			</script>
+			<code>
+				$('.box').on('click', function(){ $(this).toggleClass('active'); });
+			</code>
+			<br><br>
+			<h2>2D-трансформації</h2>
+			<p><strong>transform: rotate(angle);</strong> - обертання елемента.</p>
+			<p><strong>transform: translate(x, y);</strong> - зміщення елемента по осях X, Y.</p>
+			<p><strong>transform: scale(n);</strong> - маштабування елемента, є також scaleX, scaleY.</p>
+			<p><strong>transform: skewX(angle);</strong> - наклон елемента, є також skewY.</p>
+			<p><strong>transform: matrix(...);</strong> - трансформація елемента відповідно до матриці перетворень.</p>
+			<p class="ex2">
+				<span>rotate(40deg)</span>
+				<span>translate(-5%, 10px)</span>
+				<span>scale(2)</span>
+				<span>scale(0.3, 0.7)</span>
+				<span>skewX(40deg)</span>
+				<span>skewY(40deg)</span>
+			</p>
+			<p>Трансформації відбуваються миттєво. Проте, можна добавити анімацію <strong>transition: transform 2s ease;</strong>:</p>
+			<p class="ex2 an">
+				<span>rotate(40deg)</span>
+				<span>translate(-50%, 100px)</span>
+				<span>scale(2)</span>
+				<span>scale(0.5, 0.2)</span>
+				<span>skewX(40deg)</span>
+				<span>skewY(40deg)</span>
+				<span>scale cubic-bezier</span>
+				<span>flip</span>
+				<span>mirror</span>
+			</p>
+
+			<p>Випадаюче меню:</p>
+			<code>
+				.menu1:hover ul,<br>
+				.menu2:hover ul { transition: height 400ms linear;}<br>
+				.menu1:hover ul { height: auto;}<br>
+				.menu2:hover ul { height: 159px;}<br><br>
+				$('.menu3').hover(function(){<br>
+				&nbsp;&nbsp;$('.menu3 ul').slideToggle();<br>
+				});
+			</code>
+			<div class="tmenu menu1"><span>height: auto;</span>
+				<ul>
+					<li>Menu item 1</li>
+					<li>Menu item 2</li>
+					<li>Menu item 3</li>
+				</ul>
+			</div>
+			<div class="tmenu menu2"><span>height: 159px;</span>
+				<ul>
+					<li>Menu item 1</li>
+					<li>Menu item 2</li>
+					<li>Menu item 3</li>
+				</ul>
+			</div>
+			<div class="tmenu menu3"><span>jQuery + height: auto;</span>
+				<ul>
+					<li>Menu item 1</li>
+					<li>Menu item 2</li>
+					<li>Menu item 3</li>
+				</ul>
+			</div>
+			<br><br><br><br>
+			<script>
+				window.addEventListener('load', function(){
+					$('.menu3').hover(function(){
+						$('.menu3 ul').slideToggle();
+					});
+				});
+			</script>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

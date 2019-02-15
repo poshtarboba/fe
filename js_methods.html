@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Методи об'єктів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Методи об'єктів</h1>
+			<p>Об'єкт може містити не тільки властивості, але і методи.</p>
+			<p><strong>Метод</strong> - це функція об'єкта, в якій щось відбувається з об'єктом. Іншими словами, метод - це дія, що виконується над даним об'єктом. Наприклад, автомобіль має методи "їхати", "глохнути", "<a href="img/js_methods_01.jpg" target="_blank">горіти</a>".</p>
+			<p>Ми вже використовували методи при роботі зі строками і масивами. До методів можна звернутися так само, як і до властивостей: через крапку чи квадратні дужки.</p>
+			<p>Оскільки метод - це функція, то виклик метода має прописуватися з дужками та аргументами за потреби.</p>
+			<code>
+				var s = 'hello';<br>
+				var arr = [1, 2, 3];<br>
+				console.log(s.toUpperCase());<br>
+				console.log(s['toUpperCase']());<br>
+				console.log(arr.join(''));<br>
+				console.log(arr['join'](', '));
+			</code>
+			<p>Створення методів:</p>
+			<code>
+				var pumpkin = {<br>
+				&nbsp;&nbsp;color: 'green',<br>
+				&nbsp;&nbsp;weight: '34 kg',<br>
+				&nbsp;&nbsp;text_en: function(){ console.log('green pumpkin 34 kg'); },<br>
+				&nbsp;&nbsp;text_ua: ua<br>
+				};<br>
+				function ua(){ console.log('зелений гарбуз 34 кг'); }<br><br>
+				pumpkin.text_en();<br>
+				pumpkin.text_ua();
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

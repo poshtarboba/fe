@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Відступи</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Відступи</h1>
+			<p>Відступи бувають зовнішні та внутрішні.</p>
+			<code>
+				<strong>margin:</strong> 0 8px 10px 20%;<br>
+				<strong>padding:</strong> 10px 8px;<br>
+			</code>
+			<p>
+				Відступи можуть мати 1, 2, 3, або 4 параметра, що записуються через пробіл:<br>
+				1 - всі відступи однакові;<br>
+				2 - вертикальні та горизонтальні відступи;<br>
+				3 - верхній, горизонтальні, нижній відступи;<br>
+				4 - верхній, правий, нижній, лівий відступи.
+			</p>
+			<!-- TODO: margin: 0 auto -->
+			<p class="danger">Боба, розкажи про margin: 0 auto;</p>
+		</section>
+
+		<section>
+			<h2>Особливості використання margin та padding.</h2>
+			<p>У відступів є багато "сюрпризів", які неприємно вражають новачків.</p>
+			<p>Особливості можна переглянути у <a href="https://jsfiddle.net/poshtarboba/vgppgxrs/2/" target="_blank">jsFiddle</a>.</p>
+			<p>Фон промальовується по внутрішнім відступам, не промальовується по зовнішнім.</p>
+			<p>Внутрішні відступи збільшують розміри елемента.</p>
+			<p>В першу чергу намагайтесь використовувати padding.</p>
+			<p>Вертикальні маргіни об'єднуються, горизонтальні - ні.</p>
+			<p>Можна використовувати від'ємні значення маргінів, але паддінги можуть бути лише 0 або більше.</p>
+			<p>У абсолютно чи фіксовано спозиціонованих елементів зовнішні відступи не впливають на оточуючі блоки, лише на позицію поточного елемента.</p>
+			<p>Якщо у батьківського блока немає вертикальних паддінгів чи горизонтальних бордерів - маргіни вилазять за межі батьківського блока.</p>
+			<p>У строчних елементів вертикальні відступи не впливають на сусідні елементи зверху та знизу.</p>
+			<p>Саме з цієї причини не раджу використовувати вертикальні маргіни поки не наберетесь достатньо досвіду.</p>
+			<figure>
+				<img src="img/rukojop.jpg" alt="margin-top">
+				<figcaption>margin-top: 100px; margin: 35px 0;</figcaption>
+			</figure>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

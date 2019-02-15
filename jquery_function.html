@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Головна функція jQuery</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Головна функція jQuery</h1>
+			<p>Основна задача jQuery - пошук елементів в DOM і робота з ними.</p>
+			<p>Пошук елементів здійснюється по селектору:</p>
+			<code>
+				<strong>$(селектор).метод();</strong><br><br>
+				$('#content .box').html('Hello!');<br>
+				$('menu > li:first-child > a').css('color', 'red');
+			</code>
+			<p>jQuery майже повністю складається з функцій, є лише декілька властивостей, найчастіше вживаніша - length.</p>
+			<p>Все, що знаходить функція по селектору - це jQuery-набір елементів. Навіть якщо ми шукаємо один елемент по ідентифікатору. Навіть якщо серед багатьох елементів вибираємо один, це все одно буде масив з одного елемента. Якщо ж на сторінці не буде знайдено цього елемента - буде повернено порожній jQuery-набір, у якого length === 0.</p>
+			<p>
+				console.dir($('p'));<br>
+				console.dir($('p').eq(0));<br>
+				console.dir($('h1'));<br>
+				console.dir($('.hello'));
+			</p>
+			<p>Масив цей - специфічний, він є обгорткою до колекції елементів js.</p>
+			<code>
+				var p = document.getElementsByTagName('p');<br>
+				$(p) - jQuery-набір абзаців<br>
+				$(document.body) - jQuery-набір з одного елемента body<br>
+				$(window) - jQuery-window
+			</code>
+			<p>Давайте напишемо свою подібну функцію:</p>
+			<code>
+				function $$(selector){<br>
+					return document.querySelectorAll(selector);<br>
+				}<br><br>
+				$$('nav menu li').forEach(...);
+			</code>
+			<p>&nbsp;</p>
+			<p>Функція в javascript - це також об'єкт, вона може мати властивості і методи. Розберіть наступний код та виконайте його в консолі:</p>
+			<code>
+				function hello(){ alert('hello'); }<br>
+				hello.hey = function(){ alert(this.ho); };<br>
+				hello.ho = 'ho-ho-ho';<br><br>
+				hello();<br>
+				hello.hey();
+			</code>
+			<p>&nbsp;</p>
+			<p>Функції jQuery можна застосовувати тільки до jQuery-наборів і не можна - до елементів JS.</p>
+			<p>Ще одна особливість jQuery - ланцюжки викликів (або колбасіни викликів, сардельки :).</p>
+			<p>Ви можете до одного і того ж елемента застосувати декілька методів:</p>
+			<code>
+				$('a.active').removeClass('active').css('color', 'blue')<br>
+				&nbsp;&nbsp;.attr('href', '#').children('span').addClass('uncative').hide();
+			</code>
+			<p>Зверніть увагу, що методи застосовують модифікації до всього набору елементів, не потрібно робити перебір.</p>
+			<p>Ланцюжки викликів можливо застосовувати тому що більшість методів повертає те, що приходить на вхід функції:</p>
+			<code>
+				jQuery.fn.addClass(function(cls){<br>
+				&nbsp;&nbsp;this.forEach(function(elem){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;elem.classList.add(cls);<br>
+				&nbsp;&nbsp;});<br>
+				&nbsp;&nbsp;<strong>return this;</strong><br>
+				});
+			</code>
+			
+			<h2>Екскурс в історію</h2>
+			<p>Щоб зрозуміти чому "взлетіла" і чому останнім часом втрачає популярність бібліотека jQuery, розгляньте код добавляння класу active до елементів div.box до 2012 року (підтримка IE8-), новий варіант (ie10+) і з використанням jQuery:</p>
+			<code>
+				let boxes = document.getElementsByTagName('div');<br>
+				for (var i = 0; i &lt; boxes.length; i++) {<br>
+				&nbsp;&nbsp;var classes = boxes[i].className.split(' ');<br>
+				&nbsp;&nbsp;for (var j = 0; j &lt; classes.length; j++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;if (classes[j] == 'box') {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addClass(boxes[i], 'active');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				function addClass(elem, className) {<br>
+				&nbsp;&nbsp;var classes = elem.className.split(' ');<br>
+				&nbsp;&nbsp;var double = false;<br>
+				&nbsp;&nbsp;for (var i = 0; i &lt; classes.length; i++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;if (classes[i] == className) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double = true;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;if (!double) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;classes.push('className');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;elem.className = classes.join(' ');<br>
+				&nbsp;&nbsp;}<br>
+				}<br><br>
+				document.querySelelectorAll('.box').forEach(function(box){<br>
+				&nbsp;&nbsp;box.classList.add('active');<br>
+				});<br>
+				<br><br>
+				$('.box').addClass('active');
+			</code>
+			
+			<h2>Збереження елементів у змінні</h2>
+			<p>Не завжди можна обійтися одним ланцюжком викликів. Буває, що знайдені елементи потрібно використати декілька разів у різних частинах коду.</p>
+			<p>Вважається поганою практикою робити повторні пошуки елементів, зайвий раз заставляти JS оббігати все дерево DOM в пошуку потрібних тегів, тому намагаємося робити чистий код, з мінімумом повторів пошуку. Адже кожний $(...) - це виклик функції.</p>
+			<p>Серед розробників є негласна домовленість - змінну з результатом пошуку починати з символа долара, цим ми говоримо, що у змінній зберігається jQuery-набір:</p>
+			<code>
+				let p = document.getElementsByTagName('p');<br>
+				let $p = $('p');<br><br>
+				console.dir(p);<br>
+				console.dir($(p));<br>
+				console.dir($p);<br><br>
+				console.dir($p[0]);<br>
+				console.dir($p.get(0));<br>
+				console.dir($p.eq(0));
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Location</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section id="section1">
+			<h1>Location</h1>
+			<p>Об'єкт <strong>window.location</strong> містить в собі інформацію про поточний URI сторінки.</p>
+			<p>Перейдіть за <a href="js_location.html?name=masha&age=17#section1" target="_blank">посиланням</a> та дослідіть в консолі об'єкт location на тій сторінці:</p>
+			<code>
+				console.dir(location);
+			</code>
+			<p>Спробуйте змінити компоненти об'єкта location:</p>
+			<code>
+				location.hash = '#section2';<br>
+				location.href = 'js_timer.html';<br>
+				location.host = 'google.com';
+			</code>
+			<p>Програмно перезагрузити сторінку:</p>
+			<code>
+				document.getElementById('buttonReload').onclick = function(){<br>
+				&nbsp;&nbsp;<strong>location.reload();</strong><br>
+				};
+			</code>
+			<p><button id="buttonReload" style="cursor: pointer;">Перезагрузити сторінку</button></p>
+			<p>Програмно перейти на іншу сторінку (аргумент - URL нової сторінки):</p>
+			<code>
+				document.getElementById('buttonCookie').onclick = function(){<br>
+				&nbsp;&nbsp;<strong>location.replace('js_cookie.html');</strong><br>
+				};
+			</code>
+			<p><button id="buttonCookie" style="cursor: pointer;">Перейти на лекцію про cookie</button></p>
+		</section>
+		
+		<!--
+		
+		http://jsfiddle.net/poshtarboba/ndL3s72f/21/
+		
+		звернення до value через s.find(), створення об'єкта
+		
+		options = {};
+		s.forEach(function(e){
+			options[e[0]] = e[1];
+		});
+		
+		-->
+		
+		
+		<script>
+				document.getElementById('buttonReload').onclick = function(){ location.reload(); };
+				document.getElementById('buttonCookie').onclick = function(){ location.replace('js_cookie.html'); };
+		</script>
+
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		
+		<section id="section2">
+			<p>Секція #section2, до якої має проскролитися сторінка при зміні хеша.</p>
+		</section>
+		
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

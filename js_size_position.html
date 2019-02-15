@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Розміри та позиція елемента</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Розміри та позиція елемента</h1>
+			<p><a href="https://learn.javascript.ru/metrics" target="_blank">Размеры и прокрутка элементов</a></p>
+			<p><a href="https://learn.javascript.ru/coordinates" target="_blank">Координаты в окне</a></p>
+			<p>Можна брати розміри елементів зі стилів з об'єкта .getComputedStyle, при цьому стиль буде повернено так, як записано в CSS, наприклад, ширина буде включати одиниці величини: "100px", "25%".</p>
+			<p>Окрім стилів у елементів DOM є ще метрики - числові значення, завжди в пікселях.</p>
+			<code>
+				// внутрішні розміри елемента, включаючи паддінги:<br>
+				<strong>p.clientWidth</strong><br>
+				<strong>p.clientHeight</strong><br><br>
+				// зовнішні розміри елемента, включаючи бордери:<br>
+				<strong>p.offsetWidth</strong><br>
+				<strong>p.offsetHeight</strong>
+			</code>
+			<p>Позиціонування елемента відносно лівого верхнього кута одного з батьків чи сторінки:</p>
+			<code>
+				<strong>p.offsetParent</strong> - батько, від якого рахується позиціонування<br>
+				<strong>p.offsetTop</strong><br>
+				<strong>p.offsetLeft</strong>
+			</code>
+			<p>offsetLeft та offsetTop - позиція елемента в пікселях відносно першого не-статичного батька цього елемента, згадайте <a href="layout_position.html" target="_blank">лекцію про позиціонування елементів в CSS</a>.<p>
+			<p>Якщо в елемента немає жодного не-статичного батька - offsetLeft та offsetTop видадуть позиціювання елемента відносно всієї сторінки.</p>
+			<p>Якщо ж у елемента є не-статичні батьки - їх потрібно перебрати і знайти суми всіх оффсетів (алгоритм наведено нижче).</p>
+			<code>
+				// якщо елемент має полосу прокрутки, то повний розмір визначається так:<br>
+				<strong>p.scrollWidth</strong><br>
+				<strong>p.scrollHeight</strong><br>
+				// і на скільки проскролений блок зліва та зверху:<br>
+				<strong>p.scrollLeft</strong><br>
+				<strong>p.scrollTop</strong>
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Працюйте з кодом <a href="https://jsfiddle.net/poshtarboba/7x9ugav7/7/" target="_blank">jsFiddle</a> або <a href="https://codepen.io/anon/pen/RQjzJd" target="_blank">Codepen</a>.</li>
+				<li>Знайдіть розміри span, p.</li>
+				<li>Знайдіть позиціонування span від початку сторінки.</li>
+				<li>Задайте блокам div релятивне позиціонування і знову знайдіть позиціонування span від початку сторінки.</li>
+				<li>Знайдіть розмір контенту блока section та на скільки контент проскролений.</li>
+			</ol>
+			<p>Елегантний спосіб перебрати всіх батьків елемента (порівняйте зі звичайним циклом for):</p>
+			<code>
+				let tag = document.querySelector(...);<br>
+				let x = tag.offsetLeft;<br>
+				let y = tag.offsetTop;<br>
+				for (let parent = tag.offsetParent; parent; parent = parent.offsetParent) {<br>
+				&nbsp;&nbsp;x += parent.offsetLeft;<br>
+				&nbsp;&nbsp;y += parent.offsetTop;<br>
+				}
+			</code>
+			<p>
+				<em>let parent = tag.offsetParent;</em> - ініціалізація "лічильника";<br>
+				<em>parent;</em> - умова (якщо батька не буде - матимемо null чи undefinet);<br>
+				<em>parent = parent.offsetParent</em> - інкремент "лічильника".<br>
+			</p>
+		</section>
+
+		<!--<section class="homework">
+			<h2>Домашнє завдання.</h2>
+			<ol>
+				<li>Створіть три кнопки і div.</li>
+				<li>Для третьої кнопки задайте абсолютне позиціонування і розмістіть її в позицію 300px 400px.</li>
+				<li>Для блока div задайте розмір 3000х5000 пікселів, добавте бордер, жовтий фон.</li>
+				<li>При кліку на блок виводьте в консоль наскільки проскролене вікно браузера. Проскрольте вниз та вправо і клікніть по жовтому блоку.</li>
+				<li></li>
+				<li></li>
+			</ol>
+		</section>-->
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

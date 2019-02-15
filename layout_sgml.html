@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. SGML</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>SGML</h1>
+			<p><strong>SGML</strong> - стандартна узагальнена мова розмітки. Основна суть - деревовидна структура тегів, що можуть містити інформацію, інші теги і властивості зі значенням цих властивостей. Простий приклад:</p>
+			<code>
+				&lt;FLAT number=”47”&gt;<br>
+				&nbsp;&nbsp;My flat.<br>
+				&nbsp;&nbsp;&lt;ROOM type=”living_room” square=12>&lt;/ROOM&gt;<br>
+				&nbsp;&nbsp;&lt;ROOM type=”спальня” square=8&gt;Кицька Мурка, рідко виходить зі спальні&lt;/ROOM&gt;<br>
+				&nbsp;&nbsp;&lt;кладовка&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ПИЛОСМОК потужність=”1200 ватт”&gt;&lt;/ПИЛОСМОК&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;Jam&gt;0,5 л.&lt;/jam&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;Jam&gt;0,5 л.&lt;/jam&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;SPIDER count=”12” color=Black&gt;&lt;/SPIDER&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;Ball /&gt;<br>
+				&nbsp;&nbsp;&lt;/кладовка&gt;<br>
+				&nbsp;&nbsp;&lt;/FLAT&gt;
+			</code>
+			<p>FLAT, ROOM, кладовка, ПИЛОСМОК, Jam, SPIDER, Ball - вузли або контейнери.</p>
+			<p>Number, type, square, потужність, count, color - властивості (атрибути) вузлів та їх значення.</p>
+			<p>My flat, Кицька мурка... - вміст або контент вузлів.</p>
+			<p>Room, кладовка, jam, пилосмок, spider, ball - дочірні елементи вузла FLAT.</p>
+			<p>Room, кладовка - дочірні елементи першого порядку для вузла FLAT, безпосередні дочірні елементи.</p>
+			<p><strong>HTML</strong> - мова гіпертекстової розмітки, що базується на SGML, розроблена тим самим Тімом Бернерсом-Лі спеціально для представлення інформації в інтернеті.</p>
+			<p><strong>XHTML</strong> - розширення з HTML, характеризується строгим синтаксисом.</p>
+			<p><strong>HTML5</strong> - розвиток попередньої версії стандарта HTML 4.01, направлений на структуризацію, семантику представленої в інтернеті інформації.</p>
+			<p><strong>XML</strong> - ієрархічний формат для збереження і передачі даних, заснований на SGML.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

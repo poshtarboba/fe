@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Одиниці вимірювання, формат кольору</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Одиниці вимірювання, формат кольору</h1>
+			<p>Розміри можна задавати в пікселях, типографських точках (поінтах), метричних та імперських одиницях, відсотках.</p>
+			<code>
+				height: 20<strong>px</strong>;<br>
+				width: 50<strong>%</strong>;<br>
+				font-size: 16<strong>pt</strong>;<br>
+				line-height: 1.3<strong>em</strong>;<br>
+				padding: 1<strong>cm</strong> 0.2<strong>inc</strong> 0;
+			</code>
+			<p>Висоту у відсотках для елементів можна задавати тільки якщо вони спозиціоновані абсолютно чи фіксовано.</p>
+			<p>Після нуля одиниці виміру не ставляться.</p>
+			<p>Відсотки від розміру вікна браузера (viewport width, viewport height):</p>
+			<code>
+				width: 80<strong>vw</strong>;<br>
+				height: 50<strong>vh</strong>;
+			</code>
+			<p>Кутові одиниці виміру:</p>
+			<code>
+				transform: rotate(360<strong>deg</strong>);  // градуси<br>
+				transform: rotate(250<strong>grad</strong>);  // 360 градусів = 400grad, прямий кут = 100grad<br>
+				transform: rotate(3.14<strong>rad</strong>); // радіани<br>
+				transform: rotate(0.5<strong>turn</strong>); // 1 turn = 360 градусів<br>
+			</code>
+			<p>Колір можна задавати чотирма способами:</p>
+			<code>
+				color: <strong>green;</strong><br>
+				border-color: <strong>#333aaa;</strong><br>
+				background: <strong>rgb(127, 255, 0);</strong><br>
+				background-color: <strong>rgba(255, 0, 160, 0.3);</strong>
+			</code>
+			<p>Використовуйте маленькі літери.</p>
+			<p>Якщо при заданні кольора в шіснадцятковому вигляді пари цифр/букв повторюються - колір бажано записати у скороченому виді, трьома символами:</p>
+			<code>
+				color: #33ff99;<br>
+				color: #3f9;
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<p>Стилізуйте шрифти в проекті Колесов.</p>
+			<p>Стилізуйте шрифти в проекті Minecraft.</p>
+			<p>Стилізуйте шрифти в проекті Бізнес-Експерт.</p>
+			<p>Стилізуйте шрифти в проекті Iskander.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

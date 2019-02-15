@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Введення в CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>CSS</h1>
+			<p><strong>CSS</strong> - система каскадних стилів.</p>
+			<p>Стилі використовуються для візуального представлення даних.</p>
+			<p>Стилі називаються каскадними тому що браузер буде слідувати по них як по каскаду, застосовуючи все нові і нові правила, перекриваючи старі. Це щось схоже на закони, коли нові поправки до законів перекривають старі, ті втрачають чинність.</p>
+			<p>В стилях ми матимемо змогу описати колір шрифтів та елементів, їх розмір, фон, відступи, положення одного відносно інших, їх поведінку на події миші.</p>
+			<p>Для зручності використання стилів існують класи. Клас описується стилями, має певний набір властивостей. Коли цей клас застосувати до якогось тега - то цей тег отримає всі властивості, всі стилі класа.</p>
+			<p>В стилях можна описати безпосередньо самі теги, не застосовуючи класи.</p>
+		</section>
+
+		<section>
+			<h2>Методи включення стилів в HTML</h2>
+			<p>Існує три основних метода включення стилів в HTML.</p>
+			<p>Безпосереднє включення стиля в тег:</p>
+			<code>
+				&lt;p <strong>style="color: red"</strong>&gt;Цей текст буде червоного кольору.&lt;/p&gt;
+			</code>
+			<p>Включення стилів у <strong>&lt;head&gt;</strong> сторінки, при цьому стилі охоплюються фігурними скобками { }, а тег чи клас записуються безпосередньо перед ними:</p>
+			<code>
+				&lt;!DOCTYPE html&gt;<br>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;title&gt;Frontend. Введення в CSS&lt;/title&gt;<br>
+				&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;<br>
+				<strong>&nbsp;&nbsp;&lt;style&gt;<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;p { color: red;}<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;.blue_text { color: blue;}<br>
+					&nbsp;&nbsp;&lt;/style&gt;</strong><br>
+				&lt;/head&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;Цей текст буде червоним. Всі параграфи на сторінці по замовчуванню будуть червоними.&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p <strong>class="blue_text"</strong>&gt;Але цей текст буде синім. Класс в системі каскадів
+				перекриє червоний колір на синій.&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p <strong>style="color: green"</strong>&gt;А цей текст буде взагалі зеленим, тому що так
+				прописано безпосередньо в тегу і попередні стилі будуть проігноровані.&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;Це - звичайний параграф, і текст у ньому буде червоного кольору.&lt;/p&gt;<br>
+			</code>
+			<p>Виглядатиме це так:</p>
+			<div class="code">
+				<p style="color: red">Цей текст буде червоним. Всі параграфи на сторінці по замовчуванню будуть червоними.</p>
+				<p style="color: blue">Але цей текст буде синім. Клас в системі каскадів перекриє червоний колір на синій.</p>
+				<p style="color: green">А цей текст буде взагалі зеленим, тому що так прописано безпосередньо в тегу і попередні стилі будуть проігноровані.</p>
+				<p style="color: red">Це - звичайний параграф, і текст у ньому буде червоного кольору.</p>
+			</div>
+			<p>Третій спосіб - винесення стилів в окремі файли і підключення їх в блоці <strong>&lt;head&gt;</strong>:</p>
+			<code>
+				&lt;!DOCTYPE html&gt;<br>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;title&gt;Frontend. Заняття 4&lt;/title&gt;<br>
+				&nbsp;&nbsp;&lt;meta charset="utf-8"&gt;<br>
+				<strong>&nbsp;&nbsp;&lt;link type="text/css" rel="stylesheet" href="css/styles.css"&gt;</strong><br>
+				&lt;/head&gt;<br>
+			</code>
+			<p>Стилі пишуться так:<br><strong>назва_стилю: опис стилю</strong>;<br>color: red;</p>
+			<p>Стилі розділяються між собою крапкою з комою:</p>
+			<code>
+				div { color: yellow; width: 100px; height: 50px;}
+			</code>
+			<code>
+				div {<br>
+				&nbsp;&nbsp;color: yellow;<br>
+				&nbsp;&nbsp;width: 100px;<br>
+				&nbsp;&nbsp;height: 50px;<br>
+				}
+			</code>
+			<p>Поки що ми будемо користуватися виключно третім способом, всі стилі прописувати в окремому файлі.</p>
+			<p>&nbsp;</p>
+			<!--
+				TODO:
+				дописати про те, що таке клас, що таке селектор
+				типові імена, частини імен, скорочення:
+				https://github.com/yoksel/common-words
+				https://github.com/nicothin/idiomatic-pre-CSS/blob/gh-pages/words_and_abbreviations.md
+			-->
+			<p>В іменах класів допускається використовувати такі символи:</p>
+			<p><strong>a..z 0..9 _ -</strong> (символ підкреслення і дифіс/мінус)</p>
+			<p>Ім’я класу не повинно починатися з цифри чи дифіса/мінуса.</p>
+			<p>Не допускається використовувати пробіли. Пробіли опускають або замість них використовують підкреслення, дифіс/мінус чи велику літеру. В решті випадків використання великих літер не рекомендується.</p>
+			<code>
+				.bigbluebutton { ... }<br>
+				.big_blue_button { ... }<br>
+				.big-blue-button { ... }<br>
+				.bigBlueButton { ... }
+			</code>
+			<p>Імена ідентифікаторів будуються за тими самими принципами, окрім того, що знак дифіса/мінуса використовувати не бажано.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

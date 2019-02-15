@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Аргументи функції</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Аргументи функції</h1>
+			<p>В функцію можна передавати деякі значення. Такі значення називаются аргументами функцій.</p>
+			<p>Уявіть, що зверху на нашій чорній коробці є загрузочні воронки, в які завантажуються витратні матеріали для виготовлення результату. Цих воронок може не бути взагалі (чарівна скринька), одна, дві та більше, в залежності від потреби.</p>
+			<p>Ми вже стикалися з функціями, що приймали в себе аргументи:</p>
+			<code>
+				alert('hello');<br>
+				console.log('результат:', a, b);<br>
+				parseInt('35px');<br>
+			</code>
+			<p>У якості аргументів можуть виступати певні значення, змінні, об'єкти, виклики функцій.</p>
+			<p>Наприклад, у нас є деяка функція, не важливо що вона робить:</p>
+			<code>
+				function someFun(x){ ... }<br>
+				let user = 'John Doe';<br>
+				someFun(55); &nbsp;&nbsp; // виклик функції з певним значенням аргумента<br>
+				someFun(user); &nbsp;&nbsp; // виклик функції зі змінною в аргументі<br>
+				someFun(document.body); &nbsp;&nbsp; // виклик функції з аргументом в аргументі<br>
+				someFun(otherFun()); &nbsp;&nbsp; // виклик функції з викликом функції в аргументі
+			</code>
+			<p>Аргументи всередині функцій належать простору імен цій функції. Тобто, в функції створюється змінна із заданим іменем, і якщо поза межами функції існує змінна з таким же ім'ям, то це буде дві різні змінні:</p>
+			<code>
+				let x = 42;<br>
+				function fun(x){<br>
+				&nbsp;&nbsp;x *= 2;<br>
+				&nbsp;&nbsp;console.log('fun.x =', x);<br>
+				}<br>
+				fun(x);<br>
+				console.log('global.x =', x);
+			</code>
+			<p>Приклад функції з двома аргументами:</p>
+			<code>
+				function fun(name, family){<br>
+				&nbsp;&nbsp;return "Пользователь: " + name + ' ' + family;<br>
+				}<br>
+				console.log(<strong>fun('Полиграф', 'Шариков')</strong>);
+			</code>
+			<p>Кількість аргументів у ініціалізації (створенні) функції може відрізнятися від кількості аргументів у виклику функції.</p>
+			<p>Протестуйте наступний код, проаналізуйте результат:</p>
+			<code>
+				function fun(a, b, c){<br>
+				&nbsp;&nbsp;console.log(a, b, c);<br>
+				}<br><br>
+				fun(5, 2);<br>
+				fun(5, 2, 3, 7);
+			</code>
+			<p>Якщо при виклику функції задано менше аргументів, ніж при її ініціалізації - можна робити перевірку і задавати значення по замовчуванню або виводити в консоль повідомлення про помилку і нестачу аргументів:</p>
+			<code>
+				function fun(a, b, c){<br>
+				&nbsp;&nbsp;if (a === undefined) { a = 1; }<br>
+				&nbsp;&nbsp;if (b === undefined) { b = 0; }<br>
+				&nbsp;&nbsp;if (c === undefined) { c = 'Hello!'; }<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Закінчіть наступний код, щоб він розраховував значення по формулі. Виведіть значення змінної d в консоль.
+					<code>
+						function calc(){<br>
+						&nbsp;&nbsp;x * y + z;<br>
+						}<br><br>
+						var d = calc(5, 3, 7);
+					</code>
+				</li>
+				<li>Створіть функцію, що розраховує об'єм коробки і повертає результат розрахунку, x, y та z повинні передаватися аргументами.</li>
+				<li>Створіть функцію, що приймає в себе число і повертає назву дня тижня: 6 ==&gt; "субота". Використайте switch-case.</li>
+				<li>Створіть функцію, що виводить в консоль аргумент або напис "Аргументів не задано", якщо це дійсно так.</li>
+			</ol>
+			<h3>Документація</h3>
+			<p>В документації ви часто будете зустрічати опис функції з квадратними дужками в круглих:</p>
+			<code>
+				function setPosition(x, y[, baseX, baseY]) { ... }<br>
+				function min(a, b[, c, ...]) { ... }
+			</code>
+			<p>При описі функцій це означає необов'язкові, додаткові аргументи. Функція буде працювати як з ними, так і без них:</p>
+			<code>
+				setPosition(250, 120);<br>
+				setPosition(250, 120, 40, 40);<br>
+				min(5, 15);<br>
+				min(7, 4, 12);<br>
+				min(3, 2, 4, 11, 6, 5, 9, 18);
+			</code>
+			<p>
+				Приклади<br>
+				<a href="https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/min" target="_blank">MDN Math.min()</a>;<br>
+				<a href="https://api.jquery.com/after/" target="_blank">jQuery fx.after()</a>;<br>
+				<a href="https://mootools.net/core/docs/1.6.0/Fx/Fx.Morph" target="_blank">MooTools Fx.Morph()</a>;<br>
+				<a href="https://mootools.net/core/docs/1.6.0/Request/Request.JSON" target="_blank">MooTools Request.JSON</a>.<br>
+			</p>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Створіть функцію, в яку передається число. Функція повинна повертати квадрат цього числа.</li>
+				<li>Створіть функцію, в яку передається 3 числа (x, y, z), функція обчислює і повертає об'єм вказаної коробки.</li>
+				<li>Створіть функцію, в яку передається деяке значення і об'єкт html-сторінки, знайдений за допомогою, наприклад, функції document.querySelector. Функція повинна записати в innerText цього об'єкта значення з першого аргумента і повернути true, або false, якщо об'єкт не знайдено.</li>
+				<li>
+					Створіть функцію, що приймає 5 аргументів (a, b, c, d, e). Функція повина повернути результат обчислення по формулі:
+					<code>
+						a + b * -c - --d + e
+					</code>
+					Якщо аргументи не задано, то прописати їм значення по-замовчуванню:
+					<code>
+						a = 50;<br>
+						b = 1;<br>
+						c = 10;<br>
+						d = 17;<br>
+						e = ' !!!';
+					</code>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

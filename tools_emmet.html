@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<title>Frontend. Інструмент Emmet</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Інструмент Emmet</h1>
+			<p>Для пришвидшення наробу коду існують різноманітні препроцесори, інструменти автодоповнення, підказок.</p>
+			<p>Одним із інструментів швидкого набору коду є <strong>Emmet</strong>.</p>
+			<p>В jsFiddle та PHPStorm плагін Emmet вже вбудований. У інші IDE його можна підключити, <a href="https://emmet.io/download/" target="_blank">скачавши плагін</a>.</p>
+			<p>З повною документацією можна ознайомитися на <a href="https://docs.emmet.io/" target="_blank">офіційному сайті</a>.</p>
+			<h3>HTML</h3>
+			<p>Для використання Emmet вводьте скорочений код і нажимайте <kbd>Tab</kbd>.</p>
+			<p>Поексперементуйте:</p>
+			<code>
+				p<kbd>Tab</kbd><br>
+				div<kbd>Tab</kbd><br>
+				a<kbd>Tab</kbd><br>
+				img<kbd>Tab</kbd><br>
+				link<kbd>Tab</kbd><br>
+				!<kbd>Tab</kbd>
+			</code>
+			<p>Якщо потрібно задати клас чи id - прописуйте їх через крапку чи ришітку:</p>
+			<code>
+				p.title<br>
+				div.big.red.bold<br>
+				.news<br>
+				div#news<br>
+				div#news.news<br>
+				#news.news
+			</code>
+			<p>Кутова дужка <strong>&gt;</strong> вказує на дочірній елемент. Символ плюса - на сусідній елемент:</p>
+			<code>
+				div>p<br>
+				div>p>strong>a>span<br>
+				div>h2+p+p<br>
+				ul>li+li+li+li
+			</code>
+			<p>В останньому випадку li задавати не дуже зручно. Символ множення вказує на необхідність створити копії елементів:</p>
+			<code>
+				ul>li*4<br>
+				p.info*4>span
+			</code>
+			<p>Текст вказується в фігурних дужках, можна використати символ долара як лічильник:</p>
+			<code>
+				h2{Семантика HTML5}<br>
+				p{Тест}*3<br>
+				p>span{$}*4<br>
+				ul>li{Item $}*5
+			</code>
+			<p>Повернутися до батьківського елемента можна за допомогою символа карет (^):</p>
+			<code>
+				p>span{привіт}+{ світ}^p>span{кагділа?}<br>
+				ul>li*4>a{посилання}^^p{текст під меню}
+			</code>
+			<p>Дужками можна виокремлювати блоки, порівняйте результат:</p>
+			<code>
+				ul>li*4>a{посилання}^^p{текст під меню}<br>
+				ul>(li*4>a{посилання})^^p{текст під меню}
+			</code>
+			<p>Текст-рибу можна створити скороченням lorem, можна вказати кількість слів:</p>
+			<code>
+				lorem<br>
+				p>lorem<br>
+				lorem5<br>
+				lorem100
+			</code>
+			<h3>CSS</h3>
+			<p>В CSS є великий набір скорочень для стилів, деякі з них:</p>
+			<code>
+				c#f00 = color: #f00;<br>
+				m20 = margin: 20px;<br>
+				p8/16 = padding: 8px 16px;<br>
+				fz18 = font-size: 18px;
+			</code>
+			<p>З повним переліком скорочень можете ознайомитися в <a href="https://github.com/sergeche/emmet-sublime/blob/master/emmet/snippets.json" target="_blank">snippets.json</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Події (events)</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Події (events)</h1>
+			<p><strong>$('p').click(function(e){ ... });</strong> - добавити елементам обробник події кліка.</p>
+			<p><strong>$('input.text').change(function(e){ ... });</strong> - змінилося значення елемента форми (викликається при втраті фокуса).</p>
+			<p><strong>$('input.text').focus(f).blur(f);</strong> - отримання та втрата фокуса елементом форми, посиланням.</p>
+			<p><strong>$('input.text').hover(f, f);</strong> - ховер-ефект: дві функції на отримання і втрату ховера.</p>
+			<p><strong>$('input.text').keydown(f).keyup(f).keypress(f);</strong> - події клавіатури.</p>
+			<p><strong>$('img').mousedown(f).mouseup(f).mouseenter(f).mouseleave(f).mousemove(f)....;</strong> - події миші.</p>
+			<p><strong>$('img').load(f);</strong> - елемент завантажено (використовується для ресурсів, документа).</p>
+			<p><strong>$(document.body).ready(f).unload(f);</strong> - події готовності до використання, вигрузки елемента.</p>
+			<p><strong>$(window).resize(f).scroll(f).beforeunload(f);</strong> - події на зміну розміра, скролл, закриття вкладки.</p>
+			
+			<h2>Робота з прослуховувальником подій</h2>
+			<p><strong>$('img').on('event_name', function(e){ ... });</strong> - добавити елементам обробник події.</p>
+			<p><strong>$('img').off('event_name');</strong> - видалення обробника події.</p>
+			<p><strong>$('img').one('event_name', function(event){ ... });</strong> - обробник події спрацює лише один раз і сам автоматично видалиться.</p>
+			<p>.live(), .bind(), .deletage() - застарілі методи.</p>
+			
+			<h2>Делегація подій від батьківських елементів до дочірніх.</h2>
+			<p>Наприклад, у нас динамічно створюються кнопки. Після створення кожної кнопки на неї потрібно вішати обробник подій:</p>
+			<code>
+				let $box = $('#buttonsBox');<br>
+				$('#masterButton').on('click', function(){<br>
+				&nbsp;&nbsp;$('&lt;button&gt;Click me&lt;button&gt;')<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;.on('click', function(){ ... })<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;.appendTo($box);<br>
+				});
+			</code>
+			<p>Можна піти іншим шляхом: обробник подій задати батьківському елементу, і вказати ціль, що викликатиме подію:</p>
+			<code>
+				<strong>$(parent).on(event, target, handler);</strong><br><br>
+				let $box = $('#buttonsBox');<br>
+				$box.on('click', 'button', function(){ ... });<br>
+				$('#masterButton').on('click', function(){<br>
+				&nbsp;&nbsp;$box.append('&lt;button&gt;Click me&lt;button&gt;');<br>
+				});
+			</code>
+			<p>При кліку в межах батьківського елемента метод перевіряє який елемент знаходиться в event.target, перевіряє, чи підходить він під вказаний другим аргументом селектор, і якщо підходить, то подія викликається від його імені.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

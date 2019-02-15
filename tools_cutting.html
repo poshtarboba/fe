@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Порізка макета</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Порізка макета</h1>
+			<!-- TODO: більше скріншотів -->
+			<p>Запустіть програму Adobe Photoshop і відкрийте у ньому <a href="https://drive.google.com/open?id=0By5OeYSvSbNLNWtDYUdaZ3dYRXM" target="_blank">макет сайту з продажу футболок</a> <small>(<a href="thumb/futbolki.jpg" target="_blank">jpg</a>)</small>.</p>
+			<p>Для вирізання елементів використовується інструмент "Скальпель" (гаряча клавіша <kbd>c</kbd>).</p>
+			<p>При вирізанні слайсів одразу задавайте їм імена (подвійний клік по слайсу чи клік із зажатим <kbd>ctrl</kbd>).</p>
+			<p>Якщо в макеті є подібні елементи - виріжте один, дайте йому ім'я, далі - копіюйте цей слайс, тримаючи клавішу <kbd>alt</kbd>.</p>
+			<p>В першу чергу вирізайте фотографії, іконки, логотипи, відключіть всі фони, щоб тло було "прозоре" (шахматний фон). Збережіть ці зображення, включіть всі фони і вимкніть шари з текстом та вирізаними зображеннями, розмітьте і збережіть всі фони.</p>
+			<p>Щоб видалити всі слайси - можна скористатися пунктом меню View &gt; Remove slices або Просмотр &gt; Удалить фрагменты.</p>
+		</section>
+
+		<section>
+			<h2>Збереження зображень, типи файлів</h2>
+			<p>Для збереження вирізаних слайсів скористайтеся пунктом меню чи гарячими клавішами:</p>
+			<code>
+				File &gt; Save For Web...<br>
+				Файл &gt; Сохранить для Web и устройств...<br>
+				<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>
+			</code>
+			<p>У цьому вікні потрібно підібрати формати файлів, якість стиснення для кожного слайса.</p>
+			<p>Для зручності - виділяйте декілька подібних слайсів, утримуючи <kbd>shift</kbd>.</p>
+			<p>Формати файлів:</p>
+			<p><strong>JPG</strong> - для фотографій, великих фонових зображень;</p>
+			<p><strong>PNG</strong> - для елементів дизайну, іконок, всіх елементів з прозорістю;</p>
+			<p><strong>GIF</strong> - для дуже маленьких елементів з малою кількістю кольорів.</p>
+			<p>Для формату JPG вибирайте якість 60-70 для невеликих, неякісних зображень, розпливчастих, блідих фонів, 80-90 - для чітких, крупних, хороших зображень.</p>
+			<p>Червоні кольори більше за інших створюють "артефакти" в форматі стиснення JPEG, тому при значних кількостях червоного кольору та різких переходів до контрасних до нього кольорів бажано підвищити якість збереження.</p>
+			<figure>
+				<img src="img/tools_cutting_10.jpg" alt="Артифакти JPEG">
+				<figcaption>Артефакти JPEG</figcaption>
+			</figure>
+			<p><strong>Імена файлам</strong> потрібно давати з розумом, таким чином, щоб подібні файли знаходилися поруч в списку файлів. Для цього використовуються префікси.</p>
+			<figure>
+				<img src="img/tools_cutting_11.png" alt="File Names">
+				<figcaption>Іменування файлів, порівняйте ліву та праву панелі</figcaption>
+			</figure>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li data-rage="8">Зробіть порізку <a href="https://drive.google.com/open?id=0By5OeYSvSbNLNWtDYUdaZ3dYRXM" target="_blank">макета сайту з продажу футболок</a> <small>(<a href="thumb/futbolki.jpg" target="_blank">jpg</a>)</small>.</li>
+				<li>
+					Для здобуття навичок верстки, набиття руки вам потрібно буде верстати <a href="/fe/#psd" target="_blank">запропоновані на головній сторінці макети</a>. Також ви можете самі знаходити цікаві макети, роботи.<br>
+					Починайте порізку цих макетів.
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

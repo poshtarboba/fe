@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Верстка e-mail</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Верстка e-mail</h1>
+			<p><a href="https://habrahabr.ru/post/252279/" target="_blank">Хабрахабр: Верстка email рассылок от А до Я для чайников</a>.</p>
+			<p>Верстка е-мейлів має певні особливості. Вона заснована на досить старих технологіях HTML2.0 та CSS першої редакції.</p>
+			<figure>
+				<img src="img/webform_email_01.png" alt="Internet 90th">
+				<figcaption>Інтернет 90-х</figcaption>
+			</figure>
+			<p>Ще є проблемою те, що HTML-код мають інтерпритувати багато різних програм, серед яких Outlook, Outlook Express, The Bat!, Mozilla Thunderbird, Opera Mail та десякти інших.</p>
+			<p>Кожна з цих програм може відображати верстку е-мейл трохи по-своєму. Більше того, різні версії MS Outlook відображають верстку по-різному. Складається враження, що у версії 2007-го року двіжок був більш продвинутий, ніж у 2010-го, який славився великою купою глюків у відображенні.</p>
+			<p>По-перше, ви не можете використовувати блоки &lt;div&gt;, вся верстка була таблична.</p>
+			<p>По-друге, ви досить обмежено можете використовувати стилі. Ви повинні зробити гарно все без стилів, а тоді добавити стилі для більш продвинутих програм.</p>
+			<p>По-третє - забудьте про бекграунд. Ви можете вставляти тільки картинки, через атрибут bgcolor задавати фоновий колір.</p>
+			<p>Ширина макета у е-мейлів як правило коливається в межах 580-620 пікселів. Це пов’язане з розповсюдженням в свій час моніторів 640 і 1024 пікселя в ширину.</p>
+			<p>На екранах в 640 пікселів е-мейл займав всю ширину екрану, на екранах в 1024 пікселя - збоку ще могла розміщуватися панель з деревом каталогів поштового ящика.</p>
+			<figure>
+				<img src="img/webform_email_02.png" alt="The Bat!">
+				<figcaption>Програма для роботи з електронною поштою The Bat!</figcaption>
+			</figure>
+			
+			<!--
+				TODO: всю хрєнь про фонти запхати у додаткові матеріали
+			-->
+			<!--
+			<p>Для зміни параметрів шрифта можна використовувати тег &lt;font&gt; і його атрибути:</p>
+			<p><em>size</em> - зміна розміру шрифта, вказується в умовних значеннях від 1 до 7.</p>
+			<p><em>color</em> - вказується колір шрифта.</p>
+			<p><em>face</em> - через кому вказуються шрифти.</p>
+			<p>Інші атрибути, працюють лише для &lt;body&gt; і для чарунок таблиці &lt;th&gt; &lt;td&gt;:</p>
+			<p><em>bgcolor</em> - задається колір фона.</p>
+			<p><em>align</em> - виривнювання тексту по лівому чи правому краю.</p>
+			<p><em>valign</em> - вирівнювання тексту по вертикалі.</p>
+			<p>Тег <strong>&lt;center&gt;</strong> вирівнює текст по центру.</p>
+			<p>Тег <strong>&lt;b&gt;</strong> робить текст жирним.</p>
+			<p>Тег <strong>&lt;i&gt;</strong> робить текст нахиленим.</p>
+			<p>Тег <strong>&lt;u&gt;</strong> робить текст підкресленим.</p>
+			<p class="big">Привет <font size="5" color="green" face="Times New Romain, Serif">этому миру! Кликни по <a href="http://www.fondosya.com/wallpapers/mapache-1280x720.jpg" style="text-decoration: none;"><font size="2" color="red">ссылке</font></a>.</font></p>
+			<code>
+				&lt;p&gt;Привет<br>
+				&nbsp;&nbsp;&lt;font size="5" color="green" face="Times New Romain, Serif"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;этому миру! Кликни по<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href="#" style="text-decoration: none;"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;font size="2" color="red"&gt;ссылке&lt;/font&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;.<br>
+				&nbsp;&nbsp;&lt;/font&gt;<br>
+				&lt;/p&gt;
+			</code>
+			<p>Реальні розміри шрифта:</p>
+			<p>
+				<font size="7">Font size 7</font><br>
+				<font size="6">Font size 6</font><br>
+				<font size="5">Font size 5</font><br>
+				<font size="4">Font size 4</font><br>
+				<font size="3">Font size 3</font><br>
+				<font size="2">Font size 2</font><br>
+				<font size="1">Font size 1</font><br>
+			</p>
+			-->
+			<p>Останнім часом з'явилась можливість використовувати деякі стилі. Вони завжди прописуються в тег, ніяких класів немає.</p>
+			<p>Зі стилів використовуємо тільки padding, color, text-decoration, font-size, line-height.</p>
+			<code>
+				&lt;h1 style="font: normal 24px/36px Arial, Helvetica, sans-serif; color: blue;"&gt;<br>
+				&nbsp;&nbsp;Шановний Боба!&lt;/h1&gt;<br>
+				&lt;p style="..."&gt;Повідомляємо вам, що у нашому інтернет-магазині почався сезон знижок...
+			</code>
+		</section>
+
+		<section>
+			<h2>Стандартна початкова сітка е-мейлів</h2>
+			<p>Починаємо верстати з базової сітки. !DOCTYPE можна не використовувати, за часів html2.0 цього тега ще не було.</p>
+			<table border="1">
+				<tr>
+					<td><img src="img/spacer.gif" alt="" width="20" height="20"></td>
+					<td width="580"><img src="../img-fe/spacer.gif" alt="" width="580" height="20"></td>
+					<td><img src="img/spacer.gif" alt="" width="20" height="20"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>
+						Сюди вставляємо таблицю з контентом
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><img src="img/spacer.gif" alt="" width="20" height="20"></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<code>
+				&lt;table border="0" width="100%" cellspacing="0" cellpadding="0"&gt;<br>
+				&nbsp;&nbsp;&lt;tr&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;img src="images/spacer.gif" alt="" width="20" height="20"&gt;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td width="580"&gt;&lt;img src="images/spacer.gif" alt="" width="580" height="20"&gt;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;img src="images/spacer.gif" alt="" width="20" height="20"&gt;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&lt;/tr&gt;<br>
+				&nbsp;&nbsp;&lt;tr&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&amp;nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сюди вставляємо таблицю з контентом:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table width="580" border="0" cellspacing="0" cellpadding="0"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&amp;nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&lt;/tr&gt;<br>
+				&nbsp;&nbsp;&lt;tr&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;img src="images/spacer.gif" alt="" width="20" height="20"&gt;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&amp;nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&amp;nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&lt;/tr&gt;<br>
+				&lt;/table&gt;<br>
+			</code>
+			<p>Для пустих комірок необхідно використовувати прозорий файлик <a href="img/spacer.gif" target="_blank">spacer.gif</a>, який триматиме розмір комірки, або нерозривний пробіл <em>&amp;nbsp;</em>.</p>
+			<p>Всі зображення потрібно зберігати на сервер і вставляти абсолютні посилання.</p>
+			<p>Ви не можете використовувати скрипти, відео та аудіо. Замість відео зазвичай вставляється картинка-заглушка з посиланням на ютуб чи веб-сторінку, де це відео можна переглянути.</p>
+		</section>
+
+		<section>
+			<h2>Відправка e-mail</h2>
+			<p>Створіть файл mail.php поруч із вашою версткою е-мейлів.</p>
+			<code>
+				&lt;?php<br>
+				&nbsp;&nbsp;error_reporting(0);<br>
+				&nbsp;&nbsp;$mail = 'boba@mail.com';<br>
+				&nbsp;&nbsp;$subject = 'Тестування e-mail верстки';<br>
+				&nbsp;&nbsp;$ctype = 'Content-type: text/html; charset=utf-8 \r\n';<br>
+				&nbsp;&nbsp;$message = 'Сюди вставляємо код зверстаного е-мейла';<br>
+				&nbsp;&nbsp;mail($mail, $subject, $message, $ctype);<br>
+				&nbsp;&nbsp;echo 'Done &lt;i&gt;13&lt;/i&gt;';
+			</code>
+			<p>
+				В змінну $message потрібно внести лише вміст тега body, тільки таблиці, <strong>не вставляйте весь код HTML!</strong><br>
+				У е-мейлів немає доктайпа, тегів html, head, meta, link, body.
+			</p>
+			<p>Переконайтесь, що прописали свою електронну адресу.</p>
+			<p>Перевірте, чи все гаразд з лапками, апострофами.</p>
+			<p>На сервері в своїй папці створіть папку mail, в ній - img:</p>
+			<code>
+				логін/<br>
+				&nbsp;&nbsp;mail/<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;img/
+			</code>
+			<p>В цю папку закиньте всі нарізані картинки з шаблона, не забудьте і про spacer.gif.</p>
+			<p>Тепер вам треба замість відносних прописати абсолютні шляхи до всіх зображень у верстці, приклад:</p>
+			<code>
+				Було:<br>
+				&lt;img src="images/spacer.gif"&gt;<br><br>
+				Стало:<br>
+				&lt;img src="http://circle.com.ua/users/папка_групи/логін/mail/img/spacer.gif"&gt;
+			</code>
+			<p>Взагалі, для збереження зображень е-мейлів можете користуватися сторонніми сервісами для збереження картинок, фоток. Аби ті сервіси видавали нормальні і не дуже довгі URL картинок.</p>
+			<p>Спробуйте скористатися автозаміною - простіше буде.</p>
+			<p>Збережіть файл на сервері в папці mail. Верстку на сервер можна не закидувати.</p>
+			<p>Щоб виконати скрипт перейдіть за посиланням <strong><em>http://circle.com.ua/users/папка_групи/логін/mail/mail.php</em></strong>. Якщо в скрипті не буде помилок - на екрані відобразиться напис "Done <em>13</em>" (*).</p>
+			<p>Через деякий час на вашу електронну скриньку має прийти тестовий лист. Скоріш за все він попаде в паку <em>smap</em> (через недовіру гугла до більшості маленьких сайтів, доменів).</p>
+			<p>&nbsp;</p>
+			<p>Є трохи простіший спосіб протестувати е-мейл. Спочатку вам в html-файлі треба повидаляти все до тега body включно, і закриваючі теги body, html, залишити лише таблиці. Також потрібно прописати абсолютні шляхи до зображень.</p>
+			<p>Тепер замість вставляння html-коду в php, екранування лапок з апострофами, можна просто імпортувати вміст файла у змінну:</p>
+			<code>
+				$message = file_get_contents('mail.html');
+			</code>
+			<p>В цьому випадку на сервер треба закинути і php-файл, і html-файл, з якого скрипт і буде брати інформацію.</p>
+			<p>*) php-команда echo просто виводить текст чи html-код на сторінку браузера. Слово Done просто вказує на те, що скрипт відпрацював, помилок не було. Замість нього можна поставити будь-що: Ok, привіт, Error: you are looser!</p>
+			<p>Цифра 13 (чи 42 в занятті по веб-формах) теж нічого не значить. Бувають курйозні (чи не дуже) випадки, коли ви редагуєте один файл, а на сервер заливаєте інший, і у вас ніяк не получається побачити свої зміни. Чи, можливо, якесь кешування специфічне, чи ще щось. Якщо ви змінили php-файл, то поміняйте і цифру. Якщо на екрані браузера цифра теж зміниться - значить, все гаразд, проблема ховається десь в іншому місці.</p>
+		</section>
+		
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Зверстайте е-мейли: <a href="https://drive.google.com/open?id=0By5OeYSvSbNLbl9uMVZNX3pjRTA" target="_blank">emails.zip</a> (<a href="thumb/email.jpg" target="_blank">jpg</a>)</li>
+				<li>Протестуйте зверстані е-мейли, відправивши їх собі на пошту двома способам: вставивши код в php-файл та імпортувавши код з файла. Замість Done пропишіть пояснення, типу "Code in PHP", "Import code from html"</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Додаткова інформація</h2>
+			<p>Якщо вам потрібно буде верстати багато шаблонів e-mail - використовуйте фреймворки, наприклад, <a href="https://foundation.zurb.com/emails.html" target="_blank">Foundation for Emails 2</a>.</p>
+		</section>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

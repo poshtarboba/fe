@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+	<!--
+	Візуал-студію добавити в IDE
+	https://code.visualstudio.com/
+	-->
+	
+		<!--
+
+			TODO: метатеги для соц. сетей (???)
+
+			TODO: атрибут role
+			Атрибут  role в HTML5 позволяет наиболее четко указать семантическое предназначение блока/элемента страницы при взаимодействии пользователя с сайтом.
+
+Возможные значения атрибута role
+
+banner — содержит главный заголовок или внутренний заголовок страницы. Например логотип и название сайта. Рекомендуется использовать не больше одного раза на странице.
+article — Раздел состоящий из композиции, которая в свою очередь образует самостоятельную часть документа, страницы или сайта.
+complementary — информационный блок, отделенный от основного содержания ресурса.
+contentinfo — обобщающая информация о содержании страницы (к примеру, footer). Рекомендуется использовать не больше одного раза на странице.
+definition — указывает определение термина или понятия.
+main — выступает в качестве основного содержания документа. Рекомендуется использовать не больше одного раза на странице.
+navigation — набор элементов предназначенных для навигации по документу или связанным документам. Рекомендуется использовать не больше одного раза на странице.
+note — заметка ( вспомогательная информация) к основному содержанию ресурса.
+search — указывает область для поиска по содержимому.
+alert — Сообщение с важной и, как правило срочной, информация. Также см. alertdialog и status.
+alertdialog — Сообщение, которое содержит важную информацию, и первоначальный акцент переходит элементу в диалоговом окне. Также см. alert и dialog.
+application — Область объявленная как веб-приложение, в отличие от веб-документа.
+button — Кнопка, позволяющая пользователю вызвать какие-либо действия. Также см. link.
+checkbox — Чекбокс, который имеет три возможных значения: истина, ложь, или смешанное.
+columnheader — Ячейка таблицы, содержащая заголовок для столбца.
+combobox — Вариация селекта; аналогично textbox, позволяющая пользователям печатать для выбора опции, или при печате добавить новую опцию к списку. Также см. listbox.
+dialog — Сообщение, предназначенное для прерывания обработки текующего приложения, для ввода пользователем какой-либо информации или требующее от него какое-либо действие. Также см. alertdialog.
+directory — Список ссылок на части группы, например содержание.
+document — Область, содержащая информацию, которая объявлена как содержимое документа, в отличие от веб-приложений.
+form — Ориентир области, которая содержит коллекцию элементов и объектов, которые, в целом, объединяются, чтобы создать форму. См. также search.
+grid — Сетка интерактивного управления, которая содержит элементы сведенные в таблицу данных, в виде строк и столбцов, как таблица.
+gridcell — Ячейки в сетке или древовидная сетка.
+group — Набор объектов пользовательского интерфейса, которые не предназначены для включения в итоговую страницу или содержимое, вспомогательных технологий.
+heading — Заголовок для раздела страницы.
+img — Контейнер для набора элементов, которые формируют изображение.
+link — Интерактивная ссылка на внутренний или внешний ресурс, который при активации заставляет браузер пользователя перейти к этому ресурсу. См. также button.
+list — Группа неинтерактивных элементов списка. Также см. listbox.
+listbox — Виджет, который позволяет пользователю выбрать один или несколько элементов из списка вариантов. См. также combobox и list.
+listitem — Один элемент в списоке или содержании.
+log — Тип интерактивной области, где новая информация добавляется в осмысленном порядке, а старая может исчезнуть. См. также marquee.
+marquee — Тип интерактивной области, где не существенная информация часто меняется. См. также log.
+math — Контент, который представляет собой математическое выражение.
+menu — Тип виджета, который предоставляет выбор списка вариантов для пользователя.
+menubar — Представление menu, которое обычно остается видимым и, как правило, представлено горизонтально.
+menuitem — Опции в группе выбора содержащиеся в menu или menubar.
+menuitemcheckbox — Чекбокс пункта menu, который имеет три возможных значения: истина, ложь, или смешанное.
+menuitemradio — Отмечаемый пункт меню в группе menuitemradio, из которых только один может быть выбран одновременно.
+option — Выбираемый элемент в списке выбора.
+presentation — Элемент чья семантически неявная роль не будет отображаться на доступности API.
+progressbar — Элемент, который отображает ход статуса задач, занимающих много времени.
+radio — Отмечаемый пункт в группе таких же пунктов, из которых только один может быть выбран одновременно.
+radiogroup — Группа переключателей.
+region — Большая область веб-страницы или документа, которую автор счел достаточно важной, чтобы включить в основную информацию страницы или оглавление, например, область страницы содержающая спортивную статистику событий онлайн.
+row — Ряд ячеек в grid.
+rowgroup — Группы, содержащие один или несколько элементов row в grid.
+rowheader — Ячейка содержащая заголовок для row в grid.
+scrollbar — Графический объект, который управляет прокруткой содержимого области просмотра, независимо от того, полностью ли содержание отображается в области просмотра.
+separator — Разделитель, который разделяет и отличает разделы содержимого или группы пунктов menuitems.
+slider — Интерфейс ввода для пользователя, когда пользователь выбирает значение из заданного диапазона.
+spinbutton — Форма диапазона, где пользователь может выбрать из числа дискретных решений.
+status — Контейнер, содержание которого носит рекомендательный характер для информирования пользователя, но не является достаточно важным. Также см. alert.
+tab — Вкладка, представляющая из себя механизм для выбора вкладки необходимой пользователю.
+tablist — Список элементов tab, которые являются ссылками на tabpanel элементы.
+tabpanel — Контейнер для ресурсов связанных с tab, где каждый tab содержиться в tablist.
+textbox — Поле ввода, которое предоставляет ввод в свободной форме текста.
+timer — Тип интерактивной области, содержащую числовой счетчик, который указывает на количество затраченного времени от начальной точки, или время, оставшееся до конечной точки.
+toolbar — Набор часто используемых функциональных кнопок, представленых в компактной визуальной форме.
+tooltip — Контекстное всплывающее окно, которое отображает описание элемента.
+tree — Тип списка, который может содержать подуровни вложенных групп, которые могут быть свернуты и расширены.
+treegrid — Сетка, чьи строки могут быть свернуты и расширины так же как и в tree.
+treeitem — Опция элемента tree. Этот элемент внутри tree, может быть свернут или расширен, если имеет вложенный подуровень.
+
+			TODO: прописати поріг входження на блоки лекцій
+
+			TODO: помилки у веб-розробці:
+			http://nicothin.pro/page/oshibki-i-spornye-voprosy-v-html-css-vjorstke
+			http://nicothin.pro/page/oshibki-i-spornye-voprosy-v-html-css-vjorstke-2
+			http://nicothin.pro/page/oshibki-i-spornye-voprosy-v-html-css-vjorstke-3
+
+			TODO: сторінка-валідатор, де ставимо галочки
+			підготовка до здачі, ревю кода, тестування, перевірка (браузери, мобілка, жести), валідація, оптимізація, видалення коментарів, мініфікація
+			https://habrahabr.ru/post/319664/
+			рекомендації гугла веб-майстрам:
+			https://support.google.com/webmasters/answer/35769?hl=ru
+			код-гайди:
+			https://epixx.github.io/code-guide/
+			http://codeguide.academy/html-css.html
+
+			TODO: колір закладки мобільного браузера
+
+			TODO: шапка лекцій, кольорова схема лекцій
+
+			TODO:
+			точки в медіазапитах замість ком (???)
+			повні стилі сітки (лекція про сітку)
+			розібратися з флексами
+			лекція про grid
+			float/float - батько і дочірній елемент
+			
+			TODO: зробити курсач по типу img/dev_test.jpg
+			<a href="course_project.html">Курсовий проект</a>
+
+			TODO: скрипти, з самого початку привчати активно використовувати консоль-лог, в кожній задачі коментуємо що відбувається, виводимо вхідні, вихідні дані
+			
+			
+			
+			Инструменты для создания параллакс-эффектов:
+
+jQuery Parallax Image Slider
+https://github.com/bobbravo2/jQuery-Parallax-Slider
+
+jQuery Image Parallax by Steve Fenton
+http://www.stevefenton.co.uk/cmsfiles/assets/File/imageparallax.html
+
+crolling Parallax: A jQuery Plugin by John Raasch
+http://jonraasch.com/blog/scrolling-parallax-jquery-plugin
+
+Scrollorama by John Polacek
+http://johnpolacek.github.com/scrollorama/
+
+Scrolldeck by John Polacek
+http://johnpolacek.github.com/scrolldeck.js/
+
+jParallax
+http://webdev.stephband.info/parallax.html
+
+Stellar.js by Mark Dalgleish
+http://markdalgleish.com/projects/stellar.js/
+
+jQuery Scroll Path by Joel Besada
+http://joelb.me/scrollpath/
+
+Curtain.js by Victor Coulon
+http://curtain.victorcoulon.fr/#intro
+
+Plax by Cameron McEfee
+http://www.cameronmcefee.com/plax/
+
+
+=============================
+бесконечное вращение:
+
+.rotate3s {
+	-webkit-animation: rotate 3s infinite linear;
+	-moz-animation: rotate 3s infinite linear;
+	-ms-animation: rotate 3s infinite linear;
+	-o-animation: rotate 3s infinite linear;
+	animation: rotate 3s infinite linear;}
+
+=============================
+появление с рывком, каждый следующий блок появляется на 0,1с позже:
+<div class="ships scroll-animate">
+	<h2>Корабли</h2>
+	<div class="ship anim">Фрегат</div>
+	<div class="ship anim">Шхуна</div>
+	<div class="ship anim">Клипер</div>
+</div>
+
+$(function() {
+	$('.scroll-animate').each(function () {
+		var block = $(this);
+		$(window).scroll(function() {
+			var top = block.offset().top;
+			var bottom = block.height()+top;
+			top = top - $(window).height();
+			var scroll_top = $(this).scrollTop();
+			if ((scroll_top > top) && (scroll_top < bottom)) {
+				if (!block.hasClass('animate')) {
+					block.addClass('animate');
+					block.trigger('animateIn');
+				}
+			} else {
+				block.removeClass('animate');
+				block.trigger('animateOut');
+			}
+		});
+	});
+
+	$('.ships').on('animateIn', function() {
+		var inter = 0;
+		$(this).find('.anim').each(function() {
+			var block = $(this);
+			setTimeout(function() {
+				block.css('opacity', 1);
+				block.css('transform', 'scale(1.0, 1.0)');
+			}, inter*100); /* задержка перед появлением следующего */
+			inter++;
+		});
+	}).on('animateOut', function() {
+		$(this).find('.anim').each(function() {
+			$(this).css('opacity', 0.01);
+			$(this).css('transform', 'scale(0.5, 0.5)');
+		});
+	});
+});
+
+
+			
+		-->
+
+
+		<h1>Фронтенд</h1>
+		<p><strong>Боба</strong> (Бобир Олександр Анатолійович)</p>
+		<p>poshtar.boba@gmail.com</p>
+		<p>telegram: poshtarboba</p>
+		<p>viber: +380682096694</p>
+		<p>skype: hm051082baa</p>
+		<hr>
+		<p class="main-info"><strong>Notebook:</strong> SSD, 8+ Gb RAM</p>
+		<p class="main-info"><strong>Text editor:</strong> Notepad++</p>
+		<p class="main-info"><strong>IDE:</strong> PhpStorm, Subime Text, Atom, Brackets, NetBeans, Eclipse</p>
+		<p class="main-info"><strong>Web-server:</strong> OpenServer, XAMPP</p>
+		<p class="main-info"><strong>Graph:</strong> Photoshop, Sketch, Avocode</p>
+		<p class="main-info"><strong><abbr title="File Manager">FM</abbr> + FTP:</strong> Total Commander, FileZilla, MS Explorer</p>
+		<p class="main-info"><strong>Utils:</strong> Git, Node</p>
+		<p class="main-info"><strong>Browsers:</strong> Chrome, Firefox, Safari, MS IE 11, Edge</p>
+		<p class="main-info"><strong>Mobile:</strong> Chrome, Safari, Android Browser, Opera Mini</p>
+		<hr>
+
+		<section>
+			<h2>Курси</h2>
+			<ul>
+				<li><a href="fe15.html">fe15</a></li>
+				<li><a href="fe17.html">fe17</a></li>
+				<!-- надалі: a - верстка, b - js, c - веб-графіка -->
+				<li>
+					<!-- старт групи: 2018-09-25 -->
+					<a href="fe18a.html">fe18a</a> (верстка),
+					<a href="fe18a_rc.html">табель групи</a>
+				</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Додаткові матеріали</h2>
+			<h3>JavaScript</h3>
+			<ul>
+				<li>Дескриптори, <a href="-js_setters_getters.html">сеттери, геттери в об'єктах</a>.</li>
+				<li><a href="-tools_smacss.html">Методологія іменування класів SMACSS</a></li>
+			</ul>
+		</section>
+		
+		<hr>
+		
+		<section id="psd">
+			<h2>Макети</h2>
+			<ul>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLNWtDYUdaZ3dYRXM" target="_blank">Футболки</a> <small>(<a href="thumb/futbolki.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLQ0lGQ0VXNTk3bmc" target="_blank">КолесовЪ</a> <small>(<a href="thumb/kolesov.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLUWJPY25SRXh4b2s" target="_blank">Minecraft</a> <small>(<a href="thumb/minecraft.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLeXIxU2gzNjJnbkE" target="_blank">Таблиці</a> <small>(<a href="thumb/tables.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLRUhkQW03VUVuZXM" target="_blank">Веб-форми</a> <small>(<a href="thumb/forms.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLRC1YTDMzTDVPUEE" target="_blank">Авто-ЗАЗ</a> <small>(<a href="thumb/autozaz.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLdy03QzFwcFJJaWc" target="_blank">E-mails</a> <small>(<a href="thumb/email.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLcVoyY3dPS2ZFZWs" target="_blank">Гумова верстка</a> <small>(<a href="thumb/rubber.jpg" target="_blank">jpg</a>)</small></li>
+			</ul>
+			<h3>Колективні завдання</h3>
+			<ul>
+				<li><a href="https://github.com/poshtarboba?tab=repositories" target="_blank">репозиторії проектів</a></li>
+				<li><a href="https://drive.google.com/open?id=12SRLq7TigMSyCKd2ZaVe9culdFYpcU0I" target="_blank">Простий колективний проект</a></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLY01BM0d6bF9DOEU" target="_blank">Assos</a> <small>(<a href="thumb/assos.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLV3ZVYk5xb3QxbDg" target="_blank">Мебель</a> <small>(<a href="thumb/mebel.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://github.com/poshtarboba/ajax_test" target="_blank">репозиторій соцмережі на AJAX</a></li>
+			</ul>
+			<h3>Лендінги</h3>
+			<ul>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLZlVJbUozNlAydm8" target="_blank">Іскандер</a> <small>(<a href="thumb/iskander.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLYVMtRUxSRUtWckk" target="_blank">Масло</a> <small>(<a href="thumb/oil.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=1F9sZiGjFQveuaJSFrakCcupuAZpWy41x" target="_blank">Tajam</a> <small>(<a href="https://drive.google.com/open?id=13tiChmFxI4_wTJDDDMQy6HMhJHNaFv0E" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLa1M3ZnR4bldFb2s" target="_blank">Dolce Vita</a> <small>(<a href="thumb/dolcevita.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLa1VVTnVKUnIxYVU" target="_blank">Assos 2</a> <small>(<a href="thumb/assos2.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLM1BHN2FMY2wxNDA" target="_blank">Зіон Маркетинг</a> <small>(<a href="thumb/zion.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLX3NPVjNycFQ0T3M" target="_blank">Микола Кемпінський</a> <small>(<a href="thumb/kempinskiy.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLS0Q3eW95RnN6N2M" target="_blank">Глобус автобус</a> <small>(<a href="thumb/globus.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLLVYzbk9YeTZJUUk" target="_blank">Спільнота людей з вадами нирок</a> <small>(<a href="thumb/dializ.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLMi1lMWFzc0ZlT2s" target="_blank">Центр правових експертиз</a> <small>(<a href="thumb/expertiza.jpg" target="_blank">jpg</a>)</small></li>
+			</ul>
+			<h3>Невеликі сайти:</h3>
+			<ul>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLMXRhQVlIamZVZVk" target="_blank">Бізнес-Експерт</a> <small>(<a href="thumb/businessexpert.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLRC04MDJ1YUVBT2M" target="_blank">Супер-посилка</a> <small>(<a href="thumb/superposilka.jpg" target="_blank">jpg</a>, є макети для мобільних версій)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLSFNjcnVMVDNGMlk" target="_blank">Маки</a> <small>(<a href="thumb/maki.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLSWx1NHI0Z3JwY2M" target="_blank">Житловий комплекс Сонячний</a> <small>(<a href="thumb/sunny.jpg" target="_blank">jpg</a>, не повинно з'являтися полос прокрутки)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLNl96MlFtUHZOWDA" target="_blank">Спільнота об'єднаних олігархів</a> <small>(<a href="thumb/oligarh.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLMEtYME9ObnF2MDg" target="_blank">РусМетПром</a> <small>(<a href="thumb/rusmetprom.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLeWJMLTg2NnUtRWc" target="_blank">Sinfo</a> <small>(<a href="thumb/sinfo.jpg" target="_blank">jpg</a>)</small></li>
+			</ul>
+			<h3>Багатосторінкові сайти</h3>
+			<ul>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLcWNGdnp6OFIzaTg" target="_blank">Студія краси LEO</a> <small>(<a href="thumb/leo.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLUW9XMXlRcVUzclU" target="_blank">Павловська курочка</a> <small>(<a href="thumb/kura.jpg" target="_blank">jpg</a>)</small></li>
+				<li><a href="https://drive.google.com/open?id=0By5OeYSvSbNLUEdsM0xCbTJ6TTQ" target="_blank">Фінанси просто</a> <small>(<a href="thumb/finances.jpg" target="_blank">jpg</a>)</small></li>
+			</ul>
+			<h3>Безкоштовні макети під Bootstrap</h3>
+			<ul>
+				<li><a href="https://designsmaz.com/free-landing-page-psd-templates/" target="_blank">designsmaz.com</a></li>
+				<li><a href="https://cssauthor.com/landing-page-templates-psd/" target="_blank">cssauthor.com</a></li>
+				<li><a href="https://freebiesbug.com/psd-freebies/free-psd-landing-page/" target="_blank">freebiesbug.com</a></li>
+				<li><a href="https://startbootstrap.com/template-categories/landing-pages/" target="_blank">startbootstrap.com</a></li>
+				<li><a href="https://djavaui.com/2016/06/50-best-free-landing-page-psd-templates/">djavaui.com</a></li>
+			</ul>
+		</section>
+
+		<hr>
+
+		<section>
+			<h2>Корисні посилання</h2>
+			<ul>
+				<li><a href="https://learn.freecodecamp.org/" target="_blank">freecodecamp</a> - великий збірник задач з верстки, JS, QA і т.д.</li>
+				<li><a href="https://dou.ua/" target="_blank">dou.ua</a> - сайт про українські IT</li>
+				<li><a href="https://soundcloud.com/web-standards/" target="_blank">підкаст "Веб-стандарты"</a> - радіобесіди про веб-розробку</li>
+				<li><a href="https://dou.ua/lenta/articles/it-market-khmelnytskiy/" target="_blank">dou.ua: Огляд ІТ-ринку праці в Хмельницькому</a></li>
+				<li><a href="http://habrahabr.ru/posts/frontend/" target="_blank">habrahabr.ru/posts/frontend</a> - гілка по фронтенду на хабрі</li>
+				<li><a href="http://frontender.info/" target="_blank">frontender.info</a> - ресурс про фронтенд</li>
+				<li><a href="http://htmlbook.ru/" target="_blank">htmlbook.ru</a>, <a href="http://webref.ru/" target="_blank">webref.ru</a> - довідник, підручник по HTML/CSS</li>
+				<li><a href="http://javascript.ru/" target="_blank">javascript.ru</a> - довідник, підручник, форум по JavaScript</li>
+				<li><a href="http://api.jquery.com/" target="_blank">api.jquery.com</a> - довідник по API бібліотеки jQuery</li>
+				<li><a href="https://jsfiddle.net/" target="_blank">jsfiddle.net</a> - пісочниця, тестовий полігон</li>
+				<li>
+					<strong>Задачники по JavaScript:</strong><br>
+					- <a href="https://learn.freecodecamp.org/" target="_blank">https://learn.freecodecamp.org/</a> (HTML, CSS, JS)<br>
+					- <a href="https://www.educative.io/" target="_blank">https://www.educative.io/</a><br>
+					- <a href="https://csx.codesmith.io/" target="_blank">https://csx.codesmith.io/</a><br>
+					- <a href="https://github.com/StevanCakic/js-hard-parts" target="_blank">https://github.com/StevanCakic/js-hard-parts</a> (6 частин, дивися внизу)<br>
+				</li>
+				<!-- TODO: курси, всілякі кодекадемі, українські -->
+				<li>
+					<strong>Валідатори</strong>:<br>
+					<a href="https://validator.w3.org/" target="_blank">validator.w3.org</a> - html<br>
+					<a href="https://validator.w3.org/nu/" target="_blank">validator.w3.org/nu</a> - Nu Html Checker, сучасний валідатор (став галочку outline)<br>
+					<a href="http://jigsaw.w3.org/css-validator/" target="_blank">jigsaw.w3.org/css-validator</a> - css<br>
+					<a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">google-валідатор</a> - швидкість завантаження сторінок<br>
+					<a href="https://www.google.com/webmasters/tools/mobile-friendly/" target="_blank">google-валідатор</a> - mobile-friendly
+				</li>
+				<li>
+					<strong>Скриншоти з браузерів</strong>:<br>
+					<a href="https://www.browserstack.com/screenshots/" target="_blank">browserstack.com/screenshots</a><br>
+					<a href="https://www.browserling.com/" target="_blank">browserling.com</a><br>
+					<a href="http://browsershots.org/" target="_blank">browsershots.org</a>
+				</li>
+				<li>
+					<strong>Best practics</strong>:<br>
+					<a href="https://learn.javascript.ru/coding-style" target="_blank">Советы по стилю кода JavaScript</a><br>
+					<a href="https://github.com/ryanmcdermott/clean-code-javascript" target="_blank">Clean code javascript</a><br>
+				</li>
+			</ul>
+			
+			<h3>Фріланс</h3>
+			<ul>
+				<li><a href="https://freelance.ua/" target="_blank">Фриланс уа</a></li>
+				<li><a href="https://www.fl.ru/" target="_blank">Фриланс ру</a></li>
+				<li><a href="https://freelansim.ru/" target="_blank">Фрилансим</a></li>
+				<li><a href="https://freelancehunt.com/" target="_blank">Фриланс-хант</a></li>
+				<li><a href="https://www.freelancer.com/" target="_blank">Фрилансер.ком (eng)</a></li>
+				<li><a href="https://www.elance.com/" target="_blank">Еланс (eng)</a></li>
+				<li><a href="https://www.upwork.com/" target="_blank">Апворк (eng)</a></li>
+			</ul>
+
+			<h3>Різні корисності</h3>
+			<ul>
+				<li><a href="https://habrahabr.ru/post/180473/" target="_blank">5 видів меню</a> (немає флексбокс-меню)</li>
+				<li><a href="https://jonsuh.com/hamburgers/" target="_blank">Колекція анімованих гамбургерів</a></li>
+			</ul>
+			
+			<!--
+				TODO:
+			<h3>Хмельницькі ІТ-студії</h3>
+			RexSoft, веб-сістем, web service, софт-бістро, stfalcon, devloop, avivi, Омнісофт, аутсорсінг тім, web service
+			<ul>
+				<li><a href="" target="_blank"></a></li>
+			</ul>
+			-->
+
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

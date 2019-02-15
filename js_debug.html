@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Дебагінг</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Дебагінг</h1>
+			<p>Часто чую такі діалоги:</p>
+			<code>
+				— В мене не працює.<br>
+				— Що працює?<br>
+				— Скрипт.<br>
+				— Чому не працює.<br>
+				— Не знаю. В тебе хотів спитати.<br>
+				— В консолі яку помилку видає?<br>
+				— В консолі пусто, просто не працює.
+			</code>
+			<p>І такий варіант:</p>
+			<code>
+				— Помилку видає, не можу зрозуміти що не так.<br>
+				— В якій строчці? Яка помилка?<br>
+				— Токен невірний, хз в якій строчці, я в jsFiddle роблю.
+			</code>
+			<p>Консоль - ваш друг і помічник. Нехай є у нас скрипт:</p>
+			<code>
+				var button = document.getElementById('butt'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;a = [5, 7, 9, 12, 16, 20];<br>
+				button.onclick = function(){<br>
+				&nbsp;&nbsp;for (var i = 0; i &lt; a.length; i++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;if (a[i] % 2 === 0) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mySuperFunction(a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i] /= 2;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i] *= 2;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;}<br>
+				}
+			</code>
+			<p>В цьому коді багато де можуть ховатися помилки.</p>
+			<p>В разі проблем в консоль потрібно виводити значення змінних і дії скрипта.</p>
+			<p>Особливу увагу потрібно приділити подіям, вони можуть не виконуватися взагалі з певних причин.</p>
+			<p>
+				Максимальний лог нашого скрипта буде виглядати так:<br>
+				(не лякайтеся, це той самий скрипт, просто між його строками добавлено багато console.log)
+			</p>
+			<code>
+				&lt;button id="butt"&gt;кнопка&lt;/button&gt;<br><br>
+				console.log('скрипт стартує');<br>
+				var button = document.getElementById('butt'),<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;a = [5, 7, 9, 12, 16, 20];<br>
+				console.log('чи знайдена кнопка? кнопка:');<br>
+				console.dir(button);<br>
+				console.log('масив:');<br>
+				console.dir(a);<br>
+				console.log('створюємо обробник події кліка по кнопці.');<br>
+				button.onclick = function(){<br>
+				&nbsp;&nbsp;console.log('КЛІК!!! Виникла подія кліка по кнопці.');<br>
+				&nbsp;&nbsp;console.log('запускаємо цикл - перебір всіх елементів a (довжина масива - ' + a.length + ').');<br>
+				&nbsp;&nbsp;for (var i = 0; i &lt; a.length; i++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('###### ітерація i=' + i + ', до кінця залишилося ' + (a.length - i - 1) + ' ітерацій.' );<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('значення поточного елемента масива a[i] =', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('перевірка умови a[i] % 2 === 0 :');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;if (a[i] % 2 === 0) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('пішли по гілці true.');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('запускаємо нашу супер-функцію з аргументом a[i] = ', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mySuperFunction(a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('супер-функція виконалася успішно.');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('гілка true вимагає поділити поточне значення елемента масива на два: a[i] /= 2');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('поточне значення a[i] =', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i] /= 2;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('нове значення a[i] =', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('пішли по гілці false.');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('гілка false вимагає помножити поточне значення елемента масива на два: a[i] *= 2');<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('поточне значення a[i] =', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i] *= 2;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('нове значення a[i] =', a[i]);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('кінець ітерації №', i);<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;console.log('кінець обробника події кліка.');<br>
+				}<br>
+				console.log('======== кінець скрипта.');<br>
+				function mySuperFunction(n) { console.log('--- дія функції, аргумент:', n); };
+			</code>
+			<p>Приблизно так виглядає повна телеметрія нашого скрипта. По цьому логу ми будемо абсолютно точно бачити всі дії і де можуть бути помилки.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

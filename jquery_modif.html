@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Модифікація DOM в jQuery</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Модифікація DOM в jQuery</h1>
+			
+			<h2>Добавляння елементів та HTML</h2>
+			<p><em>$(куди_добавляємо).fun(що_добавляємо);</em></p>
+			<p><strong>$('p').before(s);</strong> - вставляє HTML-код чи елемент перед кожним вибраним елементом.</p>
+			<p><strong>$('p').after(s);</strong> - вставляє HTML-код чи елемент після кожного вибраного елемента.</p>
+			<p><strong>$('p').prepend(s);</strong> - вставляє HTML-код чи елемент всередину кожного вибраного елемента на початок.</p>
+			<p><strong>$('p').append(s);</strong> - вставляє HTML-код чи елемент всередину кожного вибраного елемента в кінець.</p>
+			<code>
+				let $strong = $('strong:first');<br>
+				let img = document.createElement('img');<br>
+				img.setAttribute('src', 'https://68.media.tumblr.com/avatar_5295b088c685_128.png');<br><br>
+				$('p').before('&lt;hr&gt;');<br>
+				$('p').after(img);<br>
+				$('h2').prepend('&lt;span class="danger"&gt;!!! >>> &lt;/span&gt;');<br>
+				$('h2').append($strong);
+			</code>
+			<h3>Добавляння елементів та HTML до цільового елемента.</h3>
+			<p><em>$(що_добавляємо).fun(куди_добавляємо);</em></p>
+			<p><strong>$(e).insertBefore(target);</strong> - добавляє перед елементом.</p>
+			<p><strong>$(e).insertAfter(target);</strong> - добавляє після елемента.</p>
+			<p><strong>$(e).prependTo(target);</strong> - добавляє всередину на початок елемента.</p>
+			<p><strong>$(e).appendTo(target);</strong> - добавляє всередину в кінець елемента.</p>
+			<code>
+				let tgt = $('h2');<br>
+				let $strong = $('strong:first');<br>
+				let img = document.createElement('img');<br>
+				img.setAttribute('src', 'https://68.media.tumblr.com/avatar_5295b088c685_128.png');<br><br>
+				$('&lt;hr&gt;').insertBefore(tgt);<br>
+				$(img).insertAfter(tgt);<br>
+				$('&lt;span class="danger"&gt;!!! >>> &lt;/span&gt;').prependTo(tgt);<br>
+				$($strong).appendTo('h2');
+			</code>
+			
+			<h2>Створення та видалення елементів</h2>
+			<p><strong>$('&lt;p class="hey"&gt;hello&lt;/p&gt;')</strong> - створює елемент(и) у пам'ять.</p>
+			<p><strong>$(e).clone();</strong> - клонує елементи у пам'ять.</p>
+			<code>
+				$('#userpic').clone().prependTo('.comment');<br>
+				$('button.calc').clone(true);<br>
+				$('menu').clone(<a href="https://api.jquery.com/clone/" target="_blank">true, true</a>);
+			</code>
+			<p><strong>$('ul').empty();</strong> - видаляє всі дочірні елементи (очищає вибрані елементи).</p>
+			<p><strong>$('li').remove();</strong> - видаляє вибрані елементи.</p>
+			<p><strong>$('li').detach();</strong> - видаляє вибрані елементи.</p>
+			<code>
+				$('section').eq(0).empty();<br>
+				$('section').eq(1).html('');<br>
+				$('section').get(2).innerHTML = ''<br><br>
+				$('h2').eq(0).remove();<br><br>
+				let $li = $('ol li').each(function(i){<br>
+				&nbsp;&nbsp;$(this).prepend('[' + i + '] ');<br>
+				}).filter(':even').detach();<br>
+				window.onclick = function(){<br>
+				&nbsp;&nbsp;$('ol').eq(0).prepend($li);<br>
+				}
+			</code>
+			<p>Всі три метода повертають видалені елементи, отже, їх можна зберегти у змінну і використати згодом.</p>
+			<p>Методи remove і detach можуть приймати аргумент - селектор, для фільтрації елементів, що будуть видалені.</p>
+			
+			<h2>Обгортки</h2>
+			<p><strong>$(e).wrap(html);</strong> - робить обгортку довкола кожного з вибраних елементів.</p>
+			<p><strong>$(e).wrapAll(html);</strong> - робить одну спільну обгортку для всіх вибраних елементів.</p>
+			<p><strong>$(e).wrapInner(html);</strong> - робить обгортку для контента кожного вибраного елемента (огортає всередині).</p>
+			<p><strong>$(e).unwrap();</strong> - видаляє обгортку (безпосереднього батька).</p>
+			<code>
+				$('h2').wrap('&lt;div class="h2-wrap"&gt;&lt;/div&gt;');<br>
+				$('.h2-wrap').css('border', '1px solid blue');<br>
+				$('h2').wrapInner('&lt;span class="danger"&gt;&lt;/span&gt;');<br>
+				$('li').wrapAll('ul');<br>
+				$('h1').unwrap('.resize');
+			</code>
+			<p>Метод unwrap може приймати селектор, якщо батьківський елемент не відфільтрується ним, то обгортка не видалиться.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

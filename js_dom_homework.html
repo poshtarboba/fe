@@ -1,0 +1,194 @@
+<html>
+<head>
+	<title>Frontend. JS DOM - домашнє завдання.</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="format-detection" content="telephone=no">
+	<style>
+		body { margin: 0; padding: 20px; font: normal 16px/20px Arial, Helvetica, sans-serif;}
+		p { margin: 0; padding: 10px 0;}
+		h1, h2, h3 { margin: 0 auto; padding: 0.3em 0;}
+		form { position: absolute; right: 20px; padding: 12px 20px; text-align: center; background: white; border: 1px solid #aaa;}
+		form p { padding:6px 0;}
+		form:nth-child(1) { top: 50px;}
+		form:nth-child(2) { top: 1200px;}
+		form:nth-child(3) { top: 2400px;}
+		table { border-collapse: collapse;}
+		th, td { padding: 2px 8px; border: 1px solid #aaa; text-align: right;}
+		table#mp { cursor: help;}
+		table#khm tr > *:nth-child(1) { text-align: left;}
+		.hey:before { content: 'hey!'; display: inline-block; padding-right: 20px; font-size: 10px; line-height: 12px; color: #aaa;}
+	</style>
+</head>
+<body>
+
+	<p>User Agent: <span id="useragent">???</span>.</p>
+
+	<form action="#">
+		<input type="hidden" name="form" value="form">
+		<h3>Замовлення дзвінка:</h3>
+		<p><label><input type="text" name="name" placeholder="Введіть ім'я"></label></p>
+		<p><label><input type="tel" name="phone" placeholder="Введіть телефон"></label></p>
+		<p><label><input type="checkbox" checked> Я згоден з умовами.</label></p>
+		<p><input type="submit" value="Замовити дзвінок"></p>
+	</form>
+
+	<form action="#">
+		<input type="hidden" name="form" value="form">
+		<h3>Замовлення дзвінка:</h3>
+		<p><label><input type="text" name="name" placeholder="Введіть ім'я"></label></p>
+		<p><label><input type="tel" name="phone" placeholder="Введіть телефон"></label></p>
+		<p><input type="submit" value="Замовити дзвінок"></p>
+	</form>
+
+	<form action="#">
+		<input type="hidden" name="form" value="form">
+		<h3>Замовлення дзвінка:</h3>
+		<p><label><input type="text" name="name" placeholder="Введіть ім'я"></label></p>
+		<p><label><input type="tel" name="phone" placeholder="Введіть телефон"></label></p>
+		<p><input type="submit" value="Замовити дзвінок"></p>
+	</form>
+
+	<p><em><a href="en.wikipedia.org/wiki/Cat">Cat in wiki</a></em>.</p>
+	<p><img src="https://screenshots.en.sftcdn.net/en/scrn/82000/82660/hello-kitty-icons-16.png" alt="Hello Kitty"></p>
+	<p>&nbsp;</p>
+	<p>Таблиця. <em>Залежність кількості піратів та середньорічної температури планети.</em></p>
+	<table>
+		<tr>
+			<th>Рік</th>
+			<th>t, &deg;C</th>
+			<th>Піратів</th>
+		</tr>
+		<tr>
+			<td>1820</td>
+			<td>14,2</td>
+			<td>35 000</td>
+		</tr>
+		<tr>
+			<td>1860</td>
+			<td>14,3</td>
+			<td>45 000</td>
+		</tr>
+		<tr>
+			<td>1880</td>
+			<td>14,6</td>
+			<td>20 000</td>
+		</tr>
+		<tr>
+			<td>1920</td>
+			<td>14,9</td>
+			<td>15 000</td>
+		</tr>
+		<tr>
+			<td>1940</td>
+			<td>15,2</td>
+			<td>5 000</td>
+		</tr>
+		<tr>
+			<td>1980</td>
+			<td>15,6</td>
+			<td>400</td>
+		</tr>
+		<tr>
+			<td>2000</td>
+			<td>15,9</td>
+			<td>17</td>
+		</tr>
+	</table>
+
+	<div id="box">
+		<p><img src="https://i.ytimg.com/vi/kqaWt7wPMWw/hqdefault.jpg" alt="Clip"></p>
+		<p class="bordered"><a href="http://frontender.info/">Frontender</a>.</p>
+		<p><em><a href="en.wikipedia.org/wiki/Cat">Cat in wiki</a></em>.</p>
+		<p><a href="www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg"><img src="http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg"></a></p>
+		<p class="bordered"><a href="http://www.adme.ua/">ADME.ua</a>.</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<p>Таблиця. <em>Множення.</em></p>
+	<table id="mp">
+	</table>
+	<script>
+		(function(){
+			var tr, td, mp = document.getElementById('mp');
+			for (var i = 0; i < 10; i++) {
+				tr = document.createElement('tr');
+				for (var j = 0; j < 10; j++) {
+					td = document.createElement(!i || !j ? 'th' : 'td');
+					if (!i && !j) { td.innerText = '*'; }
+					if (!i && j) { td.innerText = j; }
+					if (i && !j) { td.innerText = i; }
+					if (i && j) { td.innerText = i * j; }
+					tr.appendChild(td);
+				}
+				mp.appendChild(tr);
+			}
+		})();
+	</script>
+
+	<ul class="menu">
+		<li class="active"><a href="/">Головна</a></li>
+		<li><a href="/about.html">Про нас</a></li>
+		<li class="active">
+			<a href="/stuff.html">Продукція</a>
+			<ul>
+				<li>&gt; <a href="/stuff/4.html">Футболки</a></li>
+				<li>&gt; <a href="/stuff/4.html">Майки</a></li>
+				<li>&gt; <a href="/stuff/7.html">Труси</a></li>
+				<li class="active">&gt; <a href="/stuff/14.html">Шкарпетки</a></li>
+				<li>&gt; <a href="/stuff/17.html">Піжами</a></li>
+				<li>&gt; <a href="/stuff/24.html">Постільна білизна</a></li>
+			</ul>
+		</li>
+		<li><a href="/contacts.html">Контакти</a></li>
+		<li class="active"><a href="/sale.html">Акція!</a></li>
+	</ul>
+
+	<p><em><a href="http://enottone.ru/images/media/all_enot/enot-poloskun_enot_tone_7.jpg">Милый кот</a></em>.</p>
+	<p><em><a href="www.pokatashkin.com/wp-content/uploads/2014/02/IMG_20140206_1.jpg">На Марсе обнаружили воду</a></em>.</p>
+	<p>&nbsp;</p>
+	<p class="bordered">Таблиця. <em>Кількість гілок метро, трамвайних і тролейбусних ліній по райцентрам Хмельниччини.</em></p>
+	<table id="khm">
+		<tr><th>Райцентр</th><th>Метро</th><th>Трамвай</th><th>Тролейбус</th></tr>
+		<tr><td>Білогір'я</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Віньківці</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Волочиськ</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Городок</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Деражня</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Дунаївці</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Ізяслав</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Кам'янець-Подільський</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Красилів</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Летичів</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Нова Ушиця</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Полоне</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Славута</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Старокостянтинів</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Стара Синява</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Теофіполь</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Чемерівці</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Шепетівка</td><td>0</td><td>0</td><td>0</td></tr>
+		<tr><td>Ярмолинці</td><td>0</td><td>0</td><td>0</td></tr>
+	</table>
+
+	<p class="bordered"><a href="https://www.youtube.com/channel/UCMAr-94KkdtiSqHoRJCPK1Q/videos">15x4</a>.</p>
+	<p><img src="http://kinoprosmotr.tv/uploads/posts/2013-09/1380010599_kinopoisk.ru-fantastic-mr-fox-1911209.jpg" alt="Бесподобный мистер Фокс"></p>
+
+	<script>
+		(function(){
+			var i = 0,
+					t = document.title + ' ';
+			setInterval(function(){
+				document.title = t.substr(i) + t.substr(0, i-1);
+				i++;
+				if (i >= t.length) { i = 0; }
+			}, 300);
+		})();
+
+		/* your code here */
+
+	</script>
+
+</body>
+</html>

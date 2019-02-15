@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Робота з датою і часом</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Робота з датою і часом, таймери</h1>
+
+		<p>
+			В кого англійський посередній - не плутайте:<br>
+			<strong class="danger">data !== date</strong><br>
+			data - дані, date - дата
+		</p>
+		
+		<section>
+			<h2>Формат дати/часу</h2>
+			<p>Для роботи з датою та часом у JS є об’єкт Date.</p>
+			<p>Створити змінну з датою і часом можна таким чином:</p>
+			<code>
+				// створити змінну дати з поточним часом:<br>
+				<strong>let date = new Date();</strong><br><br>
+				// встановити дату з заданним значенням dateVal у мілісекундах з 1 січня 1970 року:<br>
+				<strong>date = new Date(dateVal);</strong><br><br>
+				// встановити дату з заданими значеннями компонентів дати:<br>
+				<strong>date = new Date(year, month, date[, hours, minutes, seconds, ms] );</strong><br>
+				date = new Date(2015, 0, 1, 12, 0, 0);<br><br>
+				// встановити дату з заданими значеннями у вигляді строки:<br>
+				<strong>date = new Date('21 May 1958 10:12');</strong>
+			</code>
+			<p>Якщо вивести значення цієї змінної у консоль, побачимо щось схоже на:</p>
+			<code>
+				Sun Feb 01 2015 12:00:00 GMT+0200 (Финляндия (зима))
+			</code>
+			<p>У дати є ще один формат: число - кількість мілісекунд, що пройшли з 1 січня 1970 року:</p>
+			<code>
+				// встановити дату у числовому форматі з поточним часом:<br>
+				<strong>date = Date.now();</strong><br><br>
+				//добавити до дати 1 день<br>
+				date += 24 * 60 * 60 * 1000;<br>
+				date += 24 * 3600 * 1000;<br>
+				date += 86400000; &nbsp;&nbsp; // незрозуміле, "<a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5_%D1%87%D0%B8%D1%81%D0%BB%D0%BE_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)" target="_blank">магічне</a>" число
+			</code>
+			<h3>Завдання</h3>
+			<ol>
+				<li>Створіть кнопку</li>
+				<li>Виводьте в консоль час в мілісекундах, що проходить між двома кліками по кнопці</li>
+				<li>Виведіть повідомлення що показує дату та час, які настануть через два тижня, 6 годин і 20 хвилин від теперішнього</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

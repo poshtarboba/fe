@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Регулярні вирази</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Регулярні вирази</h1>
+		<p><strong>Регулярний вираз</strong> <em>(regular expression, regexp, regex)</em> - шаблон строки; рядок символів, який використовують для перевірки строки певним правилам, або для нечіткого пошуку підстроки.</p>
+		<p>
+			<a href="https://uk.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%B8%D0%B9_%D0%B2%D0%B8%D1%80%D0%B0%D0%B7" target="_blank">Вікіпедія: регулярний вираз</a>.<br>
+			<a href="http://lurkmore.to/Regexp" target="_blank">Регулярна на Лурку</a>
+		</p>
+		<p>Регулярні вирази зустрічаються в пошуку багатьох текстових редакторів, IDE, файлових менеджерах.</p>
+		<p>Регулярні вирази підтримуються всіма сучасними високорівнивими мовами програмування. Perl на 146% складається з регулярних виразів (<a href="http://www.cpan.org/misc/japh" target="_blank">шут</a> <a href="http://lurkmore.to/Perl" target="_blank">ка</a>).</p>
+		<p>
+			Для тестування та дослідження регулярних виразів можна використовувати онлайн-сервіси:<br>
+			<a href="http://regexr.com/" target="_blank">http://regexr.com/</a><br>
+			<a href="https://regex101.com/" target="_blank">https://regex101.com/</a><br>
+			<a href="http://www.regexpal.com/" target="_blank">http://www.regexpal.com/</a><br>
+			<a href="http://regexstorm.net/tester" target="_blank">http://regexstorm.net/tester</a><br>
+			та інші.
+		</p>
+
+		<section>
+			<h2>Прапорці (flags)</h2>
+			<p>Регурярний вираз має таку структуру:</p>
+			<code>
+				<strong>/шаблон/прапорці</strong><br><br>
+				/Привіт!+/igm
+			</code>
+			<p>Регулярні вирази вставляються в код без кавичок.</p>
+			<p>Прапорець (flag) - це буква після регулярного виразу, яка налаштовує регулярний вираз на певний режим роботи. Є три режима:</p>
+			<p><strong>i</strong> - ignore case, режим при якому великі та маленькі літери вважаються одним і тим самим символом.</p>
+			<p><strong>g</strong> - global, глобальний пошук, без цього прапорця буде здійснено пошук першого підходящого результату, а з ним - будуть знайдені всі результати.</p>
+			<p><strong>m</strong> - miltiline, пошук конструкцій, що можуть займати декілька строк.</p>
+			<p>Букви-прапорці можна вказувати в будь-якому порядку.</p>
+		</section>
+
+		<section>
+			<h2>Шаблони регулярних виразів</h2>
+			<p>З повним переліком шаблонів можна ознайомитися на сторінці <a href="http://javascript.ru/regexp/" target="_blank">http://javascript.ru/regexp/</a> або у вікіпедії по посиланню вгорі лекції.</p>
+			<p>Розглянемо найбільш вживані шаблони.</p>
+			<p><strong>.</strong> - заміняє будь-який символ, окрім перенесення рядка \n.</p>
+			<code>
+				/./g &nbsp;&nbsp; - один символ<br>
+				/.ода/g &nbsp;&nbsp; - пошук слів сода, вода, нода, оода, Dода і т.п.
+			</code>
+			<p><strong>?</strong> - попередній символ може бути присутнім або відсутнім.</p>
+			<code>
+				/colou?r/i &nbsp;&nbsp; - шукає в англійському тексті слова color та colour.
+			</code>
+			<p><strong>+</strong> - попередій символ може повторюватися.</p>
+			<code>
+				/Привіт!+/ &nbsp;&nbsp; - знайде Привіт!, Привіт!!, Привіт!!!, Привіт!!!!! і т.д.
+			</code>
+			<p><strong>*</strong> - попередій символ може повторюватися, а може і бути відсутнім.</p>
+			<code>
+				/Привіт!*/ &nbsp;&nbsp; - знайде Привіт, Привіт!, Привіт!!, Привіт!!!!! і т.д.
+			</code>
+			<p><strong>^</strong> - початок строки.</p>
+			<code>
+				/^А/g &nbsp;&nbsp; - знайде тільки першу А у виразі "Акваріум Антона."
+			</code>
+			<p><strong>$</strong> - кінець строки.</p>
+			<code>
+				/я$/g &nbsp;&nbsp; - знайде лише останню літеру "я" у виразі "середня куля".
+			</code>
+			<p><strong>\</strong> - екранує спец-символи, для того, щоб їх можна було знайти в строці.</p>
+			<code>
+				/\$/ &nbsp;&nbsp; - знаходить символ долара, а не кінець строки.
+			</code>
+			<p><strong>()</strong> - запам'ятовуючі дужки.</p>
+			<code>
+				/+38(0..)/ &nbsp;&nbsp; - запам'ятає код оператора в телефоні вигляду "+380682096666".
+			</code>
+			<p><strong>|</strong> - логічний оператор "або", знаходить один з варіантів.</p>
+			<code>
+				/width:.+(px|em|%)/ &nbsp;&nbsp; - знаходить одиницю виміру.
+			</code>
+			<p><strong>[abc]</strong> - набір допустимих символів.</p>
+			<code>
+				/[свм]ода/ &nbsp;&nbsp; - знайде сода, вода, мода
+			</code>
+			<p><strong>[^abc]</strong> - набір недопустимих символів.</p>
+			<code>
+				/[^свм]ода/ &nbsp;&nbsp; - знайде *ода, де зірочка - будь-який символ, окрім с, в та м.
+			</code>
+			<p><strong>\n</strong> - перевод строки.</p>
+			<p><strong>\d</strong> - цифра.</p>
+			<p><strong>\D</strong> - будь-який символ, окрім цифри.</p>
+			<p><strong>\s</strong> - пробільний символ (різні пробіли, таб, перевод строки).</p>
+			<p><strong>\S</strong> - будь-який символ, окрім пробілів.</p>
+			<p><strong>\w</strong> - будь-який символ латиниці.</p>
+			<p><strong>\W</strong> - будь-який символ, що не належить латиниці.</p>
+		</section>
+
+		<section>
+			<h2>Методи строк для роботи з регулярними виразами</h2>
+			<p><strong>s.split(separator, limit)</strong> - дозволяє задати сепаратор у вигляді регулярного виразу:</p>
+			<code>
+				var s = 'red, green; blue,orange,&nbsp;&nbsp; violet;aqua';<br>
+				var colors = s.split(/[,;]\s*/)
+			</code>
+			<p><strong>s.search(regexp)</strong> - повертає індекс входження знайденого фрагмента, або -1.</p>
+			<code>
+				console.log('Привіт, світ'.search(/в.т/)); &nbsp;&nbsp; // поверне 3<br>
+				console.log('Привіт, світ'.search(/в.т$/)); &nbsp;&nbsp; // поверне 9<br>
+				console.log('Привіт, світ'.search(/sos/)); &nbsp;&nbsp; // поверне -1
+			</code>
+			<p><strong>s.match(regexp)</strong> - повертає масив знайдених підстрок.</p>
+			<code>
+				console.log('Привіт, світ'.match(/в.т/g)); &nbsp;&nbsp; // поверне ['віт', 'віт']<br>
+			</code>
+			<p><strong>s.replace(regexp, newSubStr)</strong> - заміняє всі знайдені підстроки новими підстроками.</p>
+			<p><strong>var re = /шаблон/прапорці;</strong> - створити об'єкт регулярний вираз.</p>
+			<p><strong>re.test(s)</strong> - перевірити строку s, чи вона відповідає регулярному виразу.</p>
+			<p><strong>re.exec(s)</strong> - виконати регулярний вираз до строки s, повертає масив з результатами пошуку.</p>
+			<p><strong>re.lastIndex</strong> - вказує індекс, на якому закінчився пощук. Наступний пошук виконається з цього індекса. Цей параметр можна задати, він доступний для запису.</p>
+		</section>
+
+		<section>
+			<h2>Жадібна, лінива та ревнива квантифікації</h2>
+			<p>По замовчуванню використовується жадібний алгоритм пошуку підстрок. Це означає, що регулярний вираз намагається захопити якомога довшу підстроку:</p>
+			<code>
+				/p.+class="(.+)"/<br><br>
+				&lt;p id="hey" class="title red"&gt;&lt;span class="big"&gt;...
+			</code>
+			<p>Даний регулярний вираз захопить не тільки класи абзаца, а всю підстроку до останньої кавички:</p>
+			<code>
+				title red"&gt;&lt;span class="big
+			</code>
+			<p>Якщо після плюса поставити знак питання - це задасть лінивий алгоритм пошуку, при якому регулярний вираз буде шукати найменшу підходящу підстроку:</p>
+			<code>
+				/p.+class="(.+?)"/
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<p>Для тренування порозгадуйте кросворди з регулярок: <a href="https://regexcrossword.com/" target="_blank">regexcrossword.com</a>.</p>
+			<ol>
+				<li>
+					В онлайн-сервісі знайдіть:<br>
+					всі символи;<br>
+					всі пробіли;<br>
+					всі пробільні символи;<br>
+					всі цифри;<br>
+					всі числа;<br>
+					всі слова;<br>
+					перше слово другого речення<br>
+					слова, що починаються на f, s, t, w<br>
+					останнє слово кожного речення;<br>
+					домени верхнього рівня.
+				</li>
+				<li>Створіть проект validator з формою вводу даних:
+					<code>
+						&lt;form id="form1" action="#" method="GET"&gt;<br>
+						&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input id="fname" name="name" placeholder="Введіть ім'я"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+						&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input id="fmail" name="email" placeholder="Введіть e-mail"&gt; формат: email@site.com&lt;/label&gt;&lt;/p&gt;<br>
+						&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input id="ftel" name="phone" placeholder="Введіть телефон"&gt; формат: +38 (099) 999-99-99&lt;/label&gt;&lt;/p&gt;<br>
+						&nbsp;&nbsp;&lt;p&gt;&lt;input type="submit" value="Відправити"&gt;&lt;/p&gt;<br>
+						&lt;/form&gt;
+					</code>
+				</li>
+				<li>
+					Напишіть функцію валідації імені, ім'я повинно складатися лише з латинських літер, без пробілів, перша літера велика.
+					<code>
+						function validName(s){<br>
+						&nbsp;&nbsp;var err = 'Невірний формат імені!\nФормат: латинські літери, перша - велика.';
+						&nbsp;&nbsp;...<br>
+						&nbsp;&nbsp;якщо введено невірні дані: alert(err);<br>
+						&nbsp;&nbsp;return true або false;<br>
+						}
+					</code>
+					Доступ до введених користувачем даних здійснюється таким чином:
+					<code>
+						змінна = document.getElementById('ідентифікатор').value;<br>
+						var a = document.getElementById('fname').value;
+					</code>
+				</li>
+				<li>
+					Напишіть функцію валідації e-mail.<br>
+					Логін повинен складатися з латинських символів, символів мінус, підкреслювання та крапка.<br>
+					Домен повинен складатися лише з латинських символів.<br>
+					Доменна зона може складатися з 2-5 латинських символів.<br>
+					Регістр не має значення.
+				</li>
+				<li>
+					Напишіть функцію фалідації телефона.<br>
+					Пробіли, дужки, мінуси, можуть бути відсутні.<br>
+					+380 - обов'язкові цифри, приймаються телефони лише України, 12 цифр.
+					<code>
+						+380682091234<br>
+						+38068 209-12-34<br>
+						+3 8 (068) 209 12 34<br>
+						+38(068)209-12-34<br>
+						і т.п.
+					</code>
+				</li>
+				<li>
+					Створіть валідатор форми:
+					<code>
+						document.getElementById("form1").onsubmit = function() {<br>
+						&nbsp;&nbsp;// напишіть алгоритм валідатора<br>
+						&nbsp;&nbsp;// створіть код по алгоритму<br>
+						}
+					</code>
+					Якщо в функції onsubmit використати оператор <strong>return false;</strong>, то відправка даних на сервер перерветься, дані не будуть відправлені.
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

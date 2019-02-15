@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Стилі display, visibility</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Стилі display, visibility</h1>
+			<p>Стиль display може змінити відображення блоку.</p>
+			<p>Як ми вже знаємо, теги діляться на блочні і строкові (а також табличні, які розглянемо пізніше).</p>
+			<p>Будь-який блочний елемент можна перетворити на строковий, а будь-який строковий - на блочний за допомогою властивості display.</p>
+			<code>
+				&lt;span style="<strong>display: block;</strong>"&gt; - будь-який елемент перетворює на блочний, він набуває всіх властивостей блочних елементів, його ширина по замовчуванню стає 100%, можна застосовувати вертикальні паддінги і маргіни.<br><br>
+				&lt;p style="<strong>display: inline;</strong>"&gt; - будь-який елемент перетворює на строковий, він набуває всіх властивостей строкових елементів, його розміри по замовчуванню визначається розмірами контенту (вмісту), вертикальні паддінги і маргіни будуть ігноруватися.<br><br>
+				&lt;div style="<strong>display: inline-block;</strong>"&gt; - будь-який елемент буде поводитися як строковий, але всередині буде мов блочний - будуть працювати розміри, вертикальні паддінги, але вертикальні маргіни працювати не будуть.
+			</code>
+			<p>Поексперементуйте у пісочниці: <a href="https://jsfiddle.net/poshtarboba/bfauo9pt/" target="_blank">jsFiddle</a>.</p>
+			<code>
+				&lt;h1 style="<strong>display: none;</strong>"&gt; - приховує будь-який елемент, так, ніби ви його видалили.<br><br>
+				&lt;h1 style="<strong>visibility: hidden;</strong>"&gt; - приховує будь-який елемент, але залишає виділене під нього місце.<br><br>
+				&lt;h1 style="<strong>visibility: visible;</strong>"&gt; - робить видимим прихований попереднім способом елемент (значення по-замовчуванню).
+			</code>
+			<p>Для приховування елементів зазвичай використовується стиль <strong>display: none;</strong>.</p>
+			<p>Не використовуйте стиль <strong>opacity: 0;</strong> для приховування елемента! Блок стає прозорим, але він продовжує залишатися на своєму місці, заважає розміщуватися іншим елементам.</p>
+			<p>До інших значень стиля display належать:</p>
+			<p>- елемент списка <strong>display: list-item;</strong>, цей стиль дозволяє використовувати маркери чи нумерацію ліворуч від кожного елемента списку;</p>
+			<p>- табличні значення <strong>display: table, table-row, table-cell;</strong> ми розглянемо під час вивчення таблиць;</p>
+			<p>- флекс-бокси мають значення <strong>display: flex, inline-flex;</strong>, застосовуються для гнучкого керування вигляду групи блоків;</p>
+			<p>- css-сітки - <strong>display: grid;</strong>.</p>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=Ns0zijQJxH4" target="_blank">HTML Шорти - Як ховати</a> (4:04).</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

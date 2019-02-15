@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Введення в JavaScript</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Введення в JavaScript</h1>
+
+		<p>
+			<strong>Задачники по JavaScript:</strong><br>
+			- <a href="https://learn.freecodecamp.org/" target="_blank">https://learn.freecodecamp.org/</a> (HTML, CSS, JS)<br>
+			- <a href="https://www.educative.io/" target="_blank">https://www.educative.io/</a><br>
+			- <a href="https://csx.codesmith.io/" target="_blank">https://csx.codesmith.io/</a><br>
+			- <a href="https://github.com/StevanCakic/js-hard-parts" target="_blank">https://github.com/StevanCakic/js-hard-parts</a> (6 частин, дивися внизу)<br>
+		</p>
+		<p>&nbsp;</p>
+		<p>Пару слів про VBS, JS, Java (Visual Basic Script, JavaScript, Java) <small>(Microsoft, Apache Software Foundation, Sun Microsystems)</small>.</p>
+		<p>Пару слів про CoffeScript, Babel, Dart, TypeScript (<a href="https://habrahabr.ru/post/163033/" target="_blank">хабра</a>).</p>
+		<p>Пару слів про консоль розробника.<br>Багато пар слів з НАГОЛОШЕННЯМ <strong class="danger">ВАЖЛИВОСТІ</strong> ВИКОРИСТАННЯ консолі.</p>
+		
+		<!-- TODO: про консоль - переробити, сховати частину у врізку (https://habrahabr.ru/post/114483/) -->
+
+		<p><a href="http://javascript.ru/" target="_blank">http://javascript.ru</a></p>
+		<p><a href="http://learn.javascript.ru/" target="_blank">http://learn.javascript.ru</a></p>
+
+		<section>
+			<h2>Включення JS у веб-сторінку</h2>
+			<p>
+				Код JS може включатися безпосередньо у веб-сторінку подібно стилям:<br>
+				- інлайново в тег;<br>
+				- за допомогою тега &lt;script&gt;;<br>
+				- імпортуватися із зовнішнього файла.
+			</p>
+			<p>Інлайново скрипт можна вставити, вказавши подію, при якій даний скрипт має спрацювати (<a href="https://jsfiddle.net/poshtarboba/97dqLvja/1/" target="_blank">jsFiddle</a>):</p>
+			<code>
+				&lt;button onclick="alert('Привіт!');"&gt;Клацни сюди!&lt;/button&gt;<br><br>
+				&lt;span<br>
+				&nbsp;&nbsp;id="hoverspan"<br>
+				&nbsp;&nbsp;onmouseenter="this.style.background='yellow';"<br>
+				&nbsp;&nbsp;onmouseleave="this.style.background='';"&gt;<br>
+				&nbsp;&nbsp;наведи на мене мишку<br>
+				&lt;/span&gt;<br><br>
+				&lt;input onkeyup="hoverspan.innerText=this.value;"&gt;<br><br>
+				&lt;a<br>
+				&nbsp;&nbsp;href="javascript:void(document.body.style.backgroundColor='pink');"&gt;<br>
+				&nbsp;&nbsp;зробити фон рожевим<br>
+				&lt;/a&gt;<br><br>
+				&lt;div onclick="someFunction();"&gt;при кліку спрацює стороння функція&lt;/div&gt;
+			</code>
+			<p>Тег &lt;script&gt; можна вставляти в будь-яке місце сторінки:</p>
+			<code>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;script type="text/javascript"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;let blahblah = 34;<br>
+				&nbsp;&nbsp;&lt;/script&gt;<br>
+				&lt;/head&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;script&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;document.write('&lt;p&gt;Hello!&lt;/p&gt;');<br>
+				&nbsp;&nbsp;&lt;/script&gt;<br>
+				&lt;/body&gt;<br>
+				&lt;/html&gt;
+			</code>
+			<p>Тип скрипта type="text/javascript" вказувати не обов'язково, за часів панування IE 5-6 конкуренцію JS складав Visual Basic Script, але він підтримувався тільки браузерами від Microsoft.</p>
+			<p>Також JS може підключатися з файла:</p>
+			<code>
+				&lt;html&gt;<br>
+				&lt;head&gt;<br>
+				&nbsp;&nbsp;&lt;script type="text/javascript" src="js/jQuery.min.js">&lt;/script&gt;<br>
+				&lt;/head&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;script type="text/javascript" src="<strong>js/my.js?update_05_01_2016_1</strong>"&gt;&lt;/script&gt;<br>
+				&lt;/body&gt;<br>
+				&lt;/html&gt;
+			</code>
+			<p>Часто скрипти підключають в кінці веб-сторінки для того, щоб вони починали грузитися в самому кінці і не тормозили завантаження контенту сторінки.</p>
+		</section>
+
+		<section>
+			<h2>Змінні</h2>
+			<p><strong>let</strong> x; &nbsp;&nbsp; - об’явлення (створення) змінної.</p>
+			<p>let y = 6; &nbsp;&nbsp; - об’явлення змінної та її ініціалізація - присвоєння їй певного значення.</p>
+			<p>y = 7; &nbsp;&nbsp; - присвоювання нового значення змінній.</p>
+			<p>Якщо потрібно створити декілька змінних - їх можна перерахувати через кому, використавши один let:</p>
+			<code>
+				let a = 5;<br>
+				let b = 17;<br>
+				let c;<br>
+				let d;<br>
+				let e = 'hello';<br><br>
+				let a = 5,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = 17,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c, d,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;e = 'hello';<br><br>
+				let a = 5, b = 17, c, d, e = 'hello';
+			</code>
+			<p>JavaScript - слаботипізована мова програмування, при створенні змінної її тип вказувати не потрібно, інтерпретатор сам визначить тип даних.</p>
+			<p><strong>let</strong> k = 5; &nbsp;&nbsp; - створення локальної змінної, така змінна доступна лише в межах фігурних скобок в конструкціях умов та циклів.</p>
+			<!--<p>Останнім часом рекомендується використовувати let замість var - це пов'язано з безпечністю коду, зменшенню конфліктів змінних, багів.</p>-->
+			<p><strong>const</strong> LOGIN = 'Admin'; &nbsp;&nbsp; - створення константи, константу не можна змінювати в процесі роботи скрипта.</p>
+			<p>Зазвичай імена константам дають великими літерами - це не є обов'язковим, проте, так історично склалося.</p>
+			<p>Пробіли, переноси строк не є обов'язковими, але без них читати код дуже важко:</p>
+			<code>
+				let a=5,b=17,c,d,e='hello';<br>
+				const x=10,y=x+4;for(let i=0;i&lt;s.length;)alert(i++);if(x&lt;5){text='big'+x;b++;}
+			</code>
+			<p>Кожна дія, кожен оператор повинен закінчуватися крапкою з комою (хоча в багатьох випадках пропущений символ ; не призведе до помилки).</p>
+			<p>Крапка з комою після фігурної дужки ставиться лише в кінці оператора присвоювання:</p>
+			<code>
+				car <strong>=</strong> { color: 'red', brand: 'bmw' }<strong>;</strong><br>
+				let fun <strong>=</strong> function(x){ return -x * x; }<strong>;</strong>
+			</code>
+			<p>В інших випадках після фігурних дужок не потрібно ставити крапки з комою:</p>
+			<code>
+				if (умова) { блок true; }	else { блок false; }<br>
+				for (параметри) { тіло циклу; }<br>
+				do (умова) { тіло циклу; }<br>
+				switch (змінна) { розгалуження; }<br>
+				function назва (аргументи) { тіло функції; }
+			</code>
+			
+			<!-- TODO: самоопрацювання іменування змінних -->
+			<!--<p>змінна <strong>name</strong>. Об'явлення її через var і через let</p>-->
+
+			<!--
+				TODO: використання змінних:
+				
+				let c = a + b;
+				p.innerText = c + ' кг.';
+				p.innerText = a + b + ' кг.';
+				
+				let c = a * parseInt(document.getElementById('stuff').getElements.....).....;
+				p.innerText = c + ' кг.';
+				
+				let optionWeight = 32;
+				.....
+				.....
+				.....
+				.....
+				p.innerText = optionWeight + ' кг.';
+				
+				Магическое_число_(программирование)
+			-->
+			
+			<h3>Іменування змінних, функцій</h3>
+			<p>Розгляньте наступні приклади кода, зробіть припущення що відбувається у кожній строчці:</p>
+			<code>
+				s += ' >> ' + bx + 'px';<br>
+				box.cx(s);<br><br>
+				sl.next();<br>
+				newact(sl.active(), 'n');<br><br>
+				htmlCode = spanCodeStart + totalPrice + ' грн.' + spanCodeEnd;<br>
+				$totalBox.html(htmlCode);<br><br>
+				slider.switchToPrevSlide();<br>
+				slider.setSlidesClasses(slider.activeSlide(), 'prev');
+			</code>
+			<p>Як видно - в перших двох випадках навіть складно уявити - про що йде мова, якісь пікселі, щось з ними відбувається, якісь next, active...</p>
+			<p>У третьому випадку можна легко зрозуміти, що формується строка з кодом HTML і заноситься у деякий блок $totalBox. У четвертому - переключення слайдера на попередній слайд.</p>
+			<p>Таким чином, короткі назви змінних можете використовувати лише у коротких шматочках коду: створили змінну, використали і одразу забули про неї.</p>
+			<p>Якщо ж змінна багато разів зустрічається по коду, то у неї повинне бути зрозуміле ім'я.</p>
+			<h3>Заерзервовані слова</h3>
+			<p>Наступні слова не можна використовувати у якості імен змінних, вони зарезервовані мовою, є службовими:</p>
+			<code>
+				var, let, const, new, this, function, arguments, return, public, private, protected, static, default, extends, implements<br>
+				void, class, eval, enum, delete, yield, import, export, super, package, debugger, interface<br>
+				if, else, try, catch, finally, with, throw, for, do, while, in, of, switch, case, break, continue<br>
+				typeof, instanceof, null, true, false
+			</code>
+		</section>
+
+		<section>
+			<h2>Типи даних</h2>
+			<p>В JavaScript порівняно з іншими мовами програмування існує мало типів даних (проте, їх цілком достатньо для наших потреб).</p>
+			<h3>Числа</h3>
+			<p>До числового типу даних входять цілі та дробні числа, спеціальні значення NaN та Infinity.</p>
+			<code>
+				let a = 0,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;b = 42,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;c = -60,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;d = 5.237,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;e = .0004, &nbsp;&nbsp; // e = 0.0004,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;f = 9.0,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;g = 3e17,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;h = -7.415e29,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;i = 2.97e-13;
+			</code>
+			<p>Цілі числа можна використовувати з діапазона -2.14 млрд. .. +2.14 млрд. (4 байта). З більшими значеннями JS працює як з дробними числами.</p>
+			<p>Дробні числа можуть бути представлені як у звичному для нас форматі, так і у форматі з вказанням мантіси.</p>
+			<p>Якщо дробне число починається з нуля, то ведучий нуль можна не вказувати і починати писати з крапки.</p>
+			<p>Мантіса позначається літерою <strong>e</strong> і вказує кількість розрядів, на які потрібно зсунути крапку. Число вказується як дробне з однією цифрою перед крапкою:</p>
+			<code>
+				3.17e5 = 3.17 * 10^5 = 31 700<br><br>
+				1.5439e12 = 1.5439 * 10^12 = 1 543 900 000 000<br><br>
+				7.4e-8 = 7.4 * 10^-8 = 0.000 000 074
+			</code>
+			<p>
+				Діапазон допустимих значень: плюс-мінус від 2.225e-308 до 1.797e308.<br>
+				1e-330 = 0;<br>
+				1e330 = Infinity.
+			</p>
+			<p>
+				Але у дробному вираженні не можна зберігати точні значення, точність обмежена ~16-17 цифрами.<br>
+				Так, число 1234567890123456789 буде округлене до 1234567890123456800.
+			</p>
+			<p>Спеціальне значення Infinity також можна отримати при діленні на 0. В більшості інших мов програмування ділення на нуль призводить до помилки.</p>
+			<code>
+				x = 5 / 0; &nbsp;&nbsp; // x = Infinity;<br>
+				y = Math.pow(10, 309); &nbsp;&nbsp; // y = Infinity; Math.pow - піднесення до степеня<br>
+			</code>
+			<p>Спеціальне значення NaN можна отримати при спробі виконати математичні дії з нечисловими значеннями:</p>
+			<code>
+				let x = 5 - 'hello';<br>
+				let y = 'a' * 'b';<br>
+				let z = parseInt('_42');
+			</code>
+			<h3>Строки</h3>
+			<p>Строки потрібно брати у лапки (одинарні чи подвійні):</p>
+			<code>
+				let a = 'hello';<br>
+				let b = "world";<br><br>
+				// в JS краще використовувати одинарні лапки для строк без апострофів<br>
+				alert('It\'s my cat!');<br>
+				alert("It's my cat!");<br><br>
+				// це пов'язано з тим, що в строках часто зустрічається HTML-код,<br>
+				// в якому використовуються подвійні лапки:<br>
+				console.log('&lt;p class="big"&gt;');<br>
+				console.log("&lt;p class=\"big\"&gt;");
+			</code>
+			<p>Не плутайте змінні та строки:</p>
+			<code>
+				let hey = 'bugaga';<br>
+				alert('hey');<br>
+				alert(hey);<br>
+				alert(bugaga); // помилка
+			</code>
+			<h3>Визначення типу даних</h3>
+			<p><strong>typeof</strong> - повертає тип змінної.</p>
+			<code>
+				/* оператор */<br>
+				let s;<br>
+				console.log(typeof s); // "undefined"<br>
+				console.log(typeof 0); // "number"<br>
+				console.log(typeof 3.5); // "number"<br>
+				console.log(typeof true); // "boolean"<br>
+				console.log(typeof 'foo'); // "string"<br><br>
+				/* функція */<br>
+				console.log(typeof(0)); // "number"<br>
+				console.log(typeof(true)); // "boolean"<br>
+				console.log(typeof('foo')); // "string"
+			</code>
+		</section>
+
+		<section>
+			<h2>Коментарі</h2>
+			<code>
+				/* Коментар на дві строки:<br>
+				document.write("hello!"); */<br>
+				let i=6; // коментар до кінця строки
+			</code>
+			<p class="js-toggle" data-id="toggle_comment">Чи потрібно коментувати код, пояснюючи що робить той чи інший блок, та чи інша строка?</p>
+			<div class="js-toggle-box" id="toggle_comment">
+				<p>Я зустрічав доволі фанатичних розробників, в їхньому коді пояснень більше, ніж самого коду.</p>
+				<p>В коді варто залишати:</p>
+				<ol>
+					<li>
+						коментарі, які відповідають на питання "чому?", а не "що?", такі коментарі пояснюють незрозумілі ділянки, а не просто описують код:
+						<code>
+							// у першому коментарі немає сенсу:<br><br>
+							// клік по кнопці:<br>
+							button.onclick = function(){ ... }<br><br>
+							// кнопка виконує ту ж дію, що і клік по товару в корзині:<br>
+							button.onclick.bind(cartBoxItem);
+						</code>
+					</li>
+					<li>
+						коментарі перед великими блоками коду, в яких в декількох словах пояснюється що робить даний шмат коду. Це полегшує читання і навігацію по коду;
+						<code>
+							// при зміні ролі користувача міняємо йому тип доступу і пробігаємося по всій базі даних,<br>
+							// блокуючи чи надаючи доступ до відповідних функцій<br>
+							...<br>
+							великий шмат JS
+						</code>
+					</li>
+					<li>
+						коментарі в складних структурах даних, які б пояснювали що містить кожне поле в неочевидних випадках;
+						<code>
+							// з сервера погоди приходить JSON-файл такого формату:<br>
+							let weather = {<br>
+							&nbsp;&nbsp;t: '2017-08-29 16:00', &nbsp;&nbsp; // дата та час погоди<br>
+							&nbsp;&nbsp;c: 37, &nbsp;&nbsp; // код міста (37 - Хмельницький)<br>
+							&nbsp;&nbsp;l: 4, &nbsp;&nbsp; // код района (4 - Радіозавод)<br>
+							&nbsp;&nbsp;s: '' &nbsp;&nbsp; // строка з погодою<br>
+							}
+						</code>
+					</li>
+					<li>
+						коментарі, що описують закоментовані шматки коду: чому цей шматок коду закоментований і коли слід безповоротно видалити цей шматок коду.
+						<code>
+							let $sliders = $('.slider');<br>
+							/* використовували слайдер mkSlideShow,<br>
+							&nbsp;&nbsp;&nbsp;замовник попросив використати bxSlider<br>
+							&nbsp;&nbsp;&nbsp;видалити <span id="date_del">2017-11-15</span><br>
+							$sliders.append('&lt;button class="prev"&gt;prev slide&lt;/button&gt;');<br>
+							$sliders.append('&lt;button class="next"&gt;next slide&lt;/button&gt;');<br>
+							$sliders.mkSlideShow();<br>
+							<script>
+								let date_del = new Date();
+								date_del.setMonth(date_del.getMonth() + 3);
+								document.querySelector('#date_del').innerText = date_del.getFullYear() + '-' + (date_del.getMonth() + 1) + '-15';
+							</script>
+							*/<br>
+							$sliders.bxSlider();
+						</code>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<section>
+			<h2>Математичні оператори</h2>
+			<p>- a; &nbsp;&nbsp; - унарний мінус, "інвертує" значення змінної або числа.</p>
+			<p>a = b; &nbsp;&nbsp; - присвоювання.</p>
+			<p>a + b; &nbsp;&nbsp; - додавання.</p>
+			<p>a - b; &nbsp;&nbsp; - віднімання.</p>
+			<p>a * b; &nbsp;&nbsp; - множення.</p>
+			<p>a / b; &nbsp;&nbsp; - ділення (звичайне, дробове).</p>
+			<p>a % b; &nbsp;&nbsp; - залишок від ділення (<em>19 % 4 = 3 тому що 16 / 4 = 4 і 3 у залишку</em>).</p>
+			<p>i++, ++i &nbsp;&nbsp; - інкремент числа (i = i + 1).</p>
+			<p>i--, --i &nbsp;&nbsp; - декремент числа (i = i - 1).</p>
+			<p>Кожен оператор повертає результат обчислення.</p>
+			<p>
+				Різниця в інкрементах/декрементах:<br>
+				x++ &nbsp;&nbsp; - повертає значення x і після цього збільшує x на 1;<br>
+				++x &nbsp;&nbsp; - збільшує x на 1 і після цього повертає значення x.
+			</p>
+			<p>Протестуйте в консолі браузера наступний код (вводьте в консолі кожну строчку і натискайте <kbd>Enter</kbd>):</p>
+			<code>
+				let a = 5;<br>
+				a++<br>
+				a<br>
+				++a<br>
+				a
+			</code>
+			<p>Оператори можна групувати:</p>
+			<code>
+				let a = 5, b = 11, c = 1;<br>
+				let x = y = z = a + 4 / 7 - b * c % 2;<br>
+				let k = - a -- - -- b;
+			</code>
+			<p>Якщо потрібно збільшити чи зменшити змінну на певне значення, то можна використовувати скорочену форму:</p>
+			<code>
+				a += 5; &nbsp;&nbsp; // a = a + 5;<br>
+				b -= a; &nbsp;&nbsp; // b = b - a;<br>
+				c *= b; &nbsp;&nbsp; // c = c * b;<br>
+				d /= 2; &nbsp;&nbsp; // d = d / 2;<br>
+				e %= 7; &nbsp;&nbsp; // e = e % 7;
+			</code>
+			<p>За допомогою оператора + можна об'єднувати строки (<em>конкатинація строк</em>):</p>
+			<code>
+				let a = 'Hello' + " " + 'world!';<br>
+				let b = a + '!!';<br>
+				console.log(a, b, c);
+			</code>
+			<p><strong class="danger">Увага!</strong> При додаванні строк і чисел останні перетворюються в строку.</p>
+			<code>
+				console.log('hello' + 5);<br>
+				console.log('2+5=' + 2 + 5);<br>
+				// використовуйте дужки для визначення пріоритетів операцій:<br>
+				console.log('2+5=' + (2 + 5));
+			</code>
+			<p>Перетворення типів даних:</p>
+			<code>
+				console.log(typeof (2 + ''));<br>
+				let k = 2 + '5';<br>
+				console.log(k, typeof k);
+			</code>
+			<p>При інших математичних діях строки намагаються перетворитися на число:</p>
+			<code>
+				let m = 7 - '5';<br>
+				let n = '7' * 5;<br>
+				let p = '8' / '2';<br>
+				let r = '34a' - 2;<br>
+				console.log(k, m, n, p, r);
+			</code>
+			<p>Перетворити строку в число можна функцією parseInt або плюсом:</p>
+			<code>
+				console.log(k, parseInt(k));<br>
+				console.log(k, +k);
+			</code>
+		</section>
+
+		<section>
+			<h2>Приорітети операторів</h2>
+			<p>Повна таблиця приорітетів операторів в JavaScript:</p>
+			<table class="table">
+				<tbody>
+					<tr><td>. &nbsp;&nbsp; [ ] &nbsp;&nbsp; ( )</td><td>доступ до полів, індексація масивів, виклик функцій, групування операцій</td></tr>
+					<tr><td>+ &nbsp;&nbsp; - &nbsp;&nbsp; ! &nbsp;&nbsp; ~ &nbsp;&nbsp; ++ &nbsp;&nbsp; --<br>delete new typeof void</td><td>унарні оператори,<br>робота з даними</td></tr>
+					<tr><td>* &nbsp;&nbsp; / &nbsp;&nbsp; %</td><td>множення, ділення, взяття остачі від ділення</td></tr>
+					<tr><td>+ &nbsp;&nbsp; -</td><td>додавання, віднімання, об'єднання строк</td></tr>
+					<tr><td><< &nbsp;&nbsp; >> &nbsp;&nbsp; >>></td><td>побітові зсуви</td></tr>
+					<tr><td>< &nbsp;&nbsp; <= &nbsp;&nbsp; > &nbsp;&nbsp; >=<br>instanceof</td><td>порівняння,<br>визначення типу об'єкта</td></tr>
+					<tr><td>== &nbsp;&nbsp; != &nbsp;&nbsp; === &nbsp;&nbsp; !==</td><td>порівняння</td></tr>
+					<tr><td>&</td><td>побітове AND</td></tr>
+					<tr><td>^</td><td>побітове XOR</td></tr>
+					<tr><td>|</td><td>побітове OR</td></tr>
+					<tr><td>&&</td><td>логічне AND</td></tr>
+					<tr><td>||</td><td>логічне OR</td></tr>
+					<tr><td>?:</td><td>умовний (тернарний) оператор</td></tr>
+					<tr><td>=<br>+= &nbsp;&nbsp; -= &nbsp;&nbsp; *= &nbsp;&nbsp; та ін.</td><td>присвоювання,<br>присвоювання з операцією</td></tr>
+					<tr><td>,</td><td>розрахунок декількох виразів</td></tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section>
+			<h2>Вивід інформації для розробника</h2>
+			<!-- https://habrahabr.ru/post/114483/ -->
+			<p>Часто буває розробнику потрібно отримувати різну інформацію під час виконання скрипта, вводити нові дані.</p>
+			<p>На допомогу приходять наступні функції.</p>
+			<p><strong>alert(value);</strong> &nbsp;&nbsp; - виводить на екран модальне вікно. На комп'ютерах, ноутбуках при цьому зупиняється виконання всіх скриптів на сторінці.</p>
+			<code>
+				alert('Hello');<br>
+				let apples = 16;<br>
+				alert(apples);<br><br>
+				// ефект заморозки сторінки:<br>
+				let c = ['red', 'green', 'yellow', 'blue'], i = 0;<br>
+				setInterval(function(){<br>
+				&nbsp;&nbsp;document.body.style.backgroundColor = c[i++ % 4];<br>
+				&nbsp;&nbsp;if (i % 7 === 0) { alert('пауза'); }<br>
+				}, 2000);
+			</code>
+			<p><strong>prompt(title, value);</strong> &nbsp;&nbsp; - запит у користувача інформації.</p>
+			<p>В дужках потрібно вказати два значення: текст запиту і значення по-замовчуванню:</p>
+			<code>
+				let n = prompt("Введіть ваше ім'я:", '');<br>
+				let x = prompt('Введіть число:', 42);<br>
+				alert(x + ' в квадраті = ' + x * x);<br>
+				document.querySelector('h1').innerText = 'Привіт, ' + n + '!';
+			</code>
+			<p><strong>confirm(title);</strong> &nbsp;&nbsp; - запит на підтвердження.</p>
+			<p>В дужках потрібно прописати питання, на яке можна дати відповідь "так" або "ні":</p>
+			<code>
+				if (confirm('Ви дійсно бажаєте видалити свою сторінку?')) {<br>
+				&nbsp;&nbsp;document.body.innerText = 'Сторінку видалено. Прощавайте.';<br>
+				} else {<br>
+				&nbsp;&nbsp;alert('Сторінку не видалено.');<br>
+				}<br><br>
+				let adult = confirm('Вам вже виповнилося 18 років?');<br>
+				// adult = true OR false
+			</code>
+			<p>Зазвичай ці три функції використовуються тільки на етапі відлагодження і видаляються на публічній гілці проекта.</p>
+			<p><strong>Консоль</strong> - зручний інструмент для відлагодження скриптів, пошуку помилок, виводу службової інформації.</p>
+			<p>Консоль викликається клавішою F12 (якщо у вас замість появи консолі пропав інтернет - спробуйте комбінацію fn + F12).</p>
+			<p>Модальні вікна зупиняють роботу скрипта, в них складно вивести значну кількість інформації, для перевірки декількох змінних потрібно багато разів клацнути кнопку "Ок".</p>
+			<p>Консоль надає можливість виводити інформацію потоково, в зручній формі.</p>
+			<code>
+				console.log('hello');<br>
+				console.dir('hello');<br><br>
+				let x = 6 * 3 - 12 / 4,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;y = x * x;<br>
+				console.log(x);<br>
+				console.log('x = ' + x, y, 330);
+			</code>
+			<p>Різниця між log та dir:</p>
+			<code>
+				console.log(document.body);<br>
+				console.dir(document.body);
+			</code>
+			<p>log призначено для виводу текстової інформації, dir - інформації про структуру об'єкта.</p>
+			<h3 class="js-toggle" data-id="toggle_console">Додаткова інформація про console.</h3>
+			<div class="js-toggle-box" id="toggle_console">
+				<p>Для покращення візуалізації можна використати наступні функції:</p>
+				<code>
+					console.warn('hello');<br>
+					console.error('hello');
+				</code>
+				<p>При цьому строки в консолі підфарбуються жовтим і червоним кольором.</p>
+				<p>Консоль можна програмно очистити:</p>
+				<code>
+					console.clear();
+				</code>
+				<p>Якщо в консоль потрібно вивести багато інформації - її можна згрупувати, при цьому ви побачите лише одну строку текста зі стрілочкою, яку можна розкрити.</p>
+				<p>Група починається з groupCollapsed (в дужках прописуємо довільний текст заголовка групи) і закінчується функцією groupEnd:</p>
+				<code>
+					console.groupCollapsed('Квадрати чисел від 2 до 10');<br><br>
+					for (let i = 2; i <= 10; i++) {<br>
+					&nbsp;&nbsp;console.log(i + '^2 = ', i * i);<br>
+					}<br><br>
+					console.groupEnd();
+				</code>
+			</div>
+		</section>
+
+		<section>
+			<h2>Додаткові матеріали</h2>
+			<p><a href="https://habr.com/post/159313/" target="_blank">Підводні камені JavaScript</a>.</p>
+			<p><a href="https://habr.com/post/114483/" target="_blank">Використання console</a>.</p>
+		<section>
+
+		<section>
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Створіть новий проект, в ньому - index.html, папку js і в ній - script.js. Підключіть файл скрипта в html.
+					<code>
+						js-first/<br>
+						&nbsp;&nbsp;css/styles.css<br>
+						&nbsp;&nbsp;js/script.js<br>
+						&nbsp;&nbsp;index.html
+					</code>
+				</li>
+				<li>При відкритті сторінки виведіть на екран повідомлення Hello!</li>
+				<li>
+					Створіть span у вигляді кнопки "Відправити".<br>
+					При кліку на нього в консоль повино видати повідомлення:
+					<code>
+						"Користувач відправляє дані форми на сервер."
+					</code>
+				</li>
+				<li>Задайте ідентифікатор (id) спану, виведіть його в консоль у вигляді html-коду та у вигляді об'єкта.</li>
+				<li>
+					Виведіть в консоль повідомлення про реєстрацію нового користувача, оздобивши відповідним до змісту повідомлення кольором:
+					<code>
+						Занадто простий пароль, бажано використати більше символів.<br>
+						Сервер не відповідає, дані неможливо отримати.
+					</code>
+				</li>
+				<li>Виведіть в консоль <strong>групу</strong> строк з кольорами райдуги.</li>
+				<li>
+					Створіть три змінних a, b та c, задайте їм довільні числові значення.<br>
+					Виведіть в консоль результат обчислення a * b + c у вигляді повної формули, напкриклад:
+					<code>
+						"5 * 8 + 4 = 44"
+					</code>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

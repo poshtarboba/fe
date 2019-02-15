@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Flexbox</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Flexbox</h1>
+		<p><strong>Flexbox</strong> <em>(flexible box, гнучкий блок)</em> - новий підхід до розмітки блоків, який вдало поєднує табличне і блочне форматування.</p>
+		<p>Підтримка флексбоксів браузерами вже є <a href="http://caniuse.com/#search=flex" target="_blank">достатньою</a>, щоб застосовувати їх у комерційній верстці.</p>
+		<p>Бутстрап 4 для формування колонок використовує флексбокси замість флоатів.</p>
+		<p>Youtube: <a href="https://www.youtube.com/watch?v=Wpglfz7aXzo" target="_blank">HTML Шорти - Кому потрібні флекси</a> (5:13).</p>
+
+		<section>
+			<h2>Напрямки потоків</h2>
+			<p>Flexbox - набір стилів, які необхідно задавати як батьківським елементам, так і дочірнім.</p>
+			<p>Основа флексів - напрямок потоку. Блочні елементи розташовуються вертикально, строчні елементи - горизонтально, а флекс-елементам можна задавати напрямок розташування, в тому числі і зворотній: справа наліво, знизу вгору.</p>
+			<figure>
+				<img src="img/adaptive_flexbox_01.png" alt="Flex streams">
+				<figcaption>Напрямки потоків флекс-бокса</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Батьківський елемент.</h2>
+			<p>Поексперементуємо у <a href="https://jsfiddle.net/" target="_blank">jsFiddle</a>:</p>
+			<code>
+				ul>li{item $}*20<br><br>
+				ul { margin:0; padding: 10px; list-style: none; border: 1px solid green; }<br>
+				li { float: left; padding: 10px; background: #acf; border: 1px solid #aaa; }
+			</code>
+			<p>В першу чергу створимо батьківський елемент, обгортку.</p>
+			<p>Можна використовувати будь-які теги (не порушуючи правила вкладень блочних та строчних елементів). В подальшому в прикладах коду вказані блоки div, але ми будемо працювати зі списком.</p>
+			<code>
+				&lt;div class="flex"&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&lt;/div&gt;<br><br>
+				.flex { display: flex; }<br>
+				// або<br>
+				.flex { display: inline-flex; } // флекс-аналог inline-block
+			</code>
+			<p>Ні для обгортки, ні для його дітей першого порядку <strong class="danger">не можна використовувати флоати та абсолютне чи фіксоване позиціонування</strong> (елементи автоматично отримують стиль display: block).</p>
+			<p>Далі задаємо напрямок розміщення дочірніх блоків. Є 4 варіанти напрямку:</p>
+			<code>
+				.flex-row { flex-direction: row; }<br>
+				.flex-wor { flex-direction: row-reverse; }<br>
+				.flex-col { flex-direction: column; }<br>
+				.flex-loc { flex-direction: column-reverse; }<br><br>
+				&lt;div class="flex flex-row"&gt;...&lt;/div&gt;<br>
+				&lt;div class="flex flex-wor"&gt;...&lt;/div&gt;<br>
+				&lt;div class="flex flex-col"&gt;...&lt;/div&gt;<br>
+				&lt;div class="flex flex-loc"&gt;...&lt;/div&gt;
+			</code>
+			<p><strong>row</strong> - горизонтальний напрямок потоку;<br><strong>column</strong> - вертикальний напрямок потоку;<br><strong>reverse</strong> - змінити напрямок розташування на протилежний.</p>
+			<p>При застосуванні вертикального напрямку решта стилів застосовується так, ніби блок повернений на 90 градусів проти часової стрілки, поверніть голову на бік :)</p>
+			<p>Можна вказати чи флекс-обгортка буде багатострочною, чи однострочною:</p>
+			<code>
+				.flex { flex-wrap: nowrap; }<br>
+				.flex { flex-wrap: wrap; }<br>
+				.flex { flex-wrap: wrap-reverse; }
+			</code>
+			<p>Значення стиля <strong>nowrap</strong> - всі блоки намагатимуться поміститися в одному рядку.</p>
+			<p>Значення стиля <strong>wrap</strong> - по досягненні кінця рядка блоки будуть переноситися на новий рядок.</p>
+			<p>Значення стиля <strong>wrap-reverse</strong> дозволяє змінити порядок рядків, перші елементи будуть знизу.</p>
+			<p>Попередні два стиля можна об'єднати одним:</p>
+			<code>
+				.flex { flex-flow: row nowrap; }<br>
+				.flex { flex-flow: column-reverse wrap; }
+			</code>
+			<p>Розтягування контенту:</p>
+			<code>
+				.flex { justify-content: flex-start; }<br>
+				.flex { justify-content: flex-end; }<br>
+				.flex { justify-content: center; }<br>
+				.flex { justify-content: space-between; }<br>
+				.flex { justify-content: space-around; }
+			</code>
+			<figure>
+				<img src="img/adaptive_flexbox_02.png" alt="Flex justify">
+				<figcaption>Розтягування контенту</figcaption>
+			</figure>
+			<p>Вирівнювання контенту по вертикалі:</p>
+			<code>
+				.flex { align-items: flex-start; }<br>
+				.flex { align-items: flex-end; }<br>
+				.flex { align-items: center; }<br>
+				.flex { align-items: stretch; }<br>
+				.flex { align-items: baseline; }
+			</code>
+			<figure>
+				<img src="img/adaptive_flexbox_03.png" alt="Flex align-items">
+				<figcaption>Вирівнювання контенту по вертикалі</figcaption>
+			</figure>
+			<p>Для багатострочного флекса є ще властивість, яка керує строками:</p>
+			<code>
+				.flex { align-content: flex-start; }<br>
+				.flex { align-content: flex-end; }<br>
+				.flex { align-content: center; }<br>
+				.flex { align-content: space-between; }<br>
+				.flex { align-content: space-around; }<br>
+				.flex { align-content: stretch; }
+			</code>
+			<figure>
+				<img src="img/adaptive_flexbox_04.png" alt="Flex">
+				<figcaption>Вирівнювання строк у флексбоксі</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Дочірні елементи.</h2>
+			<p>Стиль, яким можна керувати порядком елементів:</p>
+			<code>
+				.flex > div:nth-child(1) { order: 2; }<br>
+				.flex > div:nth-child(2) { order: 3; }<br>
+				.flex > div:nth-child(3) { order: 1; }<br>
+				.flex > div:nth-child(4) { order: 4; }
+			</code>
+			<p>Стиль, яким можна створити "сітку" з дочірніх елементів. Значення стилю - ціле чи дробне число більше нуля. Якщо задано нуль - блоки розтягуються відповідно іншим стилям.</p>
+			<p>Число - це пропорційне значення ширини блока.</p>
+			<code>
+				.flex > div { flex-grow: 2; }<br>
+				.flex > div:nth-child(2) { flex-grow: 2.5; }<br>
+				.flex > div.long { flex-grow: 4; }
+			</code>
+			<p><strong>flex-shrink</strong> - стиль, що дає можливість стискатися елементу, числове значення, по замовчуванню - 1.</p>
+			<p><strong>flex-basis</strong> - розмір елемента "по замовчуванню" до його розтягування відповідно стилів flex.</p>
+			<p><strong>flex</strong> - стиль, що об'єднує в собі flex-grow, flex-shrink та flex-basis:</p>
+			<code>
+				.flex > div { flex: 2 1 auto; }
+			</code>
+			<p><strong>align-self</strong> - дозволяє змінити стиль align-items батьківського елемента для конкретного дочірнього елемента:</p>
+			<code>
+				.flex > div.end { align-self: flex-end; }
+			</code>
+		</section>
+
+		<!--
+
+		<section class="hide">
+			<h2>display: grid</h2>
+		</section>
+
+		<section class="hide">
+			<h2>display: flow-root</h2>
+			<p>Деталі: <a href="http://css-live.ru/faq/displayflow-root-not-clearfix.html" target="_blank">Новый display: flow-root...</a></p>
+		</section>
+
+		-->
+
+		<section class="homework">
+			<h2>Домашнє завдання.</h2>
+			<ol>
+				<li>Спробуйте зверстати проект Minecraft флексами.</li>
+			</ol>
+			<p><a href="http://css-live.ru/articles/vizualnoe-rukovodstvo-po-svojstvam-flexbox-iz-css3.html" target="_blank">Визуальное руководство по свойствам Flexbox</a>.</p>
+			<p><a href="http://css-live.ru/faq/displayflow-root-not-clearfix.html" target="_blank">CSS display: flow-row</a>.</p>
+			<p><a href="https://chriswrightdesign.com/experiments/flexbox-adventures/" target="_blank">Flexbox adventures (песочница флексбоксов)</a>.</p>
+			<p><a href="https://css-tricks.com/flex-grow-is-weird/" target="_blank">Flex-grow</a>.</p>
+			<p><a href="http://flexboxfroggy.com/" target="_blank">Flexbox Froggy (игра про флексбоксы)</a>.</p>
+			<p><a href="https://tuhub.ru/frontend/css-grid-complete-guide/" target="_blank">CSS display: grid</a>.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

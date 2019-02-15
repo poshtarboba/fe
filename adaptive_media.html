@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Медіазапити</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.ex15 { margin-bottom:40px; outline:1px solid #305995;}
+		.ex15 p { padding:10px 15px;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Медіазапити</h1>
+
+		<section>
+			<h2>Перелік медіазапитів</h2>
+			<p>Медіазапити в CSS дозволяють адаптувати верстку під різноманітні пристрої.</p>
+			<p>Приклади медіа-запитів:</p>
+			<code>
+				@media print {<br>
+				&nbsp;&nbsp;* { background: none !important; }<br>
+				}<br>
+				@media screen and (max-widht: 980px) {<br>
+				&nbsp;&nbsp;.mobile { display: block; }<br>
+				&nbsp;&nbsp;.desktop { display: none; }<br>
+				}
+			</code>
+			<p>Отже, спочатку йде ключове слово <strong>@media</strong>, далі - фільтр пристрою і в фігурних лапках задаємо стилі, що мають працювати при даному фільтрі.</p>
+			<p>Зауважте, що сила цих стилів звичайна, тому медіа-запити зазвичай прописуються після основних стилів.</p>
+			<p>Іноді медіазапити виносять в окремий css-файл.</p>
+			<p>Якщо стилів не багато, то всі медіа-запити можна записати в кінці файлу.</p>
+			<p>Якщо css-файл великий, то медіа-запити краще прописувати в кінці кожної секції сайту, кожного логічного блока, віджета.</p>
+			<p><strong>Перелік медіа-запитів</strong></p>
+			<code>
+				<strong>@media screen { ... }</strong> - екран;<br>
+				<strong>@media print { ... }</strong> - принтер;<br>
+				<strong>@media tv { ... }</strong> - телевізор;<br>
+				<strong>@media handheld { ... }</strong> - смартфон, планшет і т.п. (пристрої з тачскріном);<br>
+				@media all { ... } - всі пристрої;<br>
+				@media { ... } - теж всі пристрої;<br>
+				@media projection { ... } - проектор;<br>
+				@media braille { ... } - пристрої виводу зі шрифтом Брайля;<br>
+				@media embossed { ... } - принтери зі шрифтом Брайля;<br>
+				@media speech { ... } - голосові синтезатори, голосові браузери;<br>
+				@media tty { ... } - телетайпи, термінали (фіксовані символи).
+			</code>
+		</section>
+
+		<section>
+			<h2>Версії сайту для друку та голосового браузера</h2>
+			<p>Проаналізуйте веб-сторінку, подумайте - який контент повинен відображатися при друку, а який - ні.</p>
+			<p>Допишіть в кінець файлу стилів мдіазапит для принтера:</p>
+			<code>
+				@media print {<br>
+				&nbsp;&nbsp;// стилі для друку<br>
+				}
+			</code>
+			<p>Приховайте ті блоки, які не повинні друкуватися.</p>
+			<p>Можливо, знадобляться додаткові блоки для друку: пунктинра лінія з ножицями чи щось подібне - їх необхідно відобразити.</p>
+			<p>Іноді доводиться переформатувати сторінку: якщо забрали бокову панельку (aside), то головний блок потрібно розмістити по всій ширині.</p>
+			<p>Центрування контенту тепер не потрібне:</p>
+			<code>
+				@media print {<br>
+				&nbsp;&nbsp;.resize { margin: 0; width: auto;}<br>
+				}
+			</code>
+			<p>Можливо, потрібне буде пристосування до друку на папері певного формату, наприклад, A4:</p>
+			<code>
+				@media print {<br>
+				&nbsp;&nbsp;.resize { margin: 0; width: 18cm;}<br>
+				}
+			</code>
+			<p>Є специфічні стилі для <a href="http://www.seditio.by/blog/html_and_css/specify-pagebreaks-using-css" target="_blank">формування окремих сторінок</a>.</p>
+			<!-- TODO: пропиши, блядь, їх вже в лекцію!!! -->
+			<p>Як правило, фонові зображення та кольори не друкуються, їх потрібно прибрати.</p>
+			<p>Також весь текст та границі бажано зробити чорним кольором, для кращої контрастності на папері (якщо не передбачається кольоровий друк).</p>
+			<p>Оцініть - які фотографії варто друкувати, а без яких можна і обійтися. Логотип зазвичай потрібно друкувати.</p>
+		</section>
+
+		<section>
+			<h2>Види версток</h2>
+			<p><strong>Фіксована верстка (fixed layouts)</strong> - верстка, при якій чітко задана ширина сайта, на моніторах з невеликим розширенням екрана з'явиться горизонтальна полоса прокрутки.</p>
+			<p><strong>Гумова верстка (rubber layouts)</strong> - верстка, при якій сайт займає всю ширину екрана і при зменшенні вінка браузера сайт звужується. Можуть застосовуватись стилі <em>min-width</em> та <em>max-width</em>.</p>
+			<p><strong>Адаптивна верстка (adaptive layouts)</strong> - верстка, при якій відбувається адаптація сайту під певну ширину вікна браузера, на невеликих екранах деякі блоки можуть ховатися, відображатися по-іншому.</p>
+			<p><strong>Чуйна верстка (отзывчивая, responsive layouts)</strong> - поєднання гумової та адаптивної верстки, часто із застосуванням скриптів.</p>
+			<p>Спочатку весь інтернет був гумовим, тому що не було стилів, не було можливості задати ширину блокам.</p>
+			<p>З появою табличної верстки з'явилась можливість робити фіксовану верстку. Та більшість сайтів все ж таки була гумовою, причина - невеликі розміри екранів, шириною 640, 1024 та 1280 пікселів.</p>
+			<p>Блочна верстка спрощувала створення фіксованої верстки, а поява широкоформатних екранів типу 16:9 та шириною 1600, 1920 гумову верстку потіснила: стало не зручно, коли інформація "розкидана" по великому широкому екрану, строки тексту занадто довгі.</p>
+			<p>Широке розповсюдження мобільних пристроїв з невеликими екранами призвело до появи адаптивної та чуйної верстки, для мобільних телефонів перестали робити окремі сайти.</p>
+		</section>
+
+		<section>
+			<h2>Типові макети гумової верстки</h2>
+
+			<div class="clr ex15" style="height:150px; background:#aaffaa;">
+				<p><strong>Блок 1</strong></p>
+			</div>
+
+			<div class="clr ex15">
+				<p>clear: both;</p>
+				<div style="float:left; width:200px; height:150px; background:#aaffaa;">
+					<p><strong>Блок 1</strong><br>float: left;<br>width: 200px;</p>
+				</div>
+				<div style="margin-left:220px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 2</strong><br>margin-left: 220px;</p>
+				</div>
+			</div>
+
+			<div class="clr ex15">
+				<p>clear: both;</p>
+				<div style="float:right; width:200px; height:150px; background:#aaffaa;">
+					<p><strong>Блок 1</strong><br>float: right;<br>width: 200px;</p>
+				</div>
+				<div style="margin-right:220px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 2</strong><br>margin-right: 220px;</p>
+				</div>
+			</div>
+
+			<div class="clr ex15">
+				<p>clear: both;</p>
+				<div style="float:left; width:200px; height:150px; background:#aaffaa;">
+					<p><strong>Блок 1</strong><br>float: left;<br>width: 200px;</p>
+				</div>
+				<div style="float:right; width:250px; height:150px; background:#aaffaa;">
+					<p><strong>Блок 2</strong><br>float: right;<br>width: 250px;</p>
+				</div>
+				<div style="margin-left:220px; margin-right:270px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 3</strong><br>margin-left: 220px;<br>margin-right: 270px;</p>
+				</div>
+			</div>
+
+			<div class="clr ex15">
+				<p>display: table;</p>
+				<div style="float:left; width:200px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 1</strong><br>display: table-cell;<br>width: 200px;</p>
+				</div>
+				<div style="float:right; width:250px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 3</strong><br>display: table-cell;<br>width: 250px;</p>
+				</div>
+				<div style="margin-left:202px; margin-right:252px; height:220px; background:#aaffaa;">
+					<p><strong>Блок 2</strong><br>display: table-cell;</p>
+				</div>
+			</div>
+
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<p>На наступне заняття нам знадобляться зверстані макети Суперпосилки для вивчення адаптивної верстки.</p>
+			<ol>
+				<li>Зробіть версію для друку сайту Майнкрафт.</li>
+				<li>Зверстайте <a href="https://drive.google.com/open?id=0By5OeYSvSbNLcVoyY3dPS2ZFZWs">технічний макет "Rubber"</a> (<a href="thumb/rubber.jpg" target="_blank">jpg</a>), зверніть увагу на аннотації.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

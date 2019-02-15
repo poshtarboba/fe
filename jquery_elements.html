@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Робота з елементами</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Робота з елементами</h1>
+			<p><strong>$('ul li').html();</strong> - повертає html-вміст першого елемента набору.</p>
+			<p><strong>$('ul li').html('&lt;strong&gt;Hello!&lt;/strong&gt;');</strong> - задає html-вміст кожному елементу набору.</p>
+			<p><strong>$('ul li').text();</strong> - повертає об'єднаний в одну строку текстовий вміст всіх елементів набору.</p>
+			<p><strong>$('ul li').text('Hello!');</strong> - задає текстовий вміст кожному елементу набору.</p>
+			<p><strong>$('p').css('color', 'rgba(255,12,64,0.4)');</strong> - змінює стиль у всіх елементів набору.</p>
+			<p><strong>$('p').css( { width: '32px', height: '60px', fontSize: '120%', 'z-index': 2 } );</strong> - змінює декілька стилів у елементів.</p>
+			
+			<h2>Робота з атрибутами</h2>
+			<p><strong>$('p').addClass('active');</strong> - добавляє клас до всіх елементів.</p>
+			<p><strong>$('p').removeClass('active');</strong> - видаяє клас зі всіх елементів.</p>
+			<p><strong>$('p').toggleClass('active');</strong> - "переключає" клас: добавляє - якщо немає, видаляє - якщо є.</p>
+			<p><strong>$('p').hasClass('active');</strong> - перевірка наявності класу хоча-б у одного елемента.</p>
+			<p><strong>$('p').attr('title');</strong> - повертає значення атрибута першого елемента.</p>
+			<p><strong>$('a').attr('href', 'http://google.com');</strong> - змінити значення атрибута у всіх елементів.</p>
+			<p><strong>$('p').removeAttr('class');</strong> - видаляє атрибут у всіх елементів.</p>
+			<p><strong>$('.checkbox').prop('checked');</strong> - робота зі станом елемента форми: checked, disabled... Метод повертає true чи false першого елемента в залежності від того, чи вказаний стан задано для елемента, чи ні.</p>
+			<p><strong>$('.checkbox').prop('disabled', true);</strong> - змінює значення стану.</p>
+			<p><strong>$('.checkbox').removeProp();</strong> - видаляє стан у всіх елементів.</p>
+			<p><strong>$('p').data('value');</strong> - повертає значення атрибута data-value першого елемента.</p>
+			<p><strong>$('p').data('value', '32 кг');</strong> - змінює значення атрибута data-value всім елементам (створює такий атрибут, якшо його немає).</p>
+			<p><strong>$('p').removeData('value');</strong> - видаляє атрибут data-value у всіх елементів.</p>
+			<p><strong>$('input[name="phone"]').val();</strong> - повертає введене значення першого елемента.</p>
+			<p><strong>$('input[name="phone"]').val('0382-55-77-33');</strong> - змінює значення у всіх знайдених елементів.</p>
+			
+			<h2>Розміри та позиція елемента</h2>
+			<p><a href="http://jquery.page2page.ru/index.php5/%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_%D1%81_%D1%88%D0%B8%D1%80%D0%B8%D0%BD%D0%BE%D0%B9_%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0" target="_blank">jquery.page2page.ru: Работа с шириной элемента</a>.</p>
+			<p><a href="http://jquery.page2page.ru/index.php5/%D0%9F%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D1%8F_%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%B0" target="_blank">jquery.page2page.ru: Позиция элемента</a></p>
+			<p><strong>$('#list').width();</strong> - повертає внутрішню ширину елемента (ширину контента).</p>
+			<p><strong>$('#list').innerWidth();</strong> - повертає ширину елемента, включаючи паддінги.</p>
+			<p><strong>$('#list').outerWidth();</strong> - повертає ширину елемента, включаючи паддінги та бордери.</p>
+			<p><strong>$('#list').outerWidth(true);</strong> - повертає ширину елемента, включаючи паддінги, бордери та маргіни.</p>
+			<p>
+				Аналогічно для висоти елемента:<br>
+				$('#list').height();<br>
+				$('#list').innerHeigth();<br>
+				$('#list').outerHeight();<br>
+				$('#list').outerHeight(true);
+			</p>
+			<p><strong>$('#list').offset();</strong> - повертає координати лівої верхньої точки елемента відносно документа.</p>
+			<p><strong>$('#list').position();</strong> - повертає координати лівої верхньої точки елемента відносно батьківського (offsetParent) елемента.</p>
+			<code>
+				$('#list').offset().left;<br>
+				$('#list').offset().top;<br>
+				$('#list').position().left;<br>
+				$('#list').position().top;<br><br>
+				var o = $('h1').offset();<br>
+				var p = $('h1').position();<br>
+				alert(o.left);<br>
+				console.log(p.top);
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

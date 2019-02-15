@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="utf-8">
+	<title>Frontend. Методологія SMACSS</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Методологія SMACSS</h1>
+			<p><strong>SMACSS</strong> - модульна архітектура для CSS, що маштабується (Scalable and Modular Architecture for CSS).</p>
+			<p>Категорії:</p>
+			<p><em>Base rules</em> - базові стилі для тегів і основних класів (.clearfix, .modal і т.п.).</p>
+			<p><em>Layout rules</em> - стилі макета, опис основних елементів, які зустрічаються 1 раз на сторінку (хедер, футер і т.п.).</p>
+			<p><em>Modules rules</em> - стилі модулів, окремих блоків, постарайтесь селектори описувати лише класами, без тегів.</p>
+			<p><em>State rules</em> - стилі станів модулів і скелета сайта (є сайдбар, немає сайдбара і т.п.).</p>
+			<p><em>Theme rules</em> - стилі теми, кольорова гама, шрифти, фони.</p>
+		</section>
+
+		<section>
+			<h2>Правила іменування</h2>
+			<p>Для станів зручно додавати префікс is-:</p>
+			<code>
+				.aside.is-hidden { ... }<br>
+				.faq-item.is-collapsed { ... }
+			</code>
+			<p>Дочірні елементи модулів повинні мати префікс - назву модуля:</p>
+			<code>
+				.faq { ... }<br>
+				.faq-item { ... }<br>
+				.faq-item.active { ... }
+			</code>
+			<p>Таким чином можна уникнути перекриття класів іншими модулями, в яких теж можуть бути елементи .item, .active. Річ у тому, що далеко не всі розробники намагаються дотримуватися ієрархії в CSS:</p>
+			<code>
+				.faq { ... }<br>
+				.faq .item { ... }<br>
+				.faq .item.active { ... }
+			</code>
+			<p>Часто цьому не приділяють уваги і подальше супроводження коду при розростанні проекту стає дуже проблематичним:</p>
+			<code>
+				.faq { ... }<br>
+				.item { ... }<br>
+				.active { ... }
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

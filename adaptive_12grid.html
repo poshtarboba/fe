@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. 12-колоночна css-сітка</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<!-- TODO: взагалі про сітки інфу добавити -->
+	
+		<h1>12-колоночна css-сітка</h1>
+
+		<section>
+			<h2>CSS-сітка (css-grid)</h2>
+			<p>Сітка - розбиття сайту на колонки певної ширини. Сітка значно спрощує зробити сайт адаптивним.</p>
+			<p>Зазвичай використовують 12-колоночну сітку: об'єднуючи колонки можна легко отримати блоки з такими
+				ширинами:<br>
+				- 50% - об'єднуємо 6 колонок;<br>
+				- 33% - об'єднуємо 4 колонки;<br>
+				- 25% - об'єднуємо 3 колонки;<br>
+				- 16.6% - об'єднуємо 2 колонки.
+			</p>
+			<p>Кожен блок теж розбивається на 12 умовних колонок. Таким чином можна, наприклад, зробити 8 колонок: спочатку
+				блок розбиваємо на 2 колонки по 50%, після чого кожен з них - по 25% на 4 колонки.</p>
+			<p>Сітка дуже важлива для адаптації сайтів під різні розширення.</p>
+			<figure>
+				<img src="img/adaptive_12grid_01.jpg" alt="Grid">
+				<figcaption>Шаблон сайта і накладена на нього сітка.</figcaption>
+			</figure>
+			<p>Та не всі дизайни можна нормально натягнути на сітку.</p>
+			<p>В наступному дизайні хоч і простежується сітка, проте, фон все портить, такий фон неможливо нормально зробити
+				адаптивним.</p>
+			<figure>
+				<img src="img/adaptive_12grid_02.jpg" alt="Bad for grid">
+				<figcaption>Не дуже вдалий дизайн для сітки.</figcaption>
+			</figure>
+			<figure>
+				<img src="img/adaptive_12grid_03.jpg" alt="Good for grid">
+				<figcaption>Типовий сайт, зроблений під сітку.</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Рядки та колонки</h2>
+			<p>Розберемо як за допомогою CSS зробити сітку. Контент зазвичай огортається одним з наступних блоків:</p>
+			<code>
+				.container { margin: 0 auto; width: 980px; }<br>
+				.container-fluid { width: 100%; }<br>
+				.container,<br>
+				.container-fluid { padding: 0 16px 16px; }
+			</code>
+			<p>Перший клас - для сайтів фіксованої ширини на десктопній версії сайту, другий - для сайту, що займає всю ширину
+				екрана.</p>
+			<p>Фактично, це наш клас .resize.</p>
+			<p>&nbsp;</p>
+			<p>Далі контент розбивається на строки, а строки в свою чергу - на колонки. Щось схоже на таблиці. Для цього нам
+				знадобляться такі класи:</p>
+			<code>
+				.row:after { content: ""; display: block; clear: both; }<br>
+				.col-1 { float: left; width: 8.33333333%; }<br>
+				.col-2 { float: left; width: 16.66666666%; }<br>
+				.col-3 { float: left; width: 25%; }<br>
+				.col-4 { float: left; width: 33.33333333%; }<br>
+				.col-5 { float: left; width: 41.66666666%; }<br>
+				.col-6 { float: left; width: 50%; }<br>
+				.col-7 { float: left; width: 58.33333333%; }<br>
+				.col-8 { float: left; width: 66.66666666%; }<br>
+				.col-9 { float: left; width: 75%; }<br>
+				.col-10 { float: left; width: 83.33333333%; }<br>
+				.col-11 { float: left; width: 91.66666666%; }<br>
+				.col-12 { float: left; width: 100%; }
+			</code>
+			<p>Або більш оптимально:</p>
+			<code>
+				.row:after { content: ""; display: block; clear: both; }<br>
+				.col-1, .col-2, .col-3, ..., .col-11, .col-12 { float: left; }<br>
+				.col-1 { width: 8.33333333%; }<br>
+				.col-2 { width: 16.66666666%; }<br>
+				.col-3 { width: 25%; }<br>
+				.col-4 { width: 33.33333333%; }<br>
+				.col-5 { width: 41.66666666%; }<br>
+				.col-6 { width: 50%; }<br>
+				.col-7 { width: 58.33333333%; }<br>
+				.col-8 { width: 66.66666666%; }<br>
+				.col-9 { width: 75%; }<br>
+				.col-10 { width: 83.33333333%; }<br>
+				.col-11 { width: 91.66666666%; }<br>
+				.col-12 { width: 100%; }
+			</code>
+			<p>Обережно можна використати шаблон:</p>
+			<code>
+				.row:after { content: ""; display: block; clear: both; }<br>
+				[class^="col-"], [class*=" col-"] { float: left; }<br>
+				.col-1 { width: 8.33333333%; }<br>
+				.col-2 { width: 16.66666666%; }<br>
+				...
+			</code>
+			<p>І тепер, щоб розбити головну частину сайту на 2 частини - контент і сайдбар, достатньо використати рядок і дві
+				колонки:</p>
+			<code>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;aside class="col-4"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Бокова панель<br>
+				&nbsp;&nbsp;&lt;/aside&gt;<br>
+				&nbsp;&nbsp;&lt;main class="col-8&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Основний контент<br>
+				&nbsp;&nbsp;&lt;/main&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Сума цифр в класах колонок не повинна перевищувати 12 (в ідеалі - дорівнювати цьому числу).</p>
+		</section>
+
+		<section>
+			<h2>Горизонтальні відступи</h2>
+			<p>Як правило, між колонками контенту мають бути відступи. Вони робляться хитрим образом:</p>
+			<code>
+				.row { margin: 0 -16px; }<br>
+				.col-* { padding: 0 16px; box-sizing: border-box; }
+			</code>
+			<p>Така "магія" потрібна для того, щоб відступи між колонками завжди залишалася по 32 пікселя.</p>
+			<p><strong class="danger">Увага!</strong> Через таку особливу комбінацію зовнішніх та внутрішніх відступів колонки
+				можна вставляти тільки в рядки. В колонку можна вставити інший рядок. Рядки один в один вставляти не можна,
+				колонки одну в одну - також не можна.</p>
+			<p>Правильно:</p>
+			<code>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-8"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-6"&gt;...&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-6"&gt;...&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;...
+			</code>
+			<p>Неправильно:</p>
+			<code>
+				&lt;div class="container-fluid"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="container"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;...<br><br>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;...<br><br>
+				&lt;div class="col-8"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-4"&gt;...&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-4"&gt;...&lt;/div&gt;<br>
+				&nbsp;&nbsp;...
+			</code>
+			<p>Приклад верстки:</p>
+			<code>
+				&lt;div class="container-fluid"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;section class="container"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;aside class="col-4"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сайдбар<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/aside&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;main class="col-8"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-8"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+				class="col-6"&gt;Колонка 1&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+				class="col-6"&gt;Колонка 2&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-4"&gt;Бокова панелька&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/main&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;<br>
+				&nbsp;&nbsp;&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+		</section>
+
+		<section>
+			<h2>Адаптивність</h2>
+			<p>Нехай у нас на сайті є 12 блоків, розбиті на 4 колонки, при зменшенні ширини екрану необхідно перетворити
+				спочатку на 3 колонки, потім на 2 і на невеликих екранах - на одну.</p>
+			<p>Для адаптації колонок будемо використовувати суфікси:<br>
+				<strong>col-lg-*</strong> - десктопна версія (більше 1024 px);<br>
+				<strong>col-md-*</strong> - версія для планшетів (820..1024 px);<br>
+				<strong>col-sm-*</strong> - версія для смартфонів (481..819 px);<br>
+				<strong>col-xs-*</strong> - версія для маленьких пристроїв (до 481 px);
+			</p>
+			<p>Потрібно створити набір стилів:</p>
+			<code>
+				.col-lg-* { width: ...; }<br>
+				@media screen and (max-width: 1024px) {<br>
+				&nbsp;&nbsp;.col-md-* { width: ...; }<br>
+				}<br><br>
+				@media screen and (max-width: 819px) {<br>
+				&nbsp;&nbsp;.col-sm-* { width: ...; }<br>
+				}<br><br>
+				@media screen and (max-width: 480px) {<br>
+				&nbsp;&nbsp;.col-xs-* { width: ...; }<br>
+				}
+			</code>
+			<p>HTML-код буде таким:</p>
+			<code>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 1&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 2&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 3&lt;/div&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 9&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 10&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 11&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"&gt;Колонка 12&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Якщо нам потрібно, щоб на всіх версіях, окрім найменшої, зберігалося 4 колонки, то наступний код буде
+				надлишковим:</p>
+			<code>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"&gt;Колонка 1&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"&gt;Колонка 2&lt;/div&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"&gt;Колонка 12&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>Проміжні класи можна сміливо видалити:</p>
+			<code>
+				&lt;div class="row"&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-xs-12"&gt;Колонка 1&lt;/div&gt;<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-xs-12"&gt;Колонка 2&lt;/div&gt;<br>
+				&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&lt;div class="col-lg-3 col-xs-12"&gt;Колонка 12&lt;/div&gt;<br>
+				&lt;/div&gt;
+			</code>
+		</section>
+
+		<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>
+					Зробіть адаптивну верстку сайту Minecraft, використовуючи CSS-сітку.<br>
+					Почистіть стилі від зайвих класів.
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

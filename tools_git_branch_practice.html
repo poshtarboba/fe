@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Практика по гілкам Git</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		#tasks li { position: relative; margin: 0 0 2px; padding: 4px 8px 4px 32px; border: 1px solid transparent;}
+		#tasks li.active { background-color: #efe; border-color: #beb;}
+		#tasks li button { position: absolute; left: 4px; top: 8px; padding: 0; width: 20px; height: 20px; font-size: 0; cursor: pointer;}
+		#tasks li.active button { font-size: 12px;}
+		#tasks p:first-child { padding-top: 0;}
+		#inputNick { width: 100px;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Практика по гілкам Git</h1>
+			<p>Ця практика навчить вас використовувати Git у колективних проектах. Вважайте, що кожну гілку цього проекту робить окрема людина. Будемо вчитися зливати (об'єднувати) гілки, вирішувати конфлікти.</p>
+			<p>Виконуйте завдання поступово. Відмічайте виконані завдання кліком по кнопці біля цифри.</p>
+			<p><strong class="danger">Будьте дуже уважними!</strong> Якщо щось зробите невірно, пропустите - доведеться завдання виконувати спочатку.</p>
+			<p>Для цього видаліть репозиторій з GitHub і папку html з папки проекту в себе на комп'ютері.</p>
+			<p><strong class="danger">Відстежуйте помилки</strong> після виконання кожної команди. Частіше перевіряйте статус: <strong>git status</strong>.</p>
+			<p>Завдання представлені у двох варіантах: коротко і детально. У другому варіанті розписані усі дії.</p>
+		</section>
+
+		<section>
+			<h2>Завдання</h2>
+			<h3>Коротко</h3>
+			<p>Посилання "#" веде до детального завдання.</p>
+			<ol>
+				<li><a href="#task1">#</a> Створіть репозиторій <strong>merge</strong></li>
+				<li><a href="#task2">#</a> Клонуйте його собі</li>
+				<li><a href="#task3">#</a> Створіть файл index.html, в який добавте блок &lt;main&gt; із заголовком &lt;h1&gt;Hello!&lt;/h1&gt;</li>
+				<li><a href="#task4">#</a> Запуште зміни на сервер</li>
+				<li><a href="#task5">#</a> Створіть гілку hey, змініть текст тега h1 на Hey!, запуште на сервер</li>
+				<li><a href="#task6">#</a> Створіть pull-request</li>
+				<li><a href="#task7">#</a> Не приймайте pull-request - вкажіть в коментарі, що необхідно змінити тег title</li>
+				<li><a href="#task8">#</a> Змініть тег title, зміни запуште на сервер</li>
+				<li><a href="#task9">#</a> Прийміть pull-request (об'єднайте гілки master і hey)</li>
+				<li><a href="#task10">#</a> Оновіть локальний мастер (git pull)</li>
+				<li><a href="#task11">#</a> Створіть гілку header і пропишіть відповідний тег у файл. Запуште зміни, зробіть pull-request</li>
+				<li><a href="#task12">#</a> Створіть гілку footer і пропишіть відповідний тег у файл. Запуште зміни, зробіть pull-request</li>
+				<li><a href="#task13">#</a> З гілки footer створіть гілку script і добавте в футер скрипт з alert('Hey!'). Запуште зміни, зробіть pull-request</li>
+				<li><a href="#task14">#</a> Прийміть пул-реквести гілки header</li>
+				<li><a href="#task15">#</a> Прийміть пул-реквести гілок footer та script</li>
+				<li><a href="#task16">#</a> Оновіть гілку header, змініть напис Hey! в alert на Welcome!, запуште на сервер, зробіть пул-реквест</li>
+				<li><a href="#task17">#</a> Оновіть гілку footer, змініть напис Hey! в alert на Hello!, запуште на сервер, зробіть пул-реквест</li>
+				<li><a href="#task18">#</a> Прийміть обидва пулл-реквеста, вирішіть конфлікт</li>
+				<li><a href="#task19">#</a> Видаліть усі створені гілки (крім master)</li>
+			</ol>
+			<h3>Детально</h3>
+			<p>Вкажіть свій логін на GitHub: <label><input id="inputNick"></label>, це дозволить персоналізувати посилання в завданнях нижче <small>(приклад: <em>https://github.com/<span class="js-nick-replace">ваш_логін</span>/</em>)</small>.</p>
+			<ol id="tasks">
+				<li id="task1">Створіть на GitHub репозиторій <strong>merge</strong> (поставте галочку щоб створився файл Readme.md).</li>
+				<li id="task2">
+					<p>В себе на комп'ютері в робочій папці створіть папку проекту <strong>merge</strong> і клонуйте туди репозиторій:</p>
+					<code>
+						git clone https://github.com/<span class="js-nick-replace">ваш_логін</span>/merge.git html
+					</code>
+					<p>Проконтролюйте, щоб у папці проекту з'явилась папка html. Перейдіть у неї:</p>
+					<code>
+						cd html
+					</code>
+				</li>
+				<li id="task3">
+					<p>Створіть в папці html файл <strong>index.html</strong>:</p>
+					<code>
+						&lt;!doctype html&gt;<br>
+						&lt;html&gt;<br>
+						&lt;head&gt;<br>
+						&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
+						&nbsp;&nbsp;&lt;title&gt;Document&lt;/title&gt;<br>
+						&lt;/head&gt;<br>
+						&lt;body&gt;<br>
+						&nbsp;&nbsp;&lt;main&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello!&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&lt;/main&gt;<br>
+						&lt;/body&gt;<br>
+						&lt;/html&gt;
+					</code>
+				</li>
+				<li id="task4">
+					<p>Запуште цей файл на сервер:</p>
+					<code>
+						git status<br>
+						git add .<br>
+						git status<br>
+						git commit -m "section main"<br>
+						git status<br>
+						// проконтролюйте, щоб не було помилок, повинно писати:<br>
+						// nothing to commit, working tree clean<br>
+						git push
+					</code>
+					<p>Перевірте зміни на сервері:</p>
+					<p><a class="js-link-replace" href="https://github.com/ваш_логін/merge" target="_blank">https://github.com/<span class="js-nick-replace">ваш_логін</span>/merge</a></p>
+					<p><a class="js-link-replace" href="https://github.com/ваш_логін/merge/network" target="_blank">https://github.com/<span class="js-nick-replace">ваш_логін</span>/merge/network</a></p>
+					<figure>
+						<img src="img/tools_git_branch_practice_01.png" alt="Repository and Network view in GitHub">
+						<figcaption>Файли репозиторія і графічне відображення коміта у GitHub</figcaption>
+					</figure>
+				</li>
+				<li id="task5">
+					<p>Одному з розробників доручають змінити заголовок з Hello! на Hey!</p>
+					<p>Кожне завдання виконується в окремій гілці. Тому створіть нову гілку <strong>hey</strong>.</p>
+					<p>Нові гілки можна створювати <strong class="danger">лише</strong> якщо команда <strong>git status</strong> видає "<em>nothing to commit</em>".</p>
+					<code>
+						git status<br>
+						git checkout -b hey<br>
+						git branch
+					</code>
+					<p>Змініть текст <em>Hello!</em> на <em>Hey!</em> і запуште зміни на сервер.</p>
+					<code>
+						git add .<br>
+						git commit -m "change title to Hey!"<br>
+						git status<br>
+						// nothing to commit ???<br>
+						git push origin hey
+					</code>
+					<p>Зверніть увагу, що якщо ви працюєте з гілками, то потрібно писати push/pull origin назва_гілки.</p>
+					<p>Перевірте графік: <a class="js-link-replace" href="https://github.com/ваш_логін/merge/network" target="_blank">https://github.com/<span class="js-nick-replace">ваш_логін</span>/merge/network</a></p>
+					<p>Оновлюйте сторінку клавішами <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> ("жорстке" перезавантаження з очищенням тимчасового кешу), не користуйтесь клавішою <kbd>F5</kbd> чи іконкою перезавантаження сторінки біля строки URL браузера - це "м'яке" перезавантаження, без очищення кешу.</p>
+					<figure>
+						<img src="img/tools_git_branch_practice_02.png" alt="Network view in GitHub">
+						<figcaption>Графічне відображення гілки у GitHub</figcaption>
+					</figure>
+				</li>
+				<li id="task6">
+					<p>Для того, щоб зміни попали в основну гілку master - потрібно зробити Pull Request. Для цього на головній сторінці проекту нажміть велику зелену кнопку "<strong>Compare &amp; pull request</strong>". Якщо такої не бачите - шукайте невелику білу "New pull request".</p>
+					<p>Перевірте, щоб навпроти base: була обрана гілка master, а навпроти compare: - ваша гілка hey. Натисніть велику зелену кнопку "<strong>Create pull request</strong>". На наступній сторінці не нажимайте кнопку "Merge pull request".</p>
+					<figure>
+						<img src="img/tools_git_branch_practice_03.png" alt="New pull request">
+						<figcaption>Кнопки створення пул-реквеста і порівняння гілок</figcaption>
+					</figure>
+					<p>Пул-реквест - це запит на об'єднання гілок. Учасник проекту виконує свою роботу, заливає (пушить) на сервер і коли робота готова (пушити можна багато разів) - розробник пул-реквестом "просить" свого керівника добавити виконану роботу в гілку master.</p>
+					<figure>
+						<img src="img/tools_git_branch_practice_04.png" alt="New pull request">
+						<figcaption>Пул-реквест очікує мержа (з'єднання) з гілкою master</figcaption>
+					</figure>
+				</li>
+				<li id="task7">
+					<p>Тепер в роботу включається тімлід (<a href="http://enjoy-job.ru/professions/team-leader/" target="_blank">team leader</a>), технічний керівник проекту, досвідчений розробник.</p>
+					<p>Керівник перевіряє чи все гаразд, чи немає помилок, і в разі відсутності зауважень об'єднує гілки. Якщо ж щось не так - він пише коментар і не приймає ваш пул-реквест, вам потрібно виправити помилки, доробити те, що вказано в коментарі.</p>
+					<p>Тімлід або візуально переглядає код (<a class="js-link-replace" href="https://github.com/ваш_логін/merge/pull/1/files" target="_blank">https://github.com/<span class="js-nick-replace">ваш_логін</span>/merge/pull/1/files</a>), або скачує собі гілку з сервера і перевіряє локально:</p>
+					<code>
+						git checkout -b назва_гілки<br>
+						git pull origin назва_гілки<br>
+						// вам зараз цього робити не треба, оскільки ви і в ролі розробника, і в ролі тімліда
+					</code>
+					<p>Будьте строгим тімлідом, не прийміть запит, накажіть своєму підлеглому змінити тег &lt;title&gt;, запишіть у коментар:</p>
+					<code>
+						Задай правильний title сторінки: Welcome!
+					</code>
+					<figure>
+						<img src="img/tools_git_branch_practice_05.png" alt="Comment">
+						<figcaption>Коментар тім-ліда: причина неприйняття пул-реквеста</figcaption>
+					</figure>
+				</li>
+				<li id="task8">
+					... (Змініть тег title, зміни запуште на сервер)
+				</li>
+				<li id="task9">
+					... (Прийміть pull-request (об'єднайте гілки master і hey))
+				</li>
+				<li id="task10">
+					... (Оновіть локальний мастер (git pull))
+				</li>
+				<li id="task11">
+					... (Створіть гілку header і пропишіть відповідний тег у файл. Запуште зміни, зробіть pull-request)
+				</li>
+				<li id="task12">
+					... (Створіть гілку footer і пропишіть відповідний тег у файл. Запуште зміни, зробіть pull-request)
+				</li>
+				<li id="task13">
+					... (З гілки footer створіть гілку script і добавте в футер скрипт з alert('Hey!'). Запуште зміни, зробіть pull-request)
+				</li>
+				<li id="task14">
+					... (Прийміть пул-реквести гілки header)
+				</li>
+				<li id="task15">
+					... (Прийміть пул-реквести гілок footer та script)
+				</li>
+				<li id="task16">
+					... (Оновіть гілку header, змініть напис Hey! в alert на Welcome!, запуште на сервер, зробіть пул-реквест)
+				</li>
+				<li id="task17">
+					... (Оновіть гілку footer, змініть напис Hey! в alert на Hello!, запуште на сервер, зробіть пул-реквест)
+				</li>
+				<li id="task18">
+					... (Прийміть обидва пулл-реквеста, вирішіть конфлікт)
+				</li>
+				<li id="task19">
+					... (Видаліть усі створені гілки (крім master))
+				</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Зареєструйтесь на сайтах <a href="https://about.gitlab.com/" target="_blank">GitLab</a> та <a href="https://bitbucket.org/" target="_blank">BitBucket</a>.</li>
+				<li>Створіть на кожному з цих сайтів по репозиторію, клонуйте їх собі.</li>
+				<li>Зробіть зміни у файлах, створіть нові файли, додайте зображень, запуште зміни на сервер.</li>
+				<li>
+					Створіть гілки, зробіть зміни, запуште. Подивіться графік комітів. На цих сайтах графіки вертикальні:
+					<figure>
+						<img src="img/tools_git_branch_01.png" alt="Network view in GitLab, BitBucket">
+						<figcaption>Графіки комітів у GitLab, BitBucket</figcaption>
+					</figure>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+<script>
+	(function(){
+		document.querySelectorAll('#tasks li').forEach(function(li){
+			let button = document.createElement('button');
+			button.innerHTML = '&#10003;';
+			li.appendChild(button);
+			button.addEventListener('click', function(){ this.parentElement.classList.toggle('active'); });
+		});
+		document.querySelector('#inputNick').addEventListener('keyup', function(){
+			let nick = this.value ? this.value : 'ваш_логін';
+			document.querySelectorAll('.js-nick-replace').forEach(function(span){ span.innerHTML = nick; });
+			document.querySelectorAll('.js-link-replace').forEach(function(link){
+				let href = link.getAttribute('href').split('/');
+				href[3] = nick;
+				link.setAttribute('href', href.join('/'));
+			});
+		});
+	})();
+</script>
+
+</body>
+</html>

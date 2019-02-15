@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Масиви</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Масиви</h1>
+		<p><a href="http://javascript.ru/basic/array" target="_blank">javascript.ru/basic/array</a></p>
+		<p><a href="http://learn.javascript.ru/array-methods" target="_blank">learn.javascript.ru/array-methods</a></p>
+
+		<section>
+			<h2>Визначення масива</h2>
+			<p><strong>Масив</strong> - впорядкований набір елементів, що зберігаються послідовно, мають порядковий номер (індекс).</p>
+			<p>В багатьох мовах програмування масиви можуть складатися тільки з однотипних елементів: лише з чисел, або лише зі строк, лише з об'єктів і т.д.</p>
+			<p>В JavaScript масиви можуть складатися з різнотипних елементів, елементи масива можна змінювати. В деяких мовах програмування масиви є статичними, незмінними.</p>
+			<p>Створення масива:</p>
+			<code>
+				let a = []; &nbsp;&nbsp; // порожній масив<br>
+				let m = [3, 5, 7];<br>
+				let x = 'a',<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;y = 70.5,<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;z = [1, 1, 1];<br>
+				let arr = ['hello', x, NaN, y, false, z, {}];
+			</code>
+			<p>Масиви мають властивість <strong>.length</strong> - довжина масива, кількість елементів в масиві.</p>
+			<code>
+				console.log('Довжина масива:', arr.length);<br>
+				console.dir(arr);
+			</code>
+			<p>Елементи масива можна міняти:</p>
+			<code>
+				arr[0] = 42;<br>
+				arr[1] = 'hey!';<br>
+				arr[arr.length - 1] = [];<br>
+				console.log(arr);
+			</code>
+			<p>Елементи масива можна задавати:</p>
+			<code>
+				let a = [];<br>
+				a[12] = -17;<br>
+				console.log(a.length);<br>
+				console.log(a);
+			</code>
+			<p>При цьому елементи з 0 по 11 будуть створені, але матимуть тип undefined.</p>
+			<p>Елементи можна добавляти в кінець:</p>
+			<code>
+				a[a.length] = 'добавити';<br>
+				a[a.length] = 'в';<br>
+				a[a.length] = 'кінець';<br>
+				console.log(a.length);<br>
+				console.log(a);
+			</code>
+			<p>Елементи можна видаляти:</p>
+			<code>
+				delete a[13];<br>
+				a[14] = undefined;<br>
+				console.log(a.length);<br>
+				console.log(a);
+			</code>
+			<p>Створіть двовимірний масив 3 х 3, заповнений числами від 1 до 9, виведіть в консоль.</p>
+			<p>Звернення до елементів другого порядку:</p>
+			<code>
+				a[1][0] = 400;<br>
+				a[1][1] = 500;<br>
+				a[1][2] = 600;
+			</code>
+			<p>Перебор такого масива здійснюється двома циклами:</p>
+			<code>
+				for (let i = 0; i < a.length; i++) {<br>
+				&nbsp;&nbsp;for (let j = 0; j < a[i].length; j++) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log(a[i][j]++);<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				console.log(a);
+			</code>
+			<p>Також можуть бути багатовимірні масиви.</p>
+			<p>В JavaScript немає ніякого обмеження на вкладеність масивів один в один, використання будь-яких елементів як елементів масивів.</p>
+			<p>В багатьох строготипізованих мовах програмування багатовимірні масиви можуть бути лише "прямокутні", "паралелепіпедні" і т.д. - це називається матриця.</p>
+			<p>В JS таких матриць не існує, оскільки сусідні внутрішні масиви можуть мати будь-яку розмірність, чи навіть можуть бути не масивами.</p>
+		</section>
+
+		<!-- TODO: перебор масива: -->
+		<!-- for (const e of arr) { e - кожен елемент масива } -->
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

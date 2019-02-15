@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Стилі браузера</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Стилі браузера (user agent stylesheet)</h1>
+			<p>По замовчуванню кожен браузер має власний набір стилів для всіх елементів.</p>
+			<p>Саме тому "голий" HTML виглядає не як текст в блокноті, а має деяке форматування: заголовки виконані більшим і жирним шрифтом, посилання виділені синім кольором, заголовки і параграфи мають відступи, списки також мають відступи та декоративні кружечки на початку кожного елемента списку.</p>
+			<figure>
+				<img src="img/layout_css_browser_01.png" alt="user agent stylesheet">
+				<figcaption>Стилі браузера</figcaption>
+			</figure>
+			<p>Проблема в тому, що ці стилі у різних браузерах можуть різнитися.</p>
+			<p>Перед тим, як почати писати стилі бажано провести обнулення стилів браузера.</p>
+			<p>Ось приклад обнуляючих стилів, включаючи веб-форми.</p>
+			<code>
+				body { margin: 0; color: #666; font: normal 18px/28px Helvetica, Arial, sans-serif; background: #fff;}<br>
+				.clear { clear: both;}<br>
+				p { margin: 0; padding: 10px 0;}<br>
+				a { color: #0000ff; text-decoration: underline;}<br>
+				a:hover { color: #7777ff;}<br>
+				a img { border: none;}<br>
+				h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; font-weight: bold; color: #000;}<br>
+				h1 { padding: 40px 0 24px; line-height: 1.4em;}<br>
+				h2 { padding: 0 0 12px;}<br>
+				strong { font-weight: bold;}<br>
+				em { font-style: italic;}<br>
+				form, menu, iframe { display: block; margin: 0; padding: 0; border: none;}<br>
+				ol, ul, dl, li, dt, dd { margin: 0; padding: 0; list-style: none;}<br>
+				* { outline: none;}
+			</code>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=KGYmOlNteas" target="_blank">HTML Шорти - Нормальне скидання</a> (5:41).</p>
+
+			<!-- TODO: reset.css -->
+			<!-- TODO: * { margin: 0; padding: 0;} -->
+
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

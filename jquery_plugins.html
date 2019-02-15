@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Підключення сторонніх плагінів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Підключення сторонніх плагінів</h1>
+
+		<section>
+			<h2>Загальні відомості</h2>
+			<p>Плагіни jQuery у більшості випадків підключаються таким чином:</p>
+			<code>
+				&lt;script src="jquery.js"&gt;&lt;/script&gt;<br>
+				&lt;script src="jquery.plugin.js"&gt;&lt;/script&gt;<br>
+				&lt;script src="script.js"&gt;&lt;/script&gt;<br><br>
+				(function($){<br><br>
+				&nbsp;&nbsp;<strong>$('селектор').назва_плагіна(опції);</strong><br>
+				&nbsp;&nbsp;<strong>$змінна.назва_плагіна(опції);</strong><br><br>
+				&nbsp;&nbsp;$('input[type="phone"]').mask("+38(099) 999-99-99");<br>
+				&nbsp;&nbsp;$('.slider').<a href="http://bxslider.com/" target="_blank">bxSlider</a>({duration: 3000});<br>
+				&nbsp;&nbsp;$('.box').<a href="http://areaaperta.com/nicescroll/" target="_blank">niceScroll</a>();<br>
+				&nbsp;&nbsp;$(window).<a href="https://iprodev.com/scrollax-js-parallax-scrolling-library/" target="_blank">Scrollax</a>();<br><br>
+				})(jQuery);
+			</code>
+			<p>До кожного популярного плагіна є API-документація, в якій описано для чого потрібен плагін, як правильно його використовувати, які налаштування, опції є. Також можна переглянути демки.</p>
+			<p>Розглянемо декілька плагінів, щоб розібратися як їх використовувати.</p>
+		</section>
+
+		<section>
+			<h2>Masked Input Plugin</h2>
+			<p><a href="http://digitalbush.com/projects/masked-input-plugin/" target="_blank">Masked Input Plugin</a>.</p>
+			<p>Даний плагін дозволяє задати маску вводу для полів вводу.</p>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Створіть форму з декількома полями вводу.</li>
+				<li>Добавте поле вводу телефону та встановіть маску вводу щоб можна було вводити тільки номери хмельницьких міських АТС.</li>
+				<li>Добавте поле вводу дати народження і відповідну маску.</li>
+				<li>Добавте поле вводу суми платежу в грн.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Повзунок NoUiSlider</h2>
+			<p><a href="https://refreshless.com/nouislider/" target="_blank">NoUiSlider Plugin</a>.</p>
+			<p>Даний плагін не потребує бібліотеки jQuery.</p>
+			<p>Плагін дозволяє добавити на сторінку повзунки для зручного вводу числових (і не тільки) даних, проміжків.</p>
+			<p>На англійській мові подібні повзунки називаються слайдерами, що вносить деяку плутанину з наступним типом плагінів у вітчизняних розробників.</p>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Добавте в форму повзунок кількості одиниць товарів.</li>
+				<li>Добавте в форму повзунок для задання проміжку цін.</li>
+				<li>Добавте в форму повзунок вибору кольору одиниці товару.</li>
+				<li>В перший повзунок добавте шкалу.</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Слайдер Cycle2</h2>
+			<p>Велика група плагінів - <a href="https://www.google.com.ua/search?q=jquery+слайдер" target="_blank">слайдери, анімовані галереї, каруселі (slideshow gallery, carousel)</a>.</p>
+			<p>Один з функціональніших - <a href="http://jquery.malsup.com/cycle2/" target="_blank">Cycle2 Slider</a>.</p>
+			<p>Однією з особливостей цього слайдера - його можна підключити в проект і налаштувати не написавши жодної строки кода.</p>
+			<p>Як правило, галерея - це набір зображень або блоків однакового розміру, їх зручно робити у вигляді списків.</p>
+			<p>Галерея може доповнюватися елементами керування: кнопками-стрілками, кнопками індикації слайдів, мініатюрами.</p>
+			<h3>Завдання.</h3>
+			<ol>
+				<li>Розгляньте демки цього плагіна.</li>
+				<li>Перегляньте можливості плагіна в API-документації.</li>
+				<li>
+					Створіть дві галереї на сайті: одну із зображеннями, другу - з блоками тексту, фонами:
+					<code>
+						&lt;div&gt;<br>
+						&nbsp;&nbsp;&lt;img src="..." alt="slide 1"&gt;<br>
+						&nbsp;&nbsp;&lt;img src="..." alt="slide 2"&gt;<br>
+						&nbsp;&nbsp;&lt;img src="..." alt="slide 3"&gt;<br>
+						&nbsp;&nbsp;&lt;img src="..." alt="slide 4"&gt;<br>
+						&lt;/div&gt;<br><br>
+						&lt;ul&gt;<br>
+						&nbsp;&nbsp;&lt;li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;1. Lorem ipsum&lt;/strong&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Понеділок dolor sit amet, consectetur adipisicing elit...&lt;/span&gt;<br>
+						&nbsp;&nbsp;&lt;/li&gt;<br>
+						&nbsp;&nbsp;&lt;li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;2. Lorem ipsum&lt;/strong&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Вівторок dolor sit amet, consectetur adipisicing elit...&lt;/span&gt;<br>
+						&nbsp;&nbsp;&lt;/li&gt;<br>
+						&nbsp;&nbsp;&lt;li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;3. Lorem ipsum&lt;/strong&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Середа dolor sit amet, consectetur adipisicing elit...&lt;/span&gt;<br>
+						&nbsp;&nbsp;&lt;/li&gt;<br>
+						&lt;/ul&gt;
+					</code>
+				</li>
+				<li>Першу галерею підключіть за допомогою JS.</li>
+				<li>Другу галерею підключіть без JS.</li>
+				<li>Налаштуйте обидві галереї: добавте елементи керування, налаштуйте швидкість переключення слайдів, тривалість перерви між переключеннями, добавте паузу при наведенні миші на галерею.</li>
+				<li>Дослідіть <a href="http://jquery.malsup.com/cycle2/api/#commands" target="_blank">команди слайдера</a>. Добавте альтернативні кнопки керування: наступний слайд, попередній слайд, пауза, запуск.</li>
+				<li>Дослідіть <a href="http://jquery.malsup.com/cycle2/api/#events" target="_blank">події слайдера</a>. Добавте в кожен слайд дата-атрибут з кольором. Добавте обробник подій на переключення слайда і міняйте фон body відповідно до кольору, прописаному в слайді.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

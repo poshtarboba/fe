@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Прослуховувач подій addEventListener</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		#MouseMove { padding: 10px 20px; }
+		#MouseMove span { padding: 0 8px; background: rgba(0,0,0,0.2); color: #333; white-space: nowrap;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Прослуховувач подій addEventListener</h1>
+		
+		<section>
+			<p>Нехай по кліку на кнопку ми хочемо використати 2 обробника подій:</p>
+			<code>
+				&lt;button&gt;test&lt;/button&gt;<br><br>
+				let button = document.querySelector('button');<br>
+				button.onclick = function(){ this.innerText = 'Hello!'; };<br>
+				button.onclick = function(){ console.log('click on button'); };
+			</code>
+			<p>Друга функція просто затирає першу, і перша перестане виконуватися.</p>
+			<p>Для роботи з декількома однотипними подіями є спеціальний об'єкт - прослуховувальник подій: <strong>addEventListener</strong>.</p>
+			<code>
+				<strong>element.addEventListener('event', handler);</strong><br>
+				button.addEventListener('click', function(){ this.innerText = 'Hello!'; });
+				button.addEventListener('click', function(){ console.log('click on button'); });
+			</code>
+			<p>Зверніть увагу, що подія записується без букв on, і це - строковий аргумент, тобто, назва події може зберігатися у змінній:</p>
+			<code>
+				let evname = a > b ? 'click' : 'mouseenter';<br>
+				button.addEventListener(evname, function(){ console.log('hello'); });
+			</code>
+			<p>Видалити подію можна методом <strong>.removeEventListener()</strong>.</p>
+			<p>Видаляти події потрібно коли в них вже немає необхідності, а повторний виклик події може спричинити проблеми.</p>
+			<p>Уявіть ситуацію: ви зробили форму і програмну обробку даних цієї форми, відправку на сервер по кліку на кнопку. Якщо користувач двічі клацне по кнопці - дані двічі відправляться на сервер.</p>
+			<p>Щоб уникнути цього - при першому кліку подію обробки та відправки даних потрібно прибрати з кнопки.</p>
+			<code>
+				function subm(){<br>
+				&nbsp;&nbsp;button.removeEventListener('click', subm);<br>
+				&nbsp;&nbsp;if (validateForm()) { form.submit(); }<br>
+				}<br>
+				button.addEventListener('click', subm);
+			</code>
+			<p>Зверніть увагу, що для видалення функції потрібно використовувати ім'я функції, анонімні функції видаляти неможна.</p>
+		</section>
+
+		<section>
+			<h2>Власні події і програмний виклик подій з прослуховувальника</h2>
+			<p>Можна створювати власні події.</p>
+			<p>Нехай нам потрібна подія, що виникне через 2 секунди після натискання на кнопку. Напишемо обробник цієї події:</p>
+			<code>
+				button.addEventListener('button2s', function(){ alert('ok'); });
+			</code>
+			<p>Події можна називати довільно, як змінні, в даному випадку - <strong>button2s</strong>.</p>
+			<p>Для іменування подій в складних плагінах часто використовують простір імен. Наприклад, у бутстрапі події переключення табів мають такі назви:</p>
+			<code>
+				show.bs.tab<br>
+				shown.bs.tab<br>
+				hide.bs.tab<br>
+				hidden.bs.tab
+			</code>
+			<p>Саму подію ініціюємо (викликаємо) методом <strong>dispatchEvent</strong>:</p>
+			<code>
+				button.onclick = function(){<br>
+				&nbsp;&nbsp;setTimeout(function(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;button.dispatchEvent(new Event('button2s'));<br>
+				&nbsp;&nbsp;}, 2000);<br>
+				}
+			</code>
+			<p>Подію можна підв'язати під будь-який об'єкт:</p>
+			<code>
+				document.body.addEventListener('hey', function(){ ... });<br>
+				window.addEventListener('hey', function(){ ... });<br>
+				document.querySelector('h1').addEventListener...;<br><br>
+				document.body.dispatchEvent(new Event('hey'));<br>
+				window.dispatchEvent(new Event('hey'));<br>
+				document.querySelector('h1').dispatchEvent...;
+			</code>
+		</section>
+		
+		<section class="homework">
+			<h2>Тестове завдання</h2>
+			<ol>
+				<li>
+					Що робить наступний код?
+					<code>
+						...<br>
+						let lines, a = 'action';<br>
+						div['onmouse' + btn.dataset[a]] = function(){<br>
+						&nbsp;&nbsp;if (!(lines = document.forms[x].children).length){<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;console.dir(lines);<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;let y = document.forms[x].getAttribute(a);<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;lines = getLines()[y](x);<br>
+						&nbsp;&nbsp;}<br>
+						}
+					</code>
+				</li>
+			</ol>
+		</section>
+		
+		<!--<section class="homework">
+			<h2>Домашнє завдання</h2>
+			<ol>
+				<li>Створіть три кнопки і div.</li>
+				<li>Для третьої кнопки задайте абсолютне позиціонування і розмістіть її в позицію 300px 400px.</li>
+				<li>Для блока задайте розмір 3000х5000 пікселів, добавте бордер, жовтий фон.</li>
+				<li>При кліку на блок виводьте в консоль наскільки проскролене вікно браузера. Проскрольте вниз та вправо і клікніть по жовтому блоку.</li>
+				<li></li>
+				<li></li>
+			</ol>
+		</section>-->
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
