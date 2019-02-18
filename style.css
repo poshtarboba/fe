@@ -127,6 +127,48 @@ footer .nav { font-size: 24px; line-height: 1.4em;}
 	float: right;
 }
 
+.self-tests li {
+	margin: 0 0 4px;
+	padding: 4px 8px;
+	border: 1px solid transparent;
+}
+.self-tests p {
+	padding: 0;
+}
+.self-tests button {
+	cursor: pointer;
+}
+.self-tests input[type="text"] {
+	margin-right: 16px;
+	width: 300px;
+}
+.self-tests input[type="radio"],
+.self-tests input[type="checkbox"] {
+	margin-right: 8px;
+	cursor: pointer;
+}
+.self-tests input[type="radio"] ~ span,
+.self-tests input[type="checkbox"] ~ span {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+.self-tests input[type="radio"]:checked ~ span,
+.self-tests input[type="checkbox"]:checked ~ span {
+	color: #000;
+	font-weight: bold;
+}
+.self-tests .answer-right {
+	background-color: #efe;
+	border-color: #beb;
+}
+.self-tests .answer-wrong {
+	background-color: #fee;
+	border-color: #ebb;
+}
+
 /* debug */
 /*
 a:not([target]) { font-size: 32px !important; line-height: 40px; font-weight: bold !important; color: red !important;}

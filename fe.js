@@ -66,37 +66,6 @@ initContentsHeader();
 // 	}
 // })();
 
-
-
-/*
-function toggleBox(handles){
-	handles = document.querySelectorAll(handles);
-	handles.forEach(function(handle){
-		handle.addEventListener('click', function(){
-			let box = document.querySelector('#' + this.dataset.id);
-			if (box.classList.contains('animating')) { return; }
-			if (box.offsetHeight) {
-				box.dataset.height = box.offsetHeight;
-			}
-			else {
-				box.style.height = '';
-				box.dataset.height = box.offsetHeight;
-				box.style.height = '0';
-			}
-			box.dataset.iteration = 0;
-			box.dataset.animtype = 'show';
-			box.dataset.timerid = setInterval(function(box){
-				let progress = box.dataset.iteration / 20;
-				 if (box.dataset.animtype === 'close') { progress = 1 - progress; }
-				 box.style.height = progress * box.dataset.height;
-			}, 20, box);
-		});
-	});
-}
-
-toggleBox('.js-toggle');
-*/
-
 function isAdmin() {
 	return localStorage.getItem('admin');
 }
@@ -115,7 +84,6 @@ function reportCardNotification(time) {
 	timerId = setInterval(function() {
 		tryShowNotification();
 	}, 5 * 60 * 1000);
-	
 	function tryShowNotification() {
 		let now = new Date();
 		const [time_hrs, time_min] = time.split(':').map(function(e) { return parseInt(e); });
@@ -137,7 +105,18 @@ function actualDates(){
 	let month = add0(now.getMonth() + 1);
 	document.querySelectorAll('.js-year').forEach(function(span){ span.innerHTML = year; });
 	document.querySelectorAll('.js-month').forEach(function(span){ span.innerHTML = month; });
+	document.querySelectorAll('.js-date-m').forEach(function (span){
+		let date = new Date();
+		if (span.dataset.m) date.setMonth(date.getMonth() + +span.dataset.m);
+		span.innerText = date.getFullYear() + '-' + add0(date.getMonth() + 1);
+	});
+	document.querySelectorAll('.js-date-y').forEach(function (span){
+		let date = new Date();
+		if (span.dataset.y) date.setFullYear(date.getFullYear() + +span.dataset.y);
+		span.innerText = date.getFullYear();
+	});
 }
+
 
 function initContentsHeader(){
 	let isContentsPage = document.body.classList.contains('contents-page');
@@ -209,8 +188,9 @@ function showHideContentsHeader(header){
 		якщо курсор покинув вікно чи сповз вниз - меню не відображати
 	*/
 	window.addEventListener('mousemove', function(e){
-		if (e.clientY > 200 && header.classList.contains('show')) header.classList.remove('show');
-		if (e.clientY < 30 && !header.classList.contains('show')) header.classList.add('show');
+		headerShown = header.classList.contains('show');
+		if (e.clientY > 200 && headerShown) header.classList.remove('show');
+		if (e.clientX > window.innerWidth - 100 && e.clientY < 50 && !headerShown) header.classList.add('show');
 	});
 }
 
@@ -254,3 +234,63 @@ function showHideContentsHeader(header){
 	js.setAttribute('src', 'https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v3.2&appId=485127558688893&autoLogAppEvents=1');
 	document.body.appendChild(js);
 })();
+
+
+/* self-tests */
+(function (){
+	let radioId = 0;
+	document.querySelectorAll('.self-tests > li').forEach(function (li){
+		if (li.dataset.type === 'text') setTextQuestion(li);
+		if (li.dataset.type === 'radio') setRadioQuestion(li);
+		if (li.dataset.type === 'checkbox') setCheckboxQuestion(li);
+	});
+	function setTextQuestion(li){
+		let re = new RegExp(li.dataset.res);
+		li.removeAttribute('data-res');
+		li.innerHTML += '<p><label><input type="text"></label> <button>Перевірити</button></p>'; 
+		li.querySelector('button').addEventListener('click', function (){
+			answerClass(li, re.test(li.querySelector('input').value));
+		});
+	}
+	function setRadioQuestion(li){
+		let res = +li.dataset.res;
+		li.removeAttribute('data-res');
+		li.querySelectorAll('p').forEach(function(p){
+			p.innerHTML = '<label><input type="radio" name="st-radio_' + radioId + '"> <span>' + p.innerHTML + '</span></label>';
+		});
+		radioId++;
+		addButton(li).addEventListener('click', function(){
+			answerClass(li, li.querySelectorAll('input')[res - 1].checked);
+		});
+	}
+	function setCheckboxQuestion(li){
+		let res = li.dataset.res.split(', ').map(function(e){ return +e; });
+		li.removeAttribute('data-res');
+		li.querySelectorAll('p').forEach(function(p){
+			p.innerHTML = '<label><input type="checkbox"> <span>' + p.innerHTML + '</span></label>';
+		});
+		addButton(li).addEventListener('click', function(){
+			answerClass(li, test(li, res));
+		});
+		function test(li, res){
+			let resTest = true;
+			li.querySelectorAll('input').forEach(function(input, i){
+				if (input.checked && !res.includes(i + 1)) resTest = false;
+				if (!input.checked && res.includes(i + 1)) resTest = false;
+			});
+			return resTest;
+		}
+	}
+	function answerClass(li, test){
+		li.classList.remove('answer-right');
+		li.classList.remove('answer-wrong');
+		li.classList.add('answer-' + (test ? 'right' : 'wrong'));
+	}
+	function addButton(li){
+		let button = document.createElement('button');
+		button.innerText = 'Перевірити';
+		li.appendChild(button);
+		return button;
+	}
+})();
+

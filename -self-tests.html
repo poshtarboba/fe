@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Тестування тестів</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.self-tests li {
+			margin: 0 0 4px;
+			padding: 4px 8px;
+			border: 1px solid transparent;
+		}
+		.self-tests p {
+			padding: 0;
+		}
+		.self-tests button {
+			cursor: pointer;
+		}
+		.self-tests input[type="text"] {
+			margin-right: 16px;
+			width: 300px;
+		}
+		.self-tests input[type="radio"],
+		.self-tests input[type="checkbox"] {
+			margin-right: 8px;
+			cursor: pointer;
+		}
+		.self-tests input[type="radio"] ~ span,
+		.self-tests input[type="checkbox"] ~ span {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			cursor: pointer;
+		}
+		.self-tests input[type="radio"]:checked ~ span,
+		.self-tests input[type="checkbox"]:checked ~ span {
+			color: #000;
+			font-weight: bold;
+		}
+		.self-tests .answer-right {
+			background-color: #efe;
+			border-color: #beb;
+		}
+		.self-tests .answer-wrong {
+			background-color: #fee;
+			border-color: #ebb;
+		}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section class="self-tests-section">
+			<h2>Запитання для самоконтроля знань</h2>
+			<ol class="self-tests">
+				<li>Що таке модель даних веб-сторінки?</li>
+				<li data-type="text" data-res="^\s*alert\s*(\(\))?\s*$">Напишіть назву функції, що виводить повідомлення в діалоговому вікні</li>
+				<li data-type="checkbox" data-res="1, 4">
+					Які з наступних методів масива перебирають всі елементи масива?
+					<p>.map()</p>
+					<p>.split()</p>
+					<p>.each()</p>
+					<p>.reduce()</p>
+					<p>.dir()</p>
+				</li>
+				<li data-type="radio" data-res="3">
+					У якого оператора найвищий приорітет?
+					<p>&amp;&amp;</p>
+					<p>+=</p>
+					<p>typeof</p>
+					<p>тернарний</p>
+				</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

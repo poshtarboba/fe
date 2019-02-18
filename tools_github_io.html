@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Frontend. Хостинг на github.io</title>
+	<title>Хостинг на github.io</title>
 	<meta charset="utf-8">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
@@ -22,6 +22,12 @@
 			<p>Цей сайт ви можете використовувати собі як портфоліо, викладати туди свої проекти, свою інформацію.</p>
 			<p>Свої лекції я також тримаю на цьому сервісі.</p>
 			<p>Даний хостинг не має бекенду - ви не можете використовувати базу даних, серверні скрипти та служби, зборщики і т.п. Лише фронтенд-частину: окремі веб-сторінки, стилі, зображення, документи, js-скрипти та JSON-файли.</p>
+			<p>Ви не можете створювати довільні піддомени на GitHub Pages, лише один піддомен на один аккаунт.</p>
+			<p>Назва репозиторія hello.github.io не призведе до створення відповідного сайту, якщо ваш логін не hello.</p>
+		</section>
+		
+		<section>
+			<h2>Практика по створенню хостинга на github.io</h2>
 			<p>Отже, приступимо. Зайдіть на <a href="https://github.com/" target="_blank">github.com</a>, створіть новий проект (репозиторій), клацнувши по плюсику вгорі справа і задайте йому ім'я такого виду:</p>
 			<code>
 				ваш_логін.github.io<br><br>
@@ -29,102 +35,125 @@
 				poshtarboba.github.io
 			</code>
 			<p>Перше слово - ваш логін (його ви можете побачити правіше - Owner). Далі йде крапка і домен github.io.</p>
-			<p>Ви не можете створювати довільні піддомени на GitHub Pages, лише один піддомен на один аккаунт.</p>
-			<p>Назва репозиторія hello.github.io не призведе до створення відповідного сайту, якщо ваш логін не hello.</p>
 			<figure>
 				<img src="img/tools_github_io_01.png" alt="Створення репозиторія для github.io">
 				<figcaption>Створення репозиторія для github.io</figcaption>
 			</figure>
-			<p>В папці <strong>work</strong> створіть папку з назвою вашого репозиторія: <strong>ваш_логін.github.io</strong>. Цю папку не треба ховати в підпапках років і місяців, скоріш за все ви будете часто працювати з цим репозиторієм, хай він буде завжди під рукою.</p>
-			<p>Клонуйте репозиторій в папку work (підпапка з назвою репозиторія створиться сама):</p>
+			<p>Згадаємо про самоорганізацію, щоб не втонути в купах папок і файлів будемо дотримуватися такої структури:</p>
 			<code>
-				d:\work&gt; <strong>git clone https://github.com/ваш_логін/ваш_логін.github.io.git</strong>
+				D:\work\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="0">2018-02</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="1">2018-03</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="2">2018-04</span>\<br>
+				&nbsp;&nbsp;ваш_логін.github.io\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;ваш-логін\<br>
 			</code>
-			<p>Створіть index.html (не забудьте про кодування UTF-8, якщо користуєтесь Notepad++):</p>
+			<p>В папці <strong>work</strong> створіть папку з назвою вашого репозиторія: <strong>ваш_логін.github.io</strong>. Цю папку не треба ховати в підпапках років і місяців, скоріш за все ви будете часто працювати з цим репозиторієм, хай він буде завжди під рукою.</p>
+			<p>Перейдіть у цю папку і відкрийте консоль. Запрошення для вводу команд має виглядати приблизно так:</p>
+			<code>
+				D:\work\poshtarboba.github.io>
+			</code>
+			<p>Скопіюйте URL-адресу репозиторія і клонуйте його в папку з вашим логіном:</p>
+			<code>
+				git clone https://github.com/ваш_логін/ваш_логін.github.io.git <strong>ваш_логін</strong><br><br>
+				<em>// наприклад:</em><br>
+				git clone https://github.com/poshtarboba/poshtarboba.github.io.git poshtarboba
+			</code>
+			<p>При цьому в паці poshtarboba.github.io буде створено підпапку poshtarboba.</p>
+			<p>Створіть <strong>index.html</strong> (не забудьте про кодування UTF-8, якщо користуєтесь Notepad++):</p>
 			<code>
 				&lt;meta charset="utf-8"&gt;<br>
-				&lt;h1&gt;Привіт. Це сайт і портфоліо Васі Пупкіна&lt;/h1&gt;
+				&lt;h1&gt;Привіт. Це сайт і портфоліо Васі Пупкіна&lt;/h1&gt;<br>
+				&lt;p&gt;&lt;a href="blog/index.html"&gt;мій блог&lt;/a&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;a href="<span class="js-date-y">2010</span>-hello/index.html"&gt;сайт Hello&lt;/a&gt;&lt;/p&gt;
+			</code>
+			<p>Створіть папку <strong>blog</strong> і всередині неї ще один <strong>index.html</strong>:</p>
+			<code>
+				&lt;meta charset="utf-8"&gt;<br>
+				&lt;h1&gt;Тут буде блог Васі Пупкіна&lt;/h1&gt;
 			</code>
 			<p>Заляйте файл на GitHub:</p>
 			<code>
 				git add .<br>
+				git status<br>
 				git commit -m "hello github.io"<br>
 				git push
 			</code>
-			<p>Зачекайте секунд 30-60 і спробуйте зайти на ваш новий сайт https://ваш_логін.github.io</p>
+			<p>Зачекайте секунд 30-60 і спробуйте зайти на ваш новий сайт https://ваш_логін.github.io, поклацайте на посилання.</p>
 		</section>
 		
 		<section>
 			<h2>Окремі репозиторії як папки проекта github.io</h2>
-			<p>Наприклад, ви робите портфоліо на гітхабі і хочете викласти свої роботи в папки:</p>
+			<p>GitHub має обмеження на розмір репозиторія (станом на 2018 рік - 1 Gb), але кількість репозиторіїв необмежена.</p>
+			<p>Таким чином, якщо ви будете всі свої роботи заливати на github.io - він досить швидко засмітиться, перевищить ліміти.</p>
+			<p>Дана тема розглядає способи підключення інших репозиторіїв як папок у ваш основний проект github.io.</p>
+			<p>Наприклад, ви робите портфоліо на гітхабі і хочете викласти свої роботи в підпапки:</p>
 			<code>
-				<strong>vasyapupkin.github.io:</strong><br>
-				project1/<br>
-				project2/<br>
-				magazin-obuvi/<br>
-				index.html<br>
-				style.css
+				https://ваш_логін.github.io<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov/<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="-2">2007</span>-jameson-ua/<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln/
 			</code>
-			<p>В цьому випадку ваш основний репозиторій швидко розростеться до великих об'ємів, його адміністрування буде неефективним. Окрім того, GitHub має обмеження на розмір репозиторія (станом на 2018 рік - 1 Gb), але кількість репозиторіїв необмежена.</p>
-			<p>Основний репозиторій тримайте в чистоті, без зайвих файлів:</p>
+			<p>В папці work у вас має утворитися така структура:</p>
 			<code>
-				<strong>vasyapupkin.github.io:</strong><br>
-				index.html<br>
-				styles.html
+				D:\work\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="0">2018-02</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="1">2018-03</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="2">2018-04</span>\<br>
+				&nbsp;&nbsp;ваш_логін.github.io\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;ваш-логін\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-2">2007</span>-jameson-ua\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln\
 			</code>
-			<p>Кожну роботу заливайте в окремий репозиторій. Створюйте нову гілку від master і заливайте на гітхаб:</p>
+			<p>Таким чином і на комп'ютері, і на сервері буде логічна структура папок. В папці з іменем вашого логіна будуть знаходитися файли основного репозиторія GitHub Pages, а в підпапках - підключені до нього інші репозиторії.</p>
+			<h3>Практика</h3>
+			<p>На GitHub створіть новий репозиторій і дайте йому ім'я <strong><span class="js-date-y">2010</span>-hello</strong></p>
+			<p>Скопіюйте URL-адресу репозиторія, відкрийте консоль з папки вашого проекта github.io:</p>
+			<code>
+				D:\work\poshtarboba.github.io>
+			</code>
+			<p>Склонуйте репозиторій. При цьому буде створено підпапку з іменем репозиторія:</p>
+			<code>
+				git clone https://github.com/poshtarboba/<span class="js-date-y">2010</span>-hello.git<br><br>
+				<em>// Папки:</em><br>
+				D:\work\poshtarboba.github.io\<br>
+				D:\work\poshtarboba.github.io\poshtarboba\<br>
+				D:\work\poshtarboba.github.io\<span class="js-date-y">2010</span>-hello\
+			</code>
+			<p>Створіть в репозиторії файл <strong>index.html</strong>:</p>
+			<code>
+				&lt;meta charset="utf-8"&gt;<br>
+				&lt;h1&gt;Мій перший сайт в портфоліо Hello&lt;/h1&gt;
+			</code>
+			<p>Заляйте на сервер:</p>
+			<code>
+				git add .<br>
+				git status<br>
+				git commit -m "first site Hello"<br>
+				git push
+			</code>
+			<p>Щоб цей репозиторій став частиною вашого проекту github.io, відкрийте налаштування репозиторію і проскрольте до розділу GitHub Pages.</p>
+			<p>Виберіть гілку <strong>master</strong> у налаштуваннях <strong>Source</strong> і збережіть налаштування. Має з'явитися повідомлення що цей репозиторій опубліковано.</p>
+			<figure>
+				<img src="img/tools_github_io_02.png" alt="Підключення репозиторія у GitHub Pages">
+				<figcaption>Підключення репозиторія у GitHub Pages</figcaption>
+			</figure>
+			<p>Можливо, треба буде зачекати 30-60 секунд (перед публікацією відбувається тестування коду і ще деякі процеси).</p>
+			<p>Зайдіть на свою сторінку https://ваш_логін.github.io і клацніть по другому посиланню. Має відкритися сторінка, яку ми щойно заляли (раніше це посилання відкривало сторінку 404).</p>
+			<p>Публікувати можна не тільки основну гілку master, але будь-яку іншу гілку.</p>
+			<p>Якщо дати назву гілці <strong>gh-pages</strong>, то цей репозиторій (і, власне, ця гілка) сам опублікується в GitHub Pages, додаткових налаштуваннь не знадобиться:</p>
 			<code>
 				git checkout -b gh-pages<br>
 				git push origin gh-pages
 			</code>
-			<p>Відкрийте налаштування репозиторія на GitHub (вкладка Settings) і переконайтесь, що поточний репозиторій став підрозділом вашого проекту github.io:</p>
 			<figure>
-				<img src="img/tools_github_io_02.png" alt="В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages">
+				<img src="img/tools_github_io_03.png" alt="В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages">
 				<figcaption>В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages</figcaption>
 			</figure>
-			<p><strong>Порада:</strong> зручно називати репозиторії проектів для вашого портфоліо наступним чином:</p>
-			<code>
-				<strong>рік-назва_проекту</strong><br>
-				<strong>рік-місяць-назва_проекту</strong><br>
-				2017-project1<br>
-				2017-project2<br>
-				2018-04-magazin-obuvi<br>
-				2018-04-beer_world<br>
-				2018-07-multiplex<br>
-			</code>
-			<h3>Практика</h3>
-			<ol>
-				<li>Створіть на GitHub репозиторій test-io</li>
-				<li>Клонуйте його в папку поточного місяця в своїй робочій папці.</li>
-				<li>
-					Створіть файл index.html:
-					<code>
-						&lt;meta charset="utf-8"&gt;<br>
-						&lt;h1&gt;Це підпапка test-io мого проекта на github.io&lt;/h1&gt;
-					</code>
-				</li>
-				<li>
-					Закиньте файл на сервер, створіть гілку gh-pages і її також запуште:
-					<code>
-						git add .<br>
-						git commit -m "make subpage for my github.io"<br>
-						git push<br>
-						git checkout -b gh-pages<br>
-						git push origin gh-pages
-					</code>
-				</li>
-				<li>Перевірте налаштування репозиторія на GitHub.</li>
-				<li>Зайдіть на новостворену сторінку https://ваш_логін.github.io/test-io/</li>
-			</ol>
-
 		</section>
 	</div>
 </div>
-
-<!--
-підключити будь-який репозиторій до github.io
-https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/
--->
 
 <script src="jquery-3.1.1.min.js"></script>
 <script src="fe.js"></script>
