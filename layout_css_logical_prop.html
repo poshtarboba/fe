@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Логічні властивості в CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Логічні властивості в CSS</h1>
+
+		<section>
+			<h2>Передумови</h2>
+			<p>З появою властивості display: flex в браузерах дещо змінилося:</p>
+			<figure>
+				<img src="img/layout_css_logical_prop_01.png" alt="Нові логічні властивості CSS">
+				<figcaption>Нові логічні властивості CSS</figcaption>
+			</figure>
+			<p>В дефолтних стилях браузерів замість звичних margin та padding у заголовкових техаг, параграфах, списках з'явилися незрозумілі block-start, block-end, inline-start... Хоча вже за мить стає зрозуміло, що це так по-новому обізвані наші margin-top і bottom, padding-left.</p>
+			<p>Давайте розбиратися що це таке і для чого нам потрібно.</p>
+			<p>Інтернет та веб-стандарти розробили американці, долучалися європейці, і нам, в принципі, зручно користуватися веб-сторінками, вони з самого початку зроблені звичними для нашої культури сприйняття інформації. Проте, є країни, де пишуть справа наліво, для них зручно було б все навпаки: полоса прокрутки і стрілочка в селекті зліва, іконки на кнопках - справа. Дні тижня у їхньому календарі (datepicker) теж йдуть справа наліво.</p>
+			<p>Деякі культури пишуть не строками, а стовбцями. Для японців природніше скролити сайт не зверху вниз, а справа наліво. Нав'язування їм західних принципів розташування інформації схоже на насильницьке перевчення шульги на праворукого.</p>
+			<figure>
+				<img src="img/layout_css_logical_prop_02.jpg" alt="Монгольська писемність, в стовбчик і зліва направо">
+				<figcaption>Монгольська писемність, в стовбчик і зліва направо</figcaption>
+			</figure>
+			<p>Монгольські сайти теж треба скролити горизонтально, а не вертикально, але, на відміну від японських - зліва направо.</p>
+			<p>А як справи у мультимовних сайтів? По-перше, так просто не змінити напрям скрола з вертикального на горизонтальний і навпаки. По-друге - доведеться переписувати всі прив'язки до лівого чи правого краю:</p>
+			<code>
+				ul {<br>
+				&nbsp;&nbsp;padding-left: 20px;<br>
+				}<br>
+				.icon {<br>
+				&nbsp;&nbsp;right: 2em;<br>
+				}<br><br>
+				<em>// для &lt;html dir="rtl"&gt; - direction = right-to-left:</em><br>
+				html[dir="rtl"] ul {<br>
+				&nbsp;&nbsp;padding-left: 0;<br>
+				&nbsp;&nbsp;padding-right: 20px;<br>
+				}<br>
+				html[dir="rtl"] .icon {<br>
+				&nbsp;&nbsp;right: 0;<br>
+				&nbsp;&nbsp;left: 2em;<br>
+				}
+			</code>
+			<p>І таких "зайвих" строк буде тисячі - на всі відступи, прив'язки, вирівнювання тексту.</p>
+		</section>
+
+		<section>
+			<h2>Суть логіки</h2>
+			<p>Отже, нова логіка полягає в тому, що тепер не буде жорстко прив'язаних до відповідних країв вікна браузера left, top, right, bottom. Замість цього використовуються дві осі: <strong>вертикальна - блочна</strong> і <strong>горизонтальна - строчна</strong>.</p>
+			<p>У звичних для нас координатах:</p>
+			<code>
+				top&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;block-start<br>
+				bottom&nbsp;=&gt;&nbsp;&nbsp;block-end<br>
+				left&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inline-start<br>
+				right&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inline-end<br><br>
+				<em>// і розміри блока теж:</em><br>
+				width&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inline-size<br>
+				height&nbsp;=&gt;&nbsp;&nbsp;block-size
+			</code>
+			<figure>
+				<img src="img/layout_css_logical_prop_03.png" alt="тут буде картинка">
+				<figcaption><b style="color: red">ЗВЕРСТАТИ І ВСТАВИТИ КАРТИНКУ з маргінами, бордерами, паддінгами і розмірами блока</b></figcaption>
+			</figure>
+			<p>Таким чином, якщо у нас сайт на трьох мовах, і треба деякому елементу задати "відступ зліва", то матимемо таку картину:</p>
+			<code>
+				сайт:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;по-старому:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;по-новому:<br>
+				-----------------------------------------------------<br>
+				англійський&nbsp;&nbsp;&nbsp;&nbsp;padding-left&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-inline-start<br>
+				арабський&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-inline-start<br>
+				японський&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-top&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-inline-start<br><br>
+				англійський&nbsp;&nbsp;&nbsp;&nbsp;width / height&nbsp;&nbsp;&nbsp;&nbsp;inline-size / block-size<br>
+				японський&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height / width&nbsp;&nbsp;&nbsp;&nbsp;inline-size / block-size
+			</code>
+			<h3>Позиціонування</h3>
+			<p>Тепер розглянемо позиціонування. Замість left, top, right і bottom у нас є inset-*, у звичних нам напрямках:</p>
+			<code>
+				left&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inset-inline-start<br>
+				top&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inset-block-start<br>
+				right&nbsp;&nbsp;=&gt;&nbsp;&nbsp;inset-inline-end<br>
+				bottom&nbsp;=&gt;&nbsp;&nbsp;inset-block-end<br>
+				<em>// окрім того, зручна комбінована властивість:</em><br>
+				.box-old {<br>
+				&nbsp;&nbsp;position: absolute;<br>
+				&nbsp;&nbsp;left: 5px;<br>
+				&nbsp;&nbsp;top: 5px;<br>
+				&nbsp;&nbsp;right: 5px;<br>
+				&nbsp;&nbsp;bottom: 5px;<br>
+				}<br>
+				.box-new {<br>
+				&nbsp;&nbsp;position: absolute;<br>
+				&nbsp;&nbsp;inset: 5px 5px 5px 5px;<br>
+				&nbsp;&nbsp;<em>// а ще краще:</em><br>
+				&nbsp;&nbsp;inset: 5px;<br>
+				}
+			</code>
+			<h3>Floats, text-align, resize</h3>
+			<p>До епохи флексів найпопулярнішим способом розміщення блоків в ряд були флоати. Вони нікуди не ділися, обтікання блоків текстом все ще потрібне і застосовується. Вирівнювання тексту і стиль для поля вводу. Що у нас тут (знову ж таки - у звичних для нас координатах):</p>
+			<code>
+				float: left&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;float: inline-start<br>
+				float: right&nbsp;&nbsp;=&gt;&nbsp;&nbsp;float: inline-end<br>
+				text-align: left&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;text-align: start<br>
+				text-align: right&nbsp;&nbsp;=&gt;&nbsp;&nbsp;text-align: end<br>
+				<em>// для &lt;textarea&gt;</em><br>
+				resize: horizontal&nbsp;&nbsp;=&gt;&nbsp;&nbsp;resize: inline<br>
+				resize: vertical&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;resize: block
+			</code>
+		</section>
+
+		<section>
+			<h2>Визначення напрямків для блочної та строчної осі</h2>
+			<p>Ну і нарешті - яким же чином це все використовувати.</p>
+			<p>Зустрічайте новий стиль - <strong>writing-mode</strong>. Згадаємо як в нас задавалися осі у флексах:</p>
+			<code>
+				display: flex;<br>
+				flex-direction: row-reverse; &nbsp;&nbsp; <em>// або row, column, column-reverse</em>
+			</code>
+			<p>Властивість writing-mode подібно до flex-direction встановлює напрямки осей. При цьому ви можете застосувати до одного і того ж блоку і writing-mode, і flex, flex-direction. Щоправда, частіше за все ви будете застосовувати цей новий стиль до тегів &lt;html&gt; або &lt;body&gt;:</p>
+			<code>
+				html {<br>
+				&nbsp;&nbsp;writing-mode: vertical-rl; &nbsp;&nbsp; <em>// японська</em><br>
+				}<br>
+				<em>// всі варіанти:</em><br>
+				writing-mode: horizontal-tb; &nbsp;&nbsp; <em>// вертикальний скролл, майже всі країни</em><br>
+				writing-mode: vertical-rl; &nbsp;&nbsp; <em>// горизонтальний скролл, справа наліво, Японія</em><br>
+				writing-mode: vertical-lr; &nbsp;&nbsp; <em>// горизонтальний скролл, зліва направо, Монголія</em>
+			</code>
+			<p>Для арабських, єврейських мов не забуваємо використати direction: rtl, він змінить на протилежний напрямок строчну вісь.</p>
+			<p>Напрямку horizontal-bt немає.</p>
+
+			<p>Поки що це все. Позиціонування фону і деякі інші стилі, типу transform-origin ще в розробці.</p>
+			<p>Звичайно, старі добрі властивості нікуди не діваються, будуть підтримуватися браузерами щонайменше - десятки років, для сумісності.</p>
+			<p>Окрім того, у нас є "чудові" браузери MS Edge, Safari та деякі інші, які не поспішають за прогресом, наразі підтримка нових властивостей реалізована тільки у движку Chromium і у браузері Firefox.</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
