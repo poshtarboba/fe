@@ -8,6 +8,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
 	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.adaptive-flexbox-wrap { display: flex; margin-bottom: 24px; font-size: 80%; border: 1px solid silver; background: #d9edfe; }
+		.adaptive-flexbox-wrap > div { box-sizing: border-box; }
+		.adaptive-flexbox-wrap p { margin: 0; padding: 8px 12px; }
+		.adaptive-flexbox-wrap span { display: block; padding-top: 16px; font-family: monospace; line-height: 1.4em; }
+		.adaptive-flexbox-1 { flex: none; width: 150px; }
+		.adaptive-flexbox-2 { width: 150px; }
+		.adaptive-flexbox-3 { flex: 1; }
+		.adaptive-flexbox-4 { flex: 2; }
+		.adaptive-flexbox-2,
+		.adaptive-flexbox-3,
+		.adaptive-flexbox-4 { border-left: 1px solid silver; }
+		.adaptive-flexbox-minmax { padding: 16px 0; }
+		.adaptive-flexbox-minmax span { display: inline-block; margin-right: 16px; padding: 2px; border: 1px dotted silver; vertical-align: top; }
+	</style>
 </head>
 <body>
 <div id="mainwrapper">
@@ -115,7 +130,7 @@
 		</section>
 
 		<section>
-			<h2>Дочірні елементи.</h2>
+			<h2>Дочірні елементи</h2>
 			<p>Стиль, яким можна керувати порядком елементів:</p>
 			<code>
 				.flex > div:nth-child(1) { order: 2; }<br>
@@ -141,6 +156,140 @@
 				.flex > div.end { align-self: flex-end; }
 			</code>
 		</section>
+		
+		<section>
+			<h2>Шпаргалка по ширині дочірніх блоків</h2>
+			<!-- http://shpargalkablog.ru/2016/05/flex.html -->
+			<p>Властивість <strong>flex</strong> керує шириною дочірніх блоків (якщо задано колоночне розташування елементів - то висотою).</p>
+			<p>Ця властивість комбінована, складається з трьох параметрів:</p>
+			<code>
+				flex: flex-grow flex-shrink flex-basis;<br><br>
+				flex: 0 1 auto; &nbsp;&nbsp; <em>// значення по-замовчуванню</em>
+			</code>
+			<p>Можна задавати одне або два значення. Будьте уважні, підставлятися можуть різні параметри, вдумливо ознайомтеся з наступним кодом:</p>
+			<code>
+				flex: initial; &nbsp;&nbsp; <em>// flex: 0 1 auto;</em><br>
+				flex: none; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// flex: 0 0 auto;</em><br>
+				flex: auto; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// flex: 1 1 auto;</em><br>
+				flex: content; &nbsp;&nbsp; <em>// flex: 1 1 content;</em><br>
+				flex: 10px; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// flex: 1 1 10px;</em><br>
+				flex: 4; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// flex: 4 1 0;</em><br><br>
+				flex: 2 10px; &nbsp;&nbsp;&nbsp; <em>// flex: 2 1 10px;</em><br>
+				flex: 3 2; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// flex: 3 2 0;</em>
+			</code>
+			<p>Швидка шпаргалка для основних випадків:</p>
+			<div class="adaptive-flexbox-wrap" style="">
+				<div class="adaptive-flexbox-1">
+					<p>
+						ширина = 150px
+						<span>div {<br>&nbsp;&nbsp;flex: none;<br>&nbsp;&nbsp;width: 150px;<br>}</span>
+					</p>
+				</div>
+				<div class="adaptive-flexbox-2">
+					<p>
+						ширина &lt;= 150px
+						<span>div {<br>&nbsp;&nbsp;width: 150px;<br>}</span>
+					</p>
+				</div>
+				<div class="adaptive-flexbox-3">
+					<p>
+						ширина = 1/3 від залишку
+						<span>div {<br>&nbsp;&nbsp;flex: 1;<br>}</span>
+					</p>
+				</div>
+				<div class="adaptive-flexbox-4">
+					<p>
+						ширина = 2/3 від залишку
+						<span>div {<br>&nbsp;&nbsp;flex: 2;<br>}</span>
+					</p>
+				</div>
+			</div>
+			<p>Щоб зрозуміти різницю між першими двома блоками - спробуйте задати їм по-черзі ширину 100%. Перший буде займати рівно всю ширину блока і виштовхне сусідів вправо, другий - займе менше 100%, але доступний йому максимум.</p>
+			<p>У третьому та четвертому блоці цифри flex сумуються, сума приймається за 100%, і кожен блок буде займати вказану долю.</p>
+			<p>Наприклад, є 3 блока: два по боках фіксованого розміру, третій має займати всю ширину, що залишилася. Бокові будуть мати стиль { flex: none; width: ...px; } або ж взагалі ширина автоматично буде задаватися, а центральний - { width: 100%; }</p>
+			<h3>Flex-basis</h3>
+			<p>Параметр flex-basis визначає початкову, базову ширину елемента. Може приймати наступні значення:</p>
+			<code>
+				flex-basis: auto; &nbsp;&nbsp;&nbsp; <em>// ширина визначається автоматично</em><br>
+				flex-basis: 100px; &nbsp;&nbsp; <em>// ширина в px, %, em і т.д.</em><br><br>
+				flex-basis: fill; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>// повна ширина флекс-батька</em><br>
+				flex-basis: max-content; &nbsp;&nbsp; <em>// по максимальній ширині контента</em><br>
+				flex-basis: min-content; &nbsp;&nbsp; <em>// по мінімальній ширині контента</em><br>
+				flex-basis: fit-content; &nbsp;&nbsp; <em>// підлаштовується під розмір контента</em><br><br>
+				flex-basis: inherit; &nbsp;&nbsp; <em>// наслідування від батьківського елемента</em><br>
+				flex-basis: initial; &nbsp;&nbsp; <em>// auto</em><br>
+				flex-basis: unset; &nbsp;&nbsp;&nbsp;&nbsp; <em>// auto</em>
+			</code>
+			<p>Частіше за все використовується значення auto, іноді - 0, решта значень досить рідкісні.</p>
+			<p>Якщо блоку задана властивість flex-basis не-auto, то значення стиля width (або height) для такого блока буде ігноруватися.</p>
+			<p>Якщо flex-basis: 0 - ширина блока вважається нульовою, далі реальна ширина розраховується через властивості flex-grow та flex-shrink.</p>
+			<p>Приклади мінімальної і максимальної ширини контента:</p>
+			<div class="adaptive-flexbox-minmax">
+				<span class="adaptive-flexbox-min">lorem<br>ipsum<br>dolorize<br>sit am</span>
+				<span class="adaptive-flexbox-max">lorem ipsum dolorize sit amen</span>
+			</div>
+			<h3>Flex-grow</h3>
+			<p>Принцип дії flex-grow та flex-shrink:</p>
+			<p>Сума ширин блоків &lt; ширина флекс-обгортки — працює flex-grow.</p>
+			<p>Сума ширин блоків &gt; ширина флекс-обгортки — працює flex-shrink.</p>
+			<p>Властивість <strong>flex-grow</strong> - доля від незайнятого простору флекс-обгортки. Може приймати такі значення:</p>
+			<code>
+				flex-grow: 0; &nbsp;&nbsp; <em>// ціле чи дробне число</em><br>
+				flex-grow: 1.8;<br><br>
+				flex-grow: initial; &nbsp;&nbsp; <em>// значення по-замовчуванню flex-grow: 0;</em><br>
+				flex-grow: inherit;<br>
+				flex-grow: unset; &nbsp;&nbsp;&nbsp;&nbsp; <em>// flex-grow: 0;</em>
+			</code>
+			<p>Розглянемо приклад. У нас є 2 блока шириною 100px і обгортка шириною 500px:</p>
+			<code>
+				div { display: flex; }<br><br>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;span class="box1"&gt;&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;span class="box2"&gt;&lt;/span&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>У нас ширина всіх блоків = 200px, а ширина обгортки = 500px. Маємо вільні 300px.</p>
+			<p>Якщо задати обом блокам flex-grow: 1, то вони поділять вільний простір навпіл і кожен блок стане шириною 250px.</p>
+			<code>
+				span { flex: 1 1 auto; }<br>
+				span { flex: 5 1 auto; }<br>
+				span { flex-grow: 1; } &nbsp;&nbsp; <em>// скорочений варіант</em>
+			</code>
+			<p>Якщо ж задати їм різні значення, то вільний простір буде поділено між ними пропорційно:</p>
+			<code>
+				.box1 { flex: 1 1 auto; } &nbsp;&nbsp; <em>// 100 + 100 * 1 = 200px</em><br>
+				.box2 { flex: 2 1 auto; } &nbsp;&nbsp; <em>// 100 + 100 * 2 = 300px</em><br>
+				<em>// сума flex-grow = 3; 300px / 3 = 100px це ширина однієї долі</em><br><br>
+				.box1 { flex-grow: 4; } &nbsp;&nbsp;&nbsp;&nbsp; <em>// 100 + 54.5 * 4 = 318px</em><br>
+				.box2 { flex-grow: 1.5; } &nbsp;&nbsp; <em>// 100 + 54.5 * 1.5 = 182px</em><br>
+				<em>// сума flex-grow = 5.5; 300px / 5.5 = 54.5px це ширина однієї долі</em><br><br>
+				.box1 { flex-grow: 0; } &nbsp;&nbsp; <em>// 100 + 300 * 0 = 100px</em><br>
+				.box2 { flex-grow: 1; } &nbsp;&nbsp; <em>// 100 + 300 * 1 = 400px</em><br>
+				<em>// сума flex-grow = 1; 300px це ширина однієї долі</em><br><br>
+				span { flex-grow: 0; } &nbsp;&nbsp; <em>// ширина обох блоків залишиться 100px</em>
+			</code>
+			<h3>Flex-shrink</h3>
+			<p>Властивість flex-shrink діє подібно властивості flex-grow, але для надлишкової ширини (висоти) блоків і заставляє їх звузитися. Може приймати ті ж значення, що і flex-grow.</p>
+			<p>Нехай у нас в обгортці шириною 500px знаходяться три блока, ширина кожного з яких 220px. Маємо 220 * 3 - 500 = 160px надлишкових, тобто, останній блок в рядку буде виступати за межі обгортки на таку ширину.</p>
+			<code>
+				div { display: flex; }<br><br>
+				&lt;div&gt;<br>
+				&nbsp;&nbsp;&lt;span class="box1"&gt;&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;span class="box2"&gt;&lt;/span&gt;<br>
+				&nbsp;&nbsp;&lt;span class="box3"&gt;&lt;/span&gt;<br>
+				&lt;/div&gt;
+			</code>
+			<p>При однакових значеннях flex-shrink у всіх блоків вони звузяться на 160 / 3 = 53px. При різних - буде вираховано пропорцією:</p>
+			<code>
+				span { flex-shrink: 1; } &nbsp;&nbsp;&nbsp;&nbsp; <em>// 220 - 53 * 1 = 167px</em><br>
+				span { flex: 0 2.5 auto; } &nbsp;&nbsp; <em>// 220 - 21 * 2.5 = 167px</em><br>
+				<em>// сума частин буде 3 і 7.5; 160 / 3 = 53px і 160 / 7.5 = 21px</em><br><br>
+				.box1 { flex-shrink: 1; } &nbsp;&nbsp; <em>// 220 - 40 * 1 = 180px</em><br>
+				.box1 { flex-shrink: 0; } &nbsp;&nbsp; <em>// 220 - 40 * 0 = 220px</em><br>
+				.box1 { flex-shrink: 3; } &nbsp;&nbsp; <em>// 220 - 40 * 3 = 100px</em><br>
+				<em>// сума частин буде 4; 160 / 4 = 40px</em>
+			</code>
+		</section>
 
 		<!--
 
@@ -160,6 +309,7 @@
 			<ol>
 				<li>Спробуйте зверстати проект Minecraft флексами.</li>
 			</ol>
+			<p><a href="http://shpargalkablog.ru/2016/05/flex.html" target="_blank">Шпаргалка по ширині блоків</a>.</p>
 			<p><a href="http://css-live.ru/articles/vizualnoe-rukovodstvo-po-svojstvam-flexbox-iz-css3.html" target="_blank">Визуальное руководство по свойствам Flexbox</a>.</p>
 			<p><a href="http://css-live.ru/faq/displayflow-root-not-clearfix.html" target="_blank">CSS display: flow-row</a>.</p>
 			<p><a href="https://chriswrightdesign.com/experiments/flexbox-adventures/" target="_blank">Flexbox adventures (песочница флексбоксов)</a>.</p>
