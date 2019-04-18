@@ -155,7 +155,7 @@
 		</section>
 
 		<section>
-			<h2>Асинхронне виконання функцій.</h2>
+			<h2>Асинхронне виконання функцій</h2>
 			<p>Ми вже не раз стикалися з асинхронністю функцій. Наприклад, в останніх темах знайомилися з технологією ajax: запит на сервер йде синхронно, а відповідь від сервера є асинхронною, тобто, виконується паралельно, в той момент, коли сервер пришле відповідь.</p>
 			<p>Всі реакції на події є також асинхронними і виконуються паралельно.</p>
 			<p>setTimeout і setInterval запускають свої каллбек-функції також запускають в паралельних потоках.</p>
@@ -179,9 +179,36 @@
 		<section>
 			<h2>Проміси</h2>
 			<p>В редакцію ES-2015 добавлено об'єкти-обіцянки (promise), за допомогою яких зручно виконувати асинхронні дії.</p>
-			<p>Проміс - це об'єкт, що містить стан виконання і зберігає функцію (яку отримав у якості аргумента під час створення).</p>
-			<p>Проміс виконує свою функцію в той момент, коли викликаються його методи .then(funOk, funErr) або .catch(funErr). Після виконання асинхронного коду запуститься одна з переданих кал-бек функцій funOk чи funErr.</p>
-			<p>Кожна з цих функцій може містити аргумент. В функцію funOk можна передати деякий результат виконання асинхронного коду (наприклад, отриману з сервера інформацію, розміри картинки, що загрузилася). В funErr можна передати помилку виконання (код помилки, строку, об'єкт - все, що самі придумаєте і що може знадобитися для відлагодження помилок).</p>
+			<p>Проміс - це об'єкт, що містить стан виконання і функцію (яку отримав у якості аргумента під час створення).</p>
+			<p>Проміс виконує свою функцію і вона повертає результат асинхронно. При цьому в функції можна розділити потоки на вірне та помилкове виконання:</p>
+			<code>
+				let promise = new Promise(function (funOk, funErr){<br>
+				&nbsp;&nbsp;if (...) funOk(your_ok_data);<br>
+				&nbsp;&nbsp;else funErr(your_err_data);<br>
+				});
+			</code>
+			<p>У проміса є методи .then(fun_ok, fun_err) та .catch(fun_err). Функції funOk, funErr можуть повертати значення, які автоматично будуть передані як аргументи в fun_ok та fun_err.</p>
+			<p>Помилки можна не обробляти, тоді друга функція не потрібна. Якщо ж немає потреби обробляти вірне виконання - замість функцій funOk чи fun_ok можна використати null, або ж використати метод .cathc(fun_err).</p>
+			<code>
+				let promise = new Promise(function (funOk){<br>
+				&nbsp;&nbsp;let a = 10, b = 15;<br>
+				&nbsp;&nbsp;funOk({ a, b, state: 'ok' });<br>
+				}).then(function (data){<br>
+				&nbsp;&nbsp;return [data.a, data.b];<br>
+				}).then(function (arr){<br>
+				&nbsp;&nbsp;return 'a + b = ' + (arr[0] + arr[1]);<br>
+				}).then(function (msg){<br>
+				&nbsp;&nbsp;alert(msg);<br>
+				});
+			</code>
+			<p>Давайте детально розберемо що тут відбувається:</p>
+			<ol>
+				<li>Створюємо проміс з функцією, в яку передається аргументом функція funOk.</li>
+				<li>Функція виконує деякі дії та викликає функцію funOk, передає їй аргументом деякі дані. Звідки береться ця функція funOk?</li>
+				<li>funOk - це анонімна функція function (data) { } з наступного метода .then(f), і аргумент data - це і будуть передані нами дані (в цьому випадку об'єкт з a, b та state).</li>
+				<li>Метод .then(f) виконує деякі операції та може повернути певне значення, яке буде передане функції в наступному методі .then(f) (в цьому випадку функція повертає масив і передає його як змінну arr функції наступного .then()).</li>
+				<li>Ну і так далі. Функція останнього .then(f) може нічого не повертати.</li>
+			</ol>
 			<p>Поки що детальніше розгляньте проміси за <a href="https://learn.javascript.ru/promise" target="_blank">статтею на learn.javascript.ru</a>.</p>
 		</section>
 
@@ -200,6 +227,7 @@
 				let options = {<br>
 				&nbsp;&nbsp;method: 'POST',<br>
 				&nbsp;&nbsp;body: 'login=user&amp;pwd=12345'<br>
+				&nbsp;&nbsp;...<br>
 				}<br>
 				fetch(url, options).then(funOk, funErr);
 			</code>
@@ -221,12 +249,15 @@
 			</code>
 			<p>З функцією fetch в калбеки передаються змінні, куди буде записано дані - результат запита:</p>
 			<code>
-				fetch(url, options).then(function(response){<br>
+				fetch(url, options)<br>
+				&nbsp;&nbsp;.then(fun1, fun2);<br><br>
+				function fun1(response){<br>
 				&nbsp;&nbsp;console.log('all ok');<br>
 				&nbsp;&nbsp;h1.innerHTML = response.text();<br>
-				}, function(response){<br>
+				}<br><br>
+				function fun2(response){<br>
 				&nbsp;&nbsp;console.log('error: ' + response.status);<br>
-				});
+				}<br>
 			</code>
 			<p>
 				Результат відповіді сервера можна отримати в наступних форматах:<br>
@@ -236,6 +267,32 @@
 				response.json();<br>
 				response.text();
 			</p>
+			<p>В цілому робота з fetch виглядає таким чином:</p>
+			<code>
+				<em>// отримуємо html-код з файла index.html</em><br>
+				fetch('index.html')<br>
+				&nbsp;&nbsp;.then(resp =&gt; resp.text())<br>
+				&nbsp;&nbsp;.then(function (html){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<em>// щось робимо з отриманим html-кодом</em><br>
+				&nbsp;&nbsp;});<br><br>
+				<em>// отримуємо JSON зі скрипта search.php</em><br>
+				fetch('search.php?min_id=752&amp;order=size')<br>
+				&nbsp;&nbsp;.then(resp =&gt; resp.json())<br>
+				&nbsp;&nbsp;.then(function (obj){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<em>// щось робимо з отриманим об'єктом</em><br>
+				&nbsp;&nbsp;});<br><br>
+				<em>// відправляємо на сервер POST з даними форми авторизації</em><br>
+				login = encodeURIComponent(login);<br>
+				password = encodeURIComponent(password);<br>
+				let fetchOptions = {<br>
+				&nbsp;&nbsp;method: 'post',<br>
+				&nbsp;&nbsp;body: 'login=' + login + '&amp;pwd=' + password,<br>
+				&nbsp;&nbsp;headers: { 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' }<br>
+				};<br>
+				fetch('authorize.php', fetchOptions)<br>
+				&nbsp;&nbsp;.then(msg => msg.text())<br>
+				&nbsp;&nbsp;.then(alert);
+			</code>
 			<h3>Завдання.</h3>
 			<ol>
 				<li>Отримайте за допомогою функції fetch дані з текстового файлу і вставте їх в &lt;h1&gt;.</li>
