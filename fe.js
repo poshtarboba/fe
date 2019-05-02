@@ -196,6 +196,9 @@ function showHideContentsHeader(header){
 
 /* facebook comments */
 (function(){
+	
+	return false; // пока отключил
+	
 	let resize = document.querySelectorAll('.resize');
 	if (!resize.length) return;
 	resize = resize[resize.length - 1];
