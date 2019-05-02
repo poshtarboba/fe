@@ -45,21 +45,20 @@
 				&nbsp;&nbsp;<span class="js-date-m" data-m="0">2018-02</span>\<br>
 				&nbsp;&nbsp;<span class="js-date-m" data-m="1">2018-03</span>\<br>
 				&nbsp;&nbsp;<span class="js-date-m" data-m="2">2018-04</span>\<br>
-				&nbsp;&nbsp;ваш_логін.github.io\<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;ваш-логін\<br>
+				&nbsp;&nbsp;github\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;ваш_логін.github.io\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;під-проект_1\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;під-проект_2\
 			</code>
-			<p>В папці <strong>work</strong> створіть папку з назвою вашого репозиторія: <strong>ваш_логін.github.io</strong>. Цю папку не треба ховати в підпапках років і місяців, скоріш за все ви будете часто працювати з цим репозиторієм, хай він буде завжди під рукою.</p>
-			<p>Перейдіть у цю папку і відкрийте консоль. Запрошення для вводу команд має виглядати приблизно так:</p>
+			<p>В папці <strong>work</strong> створіть папку <strong>github</strong>. В цій папці будете зберігати всі репозиторії, що викладатимете на гітхаб.</p>
+			<p>Перейдіть у цю папку і відкрийте консоль:</p>
 			<code>
-				D:\work\poshtarboba.github.io>
+				D:\work\github>
 			</code>
-			<p>Скопіюйте URL-адресу репозиторія і клонуйте його в папку з вашим логіном:</p>
+			<p>Скопіюйте URL-адресу репозиторія і клонуйте його в цю папку (при цьому створиться підпапка з назвою репозиторія):</p>
 			<code>
-				git clone https://github.com/ваш_логін/ваш_логін.github.io.git <strong>ваш_логін</strong><br><br>
-				<em>// наприклад:</em><br>
-				git clone https://github.com/poshtarboba/poshtarboba.github.io.git poshtarboba
+				git clone https://github.com/ваш_логін/ваш_логін.github.io.git
 			</code>
-			<p>При цьому в паці poshtarboba.github.io буде створено підпапку poshtarboba.</p>
 			<p>Створіть <strong>index.html</strong> (не забудьте про кодування UTF-8, якщо користуєтесь Notepad++):</p>
 			<code>
 				&lt;meta charset="utf-8"&gt;<br>
@@ -81,100 +80,7 @@
 			</code>
 			<p>Зачекайте секунд 30-60 і спробуйте зайти на ваш новий сайт https://ваш_логін.github.io, поклацайте на посилання.</p>
 		</section>
-		
-		<section>
-			<p><em>Тема для самостійного опрацювання</em></p>
-			<h2>Окремі репозиторії як папки проекта github.io</h2>
-			<p>GitHub має обмеження на розмір репозиторія (станом на 2018 рік - 1 Gb), але кількість репозиторіїв необмежена.</p>
-			<p>Таким чином, якщо ви будете всі свої роботи заливати на github.io - він досить швидко засмітиться, перевищить ліміти.</p>
-			<p>Дана тема розглядає способи підключення інших репозиторіїв як папок у ваш основний проект github.io.</p>
-			<p>Наприклад, ви робите портфоліо на гітхабі і хочете викласти свої роботи в підпапки:</p>
-			<code>
-				https://ваш_логін.github.io<br>
-				https://ваш_логін.github.io/<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov/<br>
-				https://ваш_логін.github.io/<span class="js-date-y" data-y="-2">2007</span>-jameson-ua/<br>
-				https://ваш_логін.github.io/<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln/
-			</code>
-			<p>В папці work у вас має утворитися така структура:</p>
-			<code>
-				D:\work\<br>
-				&nbsp;&nbsp;<span class="js-date-m" data-m="0">2018-02</span>\<br>
-				&nbsp;&nbsp;<span class="js-date-m" data-m="1">2018-03</span>\<br>
-				&nbsp;&nbsp;<span class="js-date-m" data-m="2">2018-04</span>\<br>
-				&nbsp;&nbsp;ваш_логін.github.io\<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;ваш-логін\<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov\<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-2">2007</span>-jameson-ua\<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln\
-			</code>
-			<p>Таким чином і на комп'ютері, і на сервері буде логічна структура папок. В папці з іменем вашого логіна будуть знаходитися файли основного репозиторія GitHub Pages, а в підпапках - підключені до нього інші репозиторії.</p>
-			<h3>Практика</h3>
-			<p>На GitHub створіть новий репозиторій і дайте йому ім'я <strong><span class="js-date-y">2010</span>-hello</strong></p>
-			<p>Скопіюйте URL-адресу репозиторія, відкрийте консоль з папки вашого проекта github.io:</p>
-			<code>
-				D:\work\poshtarboba.github.io>
-			</code>
-			<p>Склонуйте репозиторій. При цьому буде створено підпапку з іменем репозиторія:</p>
-			<code>
-				git clone https://github.com/poshtarboba/<span class="js-date-y">2010</span>-hello.git<br><br>
-				<em>// Папки:</em><br>
-				D:\work\poshtarboba.github.io\<br>
-				D:\work\poshtarboba.github.io\poshtarboba\<br>
-				D:\work\poshtarboba.github.io\<span class="js-date-y">2010</span>-hello\
-			</code>
-			<p>Створіть в репозиторії файл <strong>index.html</strong>:</p>
-			<code>
-				&lt;meta charset="utf-8"&gt;<br>
-				&lt;h1&gt;Мій перший сайт в портфоліо Hello&lt;/h1&gt;
-			</code>
-			<p>Заляйте на сервер:</p>
-			<code>
-				git add .<br>
-				git status<br>
-				git commit -m "first site Hello"<br>
-				git push
-			</code>
-			<p>Щоб цей репозиторій став частиною вашого проекту github.io, відкрийте налаштування репозиторію і проскрольте до розділу GitHub Pages.</p>
-			<p>Виберіть гілку <strong>master</strong> у налаштуваннях <strong>Source</strong> і збережіть налаштування. Має з'явитися повідомлення що цей репозиторій опубліковано.</p>
-			<figure>
-				<img src="img/tools_github_io_02.png" alt="Підключення репозиторія у GitHub Pages">
-				<figcaption>Підключення репозиторія у GitHub Pages</figcaption>
-			</figure>
-			<p>Можливо, треба буде зачекати 30-60 секунд (перед публікацією відбувається тестування коду і ще деякі процеси).</p>
-			<p>Зайдіть на свою сторінку https://ваш_логін.github.io і клацніть по другому посиланню. Має відкритися сторінка, яку ми щойно заляли (раніше це посилання відкривало сторінку 404).</p>
-			<p>Публікувати можна не тільки основну гілку master, але будь-яку іншу гілку.</p>
-			<p>Якщо дати назву гілці <strong>gh-pages</strong>, то цей репозиторій (і, власне, ця гілка) сам опублікується в GitHub Pages, додаткових налаштуваннь не знадобиться:</p>
-			<code>
-				git checkout -b gh-pages<br>
-				git push origin gh-pages
-			</code>
-			<figure>
-				<img src="img/tools_github_io_03.png" alt="В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages">
-				<figcaption>В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages</figcaption>
-			</figure>
-		</section>
-		
-		<section>
-			<p><em>Тема для самостійного опрацювання</em></p>
-			<h2>Паролі та SSH-з'єднання</h2>
-			<p>Зробивши десяток-другий push файлів на сервер ви, скоріш за все, задовбаєтеся вводити логін і пароль.</p>
-			<p><strong>SSH</strong> <small>(<a href="https://uk.wikipedia.org/wiki/SSH" target="_blank">вікіпедія</a>)</small> - це протокол віддаленого керування комп'ютером (консоль віддаленого комп'ютера, сервера), з шифруванням трафіку спеціальними ключами шифрування.</p>
-			<p>При використанні гітом протокола ssh не потрібно буде щоразу вводити логін та пароль.</p>
-			<p>Зайдіть у налаштування свого профіля на GitHub, у меню виберіть "SSH and GPG keys".</p>
-			<p>Згенеруйте SSH-ключ (почитайте гайд по посиланню на цій сторінці, погугліть як це зробити у вашій операційній системі).</p>
-			<p>Ключ складається з двох частин (файлів): приватної та публічної. Вони повинні зберігатися в папці <strong>.ssh</strong> вашого домашнього каталога, наприклад:</p>
-			<code>
-				C:\Users\boba\.ssh\<em>id_rsa</em><br>
-				C:\Users\boba\.ssh\<em>id_rsa.pub</em>
-			</code>
-			<p>В налаштуваннях GitHub добавте публічний ключ.</p>
-			<p>Щоб використовувати ssh-протокол - клонуйте репозиторії не по https-посиланню, а по ssh-посиланню (у віконці клонування переключіться на <em>Use SSH</em>).</p>
-			<p>Щоб змінити протокол у вже існуючому локальному репозиторії - зайдіть в папку .git, відкрийте файл config та змініть remote url з https на ssh:</p>
-			<code>
-				[remote "origin"]<br>
-				&nbsp;&nbsp;url = git@github.com:your_login/current_repo_name.git
-			</code>
-		</section>
+
 	</div>
 </div>
 

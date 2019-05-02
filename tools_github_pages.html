@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GitHub Pages (окремі репозиторії як папки проекта github.io)</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>GitHub Pages (окремі репозиторії як папки проекта github.io)</h1>
+			<p>GitHub має обмеження на розмір репозиторія (станом на 2018 рік - 1 Gb), але кількість репозиторіїв необмежена.</p>
+			<p>Таким чином, якщо ви будете всі свої роботи заливати на github.io - він досить швидко засмітиться, перевищить ліміти.</p>
+			<p>Дана тема розглядає способи підключення інших репозиторіїв як папок у ваш основний проект github.io.</p>
+			<p>Наприклад, ви робите портфоліо на гітхабі і хочете викласти свої роботи в підпапки:</p>
+			<code>
+				https://ваш_логін.github.io<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov/<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="-2">2007</span>-jameson-ua/<br>
+				https://ваш_логін.github.io/<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln/
+			</code>
+			<p>В папці work у вас має утворитися така структура:</p>
+			<code>
+				D:\work\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="0">2018-02</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="1">2018-03</span>\<br>
+				&nbsp;&nbsp;<span class="js-date-m" data-m="2">2018-04</span>\<br>
+				&nbsp;&nbsp;github\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;ваш-логін.github.io\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-1">2008</span>-magazin-zontov\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="-2">2007</span>-jameson-ua\<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span class="js-date-y" data-y="0">2009</span>-multiplex-khmeln\
+			</code>
+			<p>Таким чином і на комп'ютері, і на сервері буде логічна структура папок. В папці з іменем вашого логіна будуть знаходитися файли основного репозиторія GitHub Pages, а в підпапках - підключені до нього інші репозиторії.</p>
+			<h3>Практика</h3>
+			<p>На GitHub створіть новий репозиторій і дайте йому ім'я <strong><span class="js-date-y">2010</span>-hello</strong></p>
+			<p>Скопіюйте URL-адресу репозиторія, відкрийте консоль з папки github:</p>
+			<code>
+				D:\work\github>
+			</code>
+			<p>Склонуйте репозиторій. При цьому буде створено підпапку з іменем репозиторія:</p>
+			<code>
+				git clone https://github.com/poshtarboba/<span class="js-date-y">2010</span>-hello.git<br><br>
+				<em>// Папки:</em><br>
+				D:\work\github\<br>
+				D:\work\github\poshtarboba.github.io\<br>
+				D:\work\github\<span class="js-date-y">2010</span>-hello\
+			</code>
+			<p>Створіть в репозиторії файл <strong>index.html</strong>:</p>
+			<code>
+				&lt;meta charset="utf-8"&gt;<br>
+				&lt;h1&gt;Мій перший сайт в портфоліо Hello&lt;/h1&gt;
+			</code>
+			<p>Заляйте на сервер:</p>
+			<code>
+				git add .<br>
+				git status<br>
+				git commit -m "first site Hello"<br>
+				git push
+			</code>
+			<p>Щоб цей репозиторій став частиною вашого проекту github.io, відкрийте налаштування репозиторію і проскрольте до розділу GitHub Pages.</p>
+			<p>Виберіть гілку <strong>master</strong> у налаштуваннях <strong>Source</strong> і збережіть налаштування. Має з'явитися повідомлення що цей репозиторій опубліковано.</p>
+			<figure>
+				<img src="img/tools_github_io_02.png" alt="Підключення репозиторія у GitHub Pages">
+				<figcaption>Підключення репозиторія у GitHub Pages</figcaption>
+			</figure>
+			<p>Можливо, треба буде зачекати 30-60 секунд (перед публікацією відбувається тестування коду і ще деякі процеси).</p>
+			<p>Зайдіть на свою сторінку https://ваш_логін.github.io і клацніть по другому посиланню. Має відкритися сторінка, яку ми щойно заляли (раніше це посилання відкривало сторінку 404).</p>
+			<p>Публікувати можна не тільки основну гілку master, але будь-яку іншу гілку.</p>
+			<p>Якщо дати назву гілці <strong>gh-pages</strong>, то цей репозиторій (і, власне, ця гілка) сам опублікується в GitHub Pages, додаткових налаштуваннь не знадобиться:</p>
+			<code>
+				git checkout -b gh-pages<br>
+				git push origin gh-pages
+			</code>
+			<figure>
+				<img src="img/tools_github_io_03.png" alt="В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages">
+				<figcaption>В налаштуваннях гілка gh-pages автоматично підтягується в GitHub Pages</figcaption>
+			</figure>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

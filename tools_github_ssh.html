@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GitHub SSH (паролі та SSH-з'єднання)</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>GitHub SSH (паролі та SSH-з'єднання)</h1>
+			<p>Зробивши десяток-другий push файлів на сервер ви, скоріш за все, задовбаєтеся вводити логін і пароль.</p>
+			<p><strong>SSH</strong> <small>(<a href="https://uk.wikipedia.org/wiki/SSH" target="_blank">вікіпедія</a>)</small> - це протокол віддаленого керування комп'ютером (консоль віддаленого комп'ютера, сервера), з шифруванням трафіку спеціальними ключами шифрування.</p>
+			<p>При використанні гітом протокола ssh не потрібно буде щоразу вводити логін та пароль, авторизація буде проводитися автоматично за допомогою ключів шифрування.</p>
+			<p>Зайдіть у налаштування свого профіля на GitHub, у меню виберіть "SSH and GPG keys".</p>
+			<p>Згенеруйте SSH-ключ (почитайте гайд по посиланню на цій сторінці, погугліть як це зробити у вашій операційній системі).</p>
+			<p>Ключ складається з двох частин (файлів): приватної та публічної. Вони повинні зберігатися в папці <strong>.ssh</strong> вашого домашнього каталога, наприклад:</p>
+			<code>
+				C:\Users\boba\.ssh\<em>id_rsa</em><br>
+				C:\Users\boba\.ssh\<em>id_rsa.pub</em>
+			</code>
+			<p>В налаштуваннях GitHub добавте публічний ключ.</p>
+			<p>Щоб використовувати ssh-протокол - клонуйте репозиторії не по https-посиланню, а по ssh-посиланню (у віконці клонування переключіться на <em>Use SSH</em>).</p>
+			<p>Щоб змінити протокол у вже існуючому локальному репозиторії - зайдіть в папку .git, відкрийте файл config та змініть remote url з https на ssh:</p>
+			<code>
+				[remote "origin"]<br>
+				&nbsp;&nbsp;url = git@github.com:your_login/current_repo_name.git
+			</code>
+		</section>
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
