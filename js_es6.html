@@ -30,9 +30,9 @@
 			<p>Разом з впровадженням HTML5 та CSS3, виникненням нових концепцій веб-застосунків, прискоренням розробки браузерів (від 0,2-1 версії на рік до майже щомісячного реліза) ECMAScript також прискорився, впровадив багато нових можливостей, взяв курс на зближення з іншими мовами програмування.</p>
 			<p>ECMAScript 6 / 2015 &mdash; березень 2015 року.</p>
 			<p>Браузери не встигали завершити свій життєвий цикл, багато користувачів з різних причин сиділи на старих браузерах, що не підтримували нові можливості. Тому набули популярність транспайлери (конвертори нового JS в старий), наприклад, Babel, Traceur.</p>
-			<p>ECMAScript 6 / 2015 &mdash; березень 2015 року.</p>
-
-
+			<p>ECMAScript 7 / 2016.</p>
+			<p>ECMAScript 8 / 2017.</p>
+			<p>ECMAScript 9 / 2018.</p>
 			<p>Таким чином, JavaScript створюють та супроводжують декілька компаній: ECMA, Oracle, Microsoft, Mozilla. На деяких етапах історії також долучалися Adobe, Opera, Yahoo та інші компанії.</p>
 		</section>
 
@@ -61,6 +61,7 @@
 				<em>Похилим шрифтом в коді показані класичні реалізації</em>
 			</code>
 			<p>Оголошення констант <strong>const</strong> та локальних змінних <strong>let</strong></p>
+			<p>Специфікація радить відмовитися від використання var.</p>
 			<code>
 				const COLUMNS_COUNT = 12;<br>
 				for (let n = 1; n &lt;= COLUMNS_COUNT; n++) {<br>
@@ -74,6 +75,104 @@
 			<p>Змінні n та str будуть існувати лише в межах фігурних дужок</p>
 			<p>Змінна n буде доступна в асинхронній функції showMessage зі значеннями 1, 2, 3...</p>
 			<p>Оголошені змінні через let будуть доступні лише нижче по коду, в той час як змінні, оголошені через var будуть мати значення undefined вище по коду.</p>
+			
+			<p><strong>Відмова від IIFE</strong> (immediately invoked function expression) - як наслідок з області видимості let, const:</p>
+			<code>
+				<em>(function (){<br>
+				&nbsp;&nbsp;var x = 42;<br>
+				})();</em><br><br>
+				{<br>
+				&nbsp;&nbsp;let x = 42;<br>
+				}
+			</code>
+			
+			<p><strong>Дефолтні значення аргументів функції</strong></p>
+			<code>
+				function fun(a, b = 6, c = false) { ... }<br><br>
+				<em>function fun(a, b, c) {<br>
+				&nbsp;&nbsp;if (b === undefined) b = 6;<br>
+				&nbsp;&nbsp;if (c === undefined) c = false;<br>
+				}</em>
+			</code>
+			<p><strong>Іменовані аргументи функцій</strong></p>
+			<code>
+				function fun1({ x = 10, y }) { ... }<br>
+				function fun2(s, b, { x, y }) { ... }<br>
+				fun1({ y: 30 });<br>
+				fun1({ x: 5, y: 42 });<br>
+				fun1({ y: 42, x: 5 });<br>
+				fun2('Вася', false, { x: 30, y: 0 });
+			</code>
+			<p><strong>Деструктуризація об'єктів</strong> (іменовані аргументи функцій якраз і використовують деструктуризацію).</p>
+			<code>
+				let arr = [40, 20, 0];<br>
+				let [x, y, z] = arr;<br>
+				let [a, , c] = arr;<br>
+				let { name: n, age: a } = { name: 'Вася', age: 22 };<br>
+				n === 'Вася', a === 22.
+			</code>
+			<p>Скорочений варіант з іменами змінних, що співпадають з іменами властивостей об'єкта (використовується розпаковування об'єкта):</p>
+			<code>
+				let { name, age } = { name: 'Вася', age: 22 };<br>
+				name === 'Вася', age === 22.
+			</code>
+			<p>Корисна річ, зменшує писанину, покращує читаємість коду:</p>
+			<code>
+				let name = 'Masha';<br>
+				let age = 17;<br><br>
+				<em>var obj = { name: name, age: age, x: 4 };</em><br>
+				let obj = <strong>{ name, age, x: 4 }</strong>;<br><br>
+				<em>var x = obj.x;</em></em><br>
+				let <strong>{x} = obj</strong>;<br>
+				console.log(x); &nbsp;&nbsp; <em>// 4</em>
+			</code>
+			
+			<p>Порівняйте два старих способа і один новий:</p>
+			<code>
+				<em>function padding(){<br>
+				&nbsp;&nbsp;var top = '10px', right = '20px', bottom = '30px', left = '20px';<br>
+				&nbsp;&nbsp;return [ top, right, bottom, left ];<br>
+				}<br>
+				var pad = padding();<br>
+				var left = pad[3], right = pad[1];<br><br>
+				function padding(){<br>
+				&nbsp;&nbsp;var top = '10px', right = '20px', bottom = '30px', left = '20px';<br>
+				&nbsp;&nbsp;return { top: top, right: right, bottom: bottom, left: left };<br>
+				}<br>
+				var pad = padding();<br>
+				var left = pad.left, right = pad.right;</em><br><br>
+				function padding(){<br>
+				&nbsp;&nbsp;let top = '10px', right = '20px', bottom = '30px', left = '20px';<br>
+				&nbsp;&nbsp;return { top, right, bottom, left };<br>
+				}<br>
+				let { left, right } = padding();
+			</code>
+			
+			<p>Дозволяє досить просто обмінятися значеннями:</p>
+			<code>
+				let a = 10, b = 25;<br><br>
+				<em>var tmp = a;<br>
+				a = b;<br>
+				b = tmp;</em><br><br>
+				[a, b] = [b, a];
+			</code>
+			
+			<p><strong>Spreads</strong> - зручне розпаковування масивів:</p>
+			<code>
+				function fun(a, b, c, d) { alert(a + b + c + d); }<br>
+				const arr = [3, 4, 5, 6];<br>
+				fun(...arr);<br>
+				const brr = [1, 2, ...arr, 7, 8];<br>
+				alert('Max: ' + Math.max(...arr));<br><br>
+				<em>arr1 = arr1.concat(arr2, arr3);</em><br>
+				arr1 = [...arr1, ...arr2, ...arr3];
+			</code>
+			<p>А ще ці три крапки дозволяють скопіювати об'єкт:</p>
+			<code>
+				let obj1 = { name: 'Вася', age: 22 };<br>
+				let obj2 = { ...obj1 };
+			</code>
+			
 			<p><strong>Стрілочні функції</strong></p>
 			<p>Стрілочні функції завжди анонімні, не мають arguments та super, не можуть бути конструктором, не мають власного this, а використовують this з контексту вище.</p>
 			<code>
@@ -125,6 +224,7 @@
 				</em>
 			</code>
 			<p><strong>Класи</strong> (синтаксичний цукор поверх прототипів)</p>
+			<p>JS рухається в бік повноцінного ООП.</p>
 			<code>
 				class User {<br>
 				&nbsp;&nbsp;constructor(name, age){<br>
@@ -136,7 +236,7 @@
 				&nbsp;&nbsp;}<br>
 				}<br>
 				let user = new User('John', 25);<br>
-				user.hello();<br>
+				user.hello();<br><br>
 				<em>
 					function User(name, age){<br>
 					&nbsp;&nbsp;this.name = name;<br>
@@ -152,11 +252,39 @@
 				let User = class {<br>
   			&nbsp;&nbsp;sayHi() { alert('Привет!'); }<br>
 				};<br>
-				new User().sayHi();
+				new User().sayHi();<br><br>
+				
+				<em>// наслідування:</em><br>
+				class Customer extends User {<br>
+				&nbsp;&nbsp;constructor(name, age, gender){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;super.constructor(name);<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.gender = gender;<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;hello(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;super.hello();<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;console.log('gender: ' + this.gender);<br>
+				&nbsp;&nbsp;}<br>
+				}
 			</code>
 			<p>User, оголошений через class, неможна викликати без new (буде помилка).</p>
 			<p>Оголошення class веде себе як let: клас буде доступний лише в поточному блоці і лише нижче по коду.</p>
 			<p>Методи класа не злічені, вони не будуть доступні в конструкції for..in.</p>
+			<p>Можна створювати статичні методи (ці методи не мають доступу до this і можуть викликатися без створення об'єкта). Приклад вам вже відомий, метод now статичний:</p>
+			<code>
+				let ms = Date.now();<br>
+				let today = new Date();<br><br>
+				class User {<br>
+				&nbsp;&nbsp;constructor(name, role){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.name = name;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;this.role = role;<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;static anon(){<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;return new User('anon', 0);<br>
+				&nbsp;&nbsp;}<br>
+				}<br>
+				let admin = new User('admin', 7);<br>
+				let anon = User.anon();
+			</code>
 			<p><strong>Покращення об'єктних літералів</strong></p>
 			<code>
 				let offsetX = '70px';<br>
@@ -165,106 +293,96 @@
 				&nbsp;&nbsp;offsetX,<br>
 				&nbsp;&nbsp;['item-' + n]: 'Sorok dva',<br>
 				&nbsp;&nbsp;hello42(){ alert(this['item-42']); }<br>
-				};<br>
-				// класичний варіант:<br>
-				var obj = {<br>
+				};<br><br>
+				<em>var obj = {<br>
 				&nbsp;&nbsp;offsetX: offsetX,<br>
 				&nbsp;&nbsp;hello42: function(){ alert(this['item-42']); }<br>
 				};<br>
-				obj['item-42'] = 'Sorok dva';
+				obj['item-' + n] = 'Sorok dva';</em>
 			</code>
-			<p></p>
-		</section>
-
-		<section>
-			<h2>Огляд нових можливостей редакцій ES-2015/16.</h2>
-			<p>Багато нового для фронтенд-розробника буде дійсно корисним.</p>
-			<p>Дещо ввели для серверного JS.</p>
-			<p>Багато нового добавили для різноманітних компромісів, взаємодій з іншими мовами програмування (в основному, на серверній частині), полегшення використання JS програмістами на Java, C#, Python.</p>
-			<p><strong>let/const</strong>.</p>
-			<p>Об'являють змінну та константу в локальному просторі імен, обмеженому фігурними дужками {}.</p>
-			<p>Специфікація радить відмовитися від використання var.</p>
+			<p><strong>Модулі</strong> - продвинутий варіант бібліотеки функцій.</p>
+			<p>По-старому:</p>
 			<code>
-				const x = 10;<br>
-				for (let i = 0; i < x; i++) { alert(i); }
+				var Math = {<br>
+				&nbsp;&nbsp;PI: 3.14159,<br>
+				&nbsp;&nbsp;sin: function (angle){ return ... ; },<br>
+				&nbsp;&nbsp;cos: function (angle){ return ... ; },<br>
+				&nbsp;&nbsp;__internalFunction: function (){ ... }<br>
+				}
 			</code>
-			<p>Корисно для серверної частини. В деяких випадках призведе до збільшення строк коду:</p>
+			<p>По-новому:</p>
 			<code>
-				for (var i = 0; i < x; i++) { ... }<br>
-				console.log('next index: ' + i);<br><br>
-				let i;<br>
-				for (i = 0; i < x; i++) { ... }<br>
-				console.log('next index: ' + i);
+				module Math {<br>
+				&nbsp;&nbsp;export const PI = 3.14159,<br>
+				&nbsp;&nbsp;export let step = 0,<br>
+				&nbsp;&nbsp;export function sin(angle){ return ... ; }<br>
+				&nbsp;&nbsp;export function cos(angle){ return ... ; }<br>
+				&nbsp;&nbsp;internalFunction() { ... }<br>
+				}
 			</code>
-			<hr>
-			<p><strong>for-of</strong>.</p>
+			<p>При цьому службова функція internalFunction ззовні буде недоступна.</p>
+			<p>Функції і змінні модуля можна імпортувати для більш зручного використання, область видомості імпорта обмежена конструкціями в фігурних дужках. Імпорт схожий на оператор with (не рекомендований до застосування):</p>
+			<code>
+				<em>let angleSin = Math.sin(angle * Math.PI / 180);</em><br><br>
+				import Math.{sin, PI};<br>
+				let angleSin = sin(angle * PI / 180);<br><br>
+				import Math.*;<br>
+				let angleSin = sin(angle * PI / 180);<br>
+				let angleCos = cos(angle * PI / 180);<br>
+				step++;<br>
+				internalFunction(); &nbsp;&nbsp; <em>// тут буде помилка</em>
+			</code>
+			<p><strong>Цикл for-of</strong></p>
 			<p>Зручний та очевидний перебір елементів масива:</p>
 			<code>
-				for (var i = 0; i < arr.length; i++) { arr[i] - кожен елемент масива }<br>
-				arr.forEach(function(e){ e - кожен елемент масива });<br>
-				<strong>for (const e of arr)</strong> { e - кожен елемент масива }
+				for (var i = 0; i &lt; arr.length; i++) { arr[i] - кожен елемент масива }<br>
+				arr.forEach(function (e){ e - кожен елемент масива });<br>
+				<strong>for (let e of arr)</strong> { e - кожен елемент масива }
 			</code>
-			<hr>
-			<p><strong>Шаблони в апострофах</strong>.</p>
+			<p><strong>Шаблонні літерали</strong></p>
 			<p>Тепер для виокремлення строк можна використовувати не тільки одинарні та подвійні лапки, а й апостроф, що знаходиться під тільдою.</p>
-			<p>Строка в цих апострофах може містити шаблони зі змінними:</p>
+			<p>Строка в цих апострофах може містити шаблони зі змінними, виразами, викликами функцій:</p>
 			<code>
 				const s = 'Masha';<br>
 				alert('Hello ' + s + '!');<br>
-				alert(<strong>`Hello ${s}!`</strong>);
+				alert(<strong>`Hello ${s}!`</strong>);<br>
+				alert(`Hello ${Math.sin(s.length) + 42}!`);
 			</code>
-			<hr>
-			<p><strong>Упаковування та розпаковування об'єктів</strong>.</p>
-			<p>Корисна річ, зменшує писанину, покращує читаємість коду:</p>
+			<p><strong>Багатострочні строки</strong></p>
 			<code>
-				const name = 'Masha';<br>
-				const age = 17;<br><br>
-				var obj = { name: name, age: age, x: 4 };<br>
-				const obj = <strong>{ name, age, x: 4 }</strong>;<br><br>
-				var x = obj.x;<br>
-				const <strong>{x} = obj</strong>;<br>
-				console.log(x); &nbsp;&nbsp; // 4
+				<em>var s1 = 'lorem ipsum dolor ' +<br>
+				&nbsp;&nbsp;'sit amet, consectetur ' +<br>
+				&nbsp;&nbsp;'adipisicing elit.';<br>
+				var s2 = 'lorem ipsum dolor ';<br>
+				s2 += 'sit amet, consectetur ';<br>
+				s2 += 'adipisicing elit.';</em><br><br>
+				let s = `lorem ipsum dolor<br>
+				sit amet, consectetur<br>
+				adipisicing elit.`;
 			</code>
-			<hr>
-			<p><strong>Spreads</strong>.</p>
-			<p>Зручне розпаковування масивів:</p>
-			<code>
-				function fun(a, b, c, d) { alert(a + b + c + d); }<br>
-				const arr = [3, 4, 5, 6];<br>
-				fun(...arr);<br>
-				const brr = [1, 2, ...arr, 7, 8];
-			</code>
-			<hr>
-			<p><strong>Генератори yield</strong>.</p>
-			<p>Добавлені для сумісності з Python та Ruby.</p>
-			<hr>
-			<p><strong>Аргументи функцій по-замовчуванню</strong>.</p>
-			<code>
-				function fun(x, y){<br>
-				&nbsp;&nbsp;if (typeof y === 'undefined') { y = 42; }<br>
-				&nbsp;&nbsp;...<br>
-				}<br><br>
-				function fun(x, <strong>y = 42</strong>) {<br>
-				&nbsp;&nbsp;...<br>
-				}
-			</code>
-			<hr>
-			<p><strong>Стрілочні функції</strong>.</p>
-			<p>Стрілочні функції мають коріння в лямбда-виразах в інших мовах програмування.</p>
-			<code>
-				var fun = function(a, b, c) { return a + b + c; };<br>
-				var fun = <strong>(a, b, c) =></strong> { return a + b + c; };<br>
-				var fun = <strong>(a, b, c) =></strong> a + b + c;<br>
-				var kub = <strong>x =></strong> x * x * x;
-			</code>
-			<p>У стрілочних функції є особливості в this, arguments, їх не бажано використовувати як методи об'єктів.</p>
-			<hr>
-			<p><strong>Класи</strong>.</p>
-			<p>JS все-ж таки потроху йде в бік ООП, в ньому з'явилися класи.</p>
-			<p>Якщо ви на фронтенді активно створюєте прототипи і вигадуєте костилі для ООП - мабуть, ви дійшли до серйозного етапу своєї кар'єри, пишете браузерну гру чи онлайн-фотошоп. Так? Якщо ні - то, скоріш за все, ви знову на хибному шляху і все занадто ускладнюєте.</p>
-			<hr>
-			<p>Проміси, Fetch, нові типи даних...</p>
+
+			<p><strong>Генератори yield</strong></p>
+			<p>Добавлені функції-генератори (TODO: дописати).</p>
+			
+			<p><strong>Проміси, Fetch</strong> (TODO: дописати).</p>
 		</section>
+
+		<section>
+			<h2>Нові можливості ECMAScript 7 / 2016</h2>
+		</section>
+
+		<section>
+			<h2>Нові можливості ECMAScript 8 / 2017</h2>
+		</section>
+
+		<section>
+			<h2>Нові можливості ECMAScript 9 / 2018</h2>
+		</section>
+		
+		<section>
+			<h2>Нові можливості ECMAScript X / 2019</h2>
+		</section>
+
 
 		<!--<section>
 			<h2>Анімація елементів</h2>
