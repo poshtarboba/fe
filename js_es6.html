@@ -380,6 +380,32 @@
 
 		<section>
 			<h2>Нові можливості ECMAScript 8 / 2017</h2>
+			<p><strong>Асинхронні функції:</strong></p>
+			<code>
+				async function fun(){ ... }<br>
+				const fun = async function (){ ... };<br>
+				const fun = async () => { ... };<br>
+				let obj = { async methodName(){ ... } };
+			</code>
+			<p>Асинхронні функції повертають проміс, що виконається асинхронно, проте саме тіло функції виконується синхронно:</p>
+			<code>
+				async function fun(){<br>
+				&nbsp;&nbsp;console.log('test');<br>
+				&nbsp;&nbsp;return 'Hello!';<br>
+				}<br>
+				console.log('start');<br>
+				fun().then(function (n){ console.log(n); });<br>
+				console.log('finish');<br><br>
+				<em>// результат:<br>
+				start<br>
+				test<br>
+				finish<br>
+				Hello!
+				</em>
+			</code>
+			<p><strong>Object.entries()</strong> - повертає масив з підмасивів, кожен підмасив - пара "ключ", "значення".</p>
+			<p><strong>Object.values()</strong> - повертає масив значень ключів об'єкта.</p>
+			<p><strong>Висячі коми</strong> після останнього елемента масива, об'єкта, аргумента функції.</p>
 		</section>
 
 		<section>
