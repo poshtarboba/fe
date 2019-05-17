@@ -22,10 +22,10 @@
 			<p>Строка - це набір символів, обмежених одинарними чи подвійними лапками.</p>
 			<h3>Створення строк</h3>
 			<code>
-				var a = 'hello';<br>
-				var b = "hello";<br>
-				var c = 13 + '';<br>
-				var d = (42.5).toString();<br>
+				let a = 'hello';<br>
+				let b = "hello";<br>
+				let c = 13 + '';<br>
+				let d = (42.5).toString();<br>
 				console.log(a, b, c, d);
 			</code>
 			<p>Метод .toString() - найкоректніший спосіб перетворити будь-яку змінну в строку:</p>
@@ -44,28 +44,28 @@
 			</code>
 			<p>Не плутайте назви змінних і строки:</p>
 			<code>
-				var hello = 42;<br>
+				let hello = 42;<br>
 				console.log(hello);<br>
 				console.log('hello');
 			</code>
 			<h3>Дії зі строками</h3>
 			<p>Строки можна об'єднувати, це називається конкатинацією строк.</p>
 			<code>
-				var a = "Hello," + ' world!';<br>
-				var n1 = 'Іванов',<br>
+				let a = "Hello," + ' world!';<br>
+				let n1 = 'Іванов',<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;n2 = 'Іван',<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;n3 = 'Іванович';<br>
-				var n = n1 + ' ' + n2 + ' ' + n3;<br>
+				let n = n1 + ' ' + n2 + ' ' + n3;<br>
 				console.log(a);<br>
 				console.log(n);
 			</code>
 			<p>Строку можна об'єднати з числом, змінною, об'єктом. Це все перетвориться в строку.</p>
 			<code>
-				var b = 64 + ' кг.';<br>
-				var price = 42,<br>
+				let b = 64 + ' кг.';<br>
+				let price = 42,<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;c = 'Ціна: ' + price + ' грн.';<br>
-				var d = 'Масив: ' + [1, 2, 3];<br>
-				var und, e = "Не задано: " + und;<br>
+				let d = 'Масив: ' + [1, 2, 3];<br>
+				let und, e = "Не задано: " + und;<br>
 				console.log(b);<br>
 				console.log(c);<br>
 				console.log(d);<br>

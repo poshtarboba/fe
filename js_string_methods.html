@@ -17,8 +17,8 @@
 			<h1>Методи строк</h1>
 			<p>Методи застосовуються до змінних, або до самих строк. Прописуються через крапку:</p>
 			<code>
-				var s = 'Іванов Іван Іванович';<br>
-				var m = s.split();<br>
+				let s = 'Іванов Іван Іванович';<br>
+				let m = s.split();<br>
 				'Hello!'.toUpperCase();
 			</code>
 			<p>Дослідіть результат роботи наступного коду:</p>
@@ -28,14 +28,14 @@
 			</code>
 			<p><strong>.toLowerCase(), .toUpperCase()</strong> - повертають строку, в якій змінено регістр.</p>
 			<code>
-				var s = "Привіт, Світ!";<br>
+				let s = "Привіт, Світ!";<br>
 				console.log(s.toLowerCase());<br>
-				var T = s.toUpperCase();<br>
+				let T = s.toUpperCase();<br>
 				console.log(T);
 			</code>
 			<p><strong>.substring(a, b), .substr(a, b), .slice(a, b)</strong> - повертають частину строки.</p>
 			<code>
-				var s = 'маргарин';<br>
+				let s = 'маргарин';<br>
 				console.log(s.substring(3));<br>
 				console.log(s.substring(3, 6));<br>
 				console.log(s.slice(3));<br>
@@ -47,7 +47,7 @@
 			<p><strong>.indexOf(c, n), .lastIndexOf(c, n)</strong> - повертають індекс підстроки в строці.</p>
 			<p>Якщо підстроку не знайдено - буде повернено -1.</p>
 			<code>
-				var s = 'маргарин';<br>
+				let s = 'маргарин';<br>
 				console.log(s.indexOf('a'));<br>
 				console.log(s.indexOf('гaр'));<br>
 				console.log(s.indexOf('a', 2));<br>
@@ -55,26 +55,26 @@
 			</code>
 			<p><strong>.split(sep)</strong> - розбиває строки по роздільнику (сепаратору), повертає масив.</p>
 			<code>
-				var s = '5, 12, привіт, 42';<br>
-				var m = s.split(', ');<br>
+				let s = '5, 12, привіт, 42';<br>
+				let m = s.split(', ');<br>
 				console.log(m);
 			</code>
 			<p>&nbsp;</p>
 			<p><strong>.charCodeAt(n)</strong> - повертає код символа.</p>
 			<code>
-				var s = 'abc';<br>
+				let s = 'abc';<br>
 				console.log(s.charCodeAt(0));<br>
 				console.log(s.charCodeAt(1));<br>
 				console.log(s.charCodeAt(2));
 			</code>
 			<p>Обернена функція:</p>
 			<code>
-				var a = String.fromCharCode(97);
+				let a = String.fromCharCode(97);
 			</code>
 			<p><strong>.trim()</strong> - обрізає пробіли з початку і з кінця строки.</p>
 			<code>
 				&lt;input type="email" name="email" id="email"&gt;<br><br>
-				var email = document.getElementById('email').value.trim();
+				let email = document.getElementById('email').value.trim();
 			</code>
 			<p>Застарілі або рідковживані методи в лекції не представлено.</p>
 			<p>Методи для роботи з регулярними виразами будуть розглянуті на наступній лекції.</p>
