@@ -102,11 +102,10 @@
 			<table style="width: 100%;" border="1px">
 				<thead>
 				<tr>
-					<th>Продукція</th>
+					<th rowspan="2">Продукція</th>
 					<th colspan="2">Кількість</th>
 				</tr>
 				<tr>
-					<th>&nbsp;</th>
 					<th>Вчора</th>
 					<th>Сьогодні</th>
 				</tr>
@@ -132,11 +131,10 @@
 				&lt;table style="width: 100%;"&gt;<br>
 				&nbsp;&nbsp;&lt;thead&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Продукція&lt;/th&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th rowspan="2"&gt;Продукція&lt;/th&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th colspan="2"&gt;Кількість&lt;/th&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;&lt;/th&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Вчора&lt;/th&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Сьогодні&lt;/th&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>
@@ -160,17 +158,41 @@
 				&lt;/table&gt;
 			</code>
 			<p>Атрибути тега &lt;table&gt; (наразі не бажані до застосування):</p>
-			<p><strong>cellspacing</strong> - задає зовнішні відступи довкола чарунок.</p>
-			<p><strong>cellpadding</strong> - задає внутрішні відступи всередині чарунок.</p>
+			<p><strong>cellspacing</strong> - задає зовнішні відступи довкола комірок.</p>
+			<p><strong>cellpadding</strong> - задає внутрішні відступи всередині комірок.</p>
 			<p>&nbsp;</p>
 			<p>Років 7 тому всі сайти версталися таблицями, без div. Наразі так досі створюються e-mail.</p>
 		</section>
 
-		<!--
-			TODO: властивості таблиці: висота комірок, розтягування комірок
-			table-layout
-		-->
-		
+		<section>
+			<h2>Властивості комірок</h2>
+			<p><strong class="danger">Увага!</strong> Не задавайте ніякі стилі для рядків, тобто, тегу &lt;tr&gt;. Але цей тег можна використовувати в селекторі:</p>
+			<code>
+				table tr:nth-child(odd) td { background: silver; }
+			</code>
+			<p>Висоту всім коміркам в рядку задає комірка з найбільшою висотою. В разі потреби можна задати висоту комірок в CSS. Для цього достатньо задати висоту лише першій.</p>
+			<p>Ширина всіх комірок в стовбчику задається шириною найширшої комірки.</p>
+			<p>Якщо таблиці задати конкретну ширину (наприклад, 100%), то ширина чарунок збільшується пропорційно (тут Боба пояснює як саме).</p>
+			<p>Стиль <strong>vertical-align</strong> дозволяє вирівняти контент по вертикалі, text-align - по горизонталі.</p>
+			<table style="width: 100%;" border="1px">
+				<tr>
+					<td>-<br>-<br>-</td>
+					<td style="vertical-align: top;">vertical-align: top;</td>
+					<td style="vertical-align: middle;">vertical-align: middle;</td>
+					<td style="vertical-align: bottom;">vertical-align: bottom;</td>
+				</tr>
+			</table>
+			<p>Стиль <strong>table-layout: fixed</strong> дозволяє зробити всі колонки однакової ширини. По-замовчуванню використовується table-layout: auto.</p>
+			<p><em>table-layout: auto</em>:</p>
+			<table style="width: 100%;" border="1px">
+				<tr><td>1</td><td>Найдовша строка тексту в таблиці</td><td>Коротка строка</td></tr>
+			</table>
+			<p><em>table-layout: fixed</em>:</p>
+			<table style="width: 100%; table-layout: fixed;" border="1px">
+				<tr><td>2</td><td>Найдовша строка тексту в таблиці</td><td>Коротка строка</td></tr>
+			</table>
+		</section>
+
 		<section class="homework">
 			<h2>Домашнє завдання</h2>
 			<ol>
