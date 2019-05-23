@@ -1,0 +1,94 @@
+<meta charset="utf-8">
+<style>
+	body { font: normal 16px/1.4em sans-serif; }
+	span { display: block; }
+	small { display: block; font-size: 0.6em; }
+	input[type="text"],
+	input[type="password"] { border: 1px solid silver; }
+	input[type="text"]:focus,
+	input[type="password"]:focus { background: rgba(255, 255, 0, 0.3); }
+	input[type="submit"] { cursor: pointer; }
+	input.error, input.error:focus { background: rgba(255, 0, 0, 0.2); border: 1px solid red; }
+</style>
+<body>
+
+<form action="https://google.com">
+
+	<p>
+		<label>
+			<span>Введіть логін:</span>
+			<input type="text" name="login">
+			<small>Логін може складатися лише з англійських символів та цифр</small>
+		</label>
+	</p>
+
+	<p>
+		<label>
+			<span>E-mail:</span>
+			<input type="text" name="email">
+			<small>E-мейл може містити лише латинські символи, повинен містити равлик, домен верхнього рівня</small>
+		</label>
+	</p>
+
+	<p>
+		<label>
+			<span>Пароль:</span>
+			<input type="password" name="pwd">
+			<small>Пароль повинен містити літери у верхньому та нижньому регістрах і цифри, символи не повинні повторюватися підряд</small>
+		</label>
+	</p>
+
+	<p><input type="submit" value="Відправити дані форми"></p>
+
+</form>
+
+
+</body>
+<script>
+(function (){
+
+	const rxLogin = /^[a-z][a-z0-9]*$/i;
+	const rxEmail = /^[-a-z0-9+._]+@[a-z0-9]+(\.[a-z]{2,7})?\.[a-z]{2,7}$/i;
+
+	let form = document.querySelector('form');
+	let inputLogin = document.querySelector('[name="login"]');
+	let inputEmail = document.querySelector('[name="email"]');
+	let inputPwd = document.querySelector('[name="pwd"]');
+
+	form.onsubmit = function (e){
+		validateLogin();
+		validateEmail();
+		validatePwd();
+		if (form.querySelector('.error')) e.preventDefault();
+	};
+	
+	form.querySelectorAll('input').forEach(function (input){
+		input.oninput = function (){
+			this.value = this.value.trim();
+			this.classList.remove('error');
+		};
+	});
+	
+	inputLogin.onblur = validateLogin;
+	inputEmail.onblur = validateEmail;
+	inputPwd.onblur = validatePwd;
+	
+	function validateLogin(){
+		if (!rxLogin.test(inputLogin.value)) inputLogin.classList.add('error');
+	}
+	
+	function validateEmail(){
+		if (!rxEmail.test(inputEmail.value)) inputEmail.classList.add('error');
+	}
+	
+	function validatePwd(){
+		let pwd = inputPwd.value;
+		let bigLetter = /[A-Z]/.test(pwd);
+		let smallLetter = /[a-z]/.test(pwd);
+		let digit = /[0-9]/.test(pwd);
+		let duplicate = /(.)\1/.test(pwd);
+		if (!(bigLetter && smallLetter && digit) || duplicate) inputPwd.classList.add('error');
+	}
+
+})();
+</script>
