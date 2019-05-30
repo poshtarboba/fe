@@ -109,13 +109,26 @@
 			<code>
 				http://site.com/form.html?gender=female
 			</code>
+			<p><strong>tabindex</strong> - атрибут, що задає порядок переходу між полями форми клавішою <kbd>tab</kbd>:</p>
+			<code>
+				&lt;style&gt;input:focus { background: yellow; }&lt;/style&gt;<br><br>
+				&lt;form&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="1" value="tabindex = 1"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="5" value="tabindex = 5"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="3" value="tabindex = 3"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="2" value="tabindex = 2"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="4" value="tabindex = 4"&gt;&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;/form&gt;
+			</code>
 			<h3>Селектори атрибутів</h3>
 			<p>Статуси видимих елементів веб-форм можуть мати наступні селектори в стилях:</p>
 			<code>
 				input:checked { ... }<br>
 				input:focus { ... }<br>
 				input:disabled { ... }<br>
-				input:readonly { ... }
+				input:readonly { ... }<br>
+				input[disabled] { ... }<br>
+				input[readonly] { ... }
 			</code>
 			<p>Селектор :focus можуть мати також посилання, кнопки.</p>
 		</section>
