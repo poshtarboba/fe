@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Дуги та криві Безьє</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Дуги та криві Безьє</h1>
+			<!--<p><a href="https://svg-art.ru/?page_id=900">Дуги та криві Бєзьє</a>.</p>-->
+			<p>Для малювання криволінійних фігур у тега path є спеціальні команди.</p>
+			
+			<h3>Дуга еліпса - A, a</h3>
+			<p>Дуга малюється починаючи з останньої точки попереднього відрізка і має багато аргументів:</p>
+			<code>
+				&lt;path d="... <strong>A rx,ry x-axis-rotation large-arc-flag sweep-flag x,y</strong>" /&gt;<br><br>
+				&lt;path d="M 50,50 A 75,50 45 0 1 160,140" /&gt;<br>
+				&lt;path d="M 50,50 a 75,50 45 0 1 160,140" /&gt;
+			</code>
+			<p><em>rx,ry</em> - радіуси еліпса, частиною якого буде дуга.</p>
+			<p><em>x-axis-rotation</em> - поворот осі X еліпса за годинниковою стрілкою.</p>
+			<p><em>large-arc-flag</em> - прапорець, приймає значення 0 або 1; 0 - дуга меншого розміру, 1 - дуга більшого розміру.</p>
+			<p><em>sweep-flag</em> - прапорець, приймає значення 0 або 1; 0 - дуга малюватиметься проти годинникової стрілки, 1 - за годинниковою стрілкою.</p>
+			<p><em>x,y</em> - кінцева точка дуги.</p>
+			<!-- добавити картинки по прапорцях -->
+			
+			<h3>Криві Безьє</h3>
+			<p>Ці криві тісно пов'язані з моделями руху, тому у їх розрахунку принято використовувати параметр t - час.</p>
+			<p>Нехай є дві точки A та B і деяка крива, що їх з'єднує. З точки А в точку B виїзджає автомобіль, в цей момент t = 0. Коли автомобіль досягає точки B - t = 1. Таким чином, цей параметр може приймати значення від 0 до 1 (проте, від'ємні значення та значення більше одиниці також можна використовувати в розрахунках).</p>
+			<p>Існує лінійна, квадратична і кубічна функції Безьє (лінії нульового і більше третього порядку розглядати не будемо). Лінійна функція - це просто лінія, нічого цікавого. В формулі квадратичної функції використовується квадрат параметра t, а у кубічній - відповідно, куб.</p>
+			<p>Перегляньте формули на <a href="https://uk.wikipedia.org/wiki/%D0%9A%D1%80%D0%B8%D0%B2%D0%B0_%D0%91%D0%B5%D0%B7%D1%8C%D1%94" target="_blank">Вікіпедії</a>.</p>
+			<p>Функція розрахунку координат конкретної точки на лінії Безьє мовою JS:</p>
+			<code>
+				<em>/* t -> [0..1]  */<br>
+				/* if 2 points: start, end */<br>
+				/* if 3 points: start, middle, end */<br>
+				/* if 4 points: start, start1, end1, end */</em><br><br>
+				function bezierPoint(t, x1, y1, x2, y2, x3, y3, x4, y4) {<br>
+				&nbsp;&nbsp;let x, y, T = 1 - t;<br>
+				&nbsp;&nbsp;if (arguments.length > 8) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;x =  T ** 3 * x1 + 3 * T * T * t * x2 + 3 * T * t * t * x3 + t ** 3 * x4;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;y =  T ** 3 * y1 + 3 * T * T * t * y2 + 3 * T * t * t * y3 + t ** 3 * y4;<br>
+				&nbsp;&nbsp;} else if (arguments.length > 6) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;x = T * T * x1 + 2 * T * t * x2 + t * t * x3;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;y = T * T * y1 + 2 * T * t * y2 + t * t * y3;<br>
+				&nbsp;&nbsp;} else if (arguments.length > 4) {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;x = T * x1 + t * x2;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;y = T * y1 + t * y2;<br>
+				&nbsp;&nbsp;}<br>
+				&nbsp;&nbsp;return { x, y };<br>
+				}
+			</code>
+
+			<style>
+				.bez { position: relative; }
+				.bez path { stroke: blue; stroke-width: 1; fill: transparent; }
+				.bez line { stroke: blue; stroke-width: 0.5; stroke-dasharray: 2 2; }
+				.bez circle { stroke: blue; stroke-width: 0.5; fill: white; cursor: move; }
+				.bez circle:hover { fill: yellow; }
+				.bez circle.move { stroke: red; }
+			</style>
+			
+			<h3>Квадратична крива Безьє - Q, q</h3>
+			<p>Квадратичні криві формуються по двох кінцевих та одній контрольній точках. Перша точка береться з попередньої команди; точка {x,y} - остання; точка {x1,y1} - опорна.</p>
+			<code>
+				d="... <strong>Q x1,y1 x,y</strong> ...<br><br>
+				&lt;path d="M 50,50 Q 100,50 100,100" /&gt;
+			</code>
+			<figure>
+				<div style="margin: 0 auto; width: 500px; background: #eee;">
+					<svg class="bez" id="bez2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<path d="M 20,70 Q 50,20 80,70" />
+						<line x1="20" y1="70" x2="50" y2="20" />
+						<line x1="50" y1="20" x2="80" y2="70" />
+						<circle cx="20" cy="70" r="1.5" />
+						<circle cx="50" cy="20" r="1.5" />
+						<circle cx="80" cy="70" r="1.5" />
+					</svg>
+				</div>
+				<figcaption>Квадратична крива Безьє</figcaption>
+			</figure>
+			
+			<h3>Кубічна крива Безьє - C, c</h3>
+			<p>Кубічні криві формуються по двох кінцевих та двох опорних точках.</p>
+			<code>
+				d="... <strong>C x1,y1 x2,y2 x,y</strong> ...<br><br>
+				&lt;path d="M 50,50 C 100,50 50,100 100,100" /&gt;
+			</code>
+			<figure>
+				<div style="margin: 0 auto; width: 500px; background: #eee;">
+					<svg class="bez" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<path d="M 25,70 C 10,20 90,20 75,70" />
+						<line x1="25" y1="70" x2="10" y2="20" />
+						<line x1="90" y1="20" x2="75" y2="70" />
+						<circle cx="25" cy="70" r="1.5" />
+						<circle cx="10" cy="20" r="1.5" />
+						<circle cx="90" cy="20" r="1.5" />
+						<circle cx="75" cy="70" r="1.5" />
+					</svg>
+				</div>
+				<figcaption>Кубічна крива Безьє</figcaption>
+			</figure>
+			<p>З кубічних кривих можна побудувати полікриву, продовжуючи прописувати пари контрольних точок і кінцеву точку кожної кривої:</p>
+			<code>
+				&lt;path d="M 50,50 C 100,50 50,100 100,100 &nbsp;150,100 100,150 150,150" /&gt;
+			</code>
+
+			<script>
+				(function (){
+					window.addEventListener('mousemove', mouseMove);
+					window.addEventListener('mouseup', mouseUp);
+					document.querySelectorAll('.bez circle').forEach(function (point){ point.addEventListener('mousedown', mouseDown); });
+
+					function mouseDown(e){
+						this.classList.add('move');
+						let rect = this.parentElement.getBoundingClientRect();
+						setPointTo(this, e.layerX / rect.width * 100, e.layerY  / rect.height * 100);
+					}
+
+					function mouseUp(e){
+						document.querySelectorAll('.bez circle.move').forEach(function (point){ point.classList.remove('move'); });
+					}
+
+					function mouseMove(e){
+						let point = document.querySelector('.bez circle.move');
+						if (!point) return;
+						if (e.target.tagName.toLowerCase() !== 'svg' && e.target.parentElement.tagName.toLowerCase() !== 'svg') return;
+						let rect = point.parentElement.getBoundingClientRect();
+						// layerX, layerY, offsetX, offsetY
+						setPointTo(point, e.layerX / rect.width * 100, e.layerY / rect.height * 100);
+					}
+					
+					function setPointTo(point, x, y){
+						point.setAttribute('cx', Math.round(x));
+						point.setAttribute('cy', Math.round(y));
+						let p = [];
+						document.querySelectorAll('.bez circle').forEach(function (point){
+							p.push({ x: +point.getAttribute('cx'), y: +point.getAttribute('cy') });
+						});
+						let lines = document.querySelectorAll('.bez line');
+						setLineTo(lines[0], p[0], p[1]);
+						setLineTo(lines[1], p[1], p[2]);
+						setLineTo(lines[2], p[3], p[4]);
+						setLineTo(lines[3], p[5], p[6]);
+						let paths = document.querySelectorAll('.bez path');
+						setPathTo(paths[0], [p[0], p[1], p[2]]);
+						setPathTo(paths[1], [p[3], p[4], p[5], p[6]]);
+					}
+					
+					function setLineTo(line, p1, p2){
+						line.setAttribute('x1', p1.x);
+						line.setAttribute('y1', p1.y);
+						line.setAttribute('x2', p2.x);
+						line.setAttribute('y2', p2.y);
+					}
+					
+					function setPathTo(path, arr){
+						let p0 = arr.shift();
+						let d = 'M ' + p0.x + ',' + p0.y + ' ';
+						d += arr.length === 2 ? 'Q' : 'C';
+						arr.forEach(function (p){ d += ' ' + p.x + ',' + p.y; });
+						path.setAttribute('d', d);
+					}
+				})();
+			</script>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

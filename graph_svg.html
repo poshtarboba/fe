@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Формат зображень SVG</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Формат зображень SVG</h1>
+
+			<!-- TODO: svg-групи http://css.yoksel.ru/svg-groups-use/ - у веб-архіві дивись -->
+
+			<p>SVG - векторний формат зображень. Це означає, що будь-яке SVG-зображення добре маштабується, зберігаючи чіткість зображення.</p>
+
+			<figure>
+				<img src="img/cat.svg" alt="cat" width="32">
+				<figcaption>Маленьке зображення</figcaption>
+			</figure>
+
+			<figure>
+				<img src="img/cat.svg" alt="cat" width="200">
+				<figcaption>Збільшене зображення</figcaption>
+			</figure>
+
+			<figure>
+				<div style="width: 100%; height: 400px; overflow: scroll;">
+					<div style="width: 2000px; height: 2000px;">
+						<img src="img/cat.svg" alt="cat" width="2000">
+					</div>
+				</div>
+				<figcaption>Сильно збільшене зображення</figcaption>
+			</figure>
+
+			<p>
+				SVG-зображення в html можна трьома способами:<br>
+				- в атрибут src тега &lt;img&gt;;<br>
+				- як фон: background: url(img/cat.svg) ...;<br>
+				- код файла SVG вставляється безпосередньо в HTML-код сторінки.
+			</p>
+			<p>Створіть html-файл і вставне у нього SVG-файл в якості атрибута тега img.</p>
+			<p>Спробуйте різні розміри для цього зображення:</p>
+			<code>
+				&lt;img src="cat.svg" alt="cat" width="32"&gt;&lt;br&gt;<br>
+				&lt;img src="cat.svg" alt="cat" width="400"&gt;&lt;br&gt;<br>
+				&lt;img src="cat.svg" alt="cat" width="1200"&gt;
+			</code>
+			<p>Створіть блок довільних розмірів і задайте йому фонове зображення cat.svg (поексперементуйте з css-властивістю background-size).</p>
+		</section>
+
+		<section>
+			<h2>Структура файла SVG</h2>
+			<p>Відкрийте ваш SVG-файл у IDE або текстовому редакторі.</p>
+			<p>Як бачимо, формат файла - звичайний текстовий, використовує синтаксис XML.</p>
+			<p>Зображення створюється за допомогою примітивів, описаних тегами і атрибутами.</p>
+			<p>Можна вставити SVG-зображення у веб-сторінку (при чому, теги Doctype та xml не потрібні):</p>
+			<code>
+				&lt;html&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;svg version="1.1" id="Capa_1" ...<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;g&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;path d="M540.27,671.672c-0.492,0.493- ...<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/g&gt;<br>
+				&nbsp;&nbsp;&lt;/svg&gt;<br>
+				&lt;/body&gt;<br>
+				&lt;/html&gt;
+			</code>
+			<p>Youtube: <a href="https://www.youtube.com/watch?v=TNX0-JLdM_U" target="_blank">HTML Шорти - Як правильно вставляти SVG</a> (4:24).</p>
+			<p>Кожен тег - це примітив, лінія, окружність, область на зображенні.</p>
+			<p>&nbsp;</p>
+			<p><strong>Розглянемо атрибути тега svg.</strong></p>
+			<p>Тегу можна задавати атрибути id, class, data-* та інші.</p>
+			<p><strong>width, height</strong> - стандартні атрибути тегів, бажано видалити і задавати через стилі.</p>
+			<p><strong>x, y</strong> - координати початку малюнку в пікселях.</p>
+			<p><strong>viewBox</strong> - видима область, в умовних одиницях.</p>
+			<p><strong>style="enable-background:new 0 0 890.982 890.982;"</strong> - підкладка (рос. - подложка).</p>
+			<p>При створенні власних зображень задавайте розмір зображення і підкладки 100 х 100, для зручності обчислень (ну чи 100 х 250, 70 х 100, щоб один з розмірів був 100).</p>
+			<code>
+				&lt;svg viewBox="0 0 100 100"&gt;
+			</code>
+			<p>Згодом стандарти стають суворішими. Можливо, в майбутньому SVG не будуть відображатися без namespaces, тому не забувайте їх прописувати:</p>
+			<code>
+				&lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+			</code>
+			<p>Тепер можна працювати з тегами як з елементами DOM: задавати їм стилі, модифікувати їх, реагувати на події.</p>
+			<p>Першим чином поексперементуємо зі стилями. Їх можна напряму в теги прописувати:</p>
+			<code>
+				&lt;path style="..."
+			</code>
+			<p>Але краще працювати з класами, як і зі звичайними тегами:</p>
+			<code>
+				&lt;style&gt;<br>
+				&nbsp;&nbsp;.some-class { ... }<br>
+				&lt;/style&gt;<br><br>
+				&lt;svg ...&gt;<br>
+				&nbsp;&nbsp;&lt;path class="some-class" ...
+			</code>
+			<p>Та для формату SVG нам доведеться вивчити трохи нових стилів.</p>
+			<p><strong>fill</strong> - колір зафарбовування.</p>
+			<p><strong>stroke</strong> - колір ліній.</p>
+			<p><strong>stroke-width</strong> - товщина ліній (без px, залежить від розмірів viewBox).</p>
+			<p>Ці всі стилі можна задавати у якості атрибутів тега: &lt;path fill="red" ...</p>
+			<p>Якщо у вас в зображенні є теги &lt;path&gt; - це області, вони можуть мати зафарбовування. Поексперементуйте, додавши їм клас і колір:</path>
+			<code>
+				path { fill: #5a5a5a; }<br>
+				.path1 { fill: red; }<br>
+				#path2 { fill: blue; }<br>
+				.path3 { fill: green; opacity: 0.3; }
+			</code>
+			<p>Одразу можна спробувати і події:</p>
+			<code>
+				.path3:hover { opacity: 1; }<br>
+				&lt;script&gt;<br>
+				&nbsp;&nbsp;path2.onclick = function(){ alert('hello'); };<br>
+				&lt;/script&gt;
+			</code>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

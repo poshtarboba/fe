@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Анімація у SVG</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Анімація у SVG</h1>
+			<p><a href="http://snapsvg.io/" target="_blank">http://snapsvg.io/</a> - бібліотека для роботи з SVG та анімацією.</p>
+			<p>Анімувати примітиви можна за допомогою наступних тегів:</p>
+			<p><strong>&lt;animate&gt;</strong> - зміна числових атрибутів (і кольору) протягом певного часу.</p>
+			<p><strong>&lt;set&gt;</strong> - зміна нечислових атрибутів (visible, font-style і т.п.)</p>
+			<p><strong>&lt;animateMotion&gt;</strong> - рух елемента по заданій траекторії.</p>
+			<p>Додаткові теги:</p>
+			<p><strong>&lt;animateTransform&gt;</strong> - трансформація елемента.</p>
+			<p><strong>&lt;mpath&gt;</strong> - вставляється в тег animateMotion, задає траекторію руху елемента своїм контуром.</p>
+			<p><strong>&lt;animateMotion path="..."&gt;</strong> - модифікація контура.</p>
+			<p><strong>&lt;animateMotion keypoints="..."&gt;</strong> - точки зміни швидкості руху.</p>
+			<p><strong>&lt;animateMotion rotate="..."&gt;</strong> - дозволяє обертати елемент так, щоб він "завжди дивився вперед" по мірі руху по траекторії.</p>
+			<p>&nbsp;</p>
+			<p>Включення анімації в код можливий двома шляхами (подібно до взаємодії label &lt;==&gt; input):</p>
+			<code>
+				&lt;line id="line1" ... /&gt;<br>
+				&lt;animation xlink:href="#cool_shape" ... /&gt;<br><br>
+				&lt;line ... &gt;<br>
+				&nbsp;&nbsp;&lt;animation ... /&gt;<br>
+				&lt;/line&gt;
+			</code>
+			<p>Атрибути анімації:</p>
+			<p><strong>attributeName</strong> - ім'я атрибута, який будемо міняти.</p>
+			<p>В одній анімації можна міняти тільки один атрибут. Якщо потрібно міняти декілька атрибутів - створіть декілька анімацій.</p>
+			<p><strong>attributeType</strong> - якщо міняти треба не XML-атрибут, а CSS, такий, як opacity, font-weight і т.п., то потрібно задати attributeType="CSS".</p>
+			<p><strong>from</strong> - початкове значення атрибута.</p>
+			<p><strong>to</strong> - кінцеве значення атрибута.</p>
+			<p><strong>by</strong> - кінцеве відносне значення атрибута.</p>
+			<p><strong>dur</strong> - тривалість анімації, наприклад, dur="3s".</p>
+			<p><strong>repeatCount</strong> - кількість повторів, repeatCount="indefinite" - нескінченна анімація.</p>
+			<p><strong>begin</strong> - подія, по якій повинна початися анімація, наприклад, begin="click", begin="4s" - по кліку і через 4 секунди після завантаження сторінки, begin="click + 2s".</p>
+			<p><strong>fill</strong> - результат анімації: fill="freeze" - залишити елемент зміненим, fill="remove" - повернути елемент до початкового стану.</p>
+			<code>
+				&lt;circle cx="50" cy="100" r="70"&gt;<br>
+					&nbsp;&nbsp;&lt;animate attributeName="cx" to="100" dur="4s" begin="click" fill="freeze"/&gt;<br>
+					&nbsp;&nbsp;&lt;animate attributeName="cy" by="40" dur="4s" begin="click" fill="freeze"/&gt;<br>
+					&nbsp;&nbsp;&lt;animate attributeName="r" from="50" to="100" dur="4s" begin="click" fill="remove"/&gt;<br>
+					&nbsp;&nbsp;&lt;animate attributeType="CSS" attributeName="opacity" from="1" to="0.3" dur="2s" begin="click + 2s" fill="freeze"/&gt;<br>
+				&lt;/circle&gt;
+			</code>
+			<p>Можна задати рух по ключовим кадрам:</p>
+			<code>
+				&lt;animate ... values="20; 40; 60" keyTimes="0; 0.3; 1" /&gt;
+			</code>
+			<p><strong>calcMode</strong> - атрибут, що задає плавність переходу між точками, calcMode="discrete" - різкий, calcMode="linear" - плавний, є ще значення paced і spline.</p>
+			<p><strong>keySplines</strong> - атрибут, що задає плавність по типу CSS-властивості ease-in = cubic-bezier(0.47, 0, 0.745, 0.715).</p>
+			<p>Цим атрибутом можна задати наприклад ефект гравітації - стрибаючий гумовий м'ячик.</p>
+			<p>&nbsp;</p>
+			<p>Атрибути тега animateMotion всі ті самі і ще три додаткових:</p>
+			<p><strong>keyPoints</strong></p>
+			<p><strong>rotate</strong> - прокручувати елемент по ходу руху, значення: auto, auto-reverse, число - градуси.</p>
+			<p><strong>path</strong> - той самий формат, що і у атрибута &lt;path d="..."/&gt;.</p>
+			<p>Використання примітиву &lt;path&gt; як траекторія руху об'єкта:</p>
+			<code>
+				&lt;animateMotion ... dur="1s" begin="click" fill="freeze"&gt;<br>
+				&nbsp;&nbsp;&lt;mpath xlink:href="#motionPath"/&gt;<br>
+				&lt;/animateMotion&gt;
+			</code>
+			<p>Текст по заданій траекторії:</p>
+			<code>
+				&lt;text&gt;<br>
+				&nbsp;&nbsp;&lt;textpath xlink:href="#textpath"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Text laid out along a path.<br>
+				&nbsp;&nbsp;&lt;/textpath&gt;<br>
+				&lt;/text&gt;
+			</code>
+		</section>
+
+		<p>Приклад анімації ліній (клікни по колу):</p>
+		
+		<svg id="svg1" width="230" height="230" fill="#080a1a">
+			<circle cx="115" cy="115" r="110" stroke="#00ff00" fill="rgba(0,0,0,0.2)"  stroke-width="5" stroke-dasharray="1000" stroke-dashoffset="1000" style="cursor: pointer;">
+				<animate attributeName="stroke-dashoffset" begin="svg1.click" values="1000; 0" dur="5s" repeatCount="1" fill="freeze" calcMode="linear"></animate>
+			</circle>
+		</svg>
+
+		<code>
+			&lt;svg id="svg1" width="230" height="230" fill="#080a1a"&gt;<br>
+			&nbsp;&nbsp;&lt;circle cx="115" cy="115" r="110" fill="rgba(0,0,0,0.2)"<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke="#ff0000" stroke-width="5"<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke-dasharray="1000" stroke-dashoffset="1000"&gt;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;animate attributeName="stroke-dashoffset" begin="svg1.click"<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values="1000; 0" dur="5s" repeatCount="1" fill="freeze"<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calcMode="linear"&gt;&lt;/animate&gt;<br>
+			&nbsp;&nbsp;&lt;/circle&gt;
+			</svg>
+		</code>
+		
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>

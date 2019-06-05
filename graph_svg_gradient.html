@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Градієнтне зафарбовування</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>Градієнтне зафарбовування</h1>
+			<p>Лінійне і радіальне зафарбовування представлено у <a href="https://jsfiddle.net/poshtarboba/sqw7tj4a/4/" target="_blank">jsFiddle</a>.</p>
+			<p>Градієнти вказуються в окремому тезі - &lt;defs&gt;</p>
+			<p>Кожен градієнт містить стоп-точки, між якими колір плавно переходить з одного в інший.</p>
+			<p><strong>&lt;linearGradient&gt;</strong></p>
+			<p><strong>&lt;radialGradient&gt;</strong></p>
+			<p><strong>id</strong> - ідентифікатор градієнта, до якого звертаються примітиви, щоб отримати зафарбовування.</p>
+			<p><strong>&lt;stop&gt;</strong> - стоп-точка кольору.</p>
+			<p><strong>offset="0%"</strong> - положення стоп-точки; повинно бути щонайменше 2 точки з положеннями 0% і 100%.</p>
+			<p><strong>stop-color="red"</strong> - колір стоп-точки.</p>
+			<p><strong>stop-opacity="1"</strong> - прозорість стоп-точки.</p>
+			<p>Градієнти ще мають декілька налаштувань, типу фокальної точки, повторення і т.п.</p>
+		</section>
+
+		<section>
+			<h2>Завдання</h2>
+			<!--<p>1. Створіть декілька примітивів програмно, створіть обробники подій click, mouseenter, mouseleave, добавляйте, забирайте класи, прописуйте стилі безпосередньо в тег.</p>-->
+			<ol>
+				<li>Сервер видає дані про популярність поросят в інтернеті у вигляді <a href="js/pigs.json">JSON-файла</a>.<br>Побудуйте графік популярності поросят за тиждень.</li>
+				<li>Побудуйте кругову діаграму сумарної популярності поросят у процентах.</li>
+			</ol>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
