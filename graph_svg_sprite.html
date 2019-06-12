@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. SVG-спрайти</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<section>
+			<h1>SVG-спрайти</h1>
+
+			<p>Вставити куди-небудь у веб-сторінку SVG-спрайт і сховати його.</p>
+			<p>Кожна іконка огортається в тег &lt;symbol&gt; з ідентифікатором і viewBox:</p>
+			<code>
+				&lt;svg ... style="display: none;"&gt;<br>
+				&nbsp;&nbsp;&lt;symbol id="iconFb" viewBox="0 0 24 28"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ellipse ... class="fb-ellipse" /&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;path ... /&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;path ... /&gt;<br>
+				&nbsp;&nbsp;&lt;/symbol&gt;<br>
+				&nbsp;&nbsp;&lt;symbol id="iconTw" viewBox="0 0 25 26"&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;path ... /&gt;<br>
+				&nbsp;&nbsp;&lt;/symbol&gt;<br>
+				&lt;/svg&gt;
+			</code>
+			<p>Для вставки іконок використовуємо тег &lt;use&gt;:</p>
+			<code>
+				&lt;svg width="60" height="60"&gt;<br>
+				&nbsp;&nbsp;&lt;use xlink:href="#iconFb" /&gt;<br>
+				&lt;/svg&gt;<br>
+				&lt;svg width="24" height="24" class="fb-small"&gt;<br>
+				&nbsp;&nbsp;&lt;use xlink:href="#iconFb" /&gt;<br>
+				&lt;/svg&gt;<br>
+				&lt;svg width="24" height="24"&gt;<br>
+				&nbsp;&nbsp;&lt;use xlink:href="#iconTw" /&gt;<br>
+				&lt;/svg&gt;
+			</code>
+			<p>Можна використовувати CSS для зміни кольорів заливки, ліній і т.п. як всієї іконки, так і окремо примітивів:</p>
+			<code>
+				.fb-small { fill: blue; }<br>
+				.fb-ellipse { stroke: red; }
+			</code>
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
