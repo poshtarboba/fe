@@ -20,6 +20,15 @@
 		<h1>Медіазапити</h1>
 
 		<section>
+			<h2>Історія адаптивних веб-сайтів</h2>
+			<p>Гумові або центровані сайти.</p>
+			<p>Wap</p>
+			<p>Мобільна версія сайту</p>
+			<p>Єдиний сайт для всіх пристроїв</p>
+			<p>Концепція mobile-first</p>
+		</section>
+
+		<section>
 			<h2>Перелік медіазапитів</h2>
 			<p>Медіазапити в CSS дозволяють адаптувати верстку під різноманітні пристрої.</p>
 			<p>Приклади медіа-запитів:</p>
@@ -42,14 +51,31 @@
 				<strong>@media screen { ... }</strong> - екран;<br>
 				<strong>@media print { ... }</strong> - принтер;<br>
 				<strong>@media tv { ... }</strong> - телевізор;<br>
-				<strong>@media handheld { ... }</strong> - смартфон, планшет і т.п. (пристрої з тачскріном);<br>
+				@media handheld { ... } - смартфон, планшет і т.п. (наразі не використовується);<br>
 				@media all { ... } - всі пристрої;<br>
 				@media { ... } - теж всі пристрої;<br>
 				@media projection { ... } - проектор;<br>
 				@media braille { ... } - пристрої виводу зі шрифтом Брайля;<br>
 				@media embossed { ... } - принтери зі шрифтом Брайля;<br>
 				@media speech { ... } - голосові синтезатори, голосові браузери;<br>
-				@media tty { ... } - телетайпи, термінали (фіксовані символи).
+				@media tty { ... } - телетайпи, термінали (фіксовані символи)<br><br>
+				@media (min-width: 480px) { ... }<br>
+				@media (max-width: 480px) { ... }<br>
+				@media (min-width: 480px) and (max-width: 960px) { ... }<br>
+				@media (orientation: portrait) { ... }<br>
+				@media (orientation: landscape) { ... }<br>
+				@media (device-pixel-ratio: 2) { ... }<br>
+				@media (min-device-pixel-ratio: 2) { ... }<br>
+				@media (max-device-pixel-ratio: 2) { ... }<br>
+				@media (aspect-ratio: 16/9) { ... }<br>
+				@media (min-aspect-ratio: 4/3) { ... }<br>
+				@media (max-aspect-ratio: 16/9) { ... }<br>
+				@media (device-aspect-ratio: 16/9) { ... }<br>
+				@media (min-device-aspect-ratio: 16/9) { ... }<br>
+				@media (max-device-aspect-ratio: 16/9) { ... }<br>
+				@media (resolution: 300dpi) { ... }<br>
+				@media (min-resolution: 300dpi) { ... }<br>
+				@media (max-resolution: 300dpi) { ... }
 			</code>
 		</section>
 
