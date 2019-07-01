@@ -46,11 +46,11 @@
 			<p>Іноді медіазапити виносять в окремий css-файл.</p>
 			<p>Якщо стилів не багато, то всі медіа-запити можна записати в кінці файлу.</p>
 			<p>Якщо css-файл великий, то медіа-запити краще прописувати в кінці кожної секції сайту, кожного логічного блока, віджета.</p>
-			<p><strong>Перелік медіа-запитів</strong></p>
+			<h3>Фільтр пристроїв</p>
 			<code>
 				<strong>@media screen { ... }</strong> - екран;<br>
 				<strong>@media print { ... }</strong> - принтер;<br>
-				<strong>@media tv { ... }</strong> - телевізор;<br>
+				@media tv { ... } - телевізор;<br>
 				@media handheld { ... } - смартфон, планшет і т.п. (наразі не використовується);<br>
 				@media all { ... } - всі пристрої;<br>
 				@media { ... } - теж всі пристрої;<br>
@@ -58,8 +58,11 @@
 				@media braille { ... } - пристрої виводу зі шрифтом Брайля;<br>
 				@media embossed { ... } - принтери зі шрифтом Брайля;<br>
 				@media speech { ... } - голосові синтезатори, голосові браузери;<br>
-				@media tty { ... } - телетайпи, термінали (фіксовані символи)<br><br>
-				@media (min-width: 480px) { ... }<br>
+				@media tty { ... } - телетайпи, термінали (фіксовані символи)
+			</code>
+			<h3>Фільтр параметрів пристроїв (медіа-функції)</h3>
+			<p>У більшості випадків використовуються min/max-width, решту - просто знайте, що такі є, в разі потреби їх можна нагуглити.</p>
+			<code>
 				@media (max-width: 480px) { ... }<br>
 				@media (min-width: 480px) and (max-width: 960px) { ... }<br>
 				@media (orientation: portrait) { ... }<br>
@@ -75,8 +78,97 @@
 				@media (max-device-aspect-ratio: 16/9) { ... }<br>
 				@media (resolution: 300dpi) { ... }<br>
 				@media (min-resolution: 300dpi) { ... }<br>
-				@media (max-resolution: 300dpi) { ... }
+				@media (max-resolution: 300dpi) { ... }<br>
+				@media (monochrome) { ... }<br>
+				@media (color) { ... }<br>
+				@media (color: 8) { ... }<br>
+				@media (min-color: 2) { ... }<br>
+				@media (max-color: 8) { ... }<br>
+				@media (color-index: 256) { ... }<br>
+				@media (min-color-index: 16) { ... }<br>
+				@media (max-color-index: 65536) { ... }<br>
+				@media (hover: hover) { ... }
 			</code>
+			<p>Параметр color може приймати число - кількість біт на канал. Параметр color-index - кількість підтримуваних пристроєм кольорів.</p>
+			<p>Фільтри можна комбінувати логічними операторами <strong>and</strong>, <strong>or</strong>, <strong>not</strong>. При цьому в якості оператора <strong>or</strong> виступає кома:</p>
+			<code>
+				@media tv, projection { ... }<br>
+				@media printer and (min-resolution: 150dpi) and (color) { ... }<br>
+				@media<br>
+				&nbsp;&nbsp;(orientation: portrait) and (min-width: 600px),<br>
+				&nbsp;&nbsp;(orientation: landscape) and (min-width: 800px) and (max-widht: 1200px)<br>
+				&nbsp;&nbsp;{ ... }<br>
+				@media screen and (not (monochrome)) { ... }
+			</code>
+			<h3>Завдання</h3>
+			<p>Зробіть адаптивну версію меню:</p>
+			<code>
+				&lt;nav&gt;<br>
+				&nbsp;&nbsp;&lt;menu&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 3&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 4&lt;/li&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Item 5&lt;/li&gt;<br>
+				&nbsp;&nbsp;&lt;/menu&gt;<br>
+				&lt;/nav&gt;<br>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, laborum atque? Illo et veniam adipisci quia delectus molestias consequuntur aliquam sequi magnam, accusantium rerum quas, soluta esse aut sint eius.<br>
+				&lt;/p&gt;<br><br>
+				nav {<br>
+				&nbsp;&nbsp;position: relative;<br>
+				}<br>
+				menu {<br>
+				&nbsp;&nbsp;margin: 0;<br>
+				&nbsp;&nbsp;padding: 0;<br>
+				&nbsp;&nbsp;list-style: none;<br>
+				}<br>
+				li {<br>
+				&nbsp;&nbsp;display: inline-block;<br>
+				&nbsp;&nbsp;padding: 4px 12px;<br>
+				&nbsp;&nbsp;border-right: 1px solid silver;<br>
+				&nbsp;&nbsp;cursor: pointer;<br>
+				}
+			</code>
+			<p>Використайте &lt;span&gt; у якості кнопки розкриття меню для мобільної версії:</p>
+			<code>
+				&lt;span class="hamburger" title="menu"&gt;Show/hide menu&lt;/span&gt;<br><br>
+				.hamburger {<br>
+				&nbsp;&nbsp;position: relative;<br>
+				&nbsp;&nbsp;display: inline-block;<br>
+				&nbsp;&nbsp;margin: 12px 0;<br>
+				&nbsp;&nbsp;width: 24px;<br>
+				&nbsp;&nbsp;height: 2px;<br>
+				&nbsp;&nbsp;font-size: 0;<br>
+				&nbsp;&nbsp;line-height: 0;<br>
+				&nbsp;&nbsp;background: #999;<br>
+				&nbsp;&nbsp;cursor: pointer;<br>
+				}<br>
+				.hamburger:before,<br>
+				.hamburger:after {<br>
+				&nbsp;&nbsp;content: "";<br>
+				&nbsp;&nbsp;position: absolute;<br>
+				&nbsp;&nbsp;left: 0;<br>
+				&nbsp;&nbsp;width: 100%;<br>
+				&nbsp;&nbsp;padding-top: 6px;<br>
+				}<br>
+				.hamburger:before {<br>
+				&nbsp;&nbsp;bottom: 100%;<br>
+				&nbsp;&nbsp;border-top: 2px solid #999;<br>
+				}<br>
+				.hamburger:after {<br>
+				&nbsp;&nbsp;top: 100%;<br>
+				&nbsp;&nbsp;border-bottom: 2px solid #999;<br>
+				}
+			</code>
+			<p>Напишіть стилі для адаптації під ширину 480px і менше: меню повинно спозиціонуватися абсолютно, пункти меню повинні розташуватися в стовбчик.</p>
+			<code>
+				@media (max-width: 480px) {<br>
+				&nbsp;&nbsp;...<br>
+				}
+			</code>
+			<p>Сховайте меню, напишіть скрипт, що оброблює клік по гамбургеру та відображає чи ховає меню.</p>
+			<p>Спробуйте реалізувати дану затачу без скрипта, використовуючи input-checkbox в якості тріггера.</p>
 		</section>
 
 		<section>
@@ -179,10 +271,10 @@
 
 		<section class="homework">
 			<h2>Домашнє завдання</h2>
-			<p>На наступне заняття нам знадобляться зверстані макети Суперпосилки для вивчення адаптивної верстки.</p>
 			<ol>
 				<li>Зробіть версію для друку сайту Майнкрафт.</li>
 				<li>Зверстайте <a href="https://drive.google.com/open?id=0By5OeYSvSbNLcVoyY3dPS2ZFZWs">технічний макет "Rubber"</a> (<a href="thumb/rubber.jpg" target="_blank">jpg</a>), зверніть увагу на аннотації.</li>
+				<li>Дизайн сайту <a href="https://drive.google.com/open?id=0By5OeYSvSbNLRC04MDJ1YUVBT2M" target="_blank">Супер-посилки</a> <small>(<a href="thumb/superposilka.jpg" target="_blank">jpg</a>)</small> представлено у декількох макетах: для десктопів, планшетів, мобільних телефонів. Спробуйте зверстати його, використовуючи медіазапити.</li>
 			</ol>
 		</section>
 
