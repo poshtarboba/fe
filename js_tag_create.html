@@ -64,9 +64,10 @@
 			<p>Якщо .insertBefore приймає null у якості другого аргумента - він добавить елемент в кінець батьківського.</p>
 			<p>Видалити елемент можна методами:</p>
 			<code>
+				p.remove();<br><br>
+				// раніше вищевказаного метода не було, видаляли так:<br>
 				p.parentElement.removeChild(p);<br>
-				let k = p.parentElement.removeChild(p);<br>
-				p.remove(); &nbsp;&nbsp; // не підтримується в IE
+				let k = p.parentElement.removeChild(p);
 			</code>
 			<p>У змінну k буде збережено видалений елемент, якщо він потрібен буде в майбутньому.</p>
 			<h3>Завдання.</h3>
