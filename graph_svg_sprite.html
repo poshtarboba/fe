@@ -16,12 +16,26 @@
 		<section>
 			<h1>SVG-спрайти</h1>
 
-			<p>Вставити куди-небудь у веб-сторінку SVG-спрайт і сховати його.</p>
-			<p>Кожна іконка огортається в тег &lt;symbol&gt; з ідентифікатором і viewBox:</p>
+			<p>Як і звичайні png-спрайти, svg-спрайти - це сукупність окремих картинок в одному файлі.</p>
+			<p>На відміну від png-спрайтів svg-спрайти вставляються на веб-сторінку у HTML-код, а не у CSS у вигляді фонового зображення.</p>
+			<p>Для використання svg-спрайтів необхідно вставити куди-небудь у веб-сторінку svg-файл і сховати його. Наприклад, одразу після &lt;body&gt;:</p>
 			<code>
-				&lt;svg ... style="display: none;"&gt;<br>
+				&lt;body&gt;<br>
+				&nbsp;&nbsp;&lt;svg style="display: none;" ... &gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+				&nbsp;&nbsp;&lt;/svg&gt;
+			</code>
+			<p>Іконки будуть використовувати простір імен SVG, тому обов'язково потрібно вказати xmlns та xmlns:xlink.</p>
+			<p>А ось vievBox у кожної іконки буде свій і для всього SVG він не потрібен.</p>
+			<p>Кожна іконка огортається в тег &lt;symbol&gt; з ідентифікатором та viewBox:</p>
+			<code>
+				&lt;svg<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;style="display: none;"<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;xmlns="http://www.w3.org/2000/svg"<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xlink="http://www.w3.org/1999/xlink"<br>
+				&nbsp;&nbsp;&gt;<br>
 				&nbsp;&nbsp;&lt;symbol id="iconFb" viewBox="0 0 24 28"&gt;<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ellipse ... class="fb-ellipse" /&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;ellipse ... /&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;path ... /&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;path ... /&gt;<br>
 				&nbsp;&nbsp;&lt;/symbol&gt;<br>
@@ -42,10 +56,12 @@
 				&nbsp;&nbsp;&lt;use xlink:href="#iconTw" /&gt;<br>
 				&lt;/svg&gt;
 			</code>
-			<p>Можна використовувати CSS для зміни кольорів заливки, ліній і т.п. як всієї іконки, так і окремо примітивів:</p>
+			<p>Проте, така вставка іконок не дозволить використовувати CSS для зміни кольорів заливки, ліній і т.п., а також не дасть можливості взаємодіяти з JS.</p>
+			<p>Якщо вам потрібен повний контроль над іконками і картинками з svg-спрайта - їх доведеться вставляти в HTML-код повністю, можна оптимізувати процес за допомогою JS:</p>
 			<code>
-				.fb-small { fill: blue; }<br>
-				.fb-ellipse { stroke: red; }
+				&lt;i class="svg-icon iconFb"&gt;&lt;/i&gt;<br>
+				&lt;i class="svg-icon iconTw"&gt;&lt;/i&gt;<br> 
+				&lt;i class="svg-icon iconIg"&gt;&lt;/i&gt; 
 			</code>
 	</div>
 </div>
