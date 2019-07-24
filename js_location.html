@@ -61,17 +61,34 @@
 				document.getElementById('buttonCookie').onclick = function(){ location.replace('js_cookie.html'); };
 		</script>
 
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		
 		<section id="section2">
-			<p>Секція #section2, до якої має проскролитися сторінка при зміні хеша.</p>
+			<h2>Обробка search</h2>
+			<p><small>(Секція #section2, до якої має проскролитися сторінка при зміні хеша.)</small></p>
+			<p>Часто доводиться працювати з блоком search. Можна використати регулярні вирази для виокремлення потрібних ключів та значень, проте, зручніше перетворити блок search на масив чи об'єкт.</p>
+			<p>Для роботи з поточною URL звертаємося до об'єкта location. Але іноді потрібно розібрати сторонню URL, для цього можна використати конструктор new URL:</p>
+			<code>
+				let search = location.search.substr(1);<br><br>
+				let url = 'http://mysite.com/index.html?name=boba&status=admin';<br>
+				let search = (new URL(url)).search.substr(1);
+			</code>
+			<p>Створення масива ключів та значень:</p>
+			<code>
+				let search = location.search.substr(1).split('&').map(function (e){<br>
+				&nbsp;&nbsp;e = e.split('=');<br>
+				&nbsp;&nbsp;return [decodeURIComponent(e[0]), decodeURIComponent(e[1])];<br>
+				});<br>
+				<em>// [ ['name', 'boba'], ['status', 'admin'] ]</em>
+			</code>
+			<p>Створення об'єкта:</p>
+			<code>
+				let search = location.search.substr(1).split('&').reduce(function (a, e){<br>
+				&nbsp;&nbsp;e = e.split('=');<br>
+				&nbsp;&nbsp;a[decodeURIComponent(e[0])] = decodeURIComponent(e[1]);<br>
+				&nbsp;&nbsp;return a;<br>
+				}, {});<br>
+				<em>// { name: 'boba', status: 'admin' }</em>
+			</code>
 		</section>
-		
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 	</div>
 </div>

@@ -44,12 +44,13 @@
 				&lt;/canvas&gt;
 			</code>
 			<p>Для початку малювання потрібно <strong>взяти контекст полотна</strong>, тобто, вказати - по чому ми малюємо. Полотно - контейнер для малювання всередині тега canvas.</p>
+			<p>По-замовчуванню розмір полотна 300 x 150 px, і малюнок на ньому буде маштабуватися до розміру canvas. Тому бажано задати розмір полотна.</p>
 			<p>Цим способом довільне малювання по віконному додатку відбувається у більшості мов програмування: C++, Java, Delphi і т.п. (використовується API операційної системи).</p>
 			<code>
 				let canvas = document.querySelector('canvas');<br>
-				let ctx = canvas.getContext('2d');<br><br>
-				// або напряму:<br>
-				let ctx = document.querySelector('canvas').getContext('2d');
+				let ctx = canvas.getContext('2d');<br>
+				canvas.width = canvas.clientWidth;<br>
+				canvas.height = canvas.clientHeight;
 			</code>
 			<p>Раджу використовувати загальноприйняту назву змінної <strong>ctx</strong> (скорочення від context).</p>
 			<p>Якщо потрібна підтримка старих браузерів - можна виконати перевірку:</p>
