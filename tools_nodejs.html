@@ -13,6 +13,100 @@
 <div id="mainwrapper">
 	<div class="resize">
 
+		<section>
+			<h2>Шпаргалка по проекту</h2>
+			<p>Шпаргалка по "швидкому" старту проекту на Node.js зі зборщиком</p>
+			<ol>
+				<li>
+					Скачуємо та встановлюємо Node.js (якщо цього ще не було зроблено) і пару корисних модулів через консоль:
+					<code>
+						npm install browser-sync --global<br>
+						npm install gulp-cli --global
+					</code>
+				</li>
+				<li>
+					Створюємо репозиторій Git, клонуємо його собі в папку проекту.<br>
+					Структура нашого проекту буде приблизно такою:
+					<code>
+						<strong>build/</strong>
+						<strong>resources/</strong>
+						<strong>src/<strong>
+						&nbsp;&nbsp;<strong>css/<strong>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>fonts/<strong> <em>шрифти</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>img/<strong> <em>статичні зображення</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>partial/<strong> <em>стилі компонентів</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>vendor/<strong> <em>стилі плагінів</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;mixins.scss <em>міксіни</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;styles.scss <em>головний файл стилів</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;vars.scss <em>змінні</em>
+						&nbsp;&nbsp;<strong>img/<strong> <em>динамічні зображення</em>
+						&nbsp;&nbsp;<strong>js/<strong>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>lib/<strong> <em>бібліотеки</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>partial/<strong> <em>скрипти компонентів</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>plugins/<strong> <em>плагіни</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;const.js <em>основні константи, змінні</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;functions.js <em>службові функції</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;scripts.js <em>головний файл скриптів</em>
+						&nbsp;&nbsp;<strong>view/<strong> <em>html-код сторінок</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;<strong>partial/<strong>
+						&nbsp;&nbsp;&nbsp;&nbsp;index.html <em>головна сторінка</em>
+						&nbsp;&nbsp;&nbsp;&nbsp;pages.html <em>посилання на всі сторінки проекту</em>
+						.gitignore <em>конфігурація для Git</em>
+						.htaccess <em>конфігурація для сервера</em>
+						gulpfile.js <em>конфігурація для Gulp</em>
+						package.json <em>конфігурація для пакетного менеджера npm</em>
+						TODO.txt <em>TODO-list</em>
+					</code>
+				</li>
+				<li>
+					Запускаємо консоль з папки проекту, створюємо Node-проект та встановлюємо  gulp:<br>
+					<em>(gulp-cli встановлюється один раз, глобально для всіх проектів)</em>
+					<code>
+						npm init -y<br>
+						
+						npm install gulp --save-dev<br>
+					</code>
+					<em>(--save-dev - зберегти інформацію про пакет в package.json)</em><br>
+					<p>Якщо ж ми підключилися до існуючого проекту - після клонування проекту собі і встановлення gulp-cli потрібно підтягнути модулі:</p>
+					<code>
+						npm install
+					</code>
+					<p>Ця команда встановлює в поточний проект всі модулі, що прописані в package.json.</p>
+				</li>
+				<li>
+					Встановлюємо необхідні модулі (вибираємо потрібні нам):
+					gulp-changed - запускає завдання лише для змінених файлів;
+					node-sass - препроцесор SASS;
+					gulp-sourcemaps - сорс-мапи для CSS, JS;
+					gulp-clean-css - мініфікатор CSS;
+					gulp-concat - об'єднує потоки в один (наприклад, JS);
+					gulp-uglify - мініфікатор JS;
+					gulp-rename - переіменувує потоки (наприклад, all.js --&gt; all.min.js);
+					gulp-pug - препроцесор html;
+					gulp-rigger - зборщик html;
+					gulp-imagemin - стискє зображення PNG, JPEG, GIF та SVG;
+					gulp-webp - перетворює PNG, JPEG, GIF у WebP;
+					gulp-chmod - зміна прав файлів (гугли chmod);
+					
+				</li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</section>
+		
+		створити папку:
+		mkdir folder1 folder2 folder2\subfolder
+		
+		створити файл:
+		type nul > your_file3.txt
+		
+		gulp-concat:
+		.src([список шаблонів та файлів])
+		.pipe(concat('scripts.js'))
+
 		<h1>Зборщики проектів</h1>
 		
 		<figure>
