@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<body>
+
+	<p>logger.js:</p>
+	<code>
+		export default function logMessage(msg){
+			console.log(msg);
+		}
+	</code>
+
+	<p>script.js:</p>
+	<code>
+		import logMessage from './logger.js';
+
+		class CalorieTracker {
+			constructor(maxCalories) {
+				this.maxCalories = maxCalories;
+				this.currentCalories = 0;
+			}
+			trackCalories(calorieCount) {
+				this.currentCalories += calorieCount;
+				if (this.currentCalories > this.maxCalories)
+					logMessage('Max calories exceeded');
+			}
+		}
+
+		const calorieTracker = new CalorieTracker(2000);
+		calorieTracker.trackCalories(500);
+		calorieTracker.trackCalories(1000);
+		calorieTracker.trackCalories(700);
+	</code>
+
+</body>
