@@ -21,20 +21,24 @@
 			<h1>Атрибути елементів веб-форм</h1>
 			<p>Для того, щоб нормально працювали радіокнопки - їм необхідно задати однакові атрибути <em>name</em>:</p>
 			<p>
-				<label><input type="radio" name="gender"> ч</label><br>
-				<label><input type="radio" name="gender"> ж</label><br>
-				<label><input type="radio" name="gender"> т</label><br>
-				<label><input type="radio" name="gender2"> ч2</label><br>
-				<label><input type="radio" name="gender2"> ж2</label><br>
-				<label><input type="radio" name="gender2"> т2</label>
+				Стать клієнта:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender" value="m"> чол</label><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender" value="f"> жін</label><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender" value="o"> інше</label><br>
+				Стать партнера:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender2" value="m"> чол</label><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender2" value="f"> жін</label><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="radio" name="gender2" value="o"> інше</label>
 			</p>
 			<code>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; ч&lt;/label&gt;&lt;/p&gt;<br>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; ж&lt;/label&gt;&lt;/p&gt;<br>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender"&gt; т&lt;/label&gt;&lt;/p&gt;<br>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; ч2&lt;/label&gt;&lt;/p&gt;<br>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; ж2&lt;/label&gt;&lt;/p&gt;<br>
-				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2"&gt; т2&lt;/label&gt;&lt;/p&gt;
+				&lt;p&gt;Стать клієнта:&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender" value="m"&gt; чол&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender" value="f"&gt; жін&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender" value="o"&gt; інше&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;Стать партнера:&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2" value="m"&gt; чол&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2" value="f"&gt; жін&lt;/label&gt;&lt;/p&gt;<br>
+				&lt;p&gt;&lt;label&gt;&lt;input type="radio" name="gender2" value="o"&gt; інше&lt;/label&gt;&lt;/p&gt;
 			</code>
 			<p>Атрибут <strong>name</strong> необхідно задати для кожного елемента форми, якщо її дані відправляються на сервер. Дані відправляються пакетом із пар: [ключ - значення], де ключ - це значення атрибута name, а значення - те, що міститься в атрибуті value.</p>
 			<p>Елементи radio та checkbox можуть мати статус checked - він робить активним елемент веб-форми:</p>
@@ -119,6 +123,72 @@
 				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="2" value="tabindex = 2"&gt;&lt;/label&gt;&lt;/p&gt;<br>
 				&nbsp;&nbsp;&lt;p&gt;&lt;label&gt;&lt;input tabindex="4" value="tabindex = 4"&gt;&lt;/label&gt;&lt;/p&gt;<br>
 				&lt;/form&gt;
+			</code>
+			<p>Без tabindex:</p>
+			<style>
+				[border="1"] { border-collapse: collapse; }
+				[border="1"] input:focus { background: yellow; }
+			</style>
+			<table border="1" cellpadding="12">
+				<tr>
+					<td>
+						<label>Input 1 <input></label><br>
+						<label>Input 3 <input></label><br>
+						<label>Input 5 <input></label>
+					</td>
+					<td>
+						<label>Input 2 <input></label><br>
+						<label>Input 4 <input></label><br>
+						<label>Input 6 <input></label>
+					</td>
+				</tr>
+			</table>
+			<code>
+				&lt;table&gt;<br>
+				&nbsp;&nbsp;&lt;tr&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 1 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 3 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 5 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 2 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 4 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 6 &lt;input&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&lt;/tr&gt;<br>
+				&lt;/table&gt;
+			</code>
+			<p>З tabindex:</p>
+			<table border="1" cellpadding="12">
+				<tr>
+					<td>
+						<label>Input 1 <input tabindex="1"></label><br>
+						<label>Input 3 <input tabindex="3"></label><br>
+						<label>Input 5 <input tabindex="5"></label>
+					</td>
+					<td>
+						<label>Input 2 <input tabindex="2"></label><br>
+						<label>Input 4 <input tabindex="4"></label><br>
+						<label>Input 6 <input tabindex="6"></label>
+					</td>
+				</tr>
+			</table>
+			<code>
+				&lt;table&gt;<br>
+				&nbsp;&nbsp;&lt;tr&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 1 &lt;input tabindex="1"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 3 &lt;input tabindex="3"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 5 &lt;input tabindex="5"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 2 &lt;input tabindex="2"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 4 &lt;input tabindex="4"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Input 6 &lt;input tabindex="6"&gt;&lt;/label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+				&nbsp;&nbsp;&lt;/tr&gt;<br>
+				&lt;/table&gt;
 			</code>
 			<h3>Селектори атрибутів</h3>
 			<p>Статуси видимих елементів веб-форм можуть мати наступні селектори в стилях:</p>

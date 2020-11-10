@@ -44,8 +44,18 @@
 			<p><em>selected</em> - вибрана по-замовчуванню строка.</p>
 			<p><em>disabled</em> - строка, яку неможливо вибрати</p>
 			<p><em>value</em> - значення, що передається на сервер в парі [ключ - значення].</p>
-			<p>Ви не можете стилізувати елементи option.</p>
+			<p>Ви дуже обмежено можете стилізувати елементи option: виділити жирним, зробити текст нахиленим.</p>
 			<code>
+				&lt;p&gt;<br>
+				&nbsp;&nbsp;&lt;label&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Gender:<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;select&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;male&lt;option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;female&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;other&lt;/option&gt;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
+				&nbsp;&nbsp;&lt;/label&gt;<br>
+				&lt;/p&gt;<br><br>
 				&lt;p&gt;<br>
 				&nbsp;&nbsp;&lt;label&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;select&gt;<br>
@@ -56,7 +66,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="lv"&gt;Львів&lt;/option&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
 				&nbsp;&nbsp;&lt;/label&gt;<br>
-				&lt;/p&gt;<br>
+				&lt;/p&gt;<br><br>
 				&lt;p&gt;<br>
 				&nbsp;&nbsp;&lt;label&gt;<br>
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;select size="3" multiple&gt;<br>
@@ -67,6 +77,19 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;<br>
 				&nbsp;&nbsp;&lt;/label&gt;<br>
 				&lt;/p&gt;
+			</code>
+			<p>Варіант списку <em>multiple</em> наразі використовується дуже рідко через його неочевидність, поганий UI/UX, його заміняють звичайним списком чекбоксів:</p>
+			<p>
+				<label><input type="checkbox" value="khm"> Хмельницький</label><br>
+				<label><input type="checkbox" value="vn"> Вінниця</label><br>
+				<label><input type="checkbox" value="ter"> Тернопіль</label><br>
+				<label><input type="checkbox" value="lv"> Львів</label><br>
+			</p>
+			<code>
+				&lt;label&gt;&lt;input type="checkbox" name="city_khm"&gt; Хмельницький&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="checkbox" name="city_vn"&gt; Вінниця&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="checkbox" name="city_ter"&gt; Тернопіль&lt;/label&gt;<br>
+				&lt;label&gt;&lt;input type="checkbox" name="city_lv"&gt; Львів&lt;/label&gt;
 			</code>
 			<p>Приклад підміни елемента select на радіокнопки та випадаючий список для довільної стилізації (на чистому CSS): <a href="https://jsfiddle.net/poshtarboba/8h37br2L/2/" target="_blank">jsFiddle</a>.</p>
 		</section>
