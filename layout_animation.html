@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend. Анімація jQuery та CSS</title>
+	<meta charset="utf-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<style>
+		.ex2 { padding: 20px 0; line-height: 80px;}
+		.ex2 span { display: inline-block; position: relative; margin: 0 20px 0 0; padding: 16px 24px; line-height: 18px; border: 1px solid #777;}
+		.ex2.an span { transition: transform 1s ease;}
+		.ex2.an span:nth-child(6):hover { transform: skewY(40deg);}
+		.ex2 span:nth-child(7) { transition: transform 1s cubic-bezier(0.9, -6, 0.7, 0);}
+		.ex2 span:nth-child(1):hover { transform: rotate(40deg);}
+		.ex2 span:nth-child(2):hover { transform: translate(-5%, 10px);}
+		.ex2 span:nth-child(3):hover { transform: scale(2);}
+		.ex2 span:nth-child(4):hover { transform: scale(0.3, 0.7);}
+		.ex2 span:nth-child(5):hover { transform: skewX(40deg);}
+		.ex2 span:nth-child(6):hover { transform: skewY(40deg);}
+		.ex2 span:nth-child(7):hover { transform: scale(1.2);}
+		.ex2 span:nth-child(8):hover { transform: scale(1, -1);}
+		.ex2 span:nth-child(9):hover { transform: scale(-1, 1);}
+		p { position: relative;}
+		.action { display: inline-block; padding: 8px 16px; border: 1px solid #000;}
+		.click { cursor: pointer;}
+		.toggle6, .toggle7 { position: absolute; left: 150px; top: 10px;}
+		.ex1 { padding: 20px 0;}
+		.test1, .test3 {
+			display: inline-block;
+			padding: 24px 60px;
+			font-weight: bold;
+			color: black;
+			background: silver;
+			transition: background 2s linear 2s;
+		}
+		.test1:hover, .test3.active {
+			color: white;
+			background: blue;
+		}
+		.test3 { cursor: pointer;}
+		.test2 {
+			display: inline-block;
+			padding: 24px 60px;
+			font-weight: bold;
+			color: black;
+			background: silver;
+			transition: all 400ms;
+		}
+		.test2:hover {
+			color: white;
+			background: blue;
+			transition: color 10s linear, background 1s linear;
+		}
+		.test4:focus {
+			padding: 4px 10px;
+			background: yellow;
+			transition: background 2s linear;
+		}
+
+		.tmenu { display: inline-block; position: relative; margin: 0 50px 100px 0;}
+		.tmenu span { display: inline-block; padding: 20px 40px; color: #fff; background: #0073bb;}
+		.tmenu ul { overflow: hidden; position: absolute; margin: 0; padding: 0; left: 0; top: 100%; height: 0;}
+		.tmenu ul li { padding: 12px 30px; list-style: none; background: #fffe98; border: 1px solid #777; border-top: none;}
+		.tmenu:hover ul { }
+
+		.menu1:hover ul, .menu2:hover ul { transition: height 400ms linear;}
+		.menu1:hover ul { height: auto;}
+		.menu2:hover ul { height: 159px;}
+		.menu3 span { cursor: pointer;}
+		.menu3 ul { height: auto; display: none;}
+	</style>
+</head>
+<body>
+<div id="mainwrapper">
+	<div class="resize">
+
+		<h1>Трансформація і анімація в CSS</h1>
+
+		<section>
+			<h2>2D-трансформація елементів</h2>
+			<p>Загальний вид стилів для трансформації:</p>
+			<code>
+				.element {<br>
+				&nbsp;&nbsp;transform: видТрансформації(величина);<br>
+				}
+			</code>
+			<p><strong>transform: rotate(angle);</strong> - обертання елемента довкола центра.</p>
+			<p><strong>transform: translate(x, y);</strong> - зміщення елемента по осях X, Y відносно початкового положення.</p>
+			<p><strong>transform: scale(n);</strong> - маштабування елемента, є також <strong>scale(x, y)</strong>, <strong>scaleX(x)</strong>, <strong>scaleY(y)</strong>.</p>
+			<p><strong>transform: skewX(angle);</strong> - нахил елемента, є також <strong>skewY(angle)</strong>.</p>
+			<p>Стилі трансформації добавлено на hover-ефект елементів:</p>
+			<p class="ex2">
+				<span>rotate(40deg)</span>
+				<span>translate(-5%, 10px)</span>
+				<span>scale(2)</span>
+				<span>scale(0.3, 0.7)</span>
+				<span>skewX(40deg)</span>
+				<span>skewY(40deg)</span>
+			</p>
+			<p>Якщо потрібно застосувати декілька трансформацій до одного елемента - вони вказуються через пробіл:</p>
+			<code>
+				.element {<br>
+				&nbsp;&nbsp;transform: rotate(45deg) scale(1.2) skewX(15deg) translate(20px, 10px);<br>
+				}
+			</code>
+			<p>Також всі види трансформації можна прописати в одній властивості <strong>matrix</strong>, але для розуміння цих трансформацій потрібно добре розбиратися в <a href="https://developer.mozilla.org/ru/docs/Web/CSS/transform-function" target="_blank">математичних матрицях</a>:
+			<p><strong>transform: matrix(a, b, c, d, tx, ty);</strong> - трансформація елемента згідно матриці перетворень.</p>
+		</section>
+
+		<section>
+			<h2>3D-трансформація елементів</h2>
+			<p>Тривимірні трансформації значно складніші і використовуються не часто, в основному для спецефектів в купі з анімацією.</p>
+			<p>Для 3D-трансформації є стилі:</p>
+			<p><strong>perspective(400px)</strong> - налаштовує перспективу</p>
+			<p><strong>rotate3d(x, y, z, angle)</strong>, rotateX(angle), rotateY(angle), rotateZ(angle)</p>
+			<p><strong>translate3d(x, y, z)</strong>, translateX(x), translateY(y), translateZ(z)</p>
+			<p><strong>scale3d(x, y, z)</strong>, scaleX(x), scaleY(y), scaleZ(z)</p>
+			<p><strong>matrix3d(<em>16 аргументів</em>)</strong></p>
+		</section>
+		
+		<section>
+			<h2>Анімація</h2>
+			<!-- https://html5book.ru/css3-transform/ -->
+			<p>Для різноманітних ефектів часто цілком достатньо CSS-анімації, наприклад, для постійно діючої анімації (крутиться шестерня), ховер-ефектів, випадаючих елементів та ін.</p>
+			<p>Складніші ефекти створюються за допомогою SVG-анімації, JavaScript, навіть є можливість використовувати потужну 3D-анімацію за допомогою рушія WebGL (OpenGL для браузерів).</p>
+			<p>Анімація в CSS відбувається між двома станами елемента: наприклад, звичайний стан і hover-ефект, фокус об'єкта, перемикання чекбокса чи радіокнопки вище по коду... За допомогою JavaScript можна змінювати класи і атрибути у елементів, міняти батьківські та сусідні вище по коду елементи - це все теж можна використовувати для зміни станів.</p>
+			<p>Загальний вид стиля для анімації:</p>
+			<code>
+				.element {<br>
+				&nbsp;&nbsp;transition: property duration timing_function delay;<br>
+				}
+			</code>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>property</em></strong> - стилі, які необхідно анімувати (all - всі стилі).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>duration</em></strong> - тривалість анімації в секундах, мілісекундах, хвилинах...</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>timing_function</em></strong> - <a href="http://htmlbook.ru/css/transition-timing-function" target="_blank">функція плавності анімації</a> (linear, ease, ...).</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>delay</em></strong> - затримка перед початком анімації.</p>
+			<code>
+				a.product {<br>
+				&nbsp;&nbsp;color: blue;<br>
+				&nbsp;&nbsp;transition: color 1s linear 500ms;<br>
+				}<br>
+				a.product:hover {<br>
+				&nbsp;&nbsp;color: red;<br>
+				}
+			</code>
+			<p>Посилання з класом <em>product</em> по замовчуванню синього кольору. Анімація задана для дефолтного стану - вона буде працювати і при наведенні миші на елемент, і після прибирання миші з об'єкта. Якщо стиль анімації перенести на :hover-селектор - анімація буде спрацьовувати лише після прибирання миші з елемента.</p>
+			<p>Стиль анімації вказує що потрібно змінити колір тексту від синього до червоного чи навпаки, зміна кольору буде відбуватися плавно протягом однієї секунди і лінійно. Також є необов'язковий параметр delay - він вказує на те, що анімацію слід починати після 0,5 с. затримки.</p>
+			<p>Анімувати можна не всі стилі, а лише ті, що можуть плавно змінюватися. Плавно змінити стан з display: block у display: none не вийде, так само як і змінити жирність/накреслення тексту, підкреслення, властивість float і т.д.</p>
+			<p>Також не вдасться анімувати елементи, в яких значення стилів вказано як auto: наприклад, не можна за допомогою CSS анімувати випадаюче меню, якщо йому чітко не задано висоту (як правило, висота автоматично визначається контентом). В цьому випадку застосовують JavaScript.</p>
+			<p>Розглянемо такий приклад:</p>
+			<p class="ex1"><span class="test1">TEST</span></p>
+			<code>
+				.test1 {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;padding: 24px 60px;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: black;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: silver;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: background 2s linear 2s;<br>
+				}<br>
+				.test1:hover {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: blue;<br>
+				}
+			</code>
+			<p>При ховері міняється колір тексту та фон. Але для фона задано анімацію тривалістю 2 секунди, яка має виконатися із затримкою у 2 секунди.</p>
+			<p>Можна задати окремо анімацію для різних стилів, окремо на втрату ховера:</p>
+			<p class="ex1"><span class="test2">TEST</span></p>
+			<code>
+				.test2 {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: black;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: silver;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: all 400ms;<br>
+				}<br>
+				.test1:hover {<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;color: white;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;background: blue;<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;transition: color 10s, background 2s;<br>
+				}
+			</code>
+			<p>Змінити стан можна багатьма способами, зміною класів, атрибутів, checked, didabled, :focus...</p>
+			<p class="ex1"><span class="test3">Клік = toggleClass('active')</span> &nbsp;&nbsp;&nbsp;&nbsp; input:focus <label><input class="test4"></label></p>
+			<script>
+				window.addEventListener('load', function(){
+					$('.test3').on('click',function(){$(this).toggleClass('active');});
+				});
+			</script>
+			<p>JavaScript-код кліка по елементу:</p>
+			<code>
+				document.querySelector('.box').onclick = function(){<br>
+				&nbsp;&nbsp;this.classList.toggle('active');<br>
+				};
+			</code>
+			<p>Плавні трансформації елементів:</p>
+			<p class="ex2 an">
+				<span>rotate(40deg)</span>
+				<span>translate(-50%, 100px)</span>
+				<span>scale(2)</span>
+				<span>scale(0.5, 0.2)</span>
+				<span>skewX(40deg)</span>
+				<span>skewY(40deg)</span>
+				<span>scale cubic-bezier</span>
+				<span>flip</span>
+				<span>mirror</span>
+			</p>
+		</section>
+
+	</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script src="fe.js"></script>
+
+</body>
+</html>
